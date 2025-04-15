@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8v3tvxgohoev"]
+
+[ext_resource type="ArrayMesh" uid="uid://uaamml5y10vj" path="res://3D/assets/castle_v1.obj" id="1_rnxkg"]
+[ext_resource type="Material" uid="uid://bogtx2h5cdnp3" path="res://3D/materials/dark_grey.tres" id="2_63frf"]
+[ext_resource type="PackedScene" uid="uid://bb1ojc5qlbf4y" path="res://3D/components/player_flag.tscn" id="3_iy13d"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iy13d"]
+albedo_color = Color(1, 0, 0, 1)
+
+[node name="PlayerCastle" type="Node3D"]
+
+[node name="CastleV1" type="MeshInstance3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0.0537419, 0, 0.0170016)
+mesh = ExtResource("1_rnxkg")
+surface_material_override/0 = ExtResource("2_63frf")
+surface_material_override/1 = SubResource("StandardMaterial3D_iy13d")
+
+[node name="Flag1" parent="." instance=ExtResource("3_iy13d")]
+transform = Transform3D(0.176777, 0, 0.176777, 0, 0.25, 0, -0.176777, 0, 0.176777, -1.1, 3.1, -1.1)
+
+[node name="Flag2" parent="." instance=ExtResource("3_iy13d")]
+transform = Transform3D(0.176777, 0, 0.176777, 0, 0.25, 0, -0.176777, 0, 0.176777, 1.2, 3.1, -1.162)
+
+[node name="Flag3" parent="." instance=ExtResource("3_iy13d")]
+transform = Transform3D(0.176777, 0, 0.176777, 0, 0.25, 0, -0.176777, 0, 0.176777, 1.198, 3.1, 1.171)
+
+[node name="Flag4" parent="." instance=ExtResource("3_iy13d")]
+transform = Transform3D(0.176777, 0, 0.176777, 0, 0.25, 0, -0.176777, 0, 0.176777, -1.166, 3.1, 1.171)

@@ -1,0 +1,3 @@
+size is 8.66
+horizontal spacing between centers is sqrt(3) * size
+vertical spacing between centers is (3/2) * size

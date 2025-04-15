@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://coa2enk271cgj"]
+
+[ext_resource type="ArrayMesh" uid="uid://b5kh17vnxaqf6" path="res://3D/assets/grass.obj" id="1_c16ka"]
+[ext_resource type="Script" uid="uid://b108anyn817ik" path="res://3D/components/hex_region.gd" id="1_x2km7"]
+[ext_resource type="Material" uid="uid://bjfuru3xc5v3e" path="res://3D/materials/grass.tres" id="2_x2km7"]
+[ext_resource type="PackedScene" uid="uid://del6455x1rio1" path="res://3D/components/building_hotspot.tscn" id="4_x2km7"]
+[ext_resource type="Material" uid="uid://4xxu5p5stsvc" path="res://3D/materials/dirt.tres" id="5_awe0n"]
+
+[node name="HexRegion" type="Node3D"]
+script = ExtResource("1_x2km7")
+
+[node name="HexBase" type="MeshInstance3D" parent="."]
+transform = Transform3D(15, 0, 0, 0, 3, 0, 0, 0, 15, 0, -0.0302746, 0)
+mesh = ExtResource("1_c16ka")
+surface_material_override/0 = ExtResource("2_x2km7")
+
+[node name="OuterBase" type="MeshInstance3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 3, 0, 0, 0, 20, 0, -0.146967, 0)
+mesh = ExtResource("1_c16ka")
+surface_material_override/0 = ExtResource("5_awe0n")
+
+[node name="BuildingHotspot1" parent="." instance=ExtResource("4_x2km7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.62459, 0.455131, -5.15977)
+
+[node name="BuildingHotspot2" parent="." instance=ExtResource("4_x2km7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.53418, 0.455131, 5.47698)
+
+[node name="BuildingHotspot3" parent="." instance=ExtResource("4_x2km7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0250788, 0.455131, 10.0187)
+
+[node name="BuildingHotspot4" parent="." instance=ExtResource("4_x2km7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.55818, 0.455131, 5.46534)
+
+[node name="BuildingHotspot5" parent="." instance=ExtResource("4_x2km7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.63407, 0.455131, -5.2006)
+
+[node name="BuildingHotspot6" parent="." instance=ExtResource("4_x2km7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.017273, 0.455131, -10.0168)

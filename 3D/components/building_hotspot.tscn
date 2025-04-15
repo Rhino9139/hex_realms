@@ -1,0 +1,58 @@
+[gd_scene load_steps=14 format=3 uid="uid://del6455x1rio1"]
+
+[ext_resource type="Script" uid="uid://bvm0v3l1xnpb3" path="res://3D/components/building_hotspot.gd" id="1_ql0ga"]
+[ext_resource type="ArrayMesh" uid="uid://uaamml5y10vj" path="res://3D/assets/castle_v1.obj" id="2_ao6y5"]
+[ext_resource type="Shader" uid="uid://h58hxy2run1s" path="res://3D/shaders/hologram_shader.tres" id="3_wn5yq"]
+[ext_resource type="ArrayMesh" uid="uid://dxuw2kp4h3qam" path="res://3D/assets/settlement_v1.obj" id="4_h0n0c"]
+[ext_resource type="Texture2D" uid="uid://k5vyxm71n418" path="res://3D/assets/hexagons_medieval.png" id="5_k5n1g"]
+[ext_resource type="Material" uid="uid://db6xyoo8kvsrv" path="res://3D/materials/red.tres" id="6_qiwfx"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_8sy7l"]
+radius = 1.89905
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_v4w4q"]
+frequency = 0.03
+fractal_type = 2
+fractal_octaves = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_h0n0c"]
+noise = SubResource("FastNoiseLite_v4w4q")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k5n1g"]
+render_priority = 0
+shader = ExtResource("3_wn5yq")
+shader_parameter/Noise = SubResource("NoiseTexture2D_h0n0c")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qiwfx"]
+noise = SubResource("FastNoiseLite_v4w4q")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cscff"]
+render_priority = 0
+shader = ExtResource("3_wn5yq")
+shader_parameter/Noise = SubResource("NoiseTexture2D_qiwfx")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cscff"]
+albedo_texture = ExtResource("5_k5n1g")
+
+[node name="BuildingHotspot" type="Area3D" node_paths=PackedStringArray("castle_holo")]
+script = ExtResource("1_ql0ga")
+castle_holo = NodePath("CastleHolo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.982274, 0)
+shape = SubResource("SphereShape3D_8sy7l")
+
+[node name="CastleHolo" type="MeshInstance3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0.0537419, 0, 0.0170016)
+visible = false
+mesh = ExtResource("2_ao6y5")
+surface_material_override/0 = SubResource("ShaderMaterial_k5n1g")
+surface_material_override/1 = SubResource("ShaderMaterial_cscff")
+
+[node name="SettlementV1" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+mesh = ExtResource("4_h0n0c")
+surface_material_override/0 = SubResource("StandardMaterial3D_cscff")
+surface_material_override/1 = ExtResource("6_qiwfx")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
