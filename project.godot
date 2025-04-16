@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="hex_realms"
-run/main_scene="uid://ckg14hym327hj"
+run/main_scene="uid://60364lp76bce"
 config/features=PackedStringArray("4.4", "Forward Plus")
 
 [display]
@@ -20,7 +20,7 @@ window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/script-ide/plugin.cfg")
+enabled=PackedStringArray("res://addons/favorite_scenes/plugin.cfg", "res://addons/script-ide/plugin.cfg")
 
 [input]
 
@@ -42,4 +42,6 @@ zoom_cam_out={
 
 [rendering]
 
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
 anti_aliasing/quality/msaa_3d=3

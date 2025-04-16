@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="TerrainType" load_steps=4 format=3 uid="uid://clhpnv8ji1oud"]
+
+[ext_resource type="Script" uid="uid://ctlendbhxgjxy" path="res://custom/terrain_resources/terrain_res.gd" id="1_7fuw0"]
+[ext_resource type="Texture2D" uid="uid://dr44uvyhepawa" path="res://2D/icons/sheep.png" id="1_hlgo6"]
+[ext_resource type="Material" uid="uid://bjfuru3xc5v3e" path="res://3D/materials/sheep_mat.tres" id="2_j0gr3"]
+
+[resource]
+script = ExtResource("1_7fuw0")
+type = "Sheep"
+icon_texture = ExtResource("1_hlgo6")
+material = ExtResource("2_j0gr3")
+metadata/_custom_type_script = "uid://ctlendbhxgjxy"

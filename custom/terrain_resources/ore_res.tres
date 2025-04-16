@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="TerrainType" load_steps=4 format=3 uid="uid://brghdbk4jlcyo"]
+
+[ext_resource type="Texture2D" uid="uid://dvkktbdjnubnj" path="res://2D/icons/ore.png" id="1_hiwhu"]
+[ext_resource type="Script" uid="uid://ctlendbhxgjxy" path="res://custom/terrain_resources/terrain_res.gd" id="1_kfl7c"]
+[ext_resource type="Material" uid="uid://fq11bi1uisg1" path="res://3D/materials/ore_mat.tres" id="2_sxsnk"]
+
+[resource]
+script = ExtResource("1_kfl7c")
+type = "Ore"
+icon_texture = ExtResource("1_hiwhu")
+material = ExtResource("2_sxsnk")
+metadata/_custom_type_script = "uid://ctlendbhxgjxy"

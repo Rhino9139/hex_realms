@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="TerrainType" load_steps=3 format=3 uid="uid://bcuums3me4afe"]
+
+[ext_resource type="Material" uid="uid://dp55vrnvnende" path="res://3D/materials/desert_mat.tres" id="1_cguvx"]
+[ext_resource type="Script" uid="uid://ctlendbhxgjxy" path="res://custom/terrain_resources/terrain_res.gd" id="1_tphvy"]
+
+[resource]
+script = ExtResource("1_tphvy")
+type = "Desert"
+material = ExtResource("1_cguvx")
+metadata/_custom_type_script = "uid://ctlendbhxgjxy"

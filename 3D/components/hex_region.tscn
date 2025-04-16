@@ -2,14 +2,15 @@
 
 [ext_resource type="ArrayMesh" uid="uid://b5kh17vnxaqf6" path="res://3D/assets/grass.obj" id="1_c16ka"]
 [ext_resource type="Script" uid="uid://b108anyn817ik" path="res://3D/components/hex_region.gd" id="1_x2km7"]
-[ext_resource type="Material" uid="uid://bjfuru3xc5v3e" path="res://3D/materials/grass.tres" id="2_x2km7"]
+[ext_resource type="Material" uid="uid://bjfuru3xc5v3e" path="res://3D/materials/sheep_mat.tres" id="2_x2km7"]
 [ext_resource type="PackedScene" uid="uid://del6455x1rio1" path="res://3D/components/building_hotspot.tscn" id="4_x2km7"]
 [ext_resource type="Material" uid="uid://4xxu5p5stsvc" path="res://3D/materials/dirt.tres" id="5_awe0n"]
 
-[node name="HexRegion" type="Node3D"]
+[node name="HexRegion" type="Node3D" node_paths=PackedStringArray("main_hex")]
 script = ExtResource("1_x2km7")
+main_hex = NodePath("MainHex")
 
-[node name="HexBase" type="MeshInstance3D" parent="."]
+[node name="MainHex" type="MeshInstance3D" parent="."]
 transform = Transform3D(15, 0, 0, 0, 3, 0, 0, 0, 15, 0, -0.0302746, 0)
 mesh = ExtResource("1_c16ka")
 surface_material_override/0 = ExtResource("2_x2km7")

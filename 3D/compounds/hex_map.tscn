@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://urfb014eou0t" path="res://3D/compounds/hex_map.gd" id="1_l6uyn"]
 [ext_resource type="PackedScene" uid="uid://dqts8cum5xryh" path="res://3D/components/world_camera.tscn" id="2_wt58j"]
 [ext_resource type="PackedScene" uid="uid://drdu850r37k2i" path="res://3D/components/water.tscn" id="3_wt58j"]
-[ext_resource type="PackedScene" uid="uid://c7c6bp287ee3d" path="res://3D/components/port_v_1.tscn" id="4_qgvmh"]
+[ext_resource type="PackedScene" uid="uid://c7c6bp287ee3d" path="res://3D/components/port.tscn" id="4_qgvmh"]
 
 [sub_resource type="Environment" id="Environment_ypr7u"]
 background_mode = 1
@@ -21,43 +21,45 @@ environment = SubResource("Environment_ypr7u")
 
 [node name="KeyLight" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(0.823988, -0.406248, 0.394976, 0, 0.69709, 0.716984, -0.566608, -0.590786, 0.574394, 0, 0, 0)
-light_energy = 0.65
+light_energy = 0.4
 shadow_enabled = true
 
 [node name="BackLight" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(-0.696213, 0.514676, -0.500395, -2.45567e-08, 0.69709, 0.716984, 0.717835, 0.499174, -0.485324, 0, 0, -1.12294)
-light_energy = 0.2
+light_energy = 0.1
 
 [node name="WorldCamera" parent="." instance=ExtResource("2_wt58j")]
 
 [node name="Regions" type="Node3D" parent="."]
 
-[node name="Water" parent="." instance=ExtResource("3_wt58j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+[node name="Ports" type="Node3D" parent="."]
 
-[node name="Port1" parent="." instance=ExtResource("4_qgvmh")]
-transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, -22.88, -0.25, -40.4012)
-
-[node name="Port2" parent="." instance=ExtResource("4_qgvmh")]
-transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 5.65858, -0.249992, -40.5564)
-
-[node name="Port3" parent="." instance=ExtResource("4_qgvmh")]
-transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 32.9612, -0.249992, -24.6897)
-
-[node name="Port4" parent="." instance=ExtResource("4_qgvmh")]
-transform = Transform3D(-1, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -1, -37.4239, -0.249992, -16.7359)
-
-[node name="Port5" parent="." instance=ExtResource("4_qgvmh")]
-transform = Transform3D(-1, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -1, -37.2365, -0.249992, 16.3381)
-
-[node name="Port6" parent="." instance=ExtResource("4_qgvmh")]
+[node name="Port1" parent="Ports" instance=ExtResource("4_qgvmh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.1241, -0.249992, -0.0166683)
 
-[node name="Port7" parent="." instance=ExtResource("4_qgvmh")]
+[node name="Port2" parent="Ports" instance=ExtResource("4_qgvmh")]
 transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 32.3029, -0.249992, 24.3494)
 
-[node name="Port8" parent="." instance=ExtResource("4_qgvmh")]
+[node name="Port3" parent="Ports" instance=ExtResource("4_qgvmh")]
+transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 4.73718, -0.249992, 40.6196)
+
+[node name="Port4" parent="Ports" instance=ExtResource("4_qgvmh")]
 transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -23.1303, -0.249992, 39.4961)
 
-[node name="Port9" parent="." instance=ExtResource("4_qgvmh")]
-transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 4.73718, -0.249992, 40.6196)
+[node name="Port5" parent="Ports" instance=ExtResource("4_qgvmh")]
+transform = Transform3D(-1, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -1, -37.2365, -0.249992, 16.3381)
+
+[node name="Port6" parent="Ports" instance=ExtResource("4_qgvmh")]
+transform = Transform3D(-1, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -1, -37.4239, -0.249992, -16.7359)
+
+[node name="Port7" parent="Ports" instance=ExtResource("4_qgvmh")]
+transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, -22.88, -0.25, -40.4012)
+
+[node name="Port8" parent="Ports" instance=ExtResource("4_qgvmh")]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 5.65858, -0.249992, -40.5564)
+
+[node name="Port9" parent="Ports" instance=ExtResource("4_qgvmh")]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 32.9612, -0.249992, -24.6897)
+
+[node name="Water" parent="." instance=ExtResource("3_wt58j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="TerrainType" load_steps=4 format=3 uid="uid://dxj3v0c7du1px"]
+
+[ext_resource type="Texture2D" uid="uid://ddayrfad1byx4" path="res://2D/icons/wheat.png" id="1_6wq0f"]
+[ext_resource type="Script" uid="uid://ctlendbhxgjxy" path="res://custom/terrain_resources/terrain_res.gd" id="1_vhdor"]
+[ext_resource type="Material" uid="uid://d1f3chw6ljd1r" path="res://3D/materials/wheat_mat.tres" id="2_6pl5g"]
+
+[resource]
+script = ExtResource("1_vhdor")
+type = "Wheat"
+icon_texture = ExtResource("1_6wq0f")
+material = ExtResource("2_6pl5g")
+metadata/_custom_type_script = "uid://ctlendbhxgjxy"

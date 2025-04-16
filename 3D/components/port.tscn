@@ -1,14 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://c7c6bp287ee3d"]
+[gd_scene load_steps=9 format=3 uid="uid://c7c6bp287ee3d"]
 
 [ext_resource type="PackedScene" uid="uid://cfk8k251nclrm" path="res://blend_files/port_v1.blend" id="1_cvhol"]
 [ext_resource type="Material" uid="uid://dlx508kc77hgm" path="res://3D/materials/dock_wood_1.tres" id="2_ghy8w"]
+[ext_resource type="Script" uid="uid://fqbstw0wq1i3" path="res://3D/components/port.gd" id="2_qlobu"]
 [ext_resource type="Material" uid="uid://bbkaacxhqahpn" path="res://3D/materials/dock_wood_2.tres" id="3_n1pyi"]
 [ext_resource type="ArrayMesh" uid="uid://bqdn2nphdk0be" path="res://3D/assets/sailboat_v1.obj" id="4_jg0be"]
 [ext_resource type="Material" uid="uid://cr84y2x6lwir5" path="res://3D/materials/boat_wood.tres" id="5_aq3pp"]
 [ext_resource type="Material" uid="uid://ouk6s8566br3" path="res://3D/materials/boat_sails.tres" id="6_d1qqt"]
-[ext_resource type="Texture2D" uid="uid://cejr8cv2vtgi1" path="res://2D/icons/question.png" id="7_aq3pp"]
+[ext_resource type="Texture2D" uid="uid://ddayrfad1byx4" path="res://2D/icons/wheat.png" id="7_aq3pp"]
 
-[node name="port_v1" instance=ExtResource("1_cvhol")]
+[node name="Port" instance=ExtResource("1_cvhol")]
+script = ExtResource("2_qlobu")
 
 [node name="Cube" parent="." index="0"]
 surface_material_override/0 = ExtResource("2_ghy8w")
@@ -38,7 +40,8 @@ surface_material_override/0 = ExtResource("5_aq3pp")
 surface_material_override/1 = ExtResource("6_d1qqt")
 surface_material_override/2 = ExtResource("6_d1qqt")
 
-[node name="SupplyIcon" type="Sprite3D" parent="." index="8"]
+[node name="ResourceIcon" type="Sprite3D" parent="." index="8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6628, 5.19219, 0)
 billboard = 1
+double_sided = false
 texture = ExtResource("7_aq3pp")
