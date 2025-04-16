@@ -1,16 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://60364lp76bce"]
+[gd_scene load_steps=5 format=3 uid="uid://60364lp76bce"]
 
 [ext_resource type="Script" uid="uid://cwr1n548f52o3" path="res://game_master/game.gd" id="1_1d8ik"]
 [ext_resource type="Script" uid="uid://chmasxillij8m" path="res://game_master/master_3d.gd" id="2_6cq1h"]
-[ext_resource type="Script" uid="uid://c4625x6asigun" path="res://game_master/master_network.gd" id="2_b2gn8"]
 [ext_resource type="Script" uid="uid://bkyotq3tspfn" path="res://game_master/master_2d.gd" id="3_anhip"]
 [ext_resource type="Script" uid="uid://dwiv0u0uoi357" path="res://game_master/master_gui.gd" id="4_kbd63"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_1d8ik")
-
-[node name="MasterNetwork" type="Node" parent="."]
-script = ExtResource("2_b2gn8")
 
 [node name="Master2D" type="Node2D" parent="."]
 script = ExtResource("3_anhip")

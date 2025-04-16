@@ -14,6 +14,10 @@ config/name="hex_realms"
 run/main_scene="uid://60364lp76bce"
 config/features=PackedStringArray("4.4", "Forward Plus")
 
+[autoload]
+
+MasterNetwork="*res://game_master/master_network.gd"
+
 [display]
 
 window/stretch/mode="canvas_items"

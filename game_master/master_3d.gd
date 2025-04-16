@@ -11,5 +11,4 @@ func _init() -> void:
 
 func _ready() -> void:
 	Global.HEX_TYPES.shuffle()
-	print(Global.HEX_TYPES)
 	add_map()
