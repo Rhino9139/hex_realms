@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dqts8cum5xryh"]
 
-[ext_resource type="Script" uid="uid://dcg1kqct1nrsv" path="res://3D/components/world_camera.gd" id="1_il0p6"]
+[ext_resource type="Script" uid="uid://dcg1kqct1nrsv" path="res://3D/components/environment/world_camera.gd" id="1_il0p6"]
 
 [node name="WorldCamera" type="Node3D" node_paths=PackedStringArray("h_pivot", "v_pivot", "cam")]
 script = ExtResource("1_il0p6")

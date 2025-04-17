@@ -1,3 +1,3 @@
 extends Node
 
-var peer: ENetMultiplayerPeer
+var peer: SteamMultiplayerPeer

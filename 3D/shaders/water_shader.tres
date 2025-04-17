@@ -1,7 +1,7 @@
 [gd_resource type="VisualShader" load_steps=23 format=3 uid="uid://k7umkoj5sm3h"]
 
 [sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_23x8x"]
-default_input_values = [1, Vector2(0.2, 0.2), 2, Vector2(0, 0)]
+default_input_values = [1, Vector2(0.05, 0.05), 2, Vector2(0, 0)]
 
 [sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_yghi1"]
 op_type = 0
@@ -32,7 +32,7 @@ constant = Color(0, 0.34902, 0.819608, 1)
 source = 5
 
 [sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_56xxg"]
-default_input_values = [1, Vector2(0.2, 0.2), 2, Vector2(0, 0)]
+default_input_values = [1, Vector2(0.05, 0.05), 2, Vector2(0, 0)]
 
 [sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_ce3or"]
 default_input_values = [0, 0.8, 1, 0.1]
@@ -99,7 +99,7 @@ void fragment() {
 
 
 // UVFunc:13
-	vec2 n_in13p1 = vec2(0.20000, 0.20000);
+	vec2 n_in13p1 = vec2(0.05000, 0.05000);
 	vec2 n_out13p0 = n_out14p0 * n_in13p1 + UV;
 
 
@@ -146,7 +146,7 @@ void fragment() {
 
 
 // UVFunc:21
-	vec2 n_in21p1 = vec2(0.20000, 0.20000);
+	vec2 n_in21p1 = vec2(0.05000, 0.05000);
 	vec2 n_out21p0 = n_out25p0 * n_in21p1 + UV;
 
 
@@ -195,6 +195,7 @@ void fragment() {
 
 }
 "
+graph_offset = Vector2(-866.573, 49.1107)
 flags/unshaded = true
 nodes/fragment/0/position = Vector2(720, 140)
 nodes/fragment/2/node = SubResource("VisualShaderNodeColorConstant_23x8x")

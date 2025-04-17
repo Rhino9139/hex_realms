@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://del6455x1rio1"]
 
-[ext_resource type="Script" uid="uid://bvm0v3l1xnpb3" path="res://3D/components/building_hotspot.gd" id="1_ql0ga"]
+[ext_resource type="Script" uid="uid://bvm0v3l1xnpb3" path="res://3D/components/board/building_hotspot.gd" id="1_ql0ga"]
 [ext_resource type="ArrayMesh" uid="uid://uaamml5y10vj" path="res://3D/assets/castle_v1.obj" id="2_ao6y5"]
 [ext_resource type="Shader" uid="uid://h58hxy2run1s" path="res://3D/shaders/hologram_shader.tres" id="3_wn5yq"]
 [ext_resource type="ArrayMesh" uid="uid://dxuw2kp4h3qam" path="res://3D/assets/settlement_v1.obj" id="4_h0n0c"]

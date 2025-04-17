@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://coa2enk271cgj"]
 
 [ext_resource type="ArrayMesh" uid="uid://b5kh17vnxaqf6" path="res://3D/assets/grass.obj" id="1_c16ka"]
-[ext_resource type="Script" uid="uid://b108anyn817ik" path="res://3D/components/hex_region.gd" id="1_x2km7"]
+[ext_resource type="Script" uid="uid://b108anyn817ik" path="res://3D/components/board/hex_region.gd" id="1_x2km7"]
 [ext_resource type="Material" uid="uid://bjfuru3xc5v3e" path="res://3D/materials/sheep_mat.tres" id="2_x2km7"]
-[ext_resource type="PackedScene" uid="uid://del6455x1rio1" path="res://3D/components/building_hotspot.tscn" id="4_x2km7"]
+[ext_resource type="PackedScene" uid="uid://del6455x1rio1" path="res://3D/components/board/building_hotspot.tscn" id="4_x2km7"]
 [ext_resource type="Material" uid="uid://4xxu5p5stsvc" path="res://3D/materials/dirt.tres" id="5_awe0n"]
 
 [node name="HexRegion" type="Node3D" node_paths=PackedStringArray("main_hex")]

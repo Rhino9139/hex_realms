@@ -2,7 +2,7 @@
 
 [ext_resource type="ArrayMesh" uid="uid://uaamml5y10vj" path="res://3D/assets/castle_v1.obj" id="1_rnxkg"]
 [ext_resource type="Material" uid="uid://bogtx2h5cdnp3" path="res://3D/materials/dark_grey.tres" id="2_63frf"]
-[ext_resource type="PackedScene" uid="uid://bb1ojc5qlbf4y" path="res://3D/components/player_flag.tscn" id="3_iy13d"]
+[ext_resource type="PackedScene" uid="uid://bb1ojc5qlbf4y" path="res://3D/components/board/player_flag.tscn" id="3_iy13d"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iy13d"]
 albedo_color = Color(1, 0, 0, 1)

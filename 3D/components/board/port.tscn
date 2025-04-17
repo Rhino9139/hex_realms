@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cfk8k251nclrm" path="res://blend_files/port_v1.blend" id="1_cvhol"]
 [ext_resource type="Material" uid="uid://dlx508kc77hgm" path="res://3D/materials/dock_wood_1.tres" id="2_ghy8w"]
-[ext_resource type="Script" uid="uid://fqbstw0wq1i3" path="res://3D/components/port.gd" id="2_qlobu"]
+[ext_resource type="Script" uid="uid://fqbstw0wq1i3" path="res://3D/components/board/port.gd" id="2_qlobu"]
 [ext_resource type="Material" uid="uid://bbkaacxhqahpn" path="res://3D/materials/dock_wood_2.tres" id="3_n1pyi"]
 [ext_resource type="ArrayMesh" uid="uid://bqdn2nphdk0be" path="res://3D/assets/sailboat_v1.obj" id="4_jg0be"]
 [ext_resource type="Material" uid="uid://cr84y2x6lwir5" path="res://3D/materials/boat_wood.tres" id="5_aq3pp"]

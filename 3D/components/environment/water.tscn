@@ -32,7 +32,7 @@ shader_parameter/WaveNoise2 = SubResource("NoiseTexture2D_h8srm")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_i11sn"]
 material = SubResource("ShaderMaterial_6p5wg")
-size = Vector2(200, 200)
+size = Vector2(2000, 2000)
 
 [node name="Water" type="MeshInstance3D"]
 mesh = SubResource("PlaneMesh_i11sn")
