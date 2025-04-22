@@ -6,3 +6,4 @@ extends Resource
 @export var type: String
 @export var icon_texture: Texture2D
 @export var material: StandardMaterial3D
+@export var terrain_scene: PackedScene

@@ -23,6 +23,7 @@ environment = SubResource("Environment_ypr7u")
 transform = Transform3D(0.823988, -0.406248, 0.394976, 0, 0.69709, 0.716984, -0.566608, -0.590786, 0.574394, 0, 0, 0)
 light_energy = 0.4
 shadow_enabled = true
+shadow_opacity = 0.51
 
 [node name="BackLight" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(-0.696213, 0.514676, -0.500395, -2.45567e-08, 0.69709, 0.716984, 0.717835, 0.499174, -0.485324, 0, 0, -1.12294)
@@ -62,4 +63,4 @@ transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 5.65858, -
 transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 32.9612, -0.249992, -24.6897)
 
 [node name="Water" parent="." instance=ExtResource("3_wt58j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.8723, 0)

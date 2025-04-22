@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://c7c6bp287ee3d"]
 
-[ext_resource type="PackedScene" uid="uid://cfk8k251nclrm" path="res://blend_files/port_v1.blend" id="1_cvhol"]
+[ext_resource type="PackedScene" uid="uid://cfk8k251nclrm" path="res://imports/blend_files/port_v1.blend" id="1_cvhol"]
 [ext_resource type="Material" uid="uid://dlx508kc77hgm" path="res://3D/materials/dock_wood_1.tres" id="2_ghy8w"]
 [ext_resource type="Script" uid="uid://fqbstw0wq1i3" path="res://3D/components/board/port.gd" id="2_qlobu"]
 [ext_resource type="Material" uid="uid://bbkaacxhqahpn" path="res://3D/materials/dock_wood_2.tres" id="3_n1pyi"]
@@ -12,35 +12,18 @@
 [node name="Port" instance=ExtResource("1_cvhol")]
 script = ExtResource("2_qlobu")
 
-[node name="Cube" parent="." index="0"]
+[node name="Port" parent="." index="0"]
 surface_material_override/0 = ExtResource("2_ghy8w")
+surface_material_override/1 = ExtResource("3_n1pyi")
 
-[node name="Cylinder" parent="." index="1"]
-surface_material_override/0 = ExtResource("3_n1pyi")
-
-[node name="Cylinder_001" parent="." index="2"]
-surface_material_override/0 = ExtResource("3_n1pyi")
-
-[node name="Cylinder_003" parent="." index="3"]
-surface_material_override/0 = ExtResource("3_n1pyi")
-
-[node name="Cylinder_004" parent="." index="4"]
-surface_material_override/0 = ExtResource("3_n1pyi")
-
-[node name="Cube_001" parent="." index="5"]
-surface_material_override/0 = ExtResource("2_ghy8w")
-
-[node name="Cylinder_002" parent="." index="6"]
-surface_material_override/0 = ExtResource("3_n1pyi")
-
-[node name="SailboatV1" type="MeshInstance3D" parent="." index="7"]
+[node name="SailboatV1" type="MeshInstance3D" parent="." index="1"]
 transform = Transform3D(-3.0598e-08, 0, -0.7, 0, 0.7, 0, 0.7, 0, -3.0598e-08, 8.38381, -0.91045, -0.40147)
 mesh = ExtResource("4_jg0be")
 surface_material_override/0 = ExtResource("5_aq3pp")
 surface_material_override/1 = ExtResource("6_d1qqt")
 surface_material_override/2 = ExtResource("6_d1qqt")
 
-[node name="ResourceIcon" type="Sprite3D" parent="." index="8"]
+[node name="ResourceIcon" type="Sprite3D" parent="." index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6628, 5.19219, 0)
 billboard = 1
 double_sided = false

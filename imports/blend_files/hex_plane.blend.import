@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cfk8k251nclrm"
-path="res://.godot/imported/port_v1.blend-b8f4f3197802335fa592f1d537cc614d.scn"
+uid="uid://dfq6v7lmgb1ne"
+path="res://.godot/imported/hex_plane.blend-0da8dd227576136fe8b42e018ebebd39.scn"
 
 [deps]
 
-source_file="res://blend_files/port_v1.blend"
-dest_files=["res://.godot/imported/port_v1.blend-b8f4f3197802335fa592f1d537cc614d.scn"]
+source_file="res://imports/blend_files/hex_plane.blend"
+dest_files=["res://.godot/imported/hex_plane.blend-0da8dd227576136fe8b42e018ebebd39.scn"]
 
 [params]
 
@@ -32,7 +32,18 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={}
+_subresources={
+"meshes": {
+"hex_plane_Cylinder": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://imports/blend_files/flat_hex_mesh.res"
+}
+}
+}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true

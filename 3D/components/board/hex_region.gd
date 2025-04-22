@@ -6,10 +6,12 @@ static var HEXES: Array[HexRegion] = []
 const scene_path: String = "uid://coa2enk271cgj"
 const SIZE: float = 10.0 #8.66 is the model size
 
-@export var main_hex: MeshInstance3D
+@export var roll_sprite: Sprite3D
 
 var type_res: TerrainType
 var hex_coord: Vector2i = Vector2i(0, 0)
+var terrain: Terrain
+var cam_pivot: CamPivot
 
 static func create(new_coord: Vector2i = Vector2i(0, 0)) -> HexRegion:
 	var new_region: HexRegion = load(scene_path).instantiate()
@@ -29,4 +31,10 @@ func _ready() -> void:
 	var idx: int = HEXES.find(self)
 	var type: int = Global.HEX_TYPES[idx]
 	type_res = load(Global.TYPE_RES[type])
-	main_hex.set_surface_override_material(0, type_res.material)
+	if type_res.terrain_scene:
+		terrain = type_res.terrain_scene.instantiate()
+		add_child(terrain)
+	cam_pivot = CamPivot.get_pivot()
+
+func _process(_delta: float) -> void:
+	roll_sprite.rotation_degrees.y = cam_pivot.h_pivot.rotation_degrees.y

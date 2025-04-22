@@ -1,4 +1,7 @@
+class_name CamPivot
 extends Node3D
+
+static var MAIN: CamPivot
 
 @export var h_pivot: Node3D
 @export var v_pivot: Node3D
@@ -6,6 +9,12 @@ extends Node3D
 
 var orbiting: bool = false
 var rotate_vec: Vector2 = Vector2.ZERO
+
+static func get_pivot() -> CamPivot:
+	return MAIN
+
+func _init() -> void:
+	MAIN = self
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("orbit_cam"):

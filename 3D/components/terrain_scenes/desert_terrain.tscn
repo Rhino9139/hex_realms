@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bocaxmwxgyws5"]
+
+[ext_resource type="ArrayMesh" uid="uid://b5kh17vnxaqf6" path="res://3D/assets/grass.obj" id="1_dk8p4"]
+[ext_resource type="Script" uid="uid://c301cybdi62i" path="res://3D/components/terrain_scenes/terrain.gd" id="1_otlr1"]
+[ext_resource type="Material" uid="uid://dp55vrnvnende" path="res://3D/materials/desert_mat.tres" id="2_dk8p4"]
+[ext_resource type="ArrayMesh" uid="uid://l5p1memestf7" path="res://imports/vox_files/cactus.vox" id="4_otlr1"]
+
+[node name="Desert" type="Node3D"]
+script = ExtResource("1_otlr1")
+metadata/_custom_type_script = "uid://c301cybdi62i"
+
+[node name="MainHex" type="MeshInstance3D" parent="."]
+transform = Transform3D(15, 0, 0, 0, 3, 0, 0, 0, 15, 0, 0, 0)
+mesh = ExtResource("1_dk8p4")
+surface_material_override/0 = ExtResource("2_dk8p4")
+
+[node name="Cactus" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, -2.31719, 0.539426, -1.12481)
+mesh = ExtResource("4_otlr1")
+
+[node name="Cactus2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.602575, 0, -0.526216, 0, 0.8, 0, 0.526216, 0, 0.602575, 0.48048, 0.539427, 3.71697)
+mesh = ExtResource("4_otlr1")
+
+[node name="Cactus3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.1646, 0, 0.98636, 0, 1, 0, -0.98636, 0, -0.1646, 3.2714, 0.539427, -2.8863)
+mesh = ExtResource("4_otlr1")

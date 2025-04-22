@@ -51,6 +51,7 @@ surface_material_override/1 = SubResource("ShaderMaterial_cscff")
 
 [node name="SettlementV1" type="MeshInstance3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+visible = false
 mesh = ExtResource("4_h0n0c")
 surface_material_override/0 = SubResource("StandardMaterial3D_cscff")
 surface_material_override/1 = ExtResource("6_qiwfx")
