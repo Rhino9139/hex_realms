@@ -10,5 +10,10 @@ func _init() -> void:
 	_MASTER = self
 
 func _ready() -> void:
-	Global.HEX_TYPES.shuffle()
+	randomize_board()
 	add_map()
+
+func randomize_board() -> void:
+	Global.HEX_TYPES.shuffle()
+	Global.HEX_ROLLS.shuffle()
+	Global.PORT_TYPES.shuffle()

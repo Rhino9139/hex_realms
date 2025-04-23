@@ -9,8 +9,9 @@
 [ext_resource type="Material" uid="uid://ouk6s8566br3" path="res://3D/materials/boat_sails.tres" id="6_d1qqt"]
 [ext_resource type="Texture2D" uid="uid://ddayrfad1byx4" path="res://2D/icons/wheat.png" id="7_aq3pp"]
 
-[node name="Port" instance=ExtResource("1_cvhol")]
+[node name="Port" node_paths=PackedStringArray("resource_sprite") instance=ExtResource("1_cvhol")]
 script = ExtResource("2_qlobu")
+resource_sprite = NodePath("ResourceIcon")
 
 [node name="Port" parent="." index="0"]
 surface_material_override/0 = ExtResource("2_ghy8w")

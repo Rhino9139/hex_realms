@@ -11,6 +11,8 @@ static func create() -> HexMap:
 
 func _ready() -> void:
 	add_hex_regions()
+	await get_tree().create_timer(2.0).timeout
+	get_tree().call_group("Building", "get_neighbors")
 
 func add_hex_regions() -> void:
 	#Row 1, 3 hexes

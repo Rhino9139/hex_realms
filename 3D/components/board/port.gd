@@ -1,7 +1,11 @@
 class_name Port
 extends Node3D
 
-static var ports: Array[Port] = []
+@export var idx: int = -1
+@export var resource_sprite: Sprite3D
 
-func _init() -> void:
-	ports.append(self)
+var type_res: TerrainType
+
+func _ready() -> void:
+	type_res = load(Global.TYPE_RES[Global.PORT_TYPES[idx]])
+	resource_sprite.texture = type_res.icon_texture

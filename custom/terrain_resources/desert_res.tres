@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="TerrainType" load_steps=4 format=3 uid="uid://bcuums3me4afe"]
+[gd_resource type="Resource" script_class="TerrainType" load_steps=5 format=3 uid="uid://bcuums3me4afe"]
 
+[ext_resource type="Texture2D" uid="uid://ptowle3vxt7r" path="res://2D/icons/poly.png" id="1_1mcy6"]
 [ext_resource type="Material" uid="uid://dp55vrnvnende" path="res://3D/materials/desert_mat.tres" id="1_cguvx"]
 [ext_resource type="Script" uid="uid://ctlendbhxgjxy" path="res://custom/terrain_resources/terrain_res.gd" id="1_tphvy"]
 [ext_resource type="PackedScene" uid="uid://bocaxmwxgyws5" path="res://3D/components/terrain_scenes/desert_terrain.tscn" id="3_86l61"]
@@ -7,6 +8,7 @@
 [resource]
 script = ExtResource("1_tphvy")
 type = "Desert"
+icon_texture = ExtResource("1_1mcy6")
 material = ExtResource("1_cguvx")
 terrain_scene = ExtResource("3_86l61")
 metadata/_custom_type_script = "uid://ctlendbhxgjxy"

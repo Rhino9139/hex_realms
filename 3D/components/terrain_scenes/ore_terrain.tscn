@@ -10,10 +10,9 @@ script = ExtResource("1_t4obl")
 metadata/_custom_type_script = "uid://c301cybdi62i"
 
 [node name="OreMine" type="MeshInstance3D" parent="."]
-transform = Transform3D(3.6, 0, 0, 0, 3.6, 0, 0, 0, 3.6, -0.183512, -2.61377, 0)
+transform = Transform3D(3.6, 0, 0, 0, 3.6, 0, 0, 0, 3.6, -0.183512, -3.36525, 0)
 mesh = ExtResource("4_n1ylb")
 
 [node name="InnerHex" type="MeshInstance3D" parent="."]
-transform = Transform3D(8.6, 0, 0, 0, 8.6, 0, 0, 0, 8.6, 0, 0, 0)
 mesh = ExtResource("5_np0hf")
 surface_material_override/0 = ExtResource("3_n1ylb")

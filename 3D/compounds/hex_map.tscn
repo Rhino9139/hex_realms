@@ -35,32 +35,41 @@ light_energy = 0.1
 
 [node name="Ports" type="Node3D" parent="."]
 
+[node name="Port0" parent="Ports" instance=ExtResource("4_qgvmh")]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 32.9612, -0.249992, -24.6897)
+idx = 0
+
 [node name="Port1" parent="Ports" instance=ExtResource("4_qgvmh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.1241, -0.249992, -0.0166683)
+idx = 1
 
 [node name="Port2" parent="Ports" instance=ExtResource("4_qgvmh")]
 transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 32.3029, -0.249992, 24.3494)
+idx = 2
 
 [node name="Port3" parent="Ports" instance=ExtResource("4_qgvmh")]
 transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 4.73718, -0.249992, 40.6196)
+idx = 3
 
 [node name="Port4" parent="Ports" instance=ExtResource("4_qgvmh")]
 transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -23.1303, -0.249992, 39.4961)
+idx = 4
 
 [node name="Port5" parent="Ports" instance=ExtResource("4_qgvmh")]
 transform = Transform3D(-1, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -1, -37.2365, -0.249992, 16.3381)
+idx = 5
 
 [node name="Port6" parent="Ports" instance=ExtResource("4_qgvmh")]
 transform = Transform3D(-1, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -1, -37.4239, -0.249992, -16.7359)
+idx = 6
 
 [node name="Port7" parent="Ports" instance=ExtResource("4_qgvmh")]
 transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, -22.88, -0.25, -40.4012)
+idx = 7
 
 [node name="Port8" parent="Ports" instance=ExtResource("4_qgvmh")]
 transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 5.65858, -0.249992, -40.5564)
-
-[node name="Port9" parent="Ports" instance=ExtResource("4_qgvmh")]
-transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 32.9612, -0.249992, -24.6897)
+idx = 8
 
 [node name="Water" parent="." instance=ExtResource("3_wt58j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.8723, 0)

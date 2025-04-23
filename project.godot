@@ -26,6 +26,11 @@ window/stretch/mode="canvas_items"
 
 enabled=PackedStringArray("res://addons/MagicaVoxel_Importer_with_Extensions/plugin.cfg", "res://addons/favorite_scenes/plugin.cfg", "res://addons/script-ide/plugin.cfg")
 
+[global_group]
+
+Hotspot=""
+Building=""
+
 [input]
 
 orbit_cam={
@@ -41,6 +46,11 @@ zoom_cam_in={
 zoom_cam_out={
 "deadzone": 0.2,
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":16,"position":Vector2(186, 14),"global_position":Vector2(193, 57),"factor":1.0,"button_index":5,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
+main_action={
+"deadzone": 0.2,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(294, 20),"global_position":Vector2(301, 63),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }
 

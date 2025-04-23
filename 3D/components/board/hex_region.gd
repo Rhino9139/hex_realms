@@ -12,6 +12,7 @@ var type_res: TerrainType
 var hex_coord: Vector2i = Vector2i(0, 0)
 var terrain: Terrain
 var cam_pivot: CamPivot
+var roll: int = 0
 
 static func create(new_coord: Vector2i = Vector2i(0, 0)) -> HexRegion:
 	var new_region: HexRegion = load(scene_path).instantiate()
@@ -34,7 +35,9 @@ func _ready() -> void:
 	if type_res.terrain_scene:
 		terrain = type_res.terrain_scene.instantiate()
 		add_child(terrain)
+	if type == 5:
+		roll = 7
+	else:
+		roll = Global.HEX_ROLLS.pop_at(0)
+		roll_sprite.texture = load(Global.ROLL_SPRITES[roll])
 	cam_pivot = CamPivot.get_pivot()
-
-func _process(_delta: float) -> void:
-	roll_sprite.rotation_degrees.y = cam_pivot.h_pivot.rotation_degrees.y

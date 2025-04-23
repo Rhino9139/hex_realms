@@ -1,39 +1,37 @@
-[gd_scene load_steps=6 format=3 uid="uid://coa2enk271cgj"]
+[gd_scene load_steps=5 format=3 uid="uid://coa2enk271cgj"]
 
 [ext_resource type="Script" uid="uid://b108anyn817ik" path="res://3D/components/board/hex_region.gd" id="1_x2km7"]
 [ext_resource type="ArrayMesh" uid="uid://dsgb7xo0ja4db" path="res://imports/blend_files/holo_hex_outer.res" id="2_ccdea"]
 [ext_resource type="PackedScene" uid="uid://del6455x1rio1" path="res://3D/components/board/building_hotspot.tscn" id="4_x2km7"]
 [ext_resource type="Material" uid="uid://4xxu5p5stsvc" path="res://3D/materials/dirt.tres" id="5_awe0n"]
-[ext_resource type="Texture2D" uid="uid://bhpplk3lhxj4i" path="res://2D/number_sprites/num_2.png" id="5_t61bs"]
 
 [node name="HexRegion" type="Node3D" node_paths=PackedStringArray("roll_sprite")]
 script = ExtResource("1_x2km7")
 roll_sprite = NodePath("RollSprite")
 
 [node name="HoloHexOuter" type="MeshInstance3D" parent="."]
-transform = Transform3D(11, 0, 0, 0, 11, 0, 0, 0, 11, 0, -0.802608, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.179508, 0)
 mesh = ExtResource("2_ccdea")
 surface_material_override/0 = ExtResource("5_awe0n")
 
 [node name="BuildingHotspot1" parent="." instance=ExtResource("4_x2km7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.62459, 0.292693, -5.15977)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.62459, -0.174899, -5.15977)
 
 [node name="BuildingHotspot2" parent="." instance=ExtResource("4_x2km7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.53418, 0.292693, 5.47698)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.53418, -0.174899, 5.47698)
 
 [node name="BuildingHotspot3" parent="." instance=ExtResource("4_x2km7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0250788, 0.292693, 10.0187)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0250788, -0.174899, 10.0187)
 
 [node name="BuildingHotspot4" parent="." instance=ExtResource("4_x2km7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.55818, 0.292693, 5.46534)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.55818, -0.174899, 5.46534)
 
 [node name="BuildingHotspot5" parent="." instance=ExtResource("4_x2km7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.63407, 0.292693, -5.2006)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.63407, -0.174899, -5.2006)
 
 [node name="BuildingHotspot6" parent="." instance=ExtResource("4_x2km7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.017273, 0.292693, -10.0168)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.017273, -0.174899, -10.0168)
 
 [node name="RollSprite" type="Sprite3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.75, 0)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 1.87358, 0)
 axis = 1
-texture = ExtResource("5_t61bs")

@@ -1,14 +1,14 @@
 [gd_resource type="VisualShader" load_steps=10 format=3 uid="uid://h58hxy2run1s"]
 
 [sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_mqdks"]
-default_input_values = [0, 0.0, 1, 0.05]
+default_input_values = [0, 0.0, 1, 0.03]
 operator = 2
 
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_8th04"]
 operator = 2
 
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_c2gi7"]
-constant = 0.1
+constant = 0.5
 
 [sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_5km3h"]
 constant = Color(0, 1, 0, 1)
@@ -42,7 +42,7 @@ void fragment() {
 
 
 // FloatConstant:2
-	float n_out2p0 = 0.100000;
+	float n_out2p0 = 0.500000;
 
 
 // Input:7
@@ -50,7 +50,7 @@ void fragment() {
 
 
 // FloatOp:10
-	float n_in10p1 = 0.05000;
+	float n_in10p1 = 0.03000;
 	float n_out10p0 = n_out7p0 * n_in10p1;
 
 
