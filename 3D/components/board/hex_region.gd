@@ -3,8 +3,8 @@ extends Node3D
 
 static var HEXES: Array[HexRegion] = []
 
-const scene_path: String = "uid://coa2enk271cgj"
-const SIZE: float = 10.0 #8.66 is the model size
+const _PATH: String = "uid://coa2enk271cgj"
+const _SIZE: float = 10.0 #8.66 is the model size
 
 @export var roll_sprite: Sprite3D
 
@@ -14,15 +14,10 @@ var terrain: Terrain
 var cam_pivot: CamPivot
 var roll: int = 0
 
-static func create(new_coord: Vector2i = Vector2i(0, 0)) -> HexRegion:
-	var new_region: HexRegion = load(scene_path).instantiate()
+static func CREATE(new_coord: Vector2i = Vector2i(0, 0)) -> HexRegion:
+	var new_region: HexRegion = load(_PATH).instantiate()
 	new_region.hex_coord = new_coord
 	return new_region
-
-static func get_world_coord(grid_coord: Vector2i) -> Vector3:
-	var x_pos: float = ((pow(3, 0.5) / 2.0) * SIZE) * grid_coord.x
-	var z_pos: float = ((3.0 / 2.0) * SIZE) * grid_coord.y
-	return Vector3(x_pos, 0.0, z_pos)
 
 func _init() -> void:
 	HEXES.append(self)
@@ -40,4 +35,9 @@ func _ready() -> void:
 	else:
 		roll = Global.HEX_ROLLS.pop_at(0)
 		roll_sprite.texture = load(Global.ROLL_SPRITES[roll])
-	cam_pivot = CamPivot.get_pivot()
+	cam_pivot = CamPivot.GET_PIVOT()
+
+func get_world_coord(grid_coord: Vector2i) -> Vector3:
+	var x_pos: float = ((pow(3, 0.5) / 2.0) * _SIZE) * grid_coord.x
+	var z_pos: float = ((3.0 / 2.0) * _SIZE) * grid_coord.y
+	return Vector3(x_pos, 0.0, z_pos)

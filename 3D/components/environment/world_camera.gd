@@ -12,7 +12,7 @@ var rotate_vec: Vector2 = Vector2.ZERO
 var h_rot_target: float = 0.0
 var v_rot_target: float = 0.0
 
-static func get_pivot() -> CamPivot:
+static func GET_PIVOT() -> CamPivot:
 	return MAIN
 
 func _init() -> void:

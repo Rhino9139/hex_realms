@@ -1,17 +1,14 @@
 class_name Master3D
 extends Node3D
 
-static var _MASTER: Master3D
+static var MASTER: Master3D
 
-static func add_map() -> void:
-	_MASTER.add_child(HexMap.create())
+static func ADD_MAP() -> void:
+	MASTER.randomize_board()
+	MASTER.add_child(HexMap.CREATE())
 
 func _init() -> void:
-	_MASTER = self
-
-func _ready() -> void:
-	randomize_board()
-	add_map()
+	MASTER = self
 
 func randomize_board() -> void:
 	Global.HEX_TYPES.shuffle()
