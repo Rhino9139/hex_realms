@@ -3,12 +3,13 @@ extends Node
 
 static var MASTER: Game
 
-static func START_GAME() -> void:
+static func BEGIN_MATCH() -> void:
 	MasterGUI.LEAVE_MENUS()
 	Master3D.ADD_MAP()
+	MasterGUI.ENTER_MATCH()
 
 func _init() -> void:
 	MASTER = self
 
 func _ready() -> void:
-	MasterGUI.ADD_MAIN_MENU()
+	MasterGUI.START_MENU()

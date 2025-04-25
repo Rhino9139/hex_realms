@@ -46,9 +46,12 @@ outer_radius = 3.5
 [sub_resource type="SphereShape3D" id="SphereShape3D_bpe7p"]
 radius = 11.0
 
-[node name="BuildingHotspot" type="Area3D" node_paths=PackedStringArray("castle_holo", "hover_indicator", "neighbor_area") groups=["Building", "Hotspot"]]
+[node name="BuildingHotspot" type="Area3D" node_paths=PackedStringArray("settlement_holo", "settlement_mesh", "castle_holo", "castle_mesh", "hover_indicator", "neighbor_area") groups=["Empty", "Hotspot"]]
 script = ExtResource("1_ql0ga")
+settlement_holo = NodePath("SettlementHolo")
+settlement_mesh = NodePath("Settlement")
 castle_holo = NodePath("CastleHolo")
+castle_mesh = NodePath("Castle")
 hover_indicator = NodePath("HoverIndicator")
 neighbor_area = NodePath("NeighborArea")
 
@@ -66,6 +69,7 @@ surface_material_override/1 = ExtResource("3_ih3xl")
 
 [node name="CastleHolo" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0468575, 0, 0.105145)
+visible = false
 mesh = ExtResource("2_ih3xl")
 surface_material_override/0 = ExtResource("3_ih3xl")
 surface_material_override/1 = ExtResource("3_ih3xl")

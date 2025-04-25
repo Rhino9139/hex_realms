@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://kgyvvllfe603"
-path="res://.godot/imported/num_11.png-07d38d81490d4475e0563d532f58cfe9.ctex"
+uid="uid://may10jqwt0e1"
+path="res://.godot/imported/structure_house.png-951e8c1af6a693bb19d91a766afc4ba1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://2D/number_sprites/num_11.png"
-dest_files=["res://.godot/imported/num_11.png-07d38d81490d4475e0563d532f58cfe9.ctex"]
+source_file="res://common/icons/ui_buttons/structure_house.png"
+dest_files=["res://.godot/imported/structure_house.png-951e8c1af6a693bb19d91a766afc4ba1.ctex"]
 
 [params]
 

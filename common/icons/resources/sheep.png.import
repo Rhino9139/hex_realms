@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qpsusqjkfbux"
-path.s3tc="res://.godot/imported/num_12.png-275a6573a3f57176a9b344aeb5d49ed6.s3tc.ctex"
+uid="uid://dr44uvyhepawa"
+path.s3tc="res://.godot/imported/sheep.png-3ba3af134ba49ba0c686603fe8d9602b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://2D/number_sprites/num_12.png"
-dest_files=["res://.godot/imported/num_12.png-275a6573a3f57176a9b344aeb5d49ed6.s3tc.ctex"]
+source_file="res://common/icons/resources/sheep.png"
+dest_files=["res://.godot/imported/sheep.png-3ba3af134ba49ba0c686603fe8d9602b.s3tc.ctex"]
 
 [params]
 

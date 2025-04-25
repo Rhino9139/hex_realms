@@ -4,12 +4,16 @@ extends Area3D
 static var current_index: int = 0
 static var num_hotspots: int = 0
 
+@export var settlement_holo: MeshInstance3D
+@export var settlement_mesh: MeshInstance3D
 @export var castle_holo: MeshInstance3D
+@export var castle_mesh: MeshInstance3D
 @export var hover_indicator: GPUParticles3D
 @export var neighbor_area: Area3D
 
 var idx: int = -1
 var neighbors: Array[BuildingHotspot] = []
+var owner_number: int = -1
 
 func _init() -> void:
 	idx = current_index
@@ -35,6 +39,23 @@ func get_neighbors() -> void:
 	neighbor_area.monitoring = true
 	await get_tree().create_timer(3.0).timeout
 	neighbor_area.queue_free()
+	collision_layer = 0
+	collision_mask = 0
+
+func buy_mode_entered(player_number: int, mode: String) -> void:
+	if player_number != owner_number:
+		return
+	collision_layer = 1
+	match mode:
+		"Settlement":
+			settlement_holo.visible = true
+		"Castle":
+			castle_holo.visible = true
+
+func buy_mode_exited() -> void:
+	collision_layer = 0
+	settlement_holo.visible = false
+	castle_holo.visible = false
 
 func _on_area_entered(area: Area3D) -> void:
 	if area is BuildingHotspot:

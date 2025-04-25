@@ -1,0 +1,231 @@
+[gd_scene load_steps=13 format=3 uid="uid://dlysvvr1aprdc"]
+
+[ext_resource type="Script" uid="uid://cxaj2txgrot0c" path="res://gui/game_hud/game_hud.gd" id="1_2v08g"]
+[ext_resource type="Texture2D" uid="uid://821wyrwyqror" path="res://common/icons/resources/brick.png" id="2_ohgi1"]
+[ext_resource type="Texture2D" uid="uid://dr44uvyhepawa" path="res://common/icons/resources/sheep.png" id="3_kpy2f"]
+[ext_resource type="Texture2D" uid="uid://ddayrfad1byx4" path="res://common/icons/resources/wheat.png" id="4_6743o"]
+[ext_resource type="Texture2D" uid="uid://wrlvx80hbbkn" path="res://common/icons/resources/wood.png" id="5_8vsqg"]
+[ext_resource type="Texture2D" uid="uid://dvkktbdjnubnj" path="res://common/icons/resources/ore.png" id="6_s6iyo"]
+[ext_resource type="PackedScene" uid="uid://c38lsr2lu1i4t" path="res://gui/game_hud/components/buy_button.tscn" id="7_iwlbn"]
+[ext_resource type="Texture2D" uid="uid://b0xh3lcnrqboa" path="res://common/icons/ui_buttons/structure_gate.png" id="8_en8hq"]
+[ext_resource type="Texture2D" uid="uid://c1d8lhog071sm" path="res://common/icons/ui_buttons/card_lift.png" id="9_iwlbn"]
+[ext_resource type="Texture2D" uid="uid://do5fpysxkbwj2" path="res://common/icons/ui_buttons/arrow_diagonal.png" id="10_t7dor"]
+[ext_resource type="Texture2D" uid="uid://cu15plfdy0eo1" path="res://common/shapes/ring_20_256.png" id="11_en8hq"]
+[ext_resource type="Texture2D" uid="uid://begn511dpycyv" path="res://common/icons/ui_buttons/hourglass.png" id="12_iwlbn"]
+
+[node name="GameHUD" type="Control" node_paths=PackedStringArray("turn_progress_bar")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2v08g")
+turn_progress_bar = NodePath("TurnProgress")
+
+[node name="PlayerList" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.02
+anchor_right = 1.0
+anchor_bottom = 0.02
+grow_horizontal = 2
+
+[node name="Player1" type="Label" parent="PlayerList"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Player 1"
+
+[node name="Player2" type="Label" parent="PlayerList"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Player 2"
+
+[node name="Player3" type="Label" parent="PlayerList"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Player 3"
+
+[node name="Player4" type="Label" parent="PlayerList"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Player 4"
+
+[node name="Resources" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.01
+anchor_right = 0.01
+anchor_bottom = 1.0
+grow_vertical = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="Brick" type="HBoxContainer" parent="Resources"]
+layout_mode = 2
+
+[node name="ResIcon" type="TextureRect" parent="Resources/Brick"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("2_ohgi1")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Amount" type="Label" parent="Resources/Brick"]
+layout_mode = 2
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 30
+text = "0"
+
+[node name="Ore" type="HBoxContainer" parent="Resources"]
+layout_mode = 2
+
+[node name="ResIcon" type="TextureRect" parent="Resources/Ore"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("6_s6iyo")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Amount" type="Label" parent="Resources/Ore"]
+layout_mode = 2
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 30
+text = "0"
+
+[node name="Sheep" type="HBoxContainer" parent="Resources"]
+layout_mode = 2
+
+[node name="ResIcon" type="TextureRect" parent="Resources/Sheep"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("3_kpy2f")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Amount" type="Label" parent="Resources/Sheep"]
+layout_mode = 2
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 30
+text = "0"
+
+[node name="Wheat" type="HBoxContainer" parent="Resources"]
+layout_mode = 2
+
+[node name="ResIcon" type="TextureRect" parent="Resources/Wheat"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("4_6743o")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Amount" type="Label" parent="Resources/Wheat"]
+layout_mode = 2
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 30
+text = "0"
+
+[node name="Wood" type="HBoxContainer" parent="Resources"]
+layout_mode = 2
+
+[node name="ResIcon" type="TextureRect" parent="Resources/Wood"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("5_8vsqg")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Amount" type="Label" parent="Resources/Wood"]
+layout_mode = 2
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 30
+text = "0"
+
+[node name="BuyButtons" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.98
+anchor_right = 0.02
+anchor_bottom = 0.98
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="BuySettlement" parent="BuyButtons" instance=ExtResource("7_iwlbn")]
+layout_mode = 2
+type = "Settlement"
+
+[node name="BuyCastle" parent="BuyButtons" instance=ExtResource("7_iwlbn")]
+layout_mode = 2
+icon = ExtResource("8_en8hq")
+
+[node name="BuyRoad" parent="BuyButtons" instance=ExtResource("7_iwlbn")]
+layout_mode = 2
+icon = ExtResource("10_t7dor")
+
+[node name="BuyCard" parent="BuyButtons" instance=ExtResource("7_iwlbn")]
+layout_mode = 2
+icon = ExtResource("9_iwlbn")
+
+[node name="RollButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.99
+anchor_right = 0.5
+anchor_bottom = 0.99
+offset_left = -4.0
+offset_top = -8.0
+offset_right = 4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "ROLL"
+
+[node name="TurnProgress" type="TextureProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -120.0
+offset_top = -120.0
+grow_horizontal = 0
+grow_vertical = 0
+max_value = 60.0
+step = 0.01
+value = 60.0
+fill_mode = 5
+nine_patch_stretch = true
+texture_under = ExtResource("11_en8hq")
+texture_progress = ExtResource("11_en8hq")
+tint_under = Color(1, 1, 1, 0.427451)
+tint_progress = Color(0, 1, 0, 1)
+
+[node name="Hourglass" type="TextureRect" parent="TurnProgress"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -27.0
+offset_right = 30.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12_iwlbn")
+expand_mode = 1
+stretch_mode = 5
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="pressed" from="RollButton" to="." method="_on_roll_button_pressed"]
+
+[editable path="BuyButtons/BuySettlement"]
+[editable path="BuyButtons/BuyCastle"]
+[editable path="BuyButtons/BuyRoad"]
+[editable path="BuyButtons/BuyCard"]

@@ -1,3 +1,7 @@
 size is 8.66
 horizontal spacing between centers is sqrt(3) * size
 vertical spacing between centers is (3/2) * size
+
+CURRENT
+working on ways to active the board hotspots with the ui buttons
+also need to make hotspots inactive when building mode is changed

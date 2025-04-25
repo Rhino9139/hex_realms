@@ -3,15 +3,24 @@ extends Control
 
 static var MASTER: MasterGUI
 
-static func ADD_MAIN_MENU() -> void:
-	MASTER.add_child(MainMenu.CREATE())
-
-static func REMOVE_MAIN_MENU() -> void:
-	MainMenu.REMOVE()
+static func START_MENU() -> void:
+	MASTER.add_main_menu()
 
 static func LEAVE_MENUS() -> void:
 	for child in MASTER.get_children():
 		child.queue_free()
 
+static func ENTER_MATCH() -> void:
+	MASTER.add_game_hud()
+
 func _init() -> void:
 	MASTER = self
+
+func _ready() -> void:
+	pass
+
+func add_main_menu() -> void:
+	add_child(MainMenu.CREATE())
+
+func add_game_hud() -> void:
+	add_child(GameHUD.CREATE())

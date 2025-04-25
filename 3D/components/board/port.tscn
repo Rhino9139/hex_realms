@@ -7,7 +7,7 @@
 [ext_resource type="ArrayMesh" uid="uid://bqdn2nphdk0be" path="res://3D/assets/sailboat_v1.obj" id="4_jg0be"]
 [ext_resource type="Material" uid="uid://cr84y2x6lwir5" path="res://3D/materials/boat_wood.tres" id="5_aq3pp"]
 [ext_resource type="Material" uid="uid://ouk6s8566br3" path="res://3D/materials/boat_sails.tres" id="6_d1qqt"]
-[ext_resource type="Texture2D" uid="uid://ddayrfad1byx4" path="res://2D/icons/wheat.png" id="7_aq3pp"]
+[ext_resource type="Texture2D" uid="uid://ddayrfad1byx4" path="res://common/icons/resources/wheat.png" id="7_aq3pp"]
 
 [node name="Port" node_paths=PackedStringArray("resource_sprite") instance=ExtResource("1_cvhol")]
 script = ExtResource("2_qlobu")

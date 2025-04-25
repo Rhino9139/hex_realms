@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="TerrainType" load_steps=5 format=3 uid="uid://clhpnv8ji1oud"]
 
 [ext_resource type="Script" uid="uid://ctlendbhxgjxy" path="res://custom/terrain_resources/terrain_res.gd" id="1_7fuw0"]
-[ext_resource type="Texture2D" uid="uid://dr44uvyhepawa" path="res://2D/icons/sheep.png" id="1_hlgo6"]
+[ext_resource type="Texture2D" uid="uid://dr44uvyhepawa" path="res://common/icons/resources/sheep.png" id="1_hlgo6"]
 [ext_resource type="Material" uid="uid://bjfuru3xc5v3e" path="res://3D/materials/sheep_mat.tres" id="2_j0gr3"]
 [ext_resource type="PackedScene" uid="uid://c61bjrs5f08w6" path="res://3D/components/terrain_scenes/sheep_terrain.tscn" id="4_rv106"]
 

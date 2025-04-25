@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5pqc43q65d6k"
-path="res://.godot/imported/num_9.png-5b4676d1607c040d756b135913e656d7.ctex"
+uid="uid://b7vue37l6nkl5"
+path="res://.godot/imported/num_8.png-6e8a14058fb815a40ad6e5ab76a8a2fb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://2D/number_sprites/num_9.png"
-dest_files=["res://.godot/imported/num_9.png-5b4676d1607c040d756b135913e656d7.ctex"]
+source_file="res://common/icons/number_sprites/num_8.png"
+dest_files=["res://.godot/imported/num_8.png-6e8a14058fb815a40ad6e5ab76a8a2fb.ctex"]
 
 [params]
 

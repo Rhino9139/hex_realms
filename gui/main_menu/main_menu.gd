@@ -11,11 +11,11 @@ static func CREATE() -> MainMenu:
 	var new_menu: MainMenu = load(_PATH).instantiate()
 	return new_menu
 
-static func REMOVE() -> void:
+static func DESTROY() -> void:
 	MASTER.queue_free()
 
 func _init() -> void:
 	MASTER = self
 
 func _on_start_pressed() -> void:
-	Game.START_GAME()
+	Game.BEGIN_MATCH.call_deferred()
