@@ -46,6 +46,9 @@ func buy_mode_entered(player_number: int, mode: String) -> void:
 	if player_number != owner_number:
 		return
 	collision_layer = 1
+	for child in get_children():
+		if child is MeshInstance3D:
+			child.visible = false
 	match mode:
 		"Settlement":
 			settlement_holo.visible = true
@@ -54,8 +57,9 @@ func buy_mode_entered(player_number: int, mode: String) -> void:
 
 func buy_mode_exited() -> void:
 	collision_layer = 0
-	settlement_holo.visible = false
-	castle_holo.visible = false
+	for child in get_children():
+		if child is MeshInstance3D:
+			child.visible = false
 
 func _on_area_entered(area: Area3D) -> void:
 	if area is BuildingHotspot:

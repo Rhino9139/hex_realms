@@ -159,14 +159,17 @@ type = "Settlement"
 [node name="BuyCastle" parent="BuyButtons" instance=ExtResource("7_iwlbn")]
 layout_mode = 2
 icon = ExtResource("8_en8hq")
+type = "Castle"
 
 [node name="BuyRoad" parent="BuyButtons" instance=ExtResource("7_iwlbn")]
 layout_mode = 2
 icon = ExtResource("10_t7dor")
+type = "Road"
 
 [node name="BuyCard" parent="BuyButtons" instance=ExtResource("7_iwlbn")]
 layout_mode = 2
 icon = ExtResource("9_iwlbn")
+type = "Card"
 
 [node name="RollButton" type="Button" parent="."]
 layout_mode = 1
