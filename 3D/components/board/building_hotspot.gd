@@ -8,8 +8,9 @@ static var num_hotspots: int = 0
 @export var settlement_mesh: MeshInstance3D
 @export var castle_holo: MeshInstance3D
 @export var castle_mesh: MeshInstance3D
-@export var hover_indicator: GPUParticles3D
+@export var hover_arrow: MeshInstance3D
 @export var neighbor_area: Area3D
+@export var animator: AnimationPlayer
 
 var idx: int = -1
 var neighbors: Array[BuildingHotspot] = []
@@ -21,16 +22,15 @@ func _init() -> void:
 
 func mouse_entered(hotspot_hovered: BuildingHotspot) -> void:
 	if hotspot_hovered == self:
-		hover_indicator.emitting = true
-		hover_indicator.visible = true
-		castle_holo.visible = true
+		hover_arrow.visible = true
+		if animator.is_playing() == false:
+			animator.play("hover")
 	else:
 		mouse_exited()
 
 func mouse_exited() -> void:
-	hover_indicator.emitting = false
-	hover_indicator.visible = false
-	castle_holo.visible = false
+	hover_arrow.visible = false
+	animator.stop()
 
 func area_clicked() -> void:
 	$Settlement.visible = true

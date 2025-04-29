@@ -22,8 +22,6 @@ SteamMaster="*res://autoloads/steam_master.gd"
 [display]
 
 window/stretch/mode="canvas_items"
-window/tooltip_delay_sec.editor_hint=0.5
-window/tooltip_delay_sec=0.5
 
 [editor_plugins]
 

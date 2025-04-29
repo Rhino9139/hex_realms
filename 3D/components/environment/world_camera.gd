@@ -42,8 +42,8 @@ func _process(delta: float) -> void:
 	update_hover_raycast()
 
 func update_lerps(delta: float) -> void:
-	h_pivot.rotation_degrees.y = lerp(h_pivot.rotation_degrees.y, h_rot_target, 20.0 * delta)
-	v_pivot.rotation_degrees.x = lerp(v_pivot.rotation_degrees.x, v_rot_target, 20.0 * delta)
+	h_pivot.rotation_degrees.y = lerp(h_pivot.rotation_degrees.y, h_rot_target, 25.0 * delta)
+	v_pivot.rotation_degrees.x = lerp(v_pivot.rotation_degrees.x, v_rot_target, 25.0 * delta)
 	v_pivot.rotation_degrees.x = clamp(v_pivot.rotation_degrees.x, -70.0, -10.0)
 
 func update_hover_raycast(clicked: bool = false) -> void:
