@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://352vcfcs6fvl"
-path="res://.godot/imported/ship_v1.blend-4b58ee54ee3b2c8a1af086c6cdce68e3.scn"
+uid="uid://dgvov7blxvl3i"
+path="res://.godot/imported/hex_holo_mesh.blend-f7620b43b1c6b64860531c57f4d38027.scn"
 
 [deps]
 
-source_file="res://imports/blend_files/ship_v1.blend"
-dest_files=["res://.godot/imported/ship_v1.blend-4b58ee54ee3b2c8a1af086c6cdce68e3.scn"]
+source_file="res://imports/blend_files/hexes/hex_holo_mesh.blend"
+dest_files=["res://.godot/imported/hex_holo_mesh.blend-f7620b43b1c6b64860531c57f4d38027.scn"]
 
 [params]
 
@@ -32,7 +32,18 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={}
+_subresources={
+"meshes": {
+"hex_holo_mesh_Cylinder": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://imports/blend_files/holo_hex_mesh.res"
+}
+}
+}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true

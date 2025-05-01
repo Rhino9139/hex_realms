@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dqts8cum5xryh"]
+
+[ext_resource type="Script" uid="uid://dcg1kqct1nrsv" path="res://3D/components/character/character.gd" id="1_il0p6"]
+[ext_resource type="Script" uid="uid://d3j8d5d5qmees" path="res://3D/components/character/state_machine/idle_state.gd" id="2_3754s"]
+[ext_resource type="Script" uid="uid://dqlg3qnyf1p3t" path="res://3D/components/character/state_machine/player_state_machine.gd" id="2_v3lqn"]
+[ext_resource type="Script" uid="uid://c2o6ex2jsaajw" path="res://3D/components/character/state_machine/build_state.gd" id="3_v3lqn"]
+
+[node name="Character" type="Node3D" node_paths=PackedStringArray("h_pivot", "v_pivot", "cam")]
+script = ExtResource("1_il0p6")
+h_pivot = NodePath("HorizontalPivot")
+v_pivot = NodePath("HorizontalPivot/VerticalPivot")
+cam = NodePath("HorizontalPivot/VerticalPivot/Camera")
+
+[node name="HorizontalPivot" type="Node3D" parent="."]
+
+[node name="VerticalPivot" type="Node3D" parent="HorizontalPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 0, 0)
+
+[node name="Camera" type="Camera3D" parent="HorizontalPivot/VerticalPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195, 0, 0, 60.9288)
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("base")]
+script = ExtResource("2_v3lqn")
+base = NodePath("..")
+
+[node name="IdleState" type="Node" parent="StateMachine"]
+script = ExtResource("2_3754s")
+
+[node name="BuildState" type="Node" parent="StateMachine"]
+script = ExtResource("3_v3lqn")

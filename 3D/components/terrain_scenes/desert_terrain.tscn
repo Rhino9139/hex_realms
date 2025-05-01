@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c301cybdi62i" path="res://3D/components/terrain_scenes/terrain.gd" id="1_otlr1"]
 [ext_resource type="Material" uid="uid://dp55vrnvnende" path="res://3D/materials/desert_mat.tres" id="2_dk8p4"]
-[ext_resource type="ArrayMesh" uid="uid://dk1ubjp7mqm8g" path="res://imports/blend_files/hex_mesh.res" id="3_otlr1"]
+[ext_resource type="ArrayMesh" uid="uid://dk1ubjp7mqm8g" path="res://imports/blend_files/hexes/hex_mesh.res" id="3_otlr1"]
 [ext_resource type="ArrayMesh" uid="uid://l5p1memestf7" path="res://imports/vox_files/cactus.vox" id="4_otlr1"]
 
 [node name="Desert" type="Node3D"]

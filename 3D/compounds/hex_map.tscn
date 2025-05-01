@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://ckg14hym327hj"]
+[gd_scene load_steps=5 format=3 uid="uid://ckg14hym327hj"]
 
 [ext_resource type="Script" uid="uid://urfb014eou0t" path="res://3D/compounds/hex_map.gd" id="1_l6uyn"]
-[ext_resource type="PackedScene" uid="uid://dqts8cum5xryh" path="res://3D/components/environment/world_camera.tscn" id="2_wt58j"]
 [ext_resource type="PackedScene" uid="uid://drdu850r37k2i" path="res://3D/components/environment/water.tscn" id="3_wt58j"]
 [ext_resource type="PackedScene" uid="uid://c7c6bp287ee3d" path="res://3D/components/board/port.tscn" id="4_qgvmh"]
 
@@ -28,8 +27,6 @@ shadow_opacity = 0.51
 [node name="BackLight" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(-0.696213, 0.514676, -0.500395, -2.45567e-08, 0.69709, 0.716984, 0.717835, 0.499174, -0.485324, 0, 0, -1.12294)
 light_energy = 0.2
-
-[node name="WorldCamera" parent="." instance=ExtResource("2_wt58j")]
 
 [node name="Regions" type="Node3D" parent="."]
 

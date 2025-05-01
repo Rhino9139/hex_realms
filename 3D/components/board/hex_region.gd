@@ -11,7 +11,6 @@ const _SIZE: float = 10.0 #8.66 is the model size
 var type_res: TerrainType
 var hex_coord: Vector2i = Vector2i(0, 0)
 var terrain: Terrain
-var cam_pivot: CamPivot
 var roll: int = 0
 
 static func CREATE(new_coord: Vector2i = Vector2i(0, 0)) -> HexRegion:
@@ -35,7 +34,6 @@ func _ready() -> void:
 	else:
 		roll = Global.HEX_ROLLS.pop_at(0)
 		roll_sprite.texture = load(Global.ROLL_SPRITES[roll])
-	cam_pivot = CamPivot.GET_PIVOT()
 
 func get_world_coord(grid_coord: Vector2i) -> Vector3:
 	var x_pos: float = ((pow(3, 0.5) / 2.0) * _SIZE) * grid_coord.x

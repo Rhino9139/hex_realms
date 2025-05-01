@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c0nsdbrni558t"
-path="res://.godot/imported/hex_holo_outer_mesh.blend-57c9aa1773d14c3a59f68e0d5b141537.scn"
+uid="uid://djtm1g1s23tn8"
+path="res://.godot/imported/settlement.blend-73cf9dffce678a05b9ba2a310ebcc0e1.scn"
 
 [deps]
 
-source_file="res://imports/blend_files/hex_holo_outer_mesh.blend"
-dest_files=["res://.godot/imported/hex_holo_outer_mesh.blend-57c9aa1773d14c3a59f68e0d5b141537.scn"]
+source_file="res://imports/blend_files/structures/settlement.blend"
+dest_files=["res://.godot/imported/settlement.blend-73cf9dffce678a05b9ba2a310ebcc0e1.scn"]
 
 [params]
 
@@ -34,13 +34,13 @@ animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
 "meshes": {
-"hex_holo_outer_mesh_Cylinder": {
+"settlement_building_church_red": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
 "save_to_file/enabled": true,
-"save_to_file/path": "res://imports/blend_files/holo_hex_outer.res"
+"save_to_file/path": "res://imports/blend_files/structures/settlement_mesh.res"
 }
 }
 }

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cxbdpnlc2b1rm"]
 
 [ext_resource type="Script" uid="uid://c301cybdi62i" path="res://3D/components/terrain_scenes/terrain.gd" id="1_yqu3j"]
-[ext_resource type="ArrayMesh" uid="uid://dk1ubjp7mqm8g" path="res://imports/blend_files/hex_mesh.res" id="3_bmam4"]
+[ext_resource type="ArrayMesh" uid="uid://dk1ubjp7mqm8g" path="res://imports/blend_files/hexes/hex_mesh.res" id="3_bmam4"]
 [ext_resource type="Material" uid="uid://d1f3chw6ljd1r" path="res://3D/materials/wheat_mat.tres" id="3_qapip"]
 [ext_resource type="ArrayMesh" uid="uid://cytkje01kll4o" path="res://imports/vox_files/wheat.vox" id="4_qapip"]
 

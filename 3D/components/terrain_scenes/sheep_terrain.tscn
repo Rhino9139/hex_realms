@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c301cybdi62i" path="res://3D/components/terrain_scenes/terrain.gd" id="1_45uhp"]
 [ext_resource type="Material" uid="uid://bjfuru3xc5v3e" path="res://3D/materials/sheep_mat.tres" id="3_a6vlv"]
-[ext_resource type="ArrayMesh" uid="uid://dk1ubjp7mqm8g" path="res://imports/blend_files/hex_mesh.res" id="3_x5nyn"]
+[ext_resource type="ArrayMesh" uid="uid://dk1ubjp7mqm8g" path="res://imports/blend_files/hexes/hex_mesh.res" id="3_x5nyn"]
 [ext_resource type="ArrayMesh" uid="uid://tr8wnquta4hn" path="res://imports/vox_files/sheep.vox" id="4_a6vlv"]
 
 [sub_resource type="MultiMesh" id="MultiMesh_a6vlv"]

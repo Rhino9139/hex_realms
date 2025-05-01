@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://f25mnligq226"
-path="res://.godot/imported/hex_regular.blend-350853a423752ffc122e132ab5f5c50a.scn"
+uid="uid://c0nsdbrni558t"
+path="res://.godot/imported/hex_holo_outer_mesh.blend-3552741e5ce639d4d51142ac75b7f439.scn"
 
 [deps]
 
-source_file="res://imports/blend_files/hex_regular.blend"
-dest_files=["res://.godot/imported/hex_regular.blend-350853a423752ffc122e132ab5f5c50a.scn"]
+source_file="res://imports/blend_files/hexes/hex_holo_outer_mesh.blend"
+dest_files=["res://.godot/imported/hex_holo_outer_mesh.blend-3552741e5ce639d4d51142ac75b7f439.scn"]
 
 [params]
 
@@ -34,13 +34,13 @@ animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
 "meshes": {
-"hex_regular_Cylinder": {
+"hex_holo_outer_mesh_Cylinder": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
 "save_to_file/enabled": true,
-"save_to_file/path": "res://imports/blend_files/hex_mesh.res"
+"save_to_file/path": "res://imports/blend_files/holo_hex_outer.res"
 }
 }
 }

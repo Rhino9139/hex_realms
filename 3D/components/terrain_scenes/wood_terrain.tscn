@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://e81sacjtusa"]
 
 [ext_resource type="Script" uid="uid://c301cybdi62i" path="res://3D/components/terrain_scenes/terrain.gd" id="1_4avep"]
-[ext_resource type="ArrayMesh" uid="uid://dk1ubjp7mqm8g" path="res://imports/blend_files/hex_mesh.res" id="3_ha67t"]
+[ext_resource type="ArrayMesh" uid="uid://dk1ubjp7mqm8g" path="res://imports/blend_files/hexes/hex_mesh.res" id="3_ha67t"]
 [ext_resource type="Material" uid="uid://b6tpt437kk0w6" path="res://3D/materials/wood_mat.tres" id="3_k7hm3"]
 [ext_resource type="ArrayMesh" uid="uid://dwnrtixao0mnr" path="res://imports/vox_files/tree_1.vox" id="4_k7hm3"]
 

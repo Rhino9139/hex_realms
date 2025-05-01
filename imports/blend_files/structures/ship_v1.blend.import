@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://brvqxik5oye7d"
-path="res://.godot/imported/castle.blend-a63799c54b5644e3e569f43af2ba1f77.scn"
+uid="uid://352vcfcs6fvl"
+path="res://.godot/imported/ship_v1.blend-098e4106306f014dcc01cc65569b4284.scn"
 
 [deps]
 
-source_file="res://imports/blend_files/castle.blend"
-dest_files=["res://.godot/imported/castle.blend-a63799c54b5644e3e569f43af2ba1f77.scn"]
+source_file="res://imports/blend_files/structures/ship_v1.blend"
+dest_files=["res://.godot/imported/ship_v1.blend-098e4106306f014dcc01cc65569b4284.scn"]
 
 [params]
 
@@ -34,13 +34,13 @@ animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
 "meshes": {
-"castle_building_castle": {
+"ship_v1_Cube_001": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
 "save_to_file/enabled": true,
-"save_to_file/path": "res://imports/blend_files/castle_mesh.res"
+"save_to_file/path": "res://imports/blend_files/structures/sailboat_mesh.res"
 }
 }
 }

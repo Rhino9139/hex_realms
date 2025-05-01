@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cfk8k251nclrm"
-path="res://.godot/imported/port_v1.blend-0946cd24d068ea1f784f02a28096d1bd.scn"
+uid="uid://brvqxik5oye7d"
+path="res://.godot/imported/castle.blend-47f693a6cb3b0faac6f928dd61ca06c0.scn"
 
 [deps]
 
-source_file="res://imports/blend_files/port_v1.blend"
-dest_files=["res://.godot/imported/port_v1.blend-0946cd24d068ea1f784f02a28096d1bd.scn"]
+source_file="res://imports/blend_files/structures/castle.blend"
+dest_files=["res://.godot/imported/castle.blend-47f693a6cb3b0faac6f928dd61ca06c0.scn"]
 
 [params]
 
@@ -32,7 +32,18 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={}
+_subresources={
+"meshes": {
+"castle_building_castle": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://imports/blend_files/castle_mesh.res"
+}
+}
+}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true

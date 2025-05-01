@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bb1ojc5qlbf4y"]
 
 [ext_resource type="Material" uid="uid://bhusjf7o7dpr3" path="res://3D/materials/light_grey.tres" id="1_wkonb"]
-[ext_resource type="Material" uid="uid://db6xyoo8kvsrv" path="res://3D/materials/red.tres" id="2_p14os"]
+[ext_resource type="Material" uid="uid://db6xyoo8kvsrv" path="res://3D/materials/player_colors/red.tres" id="2_p14os"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_eyefo"]
 material = ExtResource("1_wkonb")

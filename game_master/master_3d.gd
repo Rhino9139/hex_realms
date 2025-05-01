@@ -6,6 +6,7 @@ static var MASTER: Master3D
 static func ADD_MAP() -> void:
 	MASTER.randomize_board()
 	MASTER.add_child(HexMap.CREATE())
+	MASTER.add_child(Character.CREATE())
 
 func _init() -> void:
 	MASTER = self
