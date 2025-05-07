@@ -2,7 +2,7 @@
 class_name TerrainType
 extends Resource
 
-
+@export var index: int
 @export var type: String
 @export var icon_texture: Texture2D
 @export var material: StandardMaterial3D

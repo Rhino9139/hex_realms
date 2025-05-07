@@ -7,6 +7,7 @@
 
 [resource]
 script = ExtResource("2_hdp8l")
+index = 4
 type = "Wood"
 icon_texture = ExtResource("1_iqqct")
 material = ExtResource("2_4voby")

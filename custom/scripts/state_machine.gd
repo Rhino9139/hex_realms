@@ -1,7 +1,7 @@
-class_name PlayerStateMachine
+class_name StateMachine
 extends Node
 
-@export var base: Character
+@export var base: Node
 
 var states: Dictionary
 var current_state: State
@@ -14,7 +14,7 @@ func _ready() -> void:
 	set_starting_state()
 
 func set_starting_state() -> void:
-	current_state = states["IdleState"]
+	current_state = get_child(0)
 	current_state.enter()
 	current_state.start_process()
 

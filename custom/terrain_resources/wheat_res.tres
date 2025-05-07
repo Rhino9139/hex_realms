@@ -7,6 +7,7 @@
 
 [resource]
 script = ExtResource("1_vhdor")
+index = 3
 type = "Wheat"
 icon_texture = ExtResource("1_6wq0f")
 material = ExtResource("2_6pl5g")

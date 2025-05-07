@@ -21,7 +21,6 @@ environment = SubResource("Environment_ypr7u")
 [node name="KeyLight" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(0.823988, -0.406248, 0.394976, 0, 0.69709, 0.716984, -0.566608, -0.590786, 0.574394, 0, 0, 0)
 light_energy = 0.6
-shadow_enabled = true
 shadow_opacity = 0.51
 
 [node name="BackLight" type="DirectionalLight3D" parent="WorldEnvironment"]

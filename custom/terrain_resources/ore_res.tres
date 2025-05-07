@@ -7,6 +7,7 @@
 
 [resource]
 script = ExtResource("1_kfl7c")
+index = 1
 type = "Ore"
 icon_texture = ExtResource("1_hiwhu")
 material = ExtResource("2_sxsnk")

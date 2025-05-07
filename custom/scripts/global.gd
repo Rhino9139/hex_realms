@@ -1,12 +1,18 @@
 class_name Global
 
-static var TYPE_RES: Dictionary[int, String] = {
-	0 : "uid://03f6o1ggd8di",
-	1 : "uid://brghdbk4jlcyo",
-	2 : "uid://clhpnv8ji1oud",
-	3 : "uid://dxj3v0c7du1px",
-	4 : "uid://cvo8kw33xdrta",
-	5 : "uid://bcuums3me4afe"
+static var HOLO_MAT: ShaderMaterial = load("uid://cpvde0u8isi5h")
+static var P1_MAT: StandardMaterial3D = load("uid://db6xyoo8kvsrv")
+static var P2_MAT: StandardMaterial3D = load("uid://d1ba7go2vhy1k")
+static var P3_MAT: StandardMaterial3D = load("uid://t2cj5x2ybelm")
+static var P4_MAT: StandardMaterial3D = load("uid://dd6lp3tkgw0lc")
+
+static var TYPE_RES: Dictionary[int, TerrainType] = {
+	0 : load("uid://03f6o1ggd8di"),
+	1 : load("uid://brghdbk4jlcyo"),
+	2 : load("uid://clhpnv8ji1oud"),
+	3 : load("uid://dxj3v0c7du1px"),
+	4 : load("uid://cvo8kw33xdrta"),
+	5 : load("uid://bcuums3me4afe")
 }
 
 const ROLL_SPRITES: Dictionary = {

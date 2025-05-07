@@ -1,9 +1,12 @@
 class_name BuyButton
-extends Button
+extends UIButton
 
 @export_enum("Settlement", "Castle", "Road", "Card") var type: String
 
 func _on_toggled(toggled_on: bool) -> void:
+	get_tree().call_group("Empty", "make_unavailable")
+	get_tree().call_group("Settlement", "make_unavailable")
+	get_tree().call_group("RoadEmpty", "make_unavailable")
 	if toggled_on:
 		get_tree().call_group("BuyButton", "buy_pressed", self)
 		call(type)
@@ -16,10 +19,10 @@ func Settlement() -> void:
 	get_tree().call_group("Empty", "make_available", -1)
 
 func Castle() -> void:
-	pass
+	get_tree().call_group("Settlement", "make_available", -1)
 
 func Road() -> void:
-	pass
+	get_tree().call_group("RoadEmpty", "make_available", -1)
 
 func Card() -> void:
 	pass

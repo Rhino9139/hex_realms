@@ -18,6 +18,7 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 
 MasterNetwork="*res://autoloads/master_network.gd"
 SteamMaster="*res://autoloads/steam_master.gd"
+DevMode="*res://autoloads/dev_mode.gd"
 
 [display]
 
@@ -34,6 +35,8 @@ Empty=""
 Settlement=""
 Hotspot=""
 Castle=""
+RoadEmpty=""
+TerrainHex=""
 
 [gui]
 

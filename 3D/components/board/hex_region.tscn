@@ -1,13 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://coa2enk271cgj"]
+[gd_scene load_steps=6 format=3 uid="uid://coa2enk271cgj"]
 
 [ext_resource type="Script" uid="uid://b108anyn817ik" path="res://3D/components/board/hex_region.gd" id="1_x2km7"]
 [ext_resource type="ArrayMesh" uid="uid://dsgb7xo0ja4db" path="res://imports/blend_files/hexes/holo_hex_outer.res" id="2_ccdea"]
 [ext_resource type="PackedScene" uid="uid://del6455x1rio1" path="res://3D/components/building_hotspot/building_hotspot.tscn" id="4_x2km7"]
 [ext_resource type="Material" uid="uid://4xxu5p5stsvc" path="res://3D/materials/dirt.tres" id="5_awe0n"]
+[ext_resource type="PackedScene" uid="uid://ojj448xhq20k" path="res://3D/components/road_hotspot/road_hotspot.tscn" id="5_t61bs"]
 
-[node name="HexRegion" type="Node3D" node_paths=PackedStringArray("roll_sprite")]
+[node name="HexRegion" type="Node3D" node_paths=PackedStringArray("roll_sprite", "building_1", "building_2", "building_3", "building_4", "building_5", "building_6") groups=["TerrainHex"]]
 script = ExtResource("1_x2km7")
 roll_sprite = NodePath("RollSprite")
+building_1 = NodePath("BuildingHotspot1")
+building_2 = NodePath("BuildingHotspot2")
+building_3 = NodePath("BuildingHotspot3")
+building_4 = NodePath("BuildingHotspot4")
+building_5 = NodePath("BuildingHotspot5")
+building_6 = NodePath("BuildingHotspot6")
 
 [node name="HoloHexOuter" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.179508, 0)
@@ -31,6 +38,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.63407, -0.174899, -5.2006)
 
 [node name="BuildingHotspot6" parent="." instance=ExtResource("4_x2km7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.017273, -0.174899, -10.0168)
+
+[node name="RoadHotspot1" parent="." instance=ExtResource("5_t61bs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.61765, 0, 0)
+
+[node name="RoadHotspot2" parent="." instance=ExtResource("5_t61bs")]
+transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 4.54239, 0, 7.45469)
+
+[node name="RoadHotspot3" parent="." instance=ExtResource("5_t61bs")]
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -4.40741, 9.53674e-07, 7.4229)
+
+[node name="RoadHotspot4" parent="." instance=ExtResource("5_t61bs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.6225, 9.53674e-07, 0.157138)
+
+[node name="RoadHotspot5" parent="." instance=ExtResource("5_t61bs")]
+transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -4.41038, 9.53674e-07, -7.4658)
+
+[node name="RoadHotspot6" parent="." instance=ExtResource("5_t61bs")]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 4.36014, 9.53674e-07, -7.50963)
 
 [node name="RollSprite" type="Sprite3D" parent="."]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 1.87358, 0)

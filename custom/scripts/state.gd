@@ -3,7 +3,7 @@ extends Node
 
 signal state_changed(next_state: State)
 
-var base: Character
+var base: Node
 
 func _init() -> void:
 	process_mode = PROCESS_MODE_DISABLED

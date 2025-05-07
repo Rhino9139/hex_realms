@@ -7,5 +7,5 @@ extends Node3D
 var type_res: TerrainType
 
 func _ready() -> void:
-	type_res = load(Global.TYPE_RES[Global.PORT_TYPES[idx]])
+	type_res = Global.TYPE_RES[Global.PORT_TYPES[idx]]
 	resource_sprite.texture = type_res.icon_texture

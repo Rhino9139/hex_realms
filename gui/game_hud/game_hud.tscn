@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dlysvvr1aprdc"]
+[gd_scene load_steps=18 format=3 uid="uid://dlysvvr1aprdc"]
 
 [ext_resource type="Script" uid="uid://cxaj2txgrot0c" path="res://gui/game_hud/game_hud.gd" id="1_2v08g"]
 [ext_resource type="Texture2D" uid="uid://821wyrwyqror" path="res://common/icons/resources/brick.png" id="2_ohgi1"]
@@ -12,8 +12,13 @@
 [ext_resource type="Texture2D" uid="uid://do5fpysxkbwj2" path="res://common/icons/ui_buttons/arrow_diagonal.png" id="10_t7dor"]
 [ext_resource type="Texture2D" uid="uid://cu15plfdy0eo1" path="res://common/shapes/ring_20_256.png" id="11_en8hq"]
 [ext_resource type="Texture2D" uid="uid://begn511dpycyv" path="res://common/icons/ui_buttons/hourglass.png" id="12_iwlbn"]
+[ext_resource type="PackedScene" uid="uid://b17g86bbvfydc" path="res://gui/game_hud/components/roll_screen.tscn" id="13_ryev7"]
+[ext_resource type="Script" uid="uid://b48afnuau5q10" path="res://gui/game_hud/state_machine/state_master.gd" id="13_t7dor"]
+[ext_resource type="Script" uid="uid://dk3jt8p0fjgid" path="res://gui/game_hud/state_machine/inactive_state.gd" id="14_8trcm"]
+[ext_resource type="Script" uid="uid://ca8wyyyfxe0ef" path="res://gui/game_hud/state_machine/need_roll_state.gd" id="15_hheuk"]
+[ext_resource type="Script" uid="uid://c3rxa57l0dfcw" path="res://gui/game_hud/state_machine/active_state.gd" id="16_p1mox"]
 
-[node name="GameHUD" type="Control" node_paths=PackedStringArray("turn_progress_bar")]
+[node name="GameHUD" type="Control" node_paths=PackedStringArray("turn_progress_bar", "roll_button", "p1_label", "p2_label", "p3_label", "p4_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,33 +27,44 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2v08g")
 turn_progress_bar = NodePath("TurnProgress")
+roll_button = NodePath("RollButton")
+p1_label = NodePath("PlayerList/Player1")
+p2_label = NodePath("PlayerList/Player2")
+p3_label = NodePath("PlayerList/Player3")
+p4_label = NodePath("PlayerList/Player4")
 
 [node name="PlayerList" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.02
 anchor_right = 1.0
-anchor_bottom = 0.02
 grow_horizontal = 2
 
 [node name="Player1" type="Label" parent="PlayerList"]
 layout_mode = 2
 size_flags_horizontal = 6
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 20
 text = "Player 1"
 
 [node name="Player2" type="Label" parent="PlayerList"]
 layout_mode = 2
 size_flags_horizontal = 6
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 20
 text = "Player 2"
 
 [node name="Player3" type="Label" parent="PlayerList"]
 layout_mode = 2
 size_flags_horizontal = 6
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 20
 text = "Player 3"
 
 [node name="Player4" type="Label" parent="PlayerList"]
 layout_mode = 2
 size_flags_horizontal = 6
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 20
 text = "Player 4"
 
 [node name="Resources" type="VBoxContainer" parent="."]
@@ -178,9 +194,9 @@ anchor_left = 0.5
 anchor_top = 0.99
 anchor_right = 0.5
 anchor_bottom = 0.99
-offset_left = -4.0
-offset_top = -8.0
-offset_right = 4.0
+offset_left = -41.5
+offset_top = -50.0
+offset_right = 41.5
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 30
@@ -225,8 +241,35 @@ texture = ExtResource("12_iwlbn")
 expand_mode = 1
 stretch_mode = 5
 
+[node name="RollScreen" parent="." instance=ExtResource("13_ryev7")]
+layout_mode = 1
+
+[node name="StateMaster" type="Node" parent="." node_paths=PackedStringArray("base")]
+script = ExtResource("13_t7dor")
+base = NodePath("..")
+metadata/_custom_type_script = "uid://dd2nneu3quv1y"
+
+[node name="InactiveState" type="Node" parent="StateMaster"]
+script = ExtResource("14_8trcm")
+
+[node name="NeedRollState" type="Node" parent="StateMaster" node_paths=PackedStringArray("roll_screen")]
+script = ExtResource("15_hheuk")
+roll_screen = NodePath("../../RollScreen")
+roll_color = Color(1, 0.72549, 0, 1)
+turn_color = Color(8.56727e-06, 0.805724, 3.85046e-07, 1)
+metadata/_custom_type_script = "uid://b4n8p8i631us2"
+
+[node name="ActiveState" type="Node" parent="StateMaster"]
+script = ExtResource("16_p1mox")
+metadata/_custom_type_script = "uid://b4n8p8i631us2"
+
+[node name="TestTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
-[connection signal="pressed" from="RollButton" to="." method="_on_roll_button_pressed"]
+[connection signal="pressed" from="RollButton" to="StateMaster/NeedRollState" method="_on_roll_button_pressed"]
+[connection signal="timeout" from="TestTimer" to="StateMaster/InactiveState" method="_on_test_timer_timeout"]
 
 [editable path="BuyButtons/BuySettlement"]
 [editable path="BuyButtons/BuyCastle"]

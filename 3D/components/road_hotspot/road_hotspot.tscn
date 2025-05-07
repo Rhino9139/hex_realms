@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://ojj448xhq20k"]
+
+[ext_resource type="Script" uid="uid://d2jr0umsp6yd3" path="res://3D/components/road_hotspot/road_hotspot.gd" id="1_4fib4"]
+[ext_resource type="Material" uid="uid://dnsu2x2mv1386" path="res://3D/materials/road_holo.tres" id="2_4fib4"]
+[ext_resource type="Material" uid="uid://bhs52l6pfbpg7" path="res://3D/materials/player_colors/green.tres" id="3_ph1bp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4fib4"]
+size = Vector3(2.52304, 1.54401, 5.25095)
+
+[sub_resource type="BoxMesh" id="BoxMesh_u45lf"]
+material = ExtResource("2_4fib4")
+size = Vector3(1, 1, 6)
+
+[sub_resource type="TorusMesh" id="TorusMesh_geh7g"]
+material = ExtResource("3_ph1bp")
+inner_radius = 2.0
+outer_radius = 2.5
+
+[node name="RoadHotspot" type="Area3D" node_paths=PackedStringArray("road_model", "indicator_model") groups=["RoadEmpty"]]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_4fib4")
+road_model = NodePath("RoadModel")
+indicator_model = NodePath("AvailableIndicator")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0427704, 0.272003, -0.150223)
+shape = SubResource("BoxShape3D_4fib4")
+
+[node name="RoadModel" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("BoxMesh_u45lf")
+
+[node name="AvailableIndicator" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.374704, 0)
+visible = false
+mesh = SubResource("TorusMesh_geh7g")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
