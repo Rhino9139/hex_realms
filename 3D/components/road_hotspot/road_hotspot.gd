@@ -24,7 +24,7 @@ func build() -> void:
 	remove_from_group("RoadEmpty")
 	make_unavailable()
 	road_model.visible = true
-	road_model.set_surface_override_material(0, Global.P1_MAT)
+	road_model.set_surface_override_material(0, null)
 
 func make_available(_player_id: int) -> void:
 	set_collision_layer_value(2, true)

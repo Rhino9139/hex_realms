@@ -9,11 +9,7 @@ static var MASTER: GameHUD
 
 @export var turn_progress_bar: TextureProgressBar
 @export var roll_button: Button
-@export_group("Player Labels")
-@export var p1_label: Label
-@export var p2_label: Label
-@export var p3_label: Label
-@export var p4_label: Label
+@export var player_card_parent: HBoxContainer
 
 var bar_tween: Tween
 
@@ -28,14 +24,9 @@ func _init() -> void:
 	MASTER = self
 
 func _ready() -> void:
-	p1_label.modulate = Global.P1_MAT.albedo_color
-	p2_label.modulate = Global.P2_MAT.albedo_color
-	p3_label.modulate = Global.P3_MAT.albedo_color
-	p4_label.modulate = Global.P4_MAT.albedo_color
 	var player_list: Array = MultiplayerManager.RETURN_PLAYERS()
-	var labels: Array = [p1_label, p2_label, p3_label, p4_label]
 	for i in player_list.size():
-		labels[i].text = player_list[i].player_name
+		player_card_parent.add_child(PlayerCard.CREATE(player_list[i]))
 
 func update_timer_progress(new_value: float) -> void:
 	turn_progress_bar.value = new_value

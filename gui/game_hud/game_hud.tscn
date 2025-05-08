@@ -18,7 +18,7 @@
 [ext_resource type="Script" uid="uid://ca8wyyyfxe0ef" path="res://gui/game_hud/state_machine/need_roll_state.gd" id="15_hheuk"]
 [ext_resource type="Script" uid="uid://c3rxa57l0dfcw" path="res://gui/game_hud/state_machine/active_state.gd" id="16_p1mox"]
 
-[node name="GameHUD" type="Control" node_paths=PackedStringArray("turn_progress_bar", "roll_button", "p1_label", "p2_label", "p3_label", "p4_label")]
+[node name="GameHUD" type="Control" node_paths=PackedStringArray("turn_progress_bar", "roll_button", "player_card_parent")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,44 +28,14 @@ grow_vertical = 2
 script = ExtResource("1_2v08g")
 turn_progress_bar = NodePath("TurnProgress")
 roll_button = NodePath("RollButton")
-p1_label = NodePath("PlayerList/Player1")
-p2_label = NodePath("PlayerList/Player2")
-p3_label = NodePath("PlayerList/Player3")
-p4_label = NodePath("PlayerList/Player4")
+player_card_parent = NodePath("PlayerCards")
 
-[node name="PlayerList" type="HBoxContainer" parent="."]
+[node name="PlayerCards" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 grow_horizontal = 2
-
-[node name="Player1" type="Label" parent="PlayerList"]
-layout_mode = 2
-size_flags_horizontal = 6
-theme_override_constants/outline_size = 3
-theme_override_font_sizes/font_size = 20
-text = "Player 1"
-
-[node name="Player2" type="Label" parent="PlayerList"]
-layout_mode = 2
-size_flags_horizontal = 6
-theme_override_constants/outline_size = 3
-theme_override_font_sizes/font_size = 20
-text = "Player 2"
-
-[node name="Player3" type="Label" parent="PlayerList"]
-layout_mode = 2
-size_flags_horizontal = 6
-theme_override_constants/outline_size = 3
-theme_override_font_sizes/font_size = 20
-text = "Player 3"
-
-[node name="Player4" type="Label" parent="PlayerList"]
-layout_mode = 2
-size_flags_horizontal = 6
-theme_override_constants/outline_size = 3
-theme_override_font_sizes/font_size = 20
-text = "Player 4"
+alignment = 1
 
 [node name="Resources" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -263,13 +233,8 @@ metadata/_custom_type_script = "uid://b4n8p8i631us2"
 script = ExtResource("16_p1mox")
 metadata/_custom_type_script = "uid://b4n8p8i631us2"
 
-[node name="TestTimer" type="Timer" parent="."]
-one_shot = true
-autostart = true
-
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="pressed" from="RollButton" to="StateMaster/NeedRollState" method="_on_roll_button_pressed"]
-[connection signal="timeout" from="TestTimer" to="StateMaster/InactiveState" method="_on_test_timer_timeout"]
 
 [editable path="BuyButtons/BuySettlement"]
 [editable path="BuyButtons/BuyCastle"]

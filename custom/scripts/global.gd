@@ -1,10 +1,13 @@
 class_name Global
 
 static var HOLO_MAT: ShaderMaterial = load("uid://cpvde0u8isi5h")
-static var P1_MAT: StandardMaterial3D = load("uid://db6xyoo8kvsrv")
-static var P2_MAT: StandardMaterial3D = load("uid://d1ba7go2vhy1k")
-static var P3_MAT: StandardMaterial3D = load("uid://t2cj5x2ybelm")
-static var P4_MAT: StandardMaterial3D = load("uid://dd6lp3tkgw0lc")
+
+static var PLAYER_MATS: Array[StandardMaterial3D] = [
+	load("uid://db6xyoo8kvsrv"),
+	load("uid://d1ba7go2vhy1k"),
+	load("uid://t2cj5x2ybelm"),
+	load("uid://dd6lp3tkgw0lc")
+]
 
 static var TYPE_RES: Dictionary[int, TerrainType] = {
 	0 : load("uid://03f6o1ggd8di"),
