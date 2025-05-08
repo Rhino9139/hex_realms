@@ -32,6 +32,10 @@ func _ready() -> void:
 	p2_label.modulate = Global.P2_MAT.albedo_color
 	p3_label.modulate = Global.P3_MAT.albedo_color
 	p4_label.modulate = Global.P4_MAT.albedo_color
+	var player_list: Array = MultiplayerManager.RETURN_PLAYERS()
+	var labels: Array = [p1_label, p2_label, p3_label, p4_label]
+	for i in player_list.size():
+		labels[i].text = player_list[i].player_name
 
 func update_timer_progress(new_value: float) -> void:
 	turn_progress_bar.value = new_value

@@ -6,7 +6,10 @@ const _PATH: String = "uid://w2srhsq0e6wx"
 static var MASTER: MainMenu
 
 @export var start_button: Button
-@export var pivot_hex: Sprite2D
+@export var host_button: Button
+@export var join_button: Button
+@export var name_input: LineEdit
+@export var wait_screen: TextureRect
 
 var tween: Tween
 
@@ -20,21 +23,24 @@ static func DESTROY() -> void:
 func _init() -> void:
 	MASTER = self
 
-func rotate_hex() -> void:
-	if tween: 
-		tween.kill()
-	tween = create_tween()
-	tween.tween_property(pivot_hex, "rotation_degrees", pivot_hex.rotation_degrees + 60.0, 1.0)
+func _ready() -> void:
+	name_input.text = Game.GET_NAME()
 
 func _on_start_pressed() -> void:
-	Game.BEGIN_MATCH.call_deferred()
+	wait_screen.visible = true
+	
+	Game.BEGIN_MATCH_REQUEST.call_deferred()
 
 func _on_host_pressed() -> void:
 	MultiplayerManager.CREATE_SERVER_HOST()
+	host_button.disabled = true
+	join_button.disabled = true
+	start_button.disabled = false
 
 func _on_join_pressed() -> void:
 	MultiplayerManager.CREATE_CLIENT()
-
+	host_button.disabled = true
+	join_button.disabled = true
 
 func _on_name_input_text_submitted(new_text: String) -> void:
 	get_viewport().gui_get_focus_owner().release_focus()
