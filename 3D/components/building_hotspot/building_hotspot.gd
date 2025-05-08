@@ -66,7 +66,6 @@ func make_available(_player_id: int) -> void:
 func make_unavailable() -> void:
 	available_indicator.visible = false
 	collision_layer = 0
-	hide_hover()
 
 func show_hover() -> void:
 	settlement_model.visible = true

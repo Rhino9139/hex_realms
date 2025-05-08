@@ -22,6 +22,7 @@ func start_host():
 	multiplayer.peer_connected.connect(_on_peer_connected)
 	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
 	print("Hosting on port: ", _PORT)
+	MultiplayerManager.ADD_PLAYER(1)
 
 func _on_peer_connected(id: int):
 	print("Player ", id, " connected!")

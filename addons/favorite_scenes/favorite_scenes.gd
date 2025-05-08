@@ -90,7 +90,7 @@ func _refresh():
 	
 	var popup := PopupMenu.new()
 	menu.add_child(popup)
-	popup.name = "Favorite Scenes"
+	popup.name = "SCENES"
 	popup.add_to_group(&"favorite_scenes", true)
 	popup.id_pressed.connect(_pressed.bind(popup))
 	

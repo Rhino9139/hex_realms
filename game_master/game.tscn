@@ -27,5 +27,12 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4_kbd63")
 
-[node name="MultiplayerManager" type="Node" parent="."]
+[node name="MultiplayerManager" type="Node" parent="." node_paths=PackedStringArray("ms")]
 script = ExtResource("5_dapri")
+ms = NodePath("MultiplayerSpawner")
+
+[node name="PlayerBoss" type="Node" parent="MultiplayerManager"]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="MultiplayerManager"]
+_spawnable_scenes = PackedStringArray("uid://bu0f2ax5ubopd")
+spawn_path = NodePath("../PlayerBoss")

@@ -34,3 +34,8 @@ func _on_host_pressed() -> void:
 
 func _on_join_pressed() -> void:
 	MultiplayerManager.CREATE_CLIENT()
+
+
+func _on_name_input_text_submitted(new_text: String) -> void:
+	get_viewport().gui_get_focus_owner().release_focus()
+	Game.SET_NAME(new_text)

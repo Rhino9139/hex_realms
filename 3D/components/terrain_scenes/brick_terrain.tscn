@@ -10,7 +10,7 @@ script = ExtResource("1_fbp6g")
 metadata/_custom_type_script = "uid://c301cybdi62i"
 
 [node name="Brick" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, -0.382, 0, -0.292)
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, -0.382, -0.488787, -0.292)
 mesh = ExtResource("4_a3n72")
 
 [node name="HoloHexMesh" type="MeshInstance3D" parent="."]
