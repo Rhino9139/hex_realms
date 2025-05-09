@@ -26,19 +26,20 @@ func _init() -> void:
 	MASTER = self
 
 func _ready() -> void:
-	var new_name: String = OS.get_cmdline_args()[1]
-	var new_pos: Vector2 = Vector2(100, 100)
-	Game.SET_NAME(new_name)
+	if OS.get_cmdline_args().size() > 1:
+		var new_name: String = OS.get_cmdline_args()[1]
+		var new_pos: Vector2 = Vector2(100, 100)
+		Game.SET_NAME(new_name)
 	
-	match new_name:
-		"Valmar":
-			new_pos = Vector2(4000, 200)
-		"Gurdwynn":
-			new_pos = Vector2(200, 200)
-		"Kai":
-			new_pos = Vector2(2400, 200)
-	
-	DisplayServer.window_set_position(new_pos)
+		match new_name:
+			"Valmar":
+				new_pos = Vector2(4000, 200)
+			"Gurdwynn":
+				new_pos = Vector2(200, 200)
+			"Kai":
+				new_pos = Vector2(2400, 200)
+		
+		DisplayServer.window_set_position(new_pos)
 	MasterGUI.START_MENU()
 
 @rpc("any_peer", "call_local")
