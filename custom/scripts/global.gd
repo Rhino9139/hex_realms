@@ -10,11 +10,11 @@ static var PLAYER_MATS: Array[StandardMaterial3D] = [
 ]
 
 static var TYPE_RES: Dictionary[int, TerrainType] = {
-	0 : load("uid://03f6o1ggd8di"),
-	1 : load("uid://brghdbk4jlcyo"),
-	2 : load("uid://clhpnv8ji1oud"),
-	3 : load("uid://dxj3v0c7du1px"),
-	4 : load("uid://cvo8kw33xdrta"),
+	0 : load("uid://03f6o1ggd8di"), #Brick
+	1 : load("uid://brghdbk4jlcyo"), #Ore
+	2 : load("uid://clhpnv8ji1oud"), #Sheep
+	3 : load("uid://dxj3v0c7du1px"), #Wheat
+	4 : load("uid://cvo8kw33xdrta"), #Wood
 	5 : load("uid://bcuums3me4afe")
 }
 
@@ -43,3 +43,8 @@ static var HEX_ROLLS: Array[int] = [
 static var PORT_TYPES: Array[int] = [
 	0, 1, 2, 3, 4, 5, 5, 5, 5
 ]
+
+static var SETTLEMENT_COST: Array[int] = [1, 0, 1, 1, 1]
+static var CASTLE_COST: Array[int] = [0, 3, 0, 2, 0]
+static var ROAD_COST: Array[int] = [1, 0, 0, 0, 1]
+static var CARD_COST: Array[int] = [0, 1, 1, 1, 0]

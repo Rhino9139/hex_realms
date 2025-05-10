@@ -37,6 +37,7 @@ Hotspot=""
 Castle=""
 RoadEmpty=""
 TerrainHex=""
+PlayerCard=""
 
 [gui]
 

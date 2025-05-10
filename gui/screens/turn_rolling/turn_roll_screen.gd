@@ -25,8 +25,6 @@ func reorder_rows() -> void:
 	for i in rows.size():
 		rows[i].move_row(i * 75)
 		rows[i].player.turn_index = i
-		print(rows[i].player.player_name)
-		print(rows[i].player.turn_index)
 
 func sort_decending(a, b) -> bool:
 	if a.roll_final > b.roll_final:

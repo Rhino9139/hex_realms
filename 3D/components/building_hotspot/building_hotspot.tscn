@@ -29,6 +29,7 @@ castle_base_mat = ExtResource("5_jrjif")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.81646, 0)
+visible = false
 shape = SubResource("SphereShape3D_8sy7l")
 debug_color = Color(0, 0.717647, 0.705882, 1)
 
@@ -49,7 +50,7 @@ mesh = ExtResource("3_jrjif")
 
 [node name="NeighborArea" type="Area3D" parent="."]
 collision_layer = 0
-collision_mask = 3
+collision_mask = 7
 monitoring = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NeighborArea"]

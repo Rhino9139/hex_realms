@@ -12,6 +12,9 @@ var settlement_credits: int = 0
 var road_credits: int = 0
 var player_mat: StandardMaterial3D
 var player_color: Color
+var settlement_count: int = 0
+var castle_count: int = 0
+var road_count: int = 0
 
 func _ready() -> void:
 	if multiplayer.is_server() == false:
@@ -26,6 +29,22 @@ func _ready() -> void:
 func _on_name_changed(new_name: String) -> void:
 	player_name = new_name
 	share_name.rpc(new_name)
+
+func settlement_built() -> void:
+	settlement_count += 1
+	settlement_credits -= 1
+
+func castle_built() -> void:
+	settlement_count -= 1
+	castle_count += 1
+
+func road_built() -> void:
+	road_count += 1
+	road_credits -= 1
+
+func change_resource(index: int, amount: int) -> void:
+	resources[index] += amount
+	GameHUD.UPDATE_RESOURCES()
 
 @rpc("any_peer")
 func request_id() -> void:

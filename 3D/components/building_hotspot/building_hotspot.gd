@@ -17,6 +17,7 @@ var roads: Array[RoadHotspot] = []
 var player: Player
 var upgrade_spot: Callable = build_settlement
 var holo_mesh: MeshInstance3D
+var current_building: String = "Empty"
 
 func _init() -> void:
 	idx = current_index
@@ -35,13 +36,13 @@ func get_neighbors() -> void:
 	neighbor_area.queue_free()
 	collision_layer = 0
 	collision_mask = 0
-	print(roads.size())
 
 func build_settlement(player_index: int) -> void:
+	current_building = "Settlement"
 	player = MultiplayerManager.RETURN_PLAYERS()[player_index]
+	player.settlement_built()
 	make_unavailable()
 	remove_from_group("Empty")
-	add_to_group("Settlement")
 	settlement_model.visible = true
 	var mat: StandardMaterial3D = player.player_mat
 	settlement_model.set_surface_override_material(0, null)
@@ -50,19 +51,24 @@ func build_settlement(player_index: int) -> void:
 	for i in neighbors:
 		if is_instance_valid(i):
 			i.queue_free()
-	for i in roads:
-		if is_instance_valid(i):
-			i.add_to_group("RoadEmpty")
+	if player == Player.LOCAL_PLAYER:
+		add_to_group("Settlement")
+		for i in roads:
+			if is_instance_valid(i):
+				i.add_to_group("RoadEmpty")
 
 func build_castle(_player_index: int) -> void:
+	current_building = "Castle"
+	player.castle_built()
 	settlement_model.visible = false
-	remove_from_group("Settlement")
-	add_to_group("Castle")
 	castle_model.visible = true
 	var mat: StandardMaterial3D = player.player_mat
 	castle_model.set_surface_override_material(0, castle_base_mat)
 	castle_model.set_surface_override_material(1, mat)
 	make_unavailable()
+	if player == Player.LOCAL_PLAYER:
+		remove_from_group("Settlement")
+		add_to_group("Castle")
 
 func make_available(_player_id: int) -> void:
 	available_indicator.visible = true
@@ -78,8 +84,13 @@ func show_hover() -> void:
 func hide_hover() -> void:
 	settlement_model.visible = false
 
-func resource_rolled(_type: int) -> void:
-	pass
+func resource_rolled(type_index: int) -> void:
+	if player == null:
+		return
+	if current_building == "Settlement":
+		player.change_resource(type_index, 1)
+	elif current_building == "Castle":
+		player.change_resource(type_index, 2)
 
 func _on_area_entered(area: Area3D) -> void:
 	if area is BuildingHotspot:
@@ -95,6 +106,8 @@ func _on_neighbor_area_area_entered(area: Area3D) -> void:
 	elif area is RoadHotspot:
 		if roads.has(area) == false:
 			roads.append(area)
+	elif area is HexRegion:
+		area.add_build_spot(self)
 
 @rpc("any_peer", "call_local")
 func build(player_index: int) -> void:

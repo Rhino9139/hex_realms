@@ -19,7 +19,7 @@
 [ext_resource type="Script" uid="uid://c3rxa57l0dfcw" path="res://gui/game_hud/state_machine/active_state.gd" id="16_p1mox"]
 [ext_resource type="Script" uid="uid://dnbu8tbbhv6e8" path="res://gui/game_hud/setup_state.gd" id="18_3o7oo"]
 
-[node name="GameHUD" type="Control" node_paths=PackedStringArray("turn_progress_bar", "roll_button", "player_card_parent")]
+[node name="GameHUD" type="Control" node_paths=PackedStringArray("turn_progress_bar", "roll_button", "end_turn_button", "player_card_parent", "brick_label", "ore_label", "sheep_label", "wheat_label", "wood_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,7 +29,13 @@ grow_vertical = 2
 script = ExtResource("1_2v08g")
 turn_progress_bar = NodePath("TurnProgress")
 roll_button = NodePath("RollButton")
+end_turn_button = NodePath("EndTurnButton")
 player_card_parent = NodePath("PlayerCards")
+brick_label = NodePath("Resources/Brick/Amount")
+ore_label = NodePath("Resources/Ore/Amount")
+sheep_label = NodePath("Resources/Sheep/Amount")
+wheat_label = NodePath("Resources/Wheat/Amount")
+wood_label = NodePath("Resources/Wood/Amount")
 
 [node name="PlayerCards" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -170,18 +176,40 @@ offset_top = -50.0
 offset_right = 41.5
 grow_horizontal = 2
 grow_vertical = 0
+focus_mode = 0
 theme_override_font_sizes/font_size = 30
+disabled = true
 text = "ROLL"
 
-[node name="TurnProgress" type="TextureProgressBar" parent="."]
+[node name="EndTurnButton" type="Button" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -120.0
-offset_top = -120.0
+offset_left = -87.0
+offset_top = -83.0
+offset_right = -15.0
+offset_bottom = -11.0
+grow_horizontal = 0
+grow_vertical = 0
+icon = ExtResource("12_iwlbn")
+icon_alignment = 1
+
+[node name="TurnProgress" type="TextureProgressBar" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -123.0
+offset_top = -123.0
+offset_right = -3.0
+offset_bottom = -3.0
 grow_horizontal = 0
 grow_vertical = 0
 max_value = 60.0
@@ -193,24 +221,6 @@ texture_under = ExtResource("11_en8hq")
 texture_progress = ExtResource("11_en8hq")
 tint_under = Color(1, 1, 1, 0.427451)
 tint_progress = Color(0, 1, 0, 1)
-
-[node name="Hourglass" type="TextureRect" parent="TurnProgress"]
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -30.0
-offset_top = -27.0
-offset_right = 30.0
-offset_bottom = 33.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("12_iwlbn")
-expand_mode = 1
-stretch_mode = 5
 
 [node name="RollScreen" parent="." instance=ExtResource("13_ryev7")]
 layout_mode = 1
@@ -239,6 +249,7 @@ script = ExtResource("18_3o7oo")
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="pressed" from="RollButton" to="StateMaster/NeedRollState" method="_on_roll_button_pressed"]
+[connection signal="pressed" from="EndTurnButton" to="." method="_on_end_turn_button_pressed"]
 
 [editable path="BuyButtons/BuySettlement"]
 [editable path="BuyButtons/BuyCastle"]

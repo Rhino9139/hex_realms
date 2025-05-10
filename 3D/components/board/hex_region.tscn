@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://coa2enk271cgj"]
+[gd_scene load_steps=7 format=3 uid="uid://coa2enk271cgj"]
 
 [ext_resource type="Script" uid="uid://b108anyn817ik" path="res://3D/components/board/hex_region.gd" id="1_x2km7"]
 [ext_resource type="ArrayMesh" uid="uid://dsgb7xo0ja4db" path="res://imports/blend_files/hexes/holo_hex_outer.res" id="2_ccdea"]
@@ -6,15 +6,17 @@
 [ext_resource type="Material" uid="uid://4xxu5p5stsvc" path="res://3D/materials/dirt.tres" id="5_awe0n"]
 [ext_resource type="PackedScene" uid="uid://ojj448xhq20k" path="res://3D/components/road_hotspot/road_hotspot.tscn" id="5_t61bs"]
 
-[node name="HexRegion" type="Node3D" node_paths=PackedStringArray("roll_sprite", "building_1", "building_2", "building_3", "building_4", "building_5", "building_6") groups=["TerrainHex"]]
+[sub_resource type="SphereShape3D" id="SphereShape3D_t61bs"]
+radius = 8.0
+
+[node name="HexRegion" type="Area3D" node_paths=PackedStringArray("roll_sprite") groups=["TerrainHex"]]
+collision_layer = 4
+collision_mask = 0
 script = ExtResource("1_x2km7")
 roll_sprite = NodePath("RollSprite")
-building_1 = NodePath("BuildingHotspot1")
-building_2 = NodePath("BuildingHotspot2")
-building_3 = NodePath("BuildingHotspot3")
-building_4 = NodePath("BuildingHotspot4")
-building_5 = NodePath("BuildingHotspot5")
-building_6 = NodePath("BuildingHotspot6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_t61bs")
 
 [node name="HoloHexOuter" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.179508, 0)

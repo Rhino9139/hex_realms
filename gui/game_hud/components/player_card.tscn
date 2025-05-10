@@ -9,12 +9,13 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_av00l"]
 gradient = SubResource("Gradient_phpnn")
 
-[node name="PlayerCard" type="HBoxContainer" node_paths=PackedStringArray("name_label")]
+[node name="PlayerCard" type="HBoxContainer" node_paths=PackedStringArray("name_label", "turn_arrow") groups=["PlayerCard"]]
 offset_right = 61.0
 offset_bottom = 23.0
 size_flags_horizontal = 6
 script = ExtResource("1_phpnn")
 name_label = NodePath("NameLabel")
+turn_arrow = NodePath("TurnArrow")
 
 [node name="TurnArrow" type="TextureRect" parent="."]
 visible = false

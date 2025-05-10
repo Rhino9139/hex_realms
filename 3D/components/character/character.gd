@@ -71,6 +71,7 @@ func update_hover_raycast(clicked: bool = false) -> void:
 	var query: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(origin, end)
 	query.collide_with_bodies = false
 	query.collide_with_areas = true
+	query.collision_mask = 3
 	var result = space_state.intersect_ray(query)
 	if result:
 		var collider = result.get("collider")

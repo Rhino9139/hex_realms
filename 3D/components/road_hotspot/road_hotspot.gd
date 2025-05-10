@@ -45,6 +45,7 @@ func _on_area_entered(area: Area3D) -> void:
 @rpc("any_peer", "call_local")
 func build(player_index: int) -> void:
 	player = MultiplayerManager.RETURN_PLAYERS()[player_index]
+	player.road_built()
 	remove_from_group("RoadEmpty")
 	make_unavailable()
 	road_model.visible = true
