@@ -24,6 +24,7 @@ var building_array: Array[BuildingHotspot]
 static func CREATE(new_coord: Vector2i = Vector2i(0, 0)) -> HexRegion:
 	var new_region: HexRegion = load(_PATH).instantiate()
 	new_region.hex_coord = new_coord
+	new_region.name = str("Hex", new_coord)
 	return new_region
 
 func _init() -> void:

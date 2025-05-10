@@ -8,7 +8,6 @@
 size = Vector3(2.52304, 1.54401, 5.25095)
 
 [sub_resource type="BoxMesh" id="BoxMesh_u45lf"]
-material = ExtResource("2_4fib4")
 size = Vector3(1, 1, 6)
 
 [sub_resource type="TorusMesh" id="TorusMesh_geh7g"]
@@ -16,7 +15,7 @@ material = ExtResource("3_ph1bp")
 inner_radius = 2.0
 outer_radius = 2.5
 
-[node name="RoadHotspot" type="Area3D" node_paths=PackedStringArray("road_model", "indicator_model") groups=["RoadEmpty"]]
+[node name="RoadHotspot" type="Area3D" node_paths=PackedStringArray("road_model", "indicator_model")]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_4fib4")
@@ -30,6 +29,7 @@ shape = SubResource("BoxShape3D_4fib4")
 [node name="RoadModel" type="MeshInstance3D" parent="."]
 visible = false
 mesh = SubResource("BoxMesh_u45lf")
+surface_material_override/0 = ExtResource("2_4fib4")
 
 [node name="AvailableIndicator" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.374704, 0)

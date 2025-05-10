@@ -16,13 +16,15 @@ func buy_pressed(new_buy: Button) -> void:
 		set_pressed(false)
 
 func Settlement() -> void:
-	get_tree().call_group("Empty", "make_available", -1)
+	if Player.LOCAL_PLAYER.settlement_credits == 1:
+		get_tree().call_group("Empty", "make_available", -1)
 
 func Castle() -> void:
 	get_tree().call_group("Settlement", "make_available", -1)
 
 func Road() -> void:
-	get_tree().call_group("RoadEmpty", "make_available", -1)
+	if Player.LOCAL_PLAYER.road_credits == 1:
+		get_tree().call_group("RoadEmpty", "make_available", -1)
 
 func Card() -> void:
 	pass

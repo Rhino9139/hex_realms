@@ -16,7 +16,7 @@ inner_radius = 2.0
 outer_radius = 2.5
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bpe7p"]
-radius = 11.0
+radius = 9.0
 
 [node name="BuildingHotspot" type="Area3D" node_paths=PackedStringArray("neighbor_area", "available_indicator", "settlement_model", "castle_model") groups=["Empty"]]
 script = ExtResource("1_ql0ga")
@@ -29,7 +29,6 @@ castle_base_mat = ExtResource("5_jrjif")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.81646, 0)
-visible = false
 shape = SubResource("SphereShape3D_8sy7l")
 debug_color = Color(0, 0.717647, 0.705882, 1)
 
@@ -49,8 +48,8 @@ visible = false
 mesh = ExtResource("3_jrjif")
 
 [node name="NeighborArea" type="Area3D" parent="."]
-visible = false
 collision_layer = 0
+collision_mask = 3
 monitoring = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NeighborArea"]

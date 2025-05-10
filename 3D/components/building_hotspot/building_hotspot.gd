@@ -13,7 +13,8 @@ static var num_hotspots: int = 0
 
 var idx: int = 0
 var neighbors: Array[BuildingHotspot] = []
-var owner_number: int = -1
+var roads: Array[RoadHotspot] = []
+var player: Player
 var upgrade_spot: Callable = build_settlement
 var holo_mesh: MeshInstance3D
 
@@ -34,29 +35,33 @@ func get_neighbors() -> void:
 	neighbor_area.queue_free()
 	collision_layer = 0
 	collision_mask = 0
+	print(roads.size())
 
-func build() -> void:
-	upgrade_spot.call()
-
-func build_settlement() -> void:
+func build_settlement(player_index: int) -> void:
+	player = MultiplayerManager.RETURN_PLAYERS()[player_index]
 	make_unavailable()
 	remove_from_group("Empty")
 	add_to_group("Settlement")
 	settlement_model.visible = true
+	var mat: StandardMaterial3D = player.player_mat
 	settlement_model.set_surface_override_material(0, null)
-	settlement_model.set_surface_override_material(1, null)
+	settlement_model.set_surface_override_material(1, mat)
 	upgrade_spot = build_castle
 	for i in neighbors:
 		if is_instance_valid(i):
 			i.queue_free()
+	for i in roads:
+		if is_instance_valid(i):
+			i.add_to_group("RoadEmpty")
 
-func build_castle() -> void:
+func build_castle(_player_index: int) -> void:
 	settlement_model.visible = false
 	remove_from_group("Settlement")
 	add_to_group("Castle")
 	castle_model.visible = true
+	var mat: StandardMaterial3D = player.player_mat
 	castle_model.set_surface_override_material(0, castle_base_mat)
-	castle_model.set_surface_override_material(1, null)
+	castle_model.set_surface_override_material(1, mat)
 	make_unavailable()
 
 func make_available(_player_id: int) -> void:
@@ -84,5 +89,14 @@ func _on_area_entered(area: Area3D) -> void:
 			queue_free()
 
 func _on_neighbor_area_area_entered(area: Area3D) -> void:
-	if neighbors.has(area) == false and area != self:
-		neighbors.append(area)
+	if area is BuildingHotspot:
+		if neighbors.has(area) == false and area != self:
+			neighbors.append(area)
+	elif area is RoadHotspot:
+		if roads.has(area) == false:
+			roads.append(area)
+
+@rpc("any_peer", "call_local")
+func build(player_index: int) -> void:
+	upgrade_spot.call(player_index)
+	get_tree().call_group("BuyButton", "buy_pressed", null)

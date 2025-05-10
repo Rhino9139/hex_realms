@@ -82,6 +82,6 @@ func update_hover_raycast(clicked: bool = false) -> void:
 			current_hover = collider
 			current_hover.show_hover()
 		if clicked:
-			current_hover.build()
+			current_hover.build.rpc(Player.LOCAL_PLAYER.turn_index)
 	else:
 		get_tree().call_group("Empty", "hide_hover")

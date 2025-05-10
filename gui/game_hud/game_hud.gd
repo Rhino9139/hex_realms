@@ -1,7 +1,7 @@
 class_name GameHUD
 extends Control
 
-signal turn_started(round_index: int)
+signal turn_started(turn_index: int, round_index: int)
 signal turn_ended()
 
 const _PATH: String = "uid://dlysvvr1aprdc"
@@ -12,6 +12,7 @@ static var MASTER: GameHUD
 @export var roll_button: Button
 @export var player_card_parent: HBoxContainer
 
+var player: Player
 var bar_tween: Tween
 var current_turn_index: int = 0
 var current_round_index: int = 0
@@ -25,12 +26,16 @@ static func DESTROY() -> void:
 
 static func ADD_PLAYER_CARDS() -> void:
 	MASTER.add_player_cards()
+	if MASTER.multiplayer.is_server():
+		MASTER.begin_new_turn.rpc(0, 0)
 
 func _init() -> void:
 	MASTER = self
 
 func _ready() -> void:
-	pass
+	for child in MultiplayerManager.RETURN_PLAYERS():
+		if child.player_id == multiplayer.get_unique_id():
+			player = child
 
 func add_player_cards() -> void:
 	var player_list: Array = MultiplayerManager.RETURN_PLAYERS()
@@ -70,5 +75,6 @@ func end_turn() -> void:
 	get_tree().call_group("BuyButton", "set_pressed", false)
 
 @rpc("authority", "call_local")
-func begin_new_turn(round_index: int) -> void:
-	pass
+func begin_new_turn(turn_index: int, round_index: int) -> void:
+	if turn_index == player.turn_index:
+		turn_started.emit(round_index)

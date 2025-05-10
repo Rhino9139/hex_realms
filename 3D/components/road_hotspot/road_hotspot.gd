@@ -9,22 +9,16 @@ static var num_hotspots: int = 0
 
 var idx: int = -1
 var neighbors: Array[BuildingHotspot] = []
-var owner_number: int = -1
+var player: Player
 
 func _init() -> void:
 	idx = current_index
 	current_index += 1
 
 func _ready() -> void:
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(4.0).timeout
 	collision_mask = 0
 	collision_layer = 0
-
-func build() -> void:
-	remove_from_group("RoadEmpty")
-	make_unavailable()
-	road_model.visible = true
-	road_model.set_surface_override_material(0, null)
 
 func make_available(_player_id: int) -> void:
 	set_collision_layer_value(2, true)
@@ -47,3 +41,13 @@ func _on_area_entered(area: Area3D) -> void:
 			area.queue_free()
 		else:
 			queue_free()
+
+@rpc("any_peer", "call_local")
+func build(player_index: int) -> void:
+	player = MultiplayerManager.RETURN_PLAYERS()[player_index]
+	remove_from_group("RoadEmpty")
+	make_unavailable()
+	road_model.visible = true
+	var mat: StandardMaterial3D = player.player_mat
+	road_model.set_surface_override_material(0, mat)
+	get_tree().call_group("RoadEmpty", "make_unavailable")

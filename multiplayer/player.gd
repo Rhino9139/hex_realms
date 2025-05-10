@@ -8,6 +8,10 @@ var player_name: String = "New Player"
 var turn_index: int = -1
 
 var resources: Array[int] = [0, 0, 0, 0, 0]
+var settlement_credits: int = 0
+var road_credits: int = 0
+var player_mat: StandardMaterial3D
+var player_color: Color
 
 func _ready() -> void:
 	if multiplayer.is_server() == false:
@@ -15,6 +19,9 @@ func _ready() -> void:
 	elif player_id == 1:
 		player_name = Game.GET_NAME()
 		Game.CONNECT_NAME_SIGNAL(self)
+		LOCAL_PLAYER = self
+	player_mat = Global.PLAYER_MATS[get_index()]
+	player_color = player_mat.albedo_color
 
 func _on_name_changed(new_name: String) -> void:
 	player_name = new_name
@@ -34,6 +41,7 @@ func response_id(new_id: int) -> void:
 		player_name = Game.GET_NAME()
 		Game.CONNECT_NAME_SIGNAL(self)
 		share_name.rpc(player_name)
+		LOCAL_PLAYER = self
 
 @rpc("any_peer", "call_remote")
 func share_name(new_name: String) -> void:
