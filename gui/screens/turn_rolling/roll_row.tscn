@@ -1,19 +1,19 @@
 [gd_scene load_steps=4 format=3 uid="uid://cx0ndasoeyppx"]
 
-[ext_resource type="Script" uid="uid://8mjjgop0802j" path="res://gui/turn_rolling/roll_row.gd" id="1_8cv56"]
+[ext_resource type="Script" uid="uid://8mjjgop0802j" path="res://gui/screens/turn_rolling/roll_row.gd" id="1_8cv56"]
 [ext_resource type="Texture2D" uid="uid://bi2g1fvp40kme" path="res://common/icons/ui_buttons/dice_3D_detailed.svg" id="2_4w2vr"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_bs7s0"]
 color = Color(1, 1, 1, 1)
+grow_begin = -5.0
+grow_end = -5.0
 thickness = 6
 vertical = true
 
 [node name="RollRow" type="HBoxContainer" node_paths=PackedStringArray("name_label", "roll_label", "roll_button")]
-custom_minimum_size = Vector2(0, 75)
-offset_left = -90.0
-offset_top = -26.0
-offset_right = 83.0
-offset_bottom = 24.0
+custom_minimum_size = Vector2(225, 75)
+offset_right = 223.0
+offset_bottom = 75.0
 script = ExtResource("1_8cv56")
 name_label = NodePath("NameLabel")
 roll_label = NodePath("RollLabel")
@@ -37,6 +37,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Roll" type="Button" parent="."]
+visible = false
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 icon = ExtResource("2_4w2vr")

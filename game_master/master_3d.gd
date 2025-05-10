@@ -33,3 +33,4 @@ func share_board(new_types: Array, new_rolls: Array, new_ports: Array) -> void:
 	MASTER.add_child(HexMap.CREATE())
 	MASTER.add_child(Character.CREATE())
 	MasterGUI.ENTER_MATCH()
+	Screen.CREATE_TURN_ROLL()

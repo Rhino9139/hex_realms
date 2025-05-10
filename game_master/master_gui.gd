@@ -13,6 +13,9 @@ static func LEAVE_MENUS() -> void:
 static func ENTER_MATCH() -> void:
 	MASTER.add_game_hud()
 
+static func ADD_SCREEN(new_screen: Screen) -> void:
+	MASTER.add_child(new_screen)
+
 func _init() -> void:
 	MASTER = self
 

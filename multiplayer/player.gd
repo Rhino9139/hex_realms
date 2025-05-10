@@ -5,6 +5,7 @@ static var LOCAL_PLAYER: Player
 
 var player_id: int = 0
 var player_name: String = "New Player"
+var turn_index: int = -1
 
 var resources: Array[int] = [0, 0, 0, 0, 0]
 

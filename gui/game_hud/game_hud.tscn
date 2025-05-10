@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dlysvvr1aprdc"]
+[gd_scene load_steps=19 format=3 uid="uid://dlysvvr1aprdc"]
 
 [ext_resource type="Script" uid="uid://cxaj2txgrot0c" path="res://gui/game_hud/game_hud.gd" id="1_2v08g"]
 [ext_resource type="Texture2D" uid="uid://821wyrwyqror" path="res://common/icons/resources/brick.png" id="2_ohgi1"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://dk3jt8p0fjgid" path="res://gui/game_hud/state_machine/inactive_state.gd" id="14_8trcm"]
 [ext_resource type="Script" uid="uid://ca8wyyyfxe0ef" path="res://gui/game_hud/state_machine/need_roll_state.gd" id="15_hheuk"]
 [ext_resource type="Script" uid="uid://c3rxa57l0dfcw" path="res://gui/game_hud/state_machine/active_state.gd" id="16_p1mox"]
+[ext_resource type="Script" uid="uid://dnbu8tbbhv6e8" path="res://gui/game_hud/setup_state.gd" id="18_3o7oo"]
 
 [node name="GameHUD" type="Control" node_paths=PackedStringArray("turn_progress_bar", "roll_button", "player_card_parent")]
 layout_mode = 3
@@ -232,6 +233,9 @@ metadata/_custom_type_script = "uid://b4n8p8i631us2"
 [node name="ActiveState" type="Node" parent="StateMaster"]
 script = ExtResource("16_p1mox")
 metadata/_custom_type_script = "uid://b4n8p8i631us2"
+
+[node name="SetupState" type="Node" parent="StateMaster"]
+script = ExtResource("18_3o7oo")
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="pressed" from="RollButton" to="StateMaster/NeedRollState" method="_on_roll_button_pressed"]

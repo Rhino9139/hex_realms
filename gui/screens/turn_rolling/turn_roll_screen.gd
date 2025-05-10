@@ -1,24 +1,32 @@
-extends Control
+extends Screen
 
 @export var center_pivot: Control
 
 var rows: Array[RollRow] = []
 var num_players: int = 4
 var num_done: int = 0
+var x_pos: float = 0
 
 func _ready() -> void:
-	for i in 4:
-		var new_row: RollRow = RollRow.CREATE(Player.new())
+	var players: Array = MultiplayerManager.RETURN_PLAYERS()
+	num_players = players.size()
+	for i in num_players:
+		
+		var new_row: RollRow = RollRow.CREATE(players[i])
+		
 		center_pivot.add_child(new_row)
 		new_row.position.y = i * 75
+		new_row.position.x = x_pos
 		new_row.roll_finished.connect(_on_roll_finished)
-		new_row.name_label.text = str("Player ", i)
 		new_row.name = str("Player ", i)
 		rows.append(new_row)
 
 func reorder_rows() -> void:
 	for i in rows.size():
 		rows[i].move_row(i * 75)
+		rows[i].player.turn_index = i
+		print(rows[i].player.player_name)
+		print(rows[i].player.turn_index)
 
 func sort_decending(a, b) -> bool:
 	if a.roll_final > b.roll_final:
@@ -30,3 +38,6 @@ func _on_roll_finished() -> void:
 	num_done += 1
 	if num_done == num_players:
 		reorder_rows()
+		await get_tree().create_timer(2.0).timeout
+		GameHUD.ADD_PLAYER_CARDS()
+		queue_free()

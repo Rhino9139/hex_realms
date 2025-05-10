@@ -6,6 +6,7 @@ static var MASTER: MultiplayerManager
 @export var ms: MultiplayerSpawner
 
 var player_boss: Node
+var player_array: Array = []
 
 static func CREATE_SERVER_HOST() -> void:
 	var new_server: ServerHost = ServerHost.new()
@@ -28,11 +29,20 @@ static func REMOVE_PLAYER(id: int) -> void:
 				child.queue_free()
 
 static func RETURN_PLAYERS() -> Array:
-	var player_list: Array = MASTER.player_boss.get_children()
-	return player_list
+	MASTER.sort_players()
+	return MASTER.player_array
 
 func _init() -> void:
 	MASTER = self
 
 func _ready() -> void:
 	player_boss = find_child("PlayerBoss")
+
+func sort_players() -> void:
+	player_array = player_boss.get_children()
+	player_array.sort_custom(sort_ascending)
+
+func sort_ascending(a, b) -> bool:
+	if a.turn_index < b.turn_index:
+		return true
+	return false

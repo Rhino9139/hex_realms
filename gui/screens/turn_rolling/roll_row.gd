@@ -23,6 +23,8 @@ func _ready() -> void:
 	roll_array = []
 	for i in 15:
 		roll_array.append(randi_range(0, 100))
+	if player.player_id == multiplayer.get_unique_id():
+		roll_button.visible = true
 
 func move_row(new_y: float) -> void:
 	var tween: Tween = create_tween()
@@ -30,6 +32,11 @@ func move_row(new_y: float) -> void:
 	tween.tween_property(self, "position", Vector2(position.x, new_y), 0.75)
 
 func _on_roll_pressed() -> void:
+	share_roll_pressed.rpc(roll_array)
+
+@rpc("any_peer", "call_local") 
+func share_roll_pressed(new_roll_array: Array[int]) -> void:
+	roll_array = new_roll_array
 	roll_button.disabled = true
 	roll_button.visible = false
 	var cycle_time: float = 0.05
