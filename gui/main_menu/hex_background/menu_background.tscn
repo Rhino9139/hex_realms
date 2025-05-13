@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c03orlhblylbh"]
+
+[ext_resource type="Script" uid="uid://cj8a2nvq1n1ug" path="res://gui/main_menu/hex_background/menu_background.gd" id="1_bdxvk"]
+
+[node name="MenuBackground" type="Node2D"]
+script = ExtResource("1_bdxvk")
