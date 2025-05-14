@@ -44,6 +44,9 @@ static func ADD_PLAYER_CARDS() -> void:
 static func UPDATE_RESOURCES() -> void:
 	MASTER.update_resource_labels()
 
+static func GET_ROUND_INDEX() -> int:
+	return MASTER.current_round_index
+
 func _init() -> void:
 	MASTER = self
 

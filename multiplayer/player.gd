@@ -1,6 +1,10 @@
 class_name Player
 extends Node
 
+signal settlement_built
+signal road_built
+signal item_bought(item: String)
+
 static var LOCAL_PLAYER: Player
 
 var player_id: int = 0
@@ -30,17 +34,41 @@ func _on_name_changed(new_name: String) -> void:
 	player_name = new_name
 	share_name.rpc(new_name)
 
-func settlement_built() -> void:
+func add_settlement() -> void:
+	item_bought.emit(Global._SETTLEMENT)
+	settlement_built.emit()
 	settlement_count += 1
 	settlement_credits -= 1
 
+func pay_settlement() -> void:
+	for i in 5:
+		change_resource(i, -Global.SETTLEMENT_COST[i])
+
 func castle_built() -> void:
+	item_bought.emit(Global._CASTLE)
 	settlement_count -= 1
 	castle_count += 1
 
-func road_built() -> void:
+func pay_castle() -> void:
+	for i in 5:
+		change_resource(i, -Global.CASTLE_COST[i])
+
+func add_road() -> void:
+	item_bought.emit(Global._ROAD)
+	road_built.emit()
 	road_count += 1
 	road_credits -= 1
+
+func pay_road() -> void:
+	for i in 5:
+		change_resource(i, -Global.ROAD_COST[i])
+
+func add_card() -> void:
+	item_bought.emit(Global._CARD)
+
+func pay_card() -> void:
+	for i in 5:
+		change_resource(i, -Global.CARD_COST[i])
 
 func change_resource(index: int, amount: int) -> void:
 	resources[index] += amount

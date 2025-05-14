@@ -26,12 +26,6 @@ func _init() -> void:
 func _ready() -> void:
 	settlement_model.set_surface_override_material(0, holo_mat)
 	settlement_model.set_surface_override_material(1, holo_mat)
-	
-	await get_tree().create_timer(2.0).timeout
-	get_neighbors()
-
-func get_neighbors() -> void:
-	neighbor_area.monitoring = true
 	await get_tree().create_timer(2.0).timeout
 	neighbor_area.queue_free()
 	collision_layer = 0
@@ -40,7 +34,7 @@ func get_neighbors() -> void:
 func build_settlement(player_index: int) -> void:
 	current_building = "Settlement"
 	player = MultiplayerManager.RETURN_PLAYERS()[player_index]
-	player.settlement_built()
+	player.add_settlement()
 	make_unavailable()
 	remove_from_group("Empty")
 	settlement_model.visible = true
@@ -53,9 +47,10 @@ func build_settlement(player_index: int) -> void:
 			i.queue_free()
 	if player == Player.LOCAL_PLAYER:
 		add_to_group("Settlement")
-		for i in roads:
-			if is_instance_valid(i):
-				i.add_to_group("RoadEmpty")
+		if GameHUD.GET_ROUND_INDEX() <= 1:
+			for i in roads:
+				if is_instance_valid(i):
+					i.add_to_group("SetupRoads")
 
 func build_castle(_player_index: int) -> void:
 	current_building = "Castle"
@@ -92,6 +87,10 @@ func resource_rolled(type_index: int) -> void:
 	elif current_building == "Castle":
 		player.change_resource(type_index, 2)
 
+func make_reachable() -> void:
+	if player == null:
+		add_to_group("Empty")
+
 func _on_area_entered(area: Area3D) -> void:
 	if area is BuildingHotspot:
 		if area.idx < idx:
@@ -113,3 +112,6 @@ func _on_neighbor_area_area_entered(area: Area3D) -> void:
 func build(player_index: int) -> void:
 	upgrade_spot.call(player_index)
 	get_tree().call_group("BuyButton", "buy_pressed", null)
+	if is_in_group("Empty"):
+		remove_from_group("Empty")
+	

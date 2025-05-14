@@ -7,6 +7,7 @@ const _PATH: String = "uid://coa2enk271cgj"
 const _SIZE: float = 10.0 #8.66 is the model size
 
 @export var roll_sprite: Sprite3D
+@export var hover_indicator: MeshInstance3D
 
 var type_res: TerrainType
 var hex_coord: Vector2i = Vector2i(0, 0)
@@ -37,6 +38,8 @@ func _ready() -> void:
 	else:
 		roll = Global.HEX_ROLLS.pop_at(0)
 		roll_sprite.texture = load(Global.ROLL_SPRITES[roll])
+	await get_tree().create_timer(1.0).timeout
+	collision_layer = 0
 
 func number_rolled(rolled_total: int) -> void:
 	if type_res.index == 5:
@@ -45,6 +48,19 @@ func number_rolled(rolled_total: int) -> void:
 		for i in building_array:
 			if is_instance_valid(i):
 				i.resource_rolled(type_res.index)
+
+func make_available() -> void:
+	set_collision_layer_value(3, true)
+
+func make_unavailable() -> void:
+	collision_layer = 0
+	hide_hover()
+
+func show_hover() -> void:
+	hover_indicator.visible = true
+
+func hide_hover() -> void:
+	hover_indicator.visible = false
 
 func get_world_coord(grid_coord: Vector2i) -> Vector3:
 	var x_pos: float = ((pow(3, 0.5) / 2.0) * _SIZE) * grid_coord.x
@@ -55,3 +71,7 @@ func add_build_spot(new_spot: BuildingHotspot) -> void:
 	if building_array.has(new_spot):
 		return
 	building_array.append(new_spot)
+
+@rpc("any_peer", "call_local")
+func move_robber() -> void:
+	Robber.MOVE_ROBBER(global_position)

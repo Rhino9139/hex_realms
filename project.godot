@@ -36,8 +36,9 @@ Settlement=""
 Hotspot=""
 Castle=""
 RoadEmpty=""
-TerrainHex=""
 PlayerCard=""
+SetupRoads=""
+RobberAbsent=""
 
 [gui]
 

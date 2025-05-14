@@ -49,9 +49,9 @@ visible = false
 mesh = ExtResource("3_jrjif")
 
 [node name="NeighborArea" type="Area3D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 7
-monitoring = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NeighborArea"]
 shape = SubResource("SphereShape3D_bpe7p")

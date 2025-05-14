@@ -1,6 +1,6 @@
 extends Control
 
-signal roll_finished
+signal roll_finished(roll_total: int)
 
 @export var die_1: Label
 @export var die_2: Label
@@ -43,5 +43,5 @@ func share_roll(new_die_1_rolls: Array[int], new_die_2_rolls: Array[int]) -> voi
 	tween.tween_property(dice_row, "scale", Vector2.ONE * 0.5, 0.5)
 	tween.parallel().tween_property(dice_row, "position", Vector2(754.0, 576.0), 0.5)
 	await tween.finished
-	get_tree().call_group("TerrainHex", "number_rolled", total)
-	roll_finished.emit()
+	get_tree().call_group("RobberAbsent", "number_rolled", total)
+	roll_finished.emit(total)

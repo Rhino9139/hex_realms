@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dlysvvr1aprdc"]
+[gd_scene load_steps=20 format=3 uid="uid://dlysvvr1aprdc"]
 
 [ext_resource type="Script" uid="uid://cxaj2txgrot0c" path="res://gui/game_hud/game_hud.gd" id="1_2v08g"]
 [ext_resource type="Texture2D" uid="uid://821wyrwyqror" path="res://common/icons/resources/brick.png" id="2_ohgi1"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" uid="uid://ca8wyyyfxe0ef" path="res://gui/game_hud/state_machine/need_roll_state.gd" id="15_hheuk"]
 [ext_resource type="Script" uid="uid://c3rxa57l0dfcw" path="res://gui/game_hud/state_machine/active_state.gd" id="16_p1mox"]
 [ext_resource type="Script" uid="uid://dnbu8tbbhv6e8" path="res://gui/game_hud/setup_state.gd" id="18_3o7oo"]
+[ext_resource type="Script" uid="uid://by0qk8rv8l4ul" path="res://gui/game_hud/state_machine/rober_move_state.gd" id="19_qo7ve"]
 
 [node name="GameHUD" type="Control" node_paths=PackedStringArray("turn_progress_bar", "roll_button", "end_turn_button", "player_card_parent", "brick_label", "ore_label", "sheep_label", "wheat_label", "wood_label")]
 layout_mode = 3
@@ -246,6 +247,10 @@ metadata/_custom_type_script = "uid://b4n8p8i631us2"
 
 [node name="SetupState" type="Node" parent="StateMaster"]
 script = ExtResource("18_3o7oo")
+
+[node name="RobberMoveState" type="Node" parent="StateMaster"]
+script = ExtResource("19_qo7ve")
+metadata/_custom_type_script = "uid://b4n8p8i631us2"
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="pressed" from="RollButton" to="StateMaster/NeedRollState" method="_on_roll_button_pressed"]

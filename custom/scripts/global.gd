@@ -1,5 +1,10 @@
 class_name Global
 
+const _SETTLEMENT: String = "Settlement"
+const _CASTLE: String = "Castle"
+const _ROAD: String = "Road"
+const _CARD: String = "Card"
+
 static var HOLO_MAT: ShaderMaterial = load("uid://cpvde0u8isi5h")
 
 static var PLAYER_MATS: Array[StandardMaterial3D] = [

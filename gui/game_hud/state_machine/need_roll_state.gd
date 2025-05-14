@@ -18,5 +18,8 @@ func _on_roll_button_pressed() -> void:
 	base.disable_timer()
 	roll_screen.roll_dice()
 
-func _on_roll_finished() -> void:
-	state_changed.emit("ActiveState")
+func _on_roll_finished(roll_total: int) -> void:
+	if roll_total == 7:
+		state_changed.emit("RobberMoveState")
+	else:
+		state_changed.emit("ActiveState")
