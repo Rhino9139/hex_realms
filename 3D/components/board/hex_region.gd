@@ -35,6 +35,8 @@ func _ready() -> void:
 	if type == 5:
 		roll = 7
 		Robber.CREATE(global_position)
+		remove_from_group("RobberAbsent")
+		add_to_group("HasRobber")
 	else:
 		roll = Global.HEX_ROLLS.pop_at(0)
 		roll_sprite.texture = load(Global.ROLL_SPRITES[roll])
@@ -50,6 +52,7 @@ func number_rolled(rolled_total: int) -> void:
 				i.resource_rolled(type_res.index)
 
 func make_available() -> void:
+	print("GIVE ME THE ROBBER")
 	set_collision_layer_value(3, true)
 
 func make_unavailable() -> void:
@@ -74,4 +77,7 @@ func add_build_spot(new_spot: BuildingHotspot) -> void:
 
 @rpc("any_peer", "call_local")
 func move_robber() -> void:
+	get_tree().call_group("HasRobber", "remove_from_group", "HasRobber")
 	Robber.MOVE_ROBBER(global_position)
+	add_to_group("HasRobber")
+	remove_from_group("RobberAbsent")

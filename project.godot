@@ -39,6 +39,7 @@ RoadEmpty=""
 PlayerCard=""
 SetupRoads=""
 RobberAbsent=""
+HasRobber=""
 
 [gui]
 

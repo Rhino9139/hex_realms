@@ -1,6 +1,8 @@
 class_name Robber
 extends Node3D
 
+signal robber_moved
+
 const _PATH: String = "uid://bn28v17yjc7he"
 
 static var MASTER: Robber
@@ -14,6 +16,10 @@ static func CREATE(new_spawn: Vector3) -> void:
 
 static func MOVE_ROBBER(new_pos: Vector3) -> void:
 	MASTER.global_position = new_pos
+	MASTER.robber_moved.emit()
+
+static func GET_ROBBER() -> Robber:
+	return MASTER
 
 func _ready() -> void:
 	MASTER = self
