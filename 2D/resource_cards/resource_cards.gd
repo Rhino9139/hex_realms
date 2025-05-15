@@ -38,7 +38,7 @@ func refresh() -> void:
 		card_outer_1.modulate = Color(1.0, 1.0, 1.0, 1.0)
 		card_outer_2.visible = true
 		card_outer_3.visible = false
-	elif amount >=3:
+	elif amount >= 3:
 		card_outer_1.modulate = Color(1.0, 1.0, 1.0, 1.0)
 		card_outer_2.visible = true
 		card_outer_3.visible = true
