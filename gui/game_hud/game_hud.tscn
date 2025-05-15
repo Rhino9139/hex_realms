@@ -1,12 +1,13 @@
-[gd_scene load_steps=20 format=3 uid="uid://dlysvvr1aprdc"]
+[gd_scene load_steps=21 format=3 uid="uid://dlysvvr1aprdc"]
 
 [ext_resource type="Script" uid="uid://cxaj2txgrot0c" path="res://gui/game_hud/game_hud.gd" id="1_2v08g"]
-[ext_resource type="Texture2D" uid="uid://821wyrwyqror" path="res://common/icons/resources/brick.png" id="2_ohgi1"]
-[ext_resource type="Texture2D" uid="uid://dr44uvyhepawa" path="res://common/icons/resources/sheep.png" id="3_kpy2f"]
-[ext_resource type="Texture2D" uid="uid://ddayrfad1byx4" path="res://common/icons/resources/wheat.png" id="4_6743o"]
-[ext_resource type="Texture2D" uid="uid://wrlvx80hbbkn" path="res://common/icons/resources/wood.png" id="5_8vsqg"]
-[ext_resource type="Texture2D" uid="uid://dvkktbdjnubnj" path="res://common/icons/resources/ore.png" id="6_s6iyo"]
+[ext_resource type="PackedScene" uid="uid://b2i3hhft1o5tt" path="res://2D/resource_cards/resource_cards.tscn" id="2_svuxb"]
+[ext_resource type="Resource" uid="uid://03f6o1ggd8di" path="res://custom/terrain_resources/brick_res.tres" id="3_0wm5q"]
+[ext_resource type="Resource" uid="uid://brghdbk4jlcyo" path="res://custom/terrain_resources/ore_res.tres" id="4_5a7ot"]
+[ext_resource type="Resource" uid="uid://clhpnv8ji1oud" path="res://custom/terrain_resources/sheep_res.tres" id="5_cohbh"]
+[ext_resource type="Resource" uid="uid://dxj3v0c7du1px" path="res://custom/terrain_resources/wheat_res.tres" id="6_hhadb"]
 [ext_resource type="PackedScene" uid="uid://c38lsr2lu1i4t" path="res://gui/game_hud/components/buy_button.tscn" id="7_iwlbn"]
+[ext_resource type="Resource" uid="uid://cvo8kw33xdrta" path="res://custom/terrain_resources/wood_res.tres" id="7_vvj38"]
 [ext_resource type="Texture2D" uid="uid://b0xh3lcnrqboa" path="res://common/icons/ui_buttons/structure_gate.png" id="8_en8hq"]
 [ext_resource type="Texture2D" uid="uid://c1d8lhog071sm" path="res://common/icons/ui_buttons/card_lift.png" id="9_iwlbn"]
 [ext_resource type="Texture2D" uid="uid://do5fpysxkbwj2" path="res://common/icons/ui_buttons/arrow_diagonal.png" id="10_t7dor"]
@@ -20,7 +21,7 @@
 [ext_resource type="Script" uid="uid://dnbu8tbbhv6e8" path="res://gui/game_hud/setup_state.gd" id="18_3o7oo"]
 [ext_resource type="Script" uid="uid://by0qk8rv8l4ul" path="res://gui/game_hud/state_machine/rober_move_state.gd" id="19_qo7ve"]
 
-[node name="GameHUD" type="Control" node_paths=PackedStringArray("turn_progress_bar", "roll_button", "end_turn_button", "player_card_parent", "brick_label", "ore_label", "sheep_label", "wheat_label", "wood_label")]
+[node name="GameHUD" type="Control" node_paths=PackedStringArray("turn_progress_bar", "roll_button", "end_turn_button", "player_card_parent")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,11 +33,6 @@ turn_progress_bar = NodePath("TurnProgress")
 roll_button = NodePath("RollButton")
 end_turn_button = NodePath("EndTurnButton")
 player_card_parent = NodePath("PlayerCards")
-brick_label = NodePath("Resources/Brick/Amount")
-ore_label = NodePath("Resources/Ore/Amount")
-sheep_label = NodePath("Resources/Sheep/Amount")
-wheat_label = NodePath("Resources/Wheat/Amount")
-wood_label = NodePath("Resources/Wood/Amount")
 
 [node name="PlayerCards" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -45,95 +41,33 @@ anchor_right = 1.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="Resources" type="VBoxContainer" parent="."]
+[node name="Resources" type="Control" parent="."]
 layout_mode = 1
-anchors_preset = -1
 anchor_left = 0.01
+anchor_top = 0.5
 anchor_right = 0.01
-anchor_bottom = 1.0
+anchor_bottom = 0.5
 grow_vertical = 2
-theme_override_constants/separation = 15
-alignment = 1
 
-[node name="Brick" type="HBoxContainer" parent="Resources"]
-layout_mode = 2
+[node name="Brick" parent="Resources" instance=ExtResource("2_svuxb")]
+position = Vector2(0, -160)
+type = ExtResource("3_0wm5q")
 
-[node name="ResIcon" type="TextureRect" parent="Resources/Brick"]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-texture = ExtResource("2_ohgi1")
-expand_mode = 1
-stretch_mode = 5
+[node name="Ore" parent="Resources" instance=ExtResource("2_svuxb")]
+position = Vector2(0, -90)
+type = ExtResource("4_5a7ot")
 
-[node name="Amount" type="Label" parent="Resources/Brick"]
-layout_mode = 2
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 30
-text = "0"
+[node name="Sheep" parent="Resources" instance=ExtResource("2_svuxb")]
+position = Vector2(0, -20)
+type = ExtResource("5_cohbh")
 
-[node name="Ore" type="HBoxContainer" parent="Resources"]
-layout_mode = 2
+[node name="Wheat" parent="Resources" instance=ExtResource("2_svuxb")]
+position = Vector2(0, 50)
+type = ExtResource("6_hhadb")
 
-[node name="ResIcon" type="TextureRect" parent="Resources/Ore"]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-texture = ExtResource("6_s6iyo")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Amount" type="Label" parent="Resources/Ore"]
-layout_mode = 2
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 30
-text = "0"
-
-[node name="Sheep" type="HBoxContainer" parent="Resources"]
-layout_mode = 2
-
-[node name="ResIcon" type="TextureRect" parent="Resources/Sheep"]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-texture = ExtResource("3_kpy2f")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Amount" type="Label" parent="Resources/Sheep"]
-layout_mode = 2
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 30
-text = "0"
-
-[node name="Wheat" type="HBoxContainer" parent="Resources"]
-layout_mode = 2
-
-[node name="ResIcon" type="TextureRect" parent="Resources/Wheat"]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-texture = ExtResource("4_6743o")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Amount" type="Label" parent="Resources/Wheat"]
-layout_mode = 2
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 30
-text = "0"
-
-[node name="Wood" type="HBoxContainer" parent="Resources"]
-layout_mode = 2
-
-[node name="ResIcon" type="TextureRect" parent="Resources/Wood"]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-texture = ExtResource("5_8vsqg")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Amount" type="Label" parent="Resources/Wood"]
-layout_mode = 2
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 30
-text = "0"
+[node name="Wood" parent="Resources" instance=ExtResource("2_svuxb")]
+position = Vector2(0, 120)
+type = ExtResource("7_vvj38")
 
 [node name="BuyButtons" type="HBoxContainer" parent="."]
 layout_mode = 1
