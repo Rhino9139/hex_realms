@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dlysvvr1aprdc"]
+[gd_scene load_steps=38 format=3 uid="uid://dlysvvr1aprdc"]
 
 [ext_resource type="Script" uid="uid://cxaj2txgrot0c" path="res://gui/game_hud/game_hud.gd" id="1_2v08g"]
 [ext_resource type="PackedScene" uid="uid://b2i3hhft1o5tt" path="res://2D/resource_cards/player_resource_manager.tscn" id="2_svuxb"]
@@ -25,8 +25,15 @@
 [ext_resource type="Script" uid="uid://c3rxa57l0dfcw" path="res://gui/game_hud/state_machine/active_state.gd" id="16_p1mox"]
 [ext_resource type="Script" uid="uid://dnbu8tbbhv6e8" path="res://gui/game_hud/setup_state.gd" id="18_3o7oo"]
 [ext_resource type="Script" uid="uid://by0qk8rv8l4ul" path="res://gui/game_hud/state_machine/rober_move_state.gd" id="19_qo7ve"]
+[ext_resource type="PackedScene" uid="uid://b0nur1ie7735w" path="res://2D/knight_card/knight_unused.tscn" id="20_aa2f2"]
+[ext_resource type="PackedScene" uid="uid://cnkvy5asx2jbj" path="res://2D/point_card/point_card_unused.tscn" id="21_8ewad"]
+[ext_resource type="PackedScene" uid="uid://dg2efbkrkqw3k" path="res://2D/monopoly_card/monopoly_unused.tscn" id="24_alt8r"]
 [ext_resource type="Script" uid="uid://xgfkdmpxtrmw" path="res://gui/game_hud/state_machine/supply_trade_state.gd" id="24_hhadb"]
+[ext_resource type="PackedScene" uid="uid://cckx0gxh74awr" path="res://2D/free_roads_card/free_roads_card.tscn" id="24_tjr3c"]
 [ext_resource type="Script" uid="uid://c2tw2dxgt2fuv" path="res://gui/game_hud/state_machine/cut_resources_state.gd" id="27_ibqqg"]
+[ext_resource type="PackedScene" uid="uid://dkbj14fu5sllm" path="res://2D/knight_card/knight_used.tscn" id="29_3rj33"]
+[ext_resource type="PackedScene" uid="uid://bsujydwfouxdm" path="res://2D/point_card/point_card_used.tscn" id="31_3ldut"]
+[ext_resource type="PackedScene" uid="uid://btwcse1pwgy8l" path="res://2D/year_of_plenty_card/year_of_plenty.tscn" id="33_k2n6s"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ibqqg"]
 bg_color = Color(0.906854, 0.12763, 0.130916, 1)
@@ -137,24 +144,28 @@ offset_top = -40.0
 offset_right = 40.0
 grow_vertical = 0
 
-[node name="BuySettlement" parent="UIButtons" instance=ExtResource("7_iwlbn")]
+[node name="BuySettlement" parent="UIButtons" node_paths=PackedStringArray("confirm") instance=ExtResource("7_iwlbn")]
 layout_mode = 2
 type = "Settlement"
+confirm = NodePath("../../Confirm")
 
-[node name="BuyCastle" parent="UIButtons" instance=ExtResource("7_iwlbn")]
+[node name="BuyCastle" parent="UIButtons" node_paths=PackedStringArray("confirm") instance=ExtResource("7_iwlbn")]
 layout_mode = 2
 icon = ExtResource("8_en8hq")
 type = "Castle"
+confirm = NodePath("../../Confirm")
 
-[node name="BuyRoad" parent="UIButtons" instance=ExtResource("7_iwlbn")]
+[node name="BuyRoad" parent="UIButtons" node_paths=PackedStringArray("confirm") instance=ExtResource("7_iwlbn")]
 layout_mode = 2
 icon = ExtResource("10_t7dor")
 type = "Road"
+confirm = NodePath("../../Confirm")
 
-[node name="BuyCard" parent="UIButtons" instance=ExtResource("7_iwlbn")]
+[node name="BuyCard" parent="UIButtons" node_paths=PackedStringArray("confirm") instance=ExtResource("7_iwlbn")]
 layout_mode = 2
 icon = ExtResource("9_iwlbn")
 type = "Card"
+confirm = NodePath("../../Confirm")
 
 [node name="SupplyTrade" type="Button" parent="UIButtons"]
 custom_minimum_size = Vector2(40, 30)
@@ -238,6 +249,36 @@ tint_progress = Color(0, 1, 0, 1)
 [node name="RollScreen" parent="." instance=ExtResource("13_ryev7")]
 layout_mode = 1
 
+[node name="Confirm" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 230.0
+offset_top = 532.0
+offset_right = 362.0
+offset_bottom = 563.0
+text = "Buy Action Card"
+
+[node name="KnightUnused" parent="." instance=ExtResource("20_aa2f2")]
+position = Vector2(45, 535)
+
+[node name="PointUnused" parent="." instance=ExtResource("21_8ewad")]
+position = Vector2(97, 535)
+
+[node name="MonopolyUnused" parent="." instance=ExtResource("24_alt8r")]
+position = Vector2(149, 535)
+
+[node name="YearOfPlenty" parent="." instance=ExtResource("33_k2n6s")]
+position = Vector2(201, 535)
+
+[node name="FreeRoadsCard" parent="." instance=ExtResource("24_tjr3c")]
+position = Vector2(254, 535)
+
+[node name="KnightUsed" parent="." instance=ExtResource("29_3rj33")]
+position = Vector2(39, 93)
+
+[node name="PointCardUsed" parent="." instance=ExtResource("31_3ldut")]
+position = Vector2(93, 93)
+
 [node name="StateMaster" type="Node" parent="." node_paths=PackedStringArray("base")]
 script = ExtResource("13_t7dor")
 base = NodePath("..")
@@ -253,9 +294,15 @@ roll_color = Color(1, 0.72549, 0, 1)
 turn_color = Color(8.56727e-06, 0.805724, 3.85046e-07, 1)
 metadata/_custom_type_script = "uid://b4n8p8i631us2"
 
-[node name="ActiveState" type="Node" parent="StateMaster" node_paths=PackedStringArray("supply_trade")]
+[node name="ActiveState" type="Node" parent="StateMaster" node_paths=PackedStringArray("supply_trade", "action_card_confirm", "knight_card", "point_card", "monopoly_card", "year_of_plenty", "free_roads")]
 script = ExtResource("16_p1mox")
 supply_trade = NodePath("../../UIButtons/SupplyTrade")
+action_card_confirm = NodePath("../../Confirm")
+knight_card = NodePath("../../KnightUnused")
+point_card = NodePath("../../PointUnused")
+monopoly_card = NodePath("../../MonopolyUnused")
+year_of_plenty = NodePath("../../YearOfPlenty")
+free_roads = NodePath("../../FreeRoadsCard")
 metadata/_custom_type_script = "uid://b4n8p8i631us2"
 
 [node name="SetupState" type="Node" parent="StateMaster"]

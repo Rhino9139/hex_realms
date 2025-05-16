@@ -22,6 +22,7 @@ func _on_settlement_built() -> void:
 func _on_road_built() -> void:
 	BuyButton.DISABLE_ROAD()
 	base.end_turn()
+	get_tree().call_group("SetupRoads", "make_unavailable")
 
 func _on_turn_ended() -> void:
 	state_changed.emit("InactiveState")

@@ -76,6 +76,7 @@ func add_build_spot(new_spot: BuildingHotspot) -> void:
 
 @rpc("any_peer", "call_local")
 func move_robber() -> void:
+	get_tree().call_group("HasRobber", "add_to_group", "RobberAbsent")
 	get_tree().call_group("HasRobber", "remove_from_group", "HasRobber")
 	Robber.MOVE_ROBBER(global_position)
 	add_to_group("HasRobber")

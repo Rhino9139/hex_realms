@@ -1,8 +1,20 @@
 extends State
 
 @export var supply_trade: Button
+@export var action_card_confirm: Button
+@export var knight_card: Area2D
+@export var point_card: Area2D
+@export var monopoly_card: Area2D
+@export var year_of_plenty: Area2D
+@export var free_roads: Area2D
 
 func enter() -> void:
+	free_roads.clicked.connect(_on_free_roads_used)
+	year_of_plenty.clicked.connect(_on_year_of_plenty_used)
+	monopoly_card.clicked.connect(_on_monopoly_used)
+	action_card_confirm.pressed.connect(_on_card_bought)
+	point_card.clicked.connect(_on_point_used)
+	knight_card.clicked.connect(_on_knight_used)
 	supply_trade.toggled.connect(_on_supply_trade_toggled)
 	base.turn_ended.connect(_on_turn_ended)
 	Player.LOCAL_PLAYER.item_bought.connect(_on_item_bought)
@@ -11,14 +23,25 @@ func enter() -> void:
 	base.end_turn_button.disabled = false
 	base.end_turn_button.visible = true
 	get_tree().call_group("BuyButton", "check_cost")
+	get_tree().call_group("ActionCard", "activate")
 
 func exit() -> void:
+	free_roads.clicked.disconnect(_on_free_roads_used)
+	year_of_plenty.clicked.disconnect(_on_year_of_plenty_used)
+	monopoly_card.clicked.disconnect(_on_monopoly_used)
+	action_card_confirm.pressed.disconnect(_on_card_bought)
+	point_card.clicked.disconnect(_on_point_used)
+	knight_card.clicked.disconnect(_on_knight_used)
 	supply_trade.toggled.disconnect(_on_supply_trade_toggled)
 	base.turn_ended.disconnect(_on_turn_ended)
 	Player.LOCAL_PLAYER.item_bought.disconnect(_on_item_bought)
 	UIButton.DISABLE_UI()
 	base.end_turn_button.disabled = true
 	base.end_turn_button.visible = false
+	get_tree().call_group("ActionCard", "deactivate")
+
+func update(_delta: float) -> void:
+	get_tree().call_group("BuyButton", "check_cost")
 
 func _on_item_bought(item: String) -> void:
 	match item:
@@ -31,6 +54,37 @@ func _on_item_bought(item: String) -> void:
 		Global._CARD:
 			Player.LOCAL_PLAYER.pay_card()
 	get_tree().call_group("BuyButton", "check_cost")
+
+func _on_knight_used() -> void:
+	if Player.LOCAL_PLAYER.knight_unused > 0:
+		Player.LOCAL_PLAYER.knight_unused -= 1
+		Player.LOCAL_PLAYER.knight_used += 1
+		state_changed.emit("RobberMoveState")
+
+func _on_point_used() -> void:
+	if Player.LOCAL_PLAYER.point_card_usused > 0:
+		Player.LOCAL_PLAYER.point_card_usused -= 1
+		Player.LOCAL_PLAYER.point_card_used += 1
+
+func _on_card_bought() -> void:
+	for i in 5:
+		Player.LOCAL_PLAYER.change_resource(i, -Global.CARD_COST[i])
+	action_card_confirm.visible = false
+
+func _on_monopoly_used() -> void:
+	var amount: int = Player.LOCAL_PLAYER.monopoly_cards
+	if amount > 0:
+		Player.LOCAL_PLAYER.monopoly_cards -= 1
+
+func _on_year_of_plenty_used() -> void:
+	var amount: int = Player.LOCAL_PLAYER.year_of_plenty_cards
+	if amount > 0:
+		Player.LOCAL_PLAYER.year_of_plenty_cards -= 1
+
+func _on_free_roads_used() -> void:
+	var amount: int = Player.LOCAL_PLAYER.free_roads_cards
+	if amount > 0:
+		Player.LOCAL_PLAYER.free_roads_cards -= 1
 
 func _on_turn_ended() -> void:
 	state_changed.emit("InactiveState")

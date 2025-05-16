@@ -34,7 +34,8 @@ func _ready() -> void:
 
 func starting_resources() -> void:
 	for i in terrains:
-		player.change_resource(i.type_res.index, 1)
+		if i.type_res.index != 5:
+			player.change_resource(i.type_res.index, 1)
 
 func build_settlement(player_index: int) -> void:
 	current_building = "Settlement"

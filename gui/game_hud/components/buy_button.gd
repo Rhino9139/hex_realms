@@ -5,6 +5,7 @@ static var SETTLEMENT_BUY: BuyButton
 static var ROAD_BUY: BuyButton
 
 @export_enum("Settlement", "Castle", "Road", "Card") var type: String
+@export var confirm: Button
 
 var cost: Array[int] = []
 
@@ -31,14 +32,17 @@ func _ready() -> void:
 		"Road":
 			cost = Global.ROAD_COST
 			ROAD_BUY = self
+			Player.LOCAL_PLAYER.road_built.connect(set_pressed_no_signal.bind(false))
 		"Card":
 			cost = Global.CARD_COST
+			confirm.pressed.connect(_on_confrim_pressed)
 
 func _on_toggled(toggled_on: bool) -> void:
 	get_tree().call_group("Empty", "make_unavailable")
 	get_tree().call_group("Settlement", "make_unavailable")
 	get_tree().call_group("RoadEmpty", "make_unavailable")
 	get_tree().call_group("SetupRoads", "make_unavailable")
+	confirm.visible = false
 	if toggled_on:
 		get_tree().call_group("BuyButton", "buy_pressed", self)
 		call(type)
@@ -68,4 +72,10 @@ func Road() -> void:
 		get_tree().call_group("RoadEmpty", "make_available", -1)
 
 func Card() -> void:
-	pass
+	confirm.visible = true
+
+func _on_confrim_pressed() -> void:
+	set_pressed_no_signal(false)
+
+func _on_build() -> void:
+	set_pressed_no_signal(false)

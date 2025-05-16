@@ -21,6 +21,14 @@ var player_color: Color
 var settlement_count: int = 0
 var castle_count: int = 0
 var road_count: int = 0
+var knight_unused: int = 0
+var knight_used: int = 0
+var num_cards: int = 0
+var point_card_usused: int = 0
+var point_card_used: int = 0
+var monopoly_cards: int = 0
+var free_roads_cards: int = 0
+var year_of_plenty_cards: int = 0
 
 func _ready() -> void:
 	if multiplayer.is_server() == false:
@@ -82,6 +90,9 @@ func pay_card() -> void:
 func change_resource(index: int, amount: int) -> void:
 	resources[index] += amount
 	GameHUD.UPDATE_RESOURCES()
+	num_cards = 0
+	for i in resources:
+		num_cards += i
 
 @rpc("any_peer")
 func request_id() -> void:
