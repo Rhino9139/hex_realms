@@ -13,10 +13,10 @@ func exit() -> void:
 	roll_screen.roll_finished.disconnect(_on_roll_finished)
 	base.turn_progress_bar.tint_progress = turn_color
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventKey:
-		if event.pressed and event.keycode == KEY_N:
-			_on_roll_button_pressed(7)
+#func _input(event: InputEvent) -> void:
+	#if event is InputEventKey:
+		#if event.pressed and event.keycode == KEY_N:
+			#_on_roll_button_pressed(7)
 
 func _on_roll_button_pressed(roll: int = 0) -> void:
 	base.disable_roll()

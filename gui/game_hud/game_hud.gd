@@ -17,6 +17,9 @@ static var MASTER: GameHUD
 @export var castle_buy: Button
 @export var road_buy: Button
 @export var card_buy: Button
+@export_group("Trade")
+@export var trade_panel: Panel
+
 
 var player: Player
 var bar_tween: Tween

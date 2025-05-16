@@ -11,5 +11,5 @@ static func ENABLE_UI() -> void:
 	for i in BUTTONS:
 		i.disabled = false
 
-func _init() -> void:
+func _ready() -> void:
 	BUTTONS.append(self)

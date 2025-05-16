@@ -14,6 +14,7 @@ static var num_hotspots: int = 0
 var idx: int = 0
 var neighbors: Array[BuildingHotspot] = []
 var roads: Array[RoadHotspot] = []
+var terrains: Array[HexRegion] = []
 var player: Player
 var upgrade_spot: Callable = build_settlement
 var holo_mesh: MeshInstance3D
@@ -31,9 +32,15 @@ func _ready() -> void:
 	collision_layer = 0
 	collision_mask = 0
 
+func starting_resources() -> void:
+	for i in terrains:
+		player.change_resource(i.type_res.index, 1)
+
 func build_settlement(player_index: int) -> void:
 	current_building = "Settlement"
 	player = MultiplayerManager.RETURN_PLAYERS()[player_index]
+	if player.settlement_count == 0:
+		starting_resources()
 	player.add_settlement()
 	make_unavailable()
 	remove_from_group("Empty")
@@ -107,6 +114,8 @@ func _on_neighbor_area_area_entered(area: Area3D) -> void:
 			roads.append(area)
 	elif area is HexRegion:
 		area.add_build_spot(self)
+		if terrains.has(area) == false:
+			terrains.append(area)
 
 @rpc("any_peer", "call_local")
 func build(player_index: int) -> void:

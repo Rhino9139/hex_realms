@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfpkyntgfrs8"]
+
+[ext_resource type="Script" uid="uid://iveu1hqh5fw2" path="res://2D/resource_cards/card_stack.gd" id="1_ys8e2"]
+[ext_resource type="PackedScene" uid="uid://d4d1p4l68ffyr" path="res://2D/resource_cards/resource_card.tscn" id="2_pd2um"]
+
+[sub_resource type="SystemFont" id="SystemFont_b0vwk"]
+font_names = PackedStringArray("Verdana")
+subpixel_positioning = 0
+multichannel_signed_distance_field = true
+
+[node name="CardStack" type="Node2D" node_paths=PackedStringArray("amount_label", "card_1", "card_2", "card_3")]
+script = ExtResource("1_ys8e2")
+amount_label = NodePath("Amount")
+card_1 = NodePath("Card1")
+card_2 = NodePath("Card2")
+card_3 = NodePath("Card3")
+
+[node name="Card1" parent="." instance=ExtResource("2_pd2um")]
+position = Vector2(22, 0)
+
+[node name="Card2" parent="." instance=ExtResource("2_pd2um")]
+position = Vector2(26, -3)
+
+[node name="Card3" parent="." instance=ExtResource("2_pd2um")]
+position = Vector2(30, -6)
+
+[node name="Amount" type="Label" parent="."]
+offset_top = -1.0
+offset_right = 20.0
+offset_bottom = 30.25
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = SubResource("SystemFont_b0vwk")
+theme_override_font_sizes/font_size = 25
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1

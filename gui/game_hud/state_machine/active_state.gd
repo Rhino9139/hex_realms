@@ -1,6 +1,9 @@
 extends State
 
+@export var supply_trade: Button
+
 func enter() -> void:
+	supply_trade.toggled.connect(_on_supply_trade_toggled)
 	base.turn_ended.connect(_on_turn_ended)
 	Player.LOCAL_PLAYER.item_bought.connect(_on_item_bought)
 	UIButton.ENABLE_UI()
@@ -10,6 +13,7 @@ func enter() -> void:
 	get_tree().call_group("BuyButton", "check_cost")
 
 func exit() -> void:
+	supply_trade.toggled.disconnect(_on_supply_trade_toggled)
 	base.turn_ended.disconnect(_on_turn_ended)
 	Player.LOCAL_PLAYER.item_bought.disconnect(_on_item_bought)
 	UIButton.DISABLE_UI()
@@ -30,3 +34,7 @@ func _on_item_bought(item: String) -> void:
 
 func _on_turn_ended() -> void:
 	state_changed.emit("InactiveState")
+
+func _on_supply_trade_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		state_changed.emit("SupplyTradeState")

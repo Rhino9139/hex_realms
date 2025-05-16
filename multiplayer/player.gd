@@ -12,6 +12,8 @@ var player_name: String = "New Player"
 var turn_index: int = -1
 
 var resources: Array[int] = [0, 0, 0, 0, 0]
+var trade_remove: Array[int] = [0, 0, 0, 0, 0]
+var trade_add: Array[int] = [0, 0, 0, 0, 0]
 var settlement_credits: int = 0
 var road_credits: int = 0
 var player_mat: StandardMaterial3D
@@ -29,6 +31,13 @@ func _ready() -> void:
 		LOCAL_PLAYER = self
 	player_mat = Global.PLAYER_MATS[get_index()]
 	player_color = player_mat.albedo_color
+
+func trade_resources() -> void:
+	for i in 5:
+		change_resource(i, trade_add[i])
+		change_resource(i, -trade_remove[i])
+	trade_remove = [0, 0, 0, 0, 0]
+	trade_add = [0, 0, 0, 0, 0]
 
 func _on_name_changed(new_name: String) -> void:
 	player_name = new_name

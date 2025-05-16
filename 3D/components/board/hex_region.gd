@@ -52,7 +52,6 @@ func number_rolled(rolled_total: int) -> void:
 				i.resource_rolled(type_res.index)
 
 func make_available() -> void:
-	print("GIVE ME THE ROBBER")
 	set_collision_layer_value(3, true)
 
 func make_unavailable() -> void:

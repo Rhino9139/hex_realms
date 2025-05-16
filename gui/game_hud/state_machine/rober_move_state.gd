@@ -4,7 +4,6 @@ func enter() -> void:
 	Robber.GET_ROBBER().robber_moved.connect(_on_robber_moved)
 	Character.SWAP_TO_HOVER()
 	get_tree().call_group("RobberAbsent", "make_available")
-	print("move the robber")
 
 func exit() -> void:
 	get_tree().call_group("RobberAbsent", "make_unavailable")

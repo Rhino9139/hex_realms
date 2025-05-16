@@ -1,38 +1,94 @@
-[gd_scene load_steps=21 format=3 uid="uid://dlysvvr1aprdc"]
+[gd_scene load_steps=31 format=3 uid="uid://dlysvvr1aprdc"]
 
 [ext_resource type="Script" uid="uid://cxaj2txgrot0c" path="res://gui/game_hud/game_hud.gd" id="1_2v08g"]
-[ext_resource type="PackedScene" uid="uid://b2i3hhft1o5tt" path="res://2D/resource_cards/resource_cards.tscn" id="2_svuxb"]
+[ext_resource type="PackedScene" uid="uid://b2i3hhft1o5tt" path="res://2D/resource_cards/player_resource_manager.tscn" id="2_svuxb"]
+[ext_resource type="PackedScene" uid="uid://i3gn4b2vnsus" path="res://2D/resource_cards/supply_resource_manager.tscn" id="2_vvj38"]
 [ext_resource type="Resource" uid="uid://03f6o1ggd8di" path="res://custom/terrain_resources/brick_res.tres" id="3_0wm5q"]
 [ext_resource type="Resource" uid="uid://brghdbk4jlcyo" path="res://custom/terrain_resources/ore_res.tres" id="4_5a7ot"]
 [ext_resource type="Resource" uid="uid://clhpnv8ji1oud" path="res://custom/terrain_resources/sheep_res.tres" id="5_cohbh"]
 [ext_resource type="Resource" uid="uid://dxj3v0c7du1px" path="res://custom/terrain_resources/wheat_res.tres" id="6_hhadb"]
 [ext_resource type="PackedScene" uid="uid://c38lsr2lu1i4t" path="res://gui/game_hud/components/buy_button.tscn" id="7_iwlbn"]
 [ext_resource type="Resource" uid="uid://cvo8kw33xdrta" path="res://custom/terrain_resources/wood_res.tres" id="7_vvj38"]
+[ext_resource type="Texture2D" uid="uid://bnpkbketmom4c" path="res://common/icons/ui_buttons/arrow_reserve.svg" id="8_26734"]
 [ext_resource type="Texture2D" uid="uid://b0xh3lcnrqboa" path="res://common/icons/ui_buttons/structure_gate.png" id="8_en8hq"]
 [ext_resource type="Texture2D" uid="uid://c1d8lhog071sm" path="res://common/icons/ui_buttons/card_lift.png" id="9_iwlbn"]
 [ext_resource type="Texture2D" uid="uid://do5fpysxkbwj2" path="res://common/icons/ui_buttons/arrow_diagonal.png" id="10_t7dor"]
 [ext_resource type="Texture2D" uid="uid://cu15plfdy0eo1" path="res://common/shapes/ring_20_256.png" id="11_en8hq"]
+[ext_resource type="Texture2D" uid="uid://cfgp3vuehr7tn" path="res://common/icons/ui_buttons/pouch_remove.svg" id="12_cohbh"]
 [ext_resource type="Texture2D" uid="uid://begn511dpycyv" path="res://common/icons/ui_buttons/hourglass.png" id="12_iwlbn"]
+[ext_resource type="Script" uid="uid://bvsalc57dvu50" path="res://gui/game_hud/components/ui_button.gd" id="13_hhadb"]
 [ext_resource type="PackedScene" uid="uid://b17g86bbvfydc" path="res://gui/game_hud/components/roll_screen.tscn" id="13_ryev7"]
 [ext_resource type="Script" uid="uid://b48afnuau5q10" path="res://gui/game_hud/state_machine/state_master.gd" id="13_t7dor"]
 [ext_resource type="Script" uid="uid://dk3jt8p0fjgid" path="res://gui/game_hud/state_machine/inactive_state.gd" id="14_8trcm"]
+[ext_resource type="Texture2D" uid="uid://bxgah4kd476pu" path="res://common/icons/ui_buttons/pawn_reverse.svg" id="14_vvj38"]
 [ext_resource type="Script" uid="uid://ca8wyyyfxe0ef" path="res://gui/game_hud/state_machine/need_roll_state.gd" id="15_hheuk"]
 [ext_resource type="Script" uid="uid://c3rxa57l0dfcw" path="res://gui/game_hud/state_machine/active_state.gd" id="16_p1mox"]
 [ext_resource type="Script" uid="uid://dnbu8tbbhv6e8" path="res://gui/game_hud/setup_state.gd" id="18_3o7oo"]
 [ext_resource type="Script" uid="uid://by0qk8rv8l4ul" path="res://gui/game_hud/state_machine/rober_move_state.gd" id="19_qo7ve"]
+[ext_resource type="Script" uid="uid://xgfkdmpxtrmw" path="res://gui/game_hud/state_machine/supply_trade_state.gd" id="24_hhadb"]
+[ext_resource type="Script" uid="uid://c2tw2dxgt2fuv" path="res://gui/game_hud/state_machine/cut_resources_state.gd" id="27_ibqqg"]
 
-[node name="GameHUD" type="Control" node_paths=PackedStringArray("turn_progress_bar", "roll_button", "end_turn_button", "player_card_parent")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ibqqg"]
+bg_color = Color(0.906854, 0.12763, 0.130916, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hhadb"]
+bg_color = Color(1.28509e-05, 0.87516, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vvj38"]
+bg_color = Color(1.28509e-05, 0.87516, 0, 1)
+
+[node name="GameHUD" type="Control" node_paths=PackedStringArray("turn_progress_bar", "roll_button", "end_turn_button", "player_card_parent", "trade_panel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_2v08g")
 turn_progress_bar = NodePath("TurnProgress")
 roll_button = NodePath("RollButton")
 end_turn_button = NodePath("EndTurnButton")
 player_card_parent = NodePath("PlayerCards")
+trade_panel = NodePath("SupplyTradePanel")
+
+[node name="SupplyTradePanel" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 7.0
+offset_top = 111.0
+offset_right = 362.0
+offset_bottom = 494.0
+mouse_filter = 2
+
+[node name="SupplyBrick" parent="SupplyTradePanel" instance=ExtResource("2_vvj38")]
+position = Vector2(295, 53)
+type = ExtResource("3_0wm5q")
+
+[node name="SupplyOre" parent="SupplyTradePanel" instance=ExtResource("2_vvj38")]
+position = Vector2(295, 123)
+type = ExtResource("4_5a7ot")
+
+[node name="SupplySheep" parent="SupplyTradePanel" instance=ExtResource("2_vvj38")]
+position = Vector2(295, 194)
+type = ExtResource("5_cohbh")
+
+[node name="SupplyWheat" parent="SupplyTradePanel" instance=ExtResource("2_vvj38")]
+position = Vector2(295, 268)
+type = ExtResource("6_hhadb")
+
+[node name="SupplyWood" parent="SupplyTradePanel" instance=ExtResource("2_vvj38")]
+position = Vector2(295, 340)
+type = ExtResource("7_vvj38")
+
+[node name="TradeAccept" type="Button" parent="SupplyTradePanel"]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 163.0
+offset_right = 204.0
+offset_bottom = 221.0
+theme_override_styles/disabled = SubResource("StyleBoxFlat_ibqqg")
+icon = ExtResource("8_26734")
 
 [node name="PlayerCards" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -41,35 +97,36 @@ anchor_right = 1.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="Resources" type="Control" parent="."]
+[node name="PlayerResources" type="Control" parent="."]
 layout_mode = 1
 anchor_left = 0.01
 anchor_top = 0.5
 anchor_right = 0.01
 anchor_bottom = 0.5
 grow_vertical = 2
+mouse_filter = 2
 
-[node name="Brick" parent="Resources" instance=ExtResource("2_svuxb")]
+[node name="Brick" parent="PlayerResources" instance=ExtResource("2_svuxb")]
 position = Vector2(0, -160)
 type = ExtResource("3_0wm5q")
 
-[node name="Ore" parent="Resources" instance=ExtResource("2_svuxb")]
+[node name="Ore" parent="PlayerResources" instance=ExtResource("2_svuxb")]
 position = Vector2(0, -90)
 type = ExtResource("4_5a7ot")
 
-[node name="Sheep" parent="Resources" instance=ExtResource("2_svuxb")]
+[node name="Sheep" parent="PlayerResources" instance=ExtResource("2_svuxb")]
 position = Vector2(0, -20)
 type = ExtResource("5_cohbh")
 
-[node name="Wheat" parent="Resources" instance=ExtResource("2_svuxb")]
+[node name="Wheat" parent="PlayerResources" instance=ExtResource("2_svuxb")]
 position = Vector2(0, 50)
 type = ExtResource("6_hhadb")
 
-[node name="Wood" parent="Resources" instance=ExtResource("2_svuxb")]
+[node name="Wood" parent="PlayerResources" instance=ExtResource("2_svuxb")]
 position = Vector2(0, 120)
 type = ExtResource("7_vvj38")
 
-[node name="BuyButtons" type="HBoxContainer" parent="."]
+[node name="UIButtons" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.02
@@ -80,24 +137,45 @@ offset_top = -40.0
 offset_right = 40.0
 grow_vertical = 0
 
-[node name="BuySettlement" parent="BuyButtons" instance=ExtResource("7_iwlbn")]
+[node name="BuySettlement" parent="UIButtons" instance=ExtResource("7_iwlbn")]
 layout_mode = 2
 type = "Settlement"
 
-[node name="BuyCastle" parent="BuyButtons" instance=ExtResource("7_iwlbn")]
+[node name="BuyCastle" parent="UIButtons" instance=ExtResource("7_iwlbn")]
 layout_mode = 2
 icon = ExtResource("8_en8hq")
 type = "Castle"
 
-[node name="BuyRoad" parent="BuyButtons" instance=ExtResource("7_iwlbn")]
+[node name="BuyRoad" parent="UIButtons" instance=ExtResource("7_iwlbn")]
 layout_mode = 2
 icon = ExtResource("10_t7dor")
 type = "Road"
 
-[node name="BuyCard" parent="BuyButtons" instance=ExtResource("7_iwlbn")]
+[node name="BuyCard" parent="UIButtons" instance=ExtResource("7_iwlbn")]
 layout_mode = 2
 icon = ExtResource("9_iwlbn")
 type = "Card"
+
+[node name="SupplyTrade" type="Button" parent="UIButtons"]
+custom_minimum_size = Vector2(40, 30)
+layout_mode = 2
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hhadb")
+toggle_mode = true
+icon = ExtResource("12_cohbh")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("13_hhadb")
+metadata/_custom_type_script = "uid://bvsalc57dvu50"
+
+[node name="PlayerTrade" type="Button" parent="UIButtons"]
+custom_minimum_size = Vector2(40, 30)
+layout_mode = 2
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vvj38")
+toggle_mode = true
+icon = ExtResource("14_vvj38")
+expand_icon = true
+script = ExtResource("13_hhadb")
+metadata/_custom_type_script = "uid://bvsalc57dvu50"
 
 [node name="RollButton" type="Button" parent="."]
 layout_mode = 1
@@ -175,8 +253,9 @@ roll_color = Color(1, 0.72549, 0, 1)
 turn_color = Color(8.56727e-06, 0.805724, 3.85046e-07, 1)
 metadata/_custom_type_script = "uid://b4n8p8i631us2"
 
-[node name="ActiveState" type="Node" parent="StateMaster"]
+[node name="ActiveState" type="Node" parent="StateMaster" node_paths=PackedStringArray("supply_trade")]
 script = ExtResource("16_p1mox")
+supply_trade = NodePath("../../UIButtons/SupplyTrade")
 metadata/_custom_type_script = "uid://b4n8p8i631us2"
 
 [node name="SetupState" type="Node" parent="StateMaster"]
@@ -186,11 +265,21 @@ script = ExtResource("18_3o7oo")
 script = ExtResource("19_qo7ve")
 metadata/_custom_type_script = "uid://b4n8p8i631us2"
 
+[node name="SupplyTradeState" type="Node" parent="StateMaster" node_paths=PackedStringArray("supply_button", "accept_trade")]
+script = ExtResource("24_hhadb")
+supply_button = NodePath("../../UIButtons/SupplyTrade")
+accept_trade = NodePath("../../SupplyTradePanel/TradeAccept")
+metadata/_custom_type_script = "uid://b4n8p8i631us2"
+
+[node name="CutResourcesState" type="Node" parent="StateMaster"]
+script = ExtResource("27_ibqqg")
+metadata/_custom_type_script = "uid://b4n8p8i631us2"
+
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="pressed" from="RollButton" to="StateMaster/NeedRollState" method="_on_roll_button_pressed"]
 [connection signal="pressed" from="EndTurnButton" to="." method="_on_end_turn_button_pressed"]
 
-[editable path="BuyButtons/BuySettlement"]
-[editable path="BuyButtons/BuyCastle"]
-[editable path="BuyButtons/BuyRoad"]
-[editable path="BuyButtons/BuyCard"]
+[editable path="UIButtons/BuySettlement"]
+[editable path="UIButtons/BuyCastle"]
+[editable path="UIButtons/BuyRoad"]
+[editable path="UIButtons/BuyCard"]

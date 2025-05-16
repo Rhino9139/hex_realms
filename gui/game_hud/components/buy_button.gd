@@ -21,6 +21,7 @@ static func DISABLE_ROAD() -> void:
 	ROAD_BUY.disabled = true
 
 func _ready() -> void:
+	super()
 	match type:
 		"Settlement":
 			cost = Global.SETTLEMENT_COST
@@ -49,7 +50,6 @@ func check_cost() -> void:
 		if Player.LOCAL_PLAYER.resources[i] < cost[i]:
 			can_afford = false
 	disabled = !can_afford
-	print(name, " ", can_afford)
 
 func buy_pressed(new_buy: Button) -> void:
 	if new_buy != self:

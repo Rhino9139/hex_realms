@@ -40,6 +40,7 @@ PlayerCard=""
 SetupRoads=""
 RobberAbsent=""
 HasRobber=""
+PlayerResourceCards=""
 
 [gui]
 
