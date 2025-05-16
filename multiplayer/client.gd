@@ -16,6 +16,7 @@ func _ready() -> void:
 static func connect_to_host(host_ip: String, host_port: int) -> void:
 	peer.create_client(host_ip, host_port)
 	MASTER.multiplayer.multiplayer_peer = peer
+	print("Starting connection")
 	await MASTER.multiplayer.connected_to_server
 	print("Connecting to host at: ", host_ip)
 
