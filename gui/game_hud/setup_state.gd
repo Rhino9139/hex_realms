@@ -26,3 +26,9 @@ func _on_road_built() -> void:
 
 func _on_turn_ended() -> void:
 	state_changed.emit("InactiveState")
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		if event.pressed and event.keycode == KEY_B:
+			print("CHEAT")
+			state_changed.emit("ActiveState")

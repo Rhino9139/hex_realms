@@ -49,6 +49,9 @@ static var PORT_TYPES: Array[int] = [
 	0, 1, 2, 3, 4, 5, 5, 5, 5
 ]
 
+static var ACTION_CARD_TYPES: Array[int] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,\
+	1, 1, 1, 1, 1, 2, 2, 3, 3, 4, 4]
+
 static var SETTLEMENT_COST: Array[int] = [1, 0, 1, 1, 1]
 static var CASTLE_COST: Array[int] = [0, 3, 0, 2, 0]
 static var ROAD_COST: Array[int] = [1, 0, 0, 0, 1]

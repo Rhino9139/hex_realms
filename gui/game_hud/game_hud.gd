@@ -38,10 +38,6 @@ static func ADD_PLAYER_CARDS() -> void:
 	if MASTER.multiplayer.is_server():
 		MASTER.begin_new_turn.rpc(MASTER.current_turn_index, MASTER.current_round_index)
 
-static func UPDATE_RESOURCES() -> void:
-	pass
-	#MASTER.update_resource_labels()
-
 static func GET_ROUND_INDEX() -> int:
 	return MASTER.current_round_index
 
@@ -55,7 +51,7 @@ func _ready() -> void:
 
 func add_player_cards() -> void:
 	var player_list: Array = MultiplayerManager.RETURN_PLAYERS()
-		
+	print(player_list)
 	for i in player_list.size():
 		player_card_parent.add_child(PlayerCard.CREATE(player_list[i]))
 

@@ -1,11 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://c7c6bp287ee3d"]
+[gd_scene load_steps=9 format=3 uid="uid://c7c6bp287ee3d"]
 
 [ext_resource type="PackedScene" uid="uid://cfk8k251nclrm" path="res://imports/blend_files/structures/port_v1.blend" id="1_cvhol"]
 [ext_resource type="Material" uid="uid://dlx508kc77hgm" path="res://3D/materials/dock_wood_1.tres" id="2_ghy8w"]
 [ext_resource type="Script" uid="uid://fqbstw0wq1i3" path="res://3D/components/board/port.gd" id="2_qlobu"]
 [ext_resource type="Material" uid="uid://bbkaacxhqahpn" path="res://3D/materials/dock_wood_2.tres" id="3_n1pyi"]
 [ext_resource type="ArrayMesh" uid="uid://d4nw630e1m601" path="res://imports/blend_files/structures/sailboat_mesh.res" id="6_srmjm"]
+[ext_resource type="Script" uid="uid://cblo3hduisukh" path="res://3D/components/board/port_area.gd" id="7_8372c"]
 [ext_resource type="Texture2D" uid="uid://ddayrfad1byx4" path="res://common/icons/resources/wheat.png" id="7_aq3pp"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_srmjm"]
+radius = 8.0
 
 [node name="Port" node_paths=PackedStringArray("resource_sprite") instance=ExtResource("1_cvhol")]
 script = ExtResource("2_qlobu")
@@ -24,3 +28,12 @@ texture = ExtResource("7_aq3pp")
 [node name="SailboatMesh" type="MeshInstance3D" parent="." index="2"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 8, -1, 0)
 mesh = ExtResource("6_srmjm")
+
+[node name="PortArea" type="Area3D" parent="." index="3" node_paths=PackedStringArray("root_parent")]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("7_8372c")
+root_parent = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PortArea" index="0"]
+shape = SubResource("SphereShape3D_srmjm")

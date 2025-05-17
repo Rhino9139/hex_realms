@@ -19,7 +19,7 @@ func make_rand_arrays() -> void:
 	die_1_final = randi_range(1, 6)
 	die_2_final = randi_range(1, 6)
 
-func roll_dice(roll: int = 0) -> void:
+func roll_dice(_roll: int = 0) -> void:
 	make_rand_arrays()
 	share_roll.rpc(die_1_final, die_2_final)
 

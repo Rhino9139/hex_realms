@@ -14,6 +14,7 @@ var turn_index: int = -1
 var resources: Array[int] = [0, 0, 0, 0, 0]
 var trade_remove: Array[int] = [0, 0, 0, 0, 0]
 var trade_add: Array[int] = [0, 0, 0, 0, 0]
+var trade_ratios: Array[int] = [4, 4, 4, 4, 4]
 var settlement_credits: int = 0
 var road_credits: int = 0
 var player_mat: StandardMaterial3D
@@ -90,10 +91,11 @@ func pay_card() -> void:
 
 func change_resource(index: int, amount: int) -> void:
 	resources[index] += amount
-	GameHUD.UPDATE_RESOURCES()
 	num_cards = 0
 	for i in resources:
 		num_cards += i
+	if multiplayer.get_unique_id() == player_id:
+		share_card_count.rpc(num_cards)
 
 @rpc("any_peer")
 func request_id() -> void:
@@ -114,3 +116,7 @@ func response_id(new_id: int) -> void:
 @rpc("any_peer", "call_remote")
 func share_name(new_name: String) -> void:
 	player_name = new_name
+
+@rpc("any_peer", "call_remote")
+func share_card_count(card_count: int) -> void:
+	num_cards = card_count

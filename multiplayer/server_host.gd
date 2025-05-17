@@ -13,6 +13,7 @@ func _init() -> void:
 	MASTER = self
 
 func _ready() -> void:
+	name = "ServerHost"
 	peer = ENetMultiplayerPeer.new()
 	start_host()
 

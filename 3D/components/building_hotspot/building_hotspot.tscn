@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://del6455x1rio1"]
 
 [ext_resource type="Script" uid="uid://bvm0v3l1xnpb3" path="res://3D/components/building_hotspot/building_hotspot.gd" id="1_ql0ga"]
-[ext_resource type="ArrayMesh" uid="uid://bnfp303j1sfam" path="res://imports/blend_files/structures/castle_mesh.res" id="2_v2e2f"]
+[ext_resource type="ArrayMesh" uid="uid://bidbr0bcuk1ut" path="res://imports/blend_files/structures/castle_mesh.res" id="2_v2e2f"]
 [ext_resource type="ArrayMesh" uid="uid://cm8oy0ivr1yx8" path="res://imports/blend_files/structures/settlement_mesh.res" id="3_jrjif"]
 [ext_resource type="Material" uid="uid://bhusjf7o7dpr3" path="res://3D/materials/light_grey.tres" id="5_jrjif"]
 [ext_resource type="Material" uid="uid://cpvde0u8isi5h" path="res://3D/shaders/hologram_material.tres" id="7_jrjif"]
@@ -29,7 +29,6 @@ castle_base_mat = ExtResource("5_jrjif")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.81646, 0)
-visible = false
 shape = SubResource("SphereShape3D_8sy7l")
 debug_color = Color(0, 0.717647, 0.705882, 1)
 
@@ -41,7 +40,6 @@ mesh = SubResource("TorusMesh_v2e2f")
 [node name="CastleModel" type="MeshInstance3D" parent="."]
 visible = false
 mesh = ExtResource("2_v2e2f")
-surface_material_override/0 = ExtResource("5_jrjif")
 
 [node name="SettlementModel" type="MeshInstance3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
@@ -51,7 +49,7 @@ mesh = ExtResource("3_jrjif")
 [node name="NeighborArea" type="Area3D" parent="."]
 visible = false
 collision_layer = 0
-collision_mask = 7
+collision_mask = 15
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NeighborArea"]
 shape = SubResource("SphereShape3D_bpe7p")

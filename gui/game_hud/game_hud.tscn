@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://dlysvvr1aprdc"]
+[gd_scene load_steps=38 format=3 uid="uid://dlysvvr1aprdc"]
 
 [ext_resource type="Script" uid="uid://cxaj2txgrot0c" path="res://gui/game_hud/game_hud.gd" id="1_2v08g"]
 [ext_resource type="PackedScene" uid="uid://b2i3hhft1o5tt" path="res://2D/resource_cards/player_resource_manager.tscn" id="2_svuxb"]
@@ -11,7 +11,6 @@
 [ext_resource type="Resource" uid="uid://cvo8kw33xdrta" path="res://custom/terrain_resources/wood_res.tres" id="7_vvj38"]
 [ext_resource type="Texture2D" uid="uid://bnpkbketmom4c" path="res://common/icons/ui_buttons/arrow_reserve.svg" id="8_26734"]
 [ext_resource type="Texture2D" uid="uid://b0xh3lcnrqboa" path="res://common/icons/ui_buttons/structure_gate.png" id="8_en8hq"]
-[ext_resource type="PackedScene" uid="uid://ds5xamo25scxy" path="res://gui/game_hud/components/player_card.tscn" id="9_3td1n"]
 [ext_resource type="Texture2D" uid="uid://c1d8lhog071sm" path="res://common/icons/ui_buttons/card_lift.png" id="9_iwlbn"]
 [ext_resource type="Texture2D" uid="uid://do5fpysxkbwj2" path="res://common/icons/ui_buttons/arrow_diagonal.png" id="10_t7dor"]
 [ext_resource type="Texture2D" uid="uid://cu15plfdy0eo1" path="res://common/shapes/ring_20_256.png" id="11_en8hq"]
@@ -104,9 +103,6 @@ anchors_preset = -1
 anchor_right = 1.0
 grow_horizontal = 2
 alignment = 1
-
-[node name="PlayerCard" parent="PlayerCards" instance=ExtResource("9_3td1n")]
-layout_mode = 2
 
 [node name="PlayerResources" type="Control" parent="."]
 layout_mode = 1

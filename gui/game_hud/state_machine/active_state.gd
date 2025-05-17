@@ -70,6 +70,26 @@ func _on_card_bought() -> void:
 	for i in 5:
 		Player.LOCAL_PLAYER.change_resource(i, -Global.CARD_COST[i])
 	action_card_confirm.visible = false
+	if multiplayer.is_server():
+		server_get_card()
+	else:
+		request_action_card.rpc_id(1)
+
+func aquire_card(card_index: int) -> void:
+	var player: Player = Player.LOCAL_PLAYER
+	match card_index:
+		0:
+			player.knight_unused += 1
+		1:
+			player.point_card_usused += 1
+		2:
+			player.year_of_plenty_cards += 1
+		3:
+			player.monopoly_cards += 1
+		4:
+			player.free_roads_cards += 1
+		null:
+			print("out of cards")
 
 func _on_monopoly_used() -> void:
 	var amount: int = Player.LOCAL_PLAYER.monopoly_cards
@@ -92,3 +112,17 @@ func _on_turn_ended() -> void:
 func _on_supply_trade_toggled(toggled_on: bool) -> void:
 	if toggled_on:
 		state_changed.emit("SupplyTradeState")
+
+func server_get_card() -> void:
+	var card_index: int = Global.ACTION_CARD_TYPES.pop_front()
+	aquire_card(card_index)
+
+@rpc("any_peer", "call_remote")
+func request_action_card() -> void:
+	var card_index: int = Global.ACTION_CARD_TYPES.pop_front()
+	var player_id: int = multiplayer.get_remote_sender_id()
+	respond_action_card.rpc_id(player_id, card_index)
+
+@rpc("authority", "call_remote")
+func respond_action_card(new_card: int) -> void:
+	aquire_card(new_card)

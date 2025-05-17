@@ -16,6 +16,7 @@ func exit() -> void:
 #func _input(event: InputEvent) -> void:
 	#if event is InputEventKey:
 		#if event.pressed and event.keycode == KEY_N:
+			#print("CHEAT")
 			#_on_roll_button_pressed(7)
 
 func _on_roll_button_pressed(roll: int = 0) -> void:
