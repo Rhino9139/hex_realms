@@ -3,7 +3,6 @@ extends Node
 
 const _PORT: int = 28282
 const _LOCAL_HOST: String = "127.0.0.1"
-const _RYAN_HOST: String = "99.62.234.170"
 
 static var MASTER: ServerHost
 static var MAX_PLAYERS: int = 4

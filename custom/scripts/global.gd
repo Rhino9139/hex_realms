@@ -10,7 +10,7 @@ static var HOLO_MAT: ShaderMaterial = load("uid://cpvde0u8isi5h")
 static var PLAYER_MATS: Array[StandardMaterial3D] = [
 	load("uid://db6xyoo8kvsrv"),
 	load("uid://d1ba7go2vhy1k"),
-	load("uid://t2cj5x2ybelm"),
+	load("uid://dt1yjobw0uctu"),
 	load("uid://dd6lp3tkgw0lc")
 ]
 

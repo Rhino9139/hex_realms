@@ -29,6 +29,7 @@ var point_card_used: int = 0
 var monopoly_cards: int = 0
 var free_roads_cards: int = 0
 var year_of_plenty_cards: int = 0
+var total_points: int = 0
 
 func _ready() -> void:
 	if multiplayer.is_server() == false:

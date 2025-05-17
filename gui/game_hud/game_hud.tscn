@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://dlysvvr1aprdc"]
+[gd_scene load_steps=39 format=3 uid="uid://dlysvvr1aprdc"]
 
 [ext_resource type="Script" uid="uid://cxaj2txgrot0c" path="res://gui/game_hud/game_hud.gd" id="1_2v08g"]
 [ext_resource type="PackedScene" uid="uid://b2i3hhft1o5tt" path="res://2D/resource_cards/player_resource_manager.tscn" id="2_svuxb"]
@@ -11,6 +11,7 @@
 [ext_resource type="Resource" uid="uid://cvo8kw33xdrta" path="res://custom/terrain_resources/wood_res.tres" id="7_vvj38"]
 [ext_resource type="Texture2D" uid="uid://bnpkbketmom4c" path="res://common/icons/ui_buttons/arrow_reserve.svg" id="8_26734"]
 [ext_resource type="Texture2D" uid="uid://b0xh3lcnrqboa" path="res://common/icons/ui_buttons/structure_gate.png" id="8_en8hq"]
+[ext_resource type="PackedScene" uid="uid://ds5xamo25scxy" path="res://gui/game_hud/components/player_card.tscn" id="9_3td1n"]
 [ext_resource type="Texture2D" uid="uid://c1d8lhog071sm" path="res://common/icons/ui_buttons/card_lift.png" id="9_iwlbn"]
 [ext_resource type="Texture2D" uid="uid://do5fpysxkbwj2" path="res://common/icons/ui_buttons/arrow_diagonal.png" id="10_t7dor"]
 [ext_resource type="Texture2D" uid="uid://cu15plfdy0eo1" path="res://common/shapes/ring_20_256.png" id="11_en8hq"]
@@ -62,10 +63,10 @@ trade_panel = NodePath("SupplyTradePanel")
 [node name="SupplyTradePanel" type="Panel" parent="."]
 visible = false
 layout_mode = 0
-offset_left = 7.0
-offset_top = 111.0
-offset_right = 362.0
-offset_bottom = 494.0
+offset_left = 11.0
+offset_top = 180.0
+offset_right = 366.0
+offset_bottom = 563.0
 mouse_filter = 2
 
 [node name="SupplyBrick" parent="SupplyTradePanel" instance=ExtResource("2_vvj38")]
@@ -104,6 +105,9 @@ anchor_right = 1.0
 grow_horizontal = 2
 alignment = 1
 
+[node name="PlayerCard" parent="PlayerCards" instance=ExtResource("9_3td1n")]
+layout_mode = 2
+
 [node name="PlayerResources" type="Control" parent="."]
 layout_mode = 1
 anchor_left = 0.01
@@ -114,23 +118,23 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Brick" parent="PlayerResources" instance=ExtResource("2_svuxb")]
-position = Vector2(0, -160)
+position = Vector2(1.48, -87)
 type = ExtResource("3_0wm5q")
 
 [node name="Ore" parent="PlayerResources" instance=ExtResource("2_svuxb")]
-position = Vector2(0, -90)
+position = Vector2(1.48, -17)
 type = ExtResource("4_5a7ot")
 
 [node name="Sheep" parent="PlayerResources" instance=ExtResource("2_svuxb")]
-position = Vector2(0, -20)
+position = Vector2(1.48, 53)
 type = ExtResource("5_cohbh")
 
 [node name="Wheat" parent="PlayerResources" instance=ExtResource("2_svuxb")]
-position = Vector2(0, 50)
+position = Vector2(1.48, 123)
 type = ExtResource("6_hhadb")
 
 [node name="Wood" parent="PlayerResources" instance=ExtResource("2_svuxb")]
-position = Vector2(0, 120)
+position = Vector2(1.48, 193)
 type = ExtResource("7_vvj38")
 
 [node name="UIButtons" type="HBoxContainer" parent="."]
@@ -259,25 +263,25 @@ offset_bottom = 563.0
 text = "Buy Action Card"
 
 [node name="KnightUnused" parent="." instance=ExtResource("20_aa2f2")]
-position = Vector2(45, 535)
+position = Vector2(721, 606)
 
 [node name="PointUnused" parent="." instance=ExtResource("21_8ewad")]
-position = Vector2(97, 535)
+position = Vector2(773, 606)
 
 [node name="MonopolyUnused" parent="." instance=ExtResource("24_alt8r")]
-position = Vector2(149, 535)
+position = Vector2(825, 606)
 
 [node name="YearOfPlenty" parent="." instance=ExtResource("33_k2n6s")]
-position = Vector2(201, 535)
+position = Vector2(877, 606)
 
 [node name="FreeRoadsCard" parent="." instance=ExtResource("24_tjr3c")]
-position = Vector2(254, 535)
+position = Vector2(930, 606)
 
 [node name="KnightUsed" parent="." instance=ExtResource("29_3rj33")]
-position = Vector2(39, 93)
+position = Vector2(37, 150)
 
 [node name="PointCardUsed" parent="." instance=ExtResource("31_3ldut")]
-position = Vector2(93, 93)
+position = Vector2(91, 150)
 
 [node name="StateMaster" type="Node" parent="." node_paths=PackedStringArray("base")]
 script = ExtResource("13_t7dor")

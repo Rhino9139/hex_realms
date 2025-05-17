@@ -9,7 +9,7 @@ func _init() -> void:
 
 func _ready() -> void:
 	peer = ENetMultiplayerPeer.new()
-	connect_to_host(ServerHost._RYAN_HOST, ServerHost._PORT)
+	connect_to_host(ServerHost._LOCAL_HOST, ServerHost._PORT)
 	multiplayer.connected_to_server.connect(_on_server_connected)
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
 

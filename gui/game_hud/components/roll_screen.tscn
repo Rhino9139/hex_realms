@@ -52,12 +52,14 @@ theme_override_constants/separation = 50
 
 [node name="Die1" type="Label" parent="DiceRow"]
 layout_mode = 2
+size_flags_horizontal = 6
 theme_override_constants/outline_size = 20
 theme_override_font_sizes/font_size = 100
 text = "0"
 
 [node name="Die2" type="Label" parent="DiceRow"]
 layout_mode = 2
+size_flags_horizontal = 6
 theme_override_constants/outline_size = 20
 theme_override_font_sizes/font_size = 100
 text = "0"
