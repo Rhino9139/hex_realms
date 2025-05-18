@@ -102,11 +102,14 @@ func _on_year_of_plenty_used() -> void:
 	var amount: int = Player.LOCAL_PLAYER.year_of_plenty_cards
 	if amount > 0:
 		Player.LOCAL_PLAYER.year_of_plenty_cards -= 1
+		state_changed.emit("YearOfPlentyState")
 
 func _on_free_roads_used() -> void:
 	var amount: int = Player.LOCAL_PLAYER.free_roads_cards
-	if amount > 0:
+	var spots: int = get_tree().get_nodes_in_group("RoadEmpty").size()
+	if amount > 0 and spots >= 2:
 		Player.LOCAL_PLAYER.free_roads_cards -= 1
+		state_changed.emit("FreeRoadsState")
 
 func _on_turn_ended() -> void:
 	state_changed.emit("InactiveState")

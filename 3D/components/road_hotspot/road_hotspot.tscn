@@ -5,7 +5,7 @@
 [ext_resource type="Material" uid="uid://bhs52l6pfbpg7" path="res://3D/materials/player_colors/green.tres" id="3_ph1bp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4fib4"]
-size = Vector3(2.52304, 1.54401, 5.25095)
+size = Vector3(4.52399, 1.54401, 6.24169)
 
 [sub_resource type="BoxMesh" id="BoxMesh_u45lf"]
 size = Vector3(1, 1, 6)
@@ -27,7 +27,7 @@ indicator_model = NodePath("AvailableIndicator")
 neighbor_area = NodePath("NeighborArea")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0427704, 0.272003, -0.150223)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0595388, 0.272003, -0.0777166)
 visible = false
 shape = SubResource("BoxShape3D_4fib4")
 

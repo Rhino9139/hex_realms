@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://dlysvvr1aprdc"]
+[gd_scene load_steps=40 format=3 uid="uid://dlysvvr1aprdc"]
 
 [ext_resource type="Script" uid="uid://cxaj2txgrot0c" path="res://gui/game_hud/game_hud.gd" id="1_2v08g"]
 [ext_resource type="PackedScene" uid="uid://b2i3hhft1o5tt" path="res://2D/resource_cards/player_resource_manager.tscn" id="2_svuxb"]
@@ -34,6 +34,8 @@
 [ext_resource type="PackedScene" uid="uid://dkbj14fu5sllm" path="res://2D/knight_card/knight_used.tscn" id="29_3rj33"]
 [ext_resource type="PackedScene" uid="uid://bsujydwfouxdm" path="res://2D/point_card/point_card_used.tscn" id="31_3ldut"]
 [ext_resource type="PackedScene" uid="uid://btwcse1pwgy8l" path="res://2D/year_of_plenty_card/year_of_plenty.tscn" id="33_k2n6s"]
+[ext_resource type="Script" uid="uid://wkqxsy42lr3a" path="res://gui/game_hud/state_machine/year_of_plenty_state.gd" id="35_3td1n"]
+[ext_resource type="Script" uid="uid://d3jd3b1emllj1" path="res://gui/game_hud/state_machine/free_roads_state.gd" id="36_j7v1d"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ibqqg"]
 bg_color = Color(0.906854, 0.12763, 0.130916, 1)
@@ -321,6 +323,15 @@ metadata/_custom_type_script = "uid://b4n8p8i631us2"
 [node name="CutResourcesState" type="Node" parent="StateMaster" node_paths=PackedStringArray("accept_trade")]
 script = ExtResource("27_ibqqg")
 accept_trade = NodePath("../../SupplyTradePanel/TradeAccept")
+metadata/_custom_type_script = "uid://b4n8p8i631us2"
+
+[node name="YearOfPlentyState" type="Node" parent="StateMaster" node_paths=PackedStringArray("accept_trade")]
+script = ExtResource("35_3td1n")
+accept_trade = NodePath("../../SupplyTradePanel/TradeAccept")
+metadata/_custom_type_script = "uid://b4n8p8i631us2"
+
+[node name="FreeRoadsState" type="Node" parent="StateMaster"]
+script = ExtResource("36_j7v1d")
 metadata/_custom_type_script = "uid://b4n8p8i631us2"
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
