@@ -41,6 +41,9 @@ static func ADD_PLAYER_CARDS() -> void:
 static func GET_ROUND_INDEX() -> int:
 	return MASTER.current_round_index
 
+static func GET_TURN_INDEX() -> int:
+	return MASTER.current_turn_index
+
 func _init() -> void:
 	MASTER = self
 

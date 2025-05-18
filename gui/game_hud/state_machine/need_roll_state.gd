@@ -26,6 +26,10 @@ func _on_roll_button_pressed(roll: int = 0) -> void:
 
 func _on_roll_finished(roll_total: int) -> void:
 	if roll_total == 7:
-		state_changed.emit("RobberMoveState")
+		swap_to_cut.rpc()
 	else:
 		state_changed.emit("ActiveState")
+
+@rpc("any_peer", "call_local")
+func swap_to_cut() -> void:
+	state_changed.emit("CutResourcesState")

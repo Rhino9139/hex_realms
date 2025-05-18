@@ -21,6 +21,10 @@ func make_rand_arrays() -> void:
 
 func roll_dice(_roll: int = 0) -> void:
 	make_rand_arrays()
+	#roll = 7
+	#if roll == 7:
+		#die_1_final = 3
+		#die_2_final = 4
 	share_roll.rpc(die_1_final, die_2_final)
 
 @rpc("any_peer", "call_local")

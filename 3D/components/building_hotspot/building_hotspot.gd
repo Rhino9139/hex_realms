@@ -60,15 +60,16 @@ func build_settlement(player_index: int) -> void:
 			for i in roads:
 				if is_instance_valid(i):
 					i.add_to_group("SetupRoads")
-		if is_instance_valid(ports[0]):
-			var port_index: int = ports[0].type_res.index
-			if port_index == 5:
-				for i in 5:
-					if player.trade_ratios[i] == 4:
-						player.trade_ratios[i] = 3
-			else:
-				player.trade_ratios[ports[0].type_res.index] = 2
-			print("Got Port: ", ports[0].type_res.type)
+		if ports.size() > 0:
+			if is_instance_valid(ports[0]):
+				var port_index: int = ports[0].type_res.index
+				if port_index == 5:
+					for i in 5:
+						if player.trade_ratios[i] == 4:
+							player.trade_ratios[i] = 3
+				else:
+					player.trade_ratios[ports[0].type_res.index] = 2
+				print("Got Port: ", ports[0].type_res.type)
 
 func build_castle(_player_index: int) -> void:
 	current_building = "Castle"

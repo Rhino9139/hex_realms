@@ -26,6 +26,7 @@ func _init() -> void:
 	MASTER = self
 
 func _ready() -> void:
+	
 	if OS.get_cmdline_args().size() > 1:
 		var new_name: String = OS.get_cmdline_args()[1]
 		var new_pos: Vector2 = Vector2(100, 100)

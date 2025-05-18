@@ -56,10 +56,12 @@ func _on_item_bought(item: String) -> void:
 	get_tree().call_group("BuyButton", "check_cost")
 
 func _on_knight_used() -> void:
-	if Player.LOCAL_PLAYER.knight_unused > 0:
-		Player.LOCAL_PLAYER.knight_unused -= 1
-		Player.LOCAL_PLAYER.knight_used += 1
+	var player: Player = Player.LOCAL_PLAYER
+	if player.knight_unused > 0:
+		player.knight_unused -= 1
+		player.knight_used += 1
 		state_changed.emit("RobberMoveState")
+		player.share_knight_count.rpc(player.knight_used)
 
 func _on_point_used() -> void:
 	if Player.LOCAL_PLAYER.point_card_usused > 0:

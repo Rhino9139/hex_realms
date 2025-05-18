@@ -6,6 +6,7 @@ signal road_built
 signal item_bought(item: String)
 
 static var LOCAL_PLAYER: Player
+static var LARGEST_ARMY: int = 2
 
 var player_id: int = 0
 var player_name: String = "New Player"
@@ -132,3 +133,13 @@ func share_name(new_name: String) -> void:
 @rpc("any_peer", "call_remote")
 func share_card_count(card_count: int) -> void:
 	num_cards = card_count
+
+@rpc("any_peer", "call_local")
+func share_knight_count(new_count: int) -> void:
+	knight_used = new_count
+	if knight_used > LARGEST_ARMY:
+		LARGEST_ARMY = knight_used
+		has_largest_army = true
+	for i in MultiplayerManager.RETURN_PLAYERS():
+		if i.knight_used < LARGEST_ARMY:
+			i.has_largest_army = false

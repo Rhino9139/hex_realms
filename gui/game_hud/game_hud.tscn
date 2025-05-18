@@ -318,8 +318,9 @@ supply_button = NodePath("../../UIButtons/SupplyTrade")
 accept_trade = NodePath("../../SupplyTradePanel/TradeAccept")
 metadata/_custom_type_script = "uid://b4n8p8i631us2"
 
-[node name="CutResourcesState" type="Node" parent="StateMaster"]
+[node name="CutResourcesState" type="Node" parent="StateMaster" node_paths=PackedStringArray("accept_trade")]
 script = ExtResource("27_ibqqg")
+accept_trade = NodePath("../../SupplyTradePanel/TradeAccept")
 metadata/_custom_type_script = "uid://b4n8p8i631us2"
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
