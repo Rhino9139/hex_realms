@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b0vwk"]
 size = Vector2(51, 66)
 
-[node name="SupplyResourceManager" type="Node2D" node_paths=PackedStringArray("owned_stack", "trade_stack")]
+[node name="SupplyResourceManager" type="Node2D" node_paths=PackedStringArray("owned_stack", "trade_stack") groups=["SupplyResources"]]
 script = ExtResource("1_re4ed")
 owned_stack = NodePath("OwnedStack")
 trade_stack = NodePath("TradeStack")

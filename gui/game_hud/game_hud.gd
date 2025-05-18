@@ -91,13 +91,6 @@ func end_turn() -> void:
 	else:
 		notify_turn_ended()
 
-#func update_resource_labels() -> void:
-	#brick_label.text = str(Player.LOCAL_PLAYER.resources[0])
-	#ore_label.text = str(Player.LOCAL_PLAYER.resources[1])
-	#sheep_label.text = str(Player.LOCAL_PLAYER.resources[2])
-	#wheat_label.text = str(Player.LOCAL_PLAYER.resources[3])
-	#wood_label.text = str(Player.LOCAL_PLAYER.resources[4])
-
 func _on_end_turn_button_pressed() -> void:
 	end_turn_button.disabled = true
 	end_turn_button.visible = false

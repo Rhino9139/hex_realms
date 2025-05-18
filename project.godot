@@ -42,6 +42,7 @@ RobberAbsent=""
 HasRobber=""
 PlayerResourceCards=""
 ActionCard=""
+SupplyResources=""
 
 [gui]
 

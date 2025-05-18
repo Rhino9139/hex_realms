@@ -16,6 +16,12 @@ func _process(_delta: float) -> void:
 	trade_stack.refresh(trade_amount)
 	Player.LOCAL_PLAYER.trade_add[type.index] = trade_amount
 
+func disable() -> void:
+	visible = false
+
+func enable() -> void:
+	visible = true
+
 func _on_add_click_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton:
 		if event.pressed and event.button_index == 1:

@@ -8,6 +8,8 @@ const _PATH: String = "uid://ds5xamo25scxy"
 @export var point_label: Label
 @export var card_count_label: Label
 @export var knight_count_label: Label
+@export var longest_road: TextureRect
+@export var largest_army: TextureRect
 
 var player: Player
 
@@ -24,6 +26,14 @@ func _process(_delta: float) -> void:
 	card_count_label.text = str(player.num_cards)
 	knight_count_label.text = str(player.knight_used)
 	point_label.text = str(player.total_points)
+	if player.has_longest_road:
+		longest_road.visible = true
+	else:
+		longest_road.visible = false
+	if player.has_largest_army:
+		largest_army.visible = true
+	else:
+		largest_army.visible = false
 
 func check_turn() -> void:
 	turn_arrow.visible = false

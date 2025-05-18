@@ -31,6 +31,8 @@ var monopoly_cards: int = 0
 var free_roads_cards: int = 0
 var year_of_plenty_cards: int = 0
 var total_points: int = 0
+var has_longest_road: bool = false
+var has_largest_army: bool = false
 
 func _ready() -> void:
 	if multiplayer.is_server() == false:
@@ -41,6 +43,9 @@ func _ready() -> void:
 		LOCAL_PLAYER = self
 	player_mat = Global.PLAYER_MATS[get_index()]
 	player_color = player_mat.albedo_color
+
+func _process(_delta: float) -> void:
+	calc_points()
 
 func trade_resources() -> void:
 	for i in 5:
@@ -96,6 +101,13 @@ func change_resource(index: int, amount: int) -> void:
 		num_cards += i
 	if multiplayer.get_unique_id() == player_id:
 		share_card_count.rpc(num_cards)
+
+func calc_points() -> void:
+	total_points = point_card_used + settlement_count + (castle_count * 2)
+	if has_longest_road:
+		total_points += 2
+	if has_largest_army:
+		total_points += 2
 
 @rpc("any_peer")
 func request_id() -> void:
