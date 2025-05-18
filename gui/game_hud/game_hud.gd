@@ -54,7 +54,6 @@ func _ready() -> void:
 
 func add_player_cards() -> void:
 	var player_list: Array = MultiplayerManager.RETURN_PLAYERS()
-	print(player_list)
 	for i in player_list.size():
 		player_card_parent.add_child(PlayerCard.CREATE(player_list[i]))
 

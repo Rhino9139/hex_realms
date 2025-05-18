@@ -69,7 +69,6 @@ func build_settlement(player_index: int) -> void:
 							player.trade_ratios[i] = 3
 				else:
 					player.trade_ratios[ports[0].type_res.index] = 2
-				print("Got Port: ", ports[0].type_res.type)
 
 func build_castle(_player_index: int) -> void:
 	current_building = "Castle"

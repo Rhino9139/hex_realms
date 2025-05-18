@@ -97,6 +97,7 @@ func _on_monopoly_used() -> void:
 	var amount: int = Player.LOCAL_PLAYER.monopoly_cards
 	if amount > 0:
 		Player.LOCAL_PLAYER.monopoly_cards -= 1
+		state_changed.emit("MonopolyState")
 
 func _on_year_of_plenty_used() -> void:
 	var amount: int = Player.LOCAL_PLAYER.year_of_plenty_cards
