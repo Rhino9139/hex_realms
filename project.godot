@@ -42,6 +42,7 @@ PlayerResourceCards=""
 ActionCard=""
 SupplyResources=""
 Hex=""
+MyRoads=""
 
 [gui]
 

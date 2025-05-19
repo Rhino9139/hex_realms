@@ -68,6 +68,7 @@ func build(player_index: int) -> void:
 	get_tree().call_group("RoadEmpty", "make_unavailable")
 	get_tree().call_group("SetupRoads", "make_unavailable")
 	if player == Player.LOCAL_PLAYER:
+		add_to_group("MyRoads")
 		for i in neighbors:
 			if is_instance_valid(i):
 				i.make_reachable()
