@@ -43,7 +43,6 @@ func _on_resource_stolen(target_player: Player) -> void:
 	finish_robber_move()
 
 func finish_robber_move() -> void:
-	screen.resource_stolen.disconnect(_on_resource_stolen)
 	state_changed.emit("ActiveState")
 
 @rpc("any_peer", "call_remote")

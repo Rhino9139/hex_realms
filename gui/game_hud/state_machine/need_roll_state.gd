@@ -10,7 +10,7 @@ func enter() -> void:
 	base.enable_roll()
 
 func exit() -> void:
-	roll_screen.roll_finished.disconnect(_on_roll_finished)
+	#roll_screen.roll_finished.disconnect(_on_roll_finished)
 	base.turn_progress_bar.tint_progress = turn_color
 
 #func _input(event: InputEvent) -> void:

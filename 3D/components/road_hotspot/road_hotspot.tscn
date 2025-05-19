@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://ojj448xhq20k"]
+[gd_scene load_steps=9 format=3 uid="uid://ojj448xhq20k"]
 
 [ext_resource type="Script" uid="uid://d2jr0umsp6yd3" path="res://3D/components/road_hotspot/road_hotspot.gd" id="1_4fib4"]
 [ext_resource type="Material" uid="uid://dnsu2x2mv1386" path="res://3D/materials/road_holo.tres" id="2_4fib4"]
+[ext_resource type="Material" uid="uid://dd6lp3tkgw0lc" path="res://3D/materials/player_colors/yellow.tres" id="2_geh7g"]
 [ext_resource type="Material" uid="uid://bhs52l6pfbpg7" path="res://3D/materials/player_colors/green.tres" id="3_ph1bp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4fib4"]
@@ -25,6 +26,7 @@ script = ExtResource("1_4fib4")
 road_model = NodePath("RoadModel")
 indicator_model = NodePath("AvailableIndicator")
 neighbor_area = NodePath("NeighborArea")
+TEST_MAT = ExtResource("2_geh7g")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0595388, 0.272003, -0.0777166)
