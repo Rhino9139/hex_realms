@@ -80,7 +80,7 @@ func update_hover_raycast(clicked: bool = false) -> void:
 			get_tree().call_group("Empty", "hide_hover")
 			get_tree().call_group("RoadEmpty", "hide_hover")
 			get_tree().call_group("SetupRoads", "hide_hover")
-			get_tree().call_group("RobberAbsent", "hide_hover")
+			get_tree().call_group("Hex", "hide_hover")
 			current_hover = collider
 			current_hover.show_hover()
 		if clicked:
@@ -92,4 +92,4 @@ func update_hover_raycast(clicked: bool = false) -> void:
 		get_tree().call_group("Empty", "hide_hover")
 		get_tree().call_group("RoadEmpty", "hide_hover")
 		get_tree().call_group("SetupRoads", "hide_hover")
-		get_tree().call_group("RobberAbsent", "hide_hover")
+		get_tree().call_group("Hex", "hide_hover")

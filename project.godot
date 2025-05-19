@@ -38,11 +38,10 @@ Castle=""
 RoadEmpty=""
 PlayerCard=""
 SetupRoads=""
-RobberAbsent=""
-HasRobber=""
 PlayerResourceCards=""
 ActionCard=""
 SupplyResources=""
+Hex=""
 
 [gui]
 

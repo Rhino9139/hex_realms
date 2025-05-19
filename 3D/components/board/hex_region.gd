@@ -2,6 +2,7 @@ class_name HexRegion
 extends Area3D
 
 static var HEXES: Array[HexRegion] = []
+static var ROBBER_HEX: HexRegion
 
 const _PATH: String = "uid://coa2enk271cgj"
 const _SIZE: float = 10.0 #8.66 is the model size
@@ -14,6 +15,7 @@ var hex_coord: Vector2i = Vector2i(0, 0)
 var terrain_model: Terrain
 var roll: int = 0
 var building_array: Array[BuildingHotspot] = []
+var neighbor_players: Array[Player] = []
 
 static func CREATE(new_coord: Vector2i = Vector2i(0, 0)) -> HexRegion:
 	var new_region: HexRegion = load(_PATH).instantiate()
@@ -35,8 +37,7 @@ func _ready() -> void:
 	if type == 5:
 		roll = 7
 		Robber.CREATE(global_position)
-		remove_from_group("RobberAbsent")
-		add_to_group("HasRobber")
+		ROBBER_HEX = self
 	else:
 		roll = Global.HEX_ROLLS.pop_at(0)
 		roll_sprite.texture = load(Global.ROLL_SPRITES[roll])
@@ -44,7 +45,7 @@ func _ready() -> void:
 	collision_layer = 0
 
 func number_rolled(rolled_total: int) -> void:
-	if type_res.index == 5:
+	if type_res.index == 5 or ROBBER_HEX == self:
 		return
 	if roll == rolled_total:
 		for i in building_array:
@@ -52,7 +53,8 @@ func number_rolled(rolled_total: int) -> void:
 				i.resource_rolled(type_res.index)
 
 func make_available() -> void:
-	set_collision_layer_value(3, true)
+	if ROBBER_HEX != self:
+		set_collision_layer_value(3, true)
 
 func make_unavailable() -> void:
 	collision_layer = 0
@@ -74,10 +76,16 @@ func add_build_spot(new_spot: BuildingHotspot) -> void:
 		return
 	building_array.append(new_spot)
 
+func get_neighbor_players() -> Array[Player]:
+	neighbor_players = []
+	for i in building_array:
+		if is_instance_valid(i):
+			if i.player != null:
+				if neighbor_players.has(i.player) == false:
+					neighbor_players.append(i.player)
+	return neighbor_players
+
 @rpc("any_peer", "call_local")
 func move_robber() -> void:
-	get_tree().call_group("HasRobber", "add_to_group", "RobberAbsent")
-	get_tree().call_group("HasRobber", "remove_from_group", "HasRobber")
+	ROBBER_HEX = self
 	Robber.MOVE_ROBBER(global_position)
-	add_to_group("HasRobber")
-	remove_from_group("RobberAbsent")

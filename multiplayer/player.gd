@@ -101,7 +101,7 @@ func change_resource(index: int, amount: int) -> void:
 	for i in resources:
 		num_cards += i
 	if multiplayer.get_unique_id() == player_id:
-		share_card_count.rpc(num_cards)
+		share_cards.rpc(resources)
 
 func calc_points() -> void:
 	total_points = point_card_used + settlement_count + (castle_count * 2)
@@ -131,8 +131,12 @@ func share_name(new_name: String) -> void:
 	player_name = new_name
 
 @rpc("any_peer", "call_remote")
-func share_card_count(card_count: int) -> void:
-	num_cards = card_count
+func share_cards(resource_cards: Array[int]) -> void:
+	for i in 5:
+		resources[i] = resource_cards[i]
+	num_cards = 0
+	for i in resources:
+		num_cards += i
 
 @rpc("any_peer", "call_local")
 func share_knight_count(new_count: int) -> void:

@@ -12,10 +12,10 @@ func enter() -> void:
 	screen.type_chosen.connect(_on_type_chosen)
 
 func exit() -> void:
-	if is_instance_valid(screen):
-		screen.type_chosen.disconnect(_on_type_chosen)
+	pass
 
 func _on_type_chosen(type_index: int) -> void:
+	screen.type_chosen.disconnect(_on_type_chosen)
 	print(Global.TYPE_RES[type_index].type)
 	request_resources.rpc(type_index)
 

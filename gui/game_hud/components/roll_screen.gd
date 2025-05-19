@@ -54,5 +54,5 @@ func share_roll(new_die_1: int, new_die_2: int) -> void:
 	tween.tween_property(dice_row, "scale", Vector2.ONE * 0.5, 0.5)
 	tween.parallel().tween_property(dice_row, "position", Vector2(400.0, 576.0), 0.5)
 	await tween.finished
-	get_tree().call_group("RobberAbsent", "number_rolled", total)
+	get_tree().call_group("Hex", "number_rolled", total)
 	roll_finished.emit(total)
