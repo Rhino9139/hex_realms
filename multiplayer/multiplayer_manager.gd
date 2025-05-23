@@ -35,6 +35,12 @@ static func RETURN_PLAYERS() -> Array:
 	MASTER.sort_players()
 	return MASTER.player_array
 
+static func GET_PLAYER(player_id: int) -> Player:
+	for player in RETURN_PLAYERS():
+		if player.player_id == player_id:
+			return player
+	return null
+
 func _init() -> void:
 	MASTER = self
 

@@ -2,6 +2,7 @@ extends State
 
 @export var supply_trade: Button
 @export var action_card_confirm: Button
+@export var player_trade: Button
 @export var knight_card: Area2D
 @export var point_card: Area2D
 @export var monopoly_card: Area2D
@@ -16,6 +17,7 @@ func enter() -> void:
 	point_card.clicked.connect(_on_point_used)
 	knight_card.clicked.connect(_on_knight_used)
 	supply_trade.toggled.connect(_on_supply_trade_toggled)
+	player_trade.toggled.connect(_on_player_trade_started)
 	base.turn_ended.connect(_on_turn_ended)
 	Player.LOCAL_PLAYER.item_bought.connect(_on_item_bought)
 	UIButton.ENABLE_UI()
@@ -33,6 +35,7 @@ func exit() -> void:
 	point_card.clicked.disconnect(_on_point_used)
 	knight_card.clicked.disconnect(_on_knight_used)
 	supply_trade.toggled.disconnect(_on_supply_trade_toggled)
+	player_trade.toggled.disconnect(_on_player_trade_started)
 	base.turn_ended.disconnect(_on_turn_ended)
 	Player.LOCAL_PLAYER.item_bought.disconnect(_on_item_bought)
 	UIButton.DISABLE_UI()
@@ -76,6 +79,10 @@ func _on_card_bought() -> void:
 		server_get_card()
 	else:
 		request_action_card.rpc_id(1)
+
+func _on_player_trade_started(toggled_on: bool) -> void:
+	if toggled_on:
+		state_changed.emit("PlayerTradeState")
 
 func aquire_card(card_index: int) -> void:
 	var player: Player = Player.LOCAL_PLAYER
