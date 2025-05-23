@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://pci83iredw3g" path="res://gui/screens/player_trade/player_trade_offer.gd" id="1_4v8oy"]
 [ext_resource type="PackedScene" uid="uid://d4d1p4l68ffyr" path="res://2D/resource_cards/resource_card.tscn" id="2_ll8hj"]
 
-[node name="PlayerTradeOffer" type="Control" node_paths=PackedStringArray("trader_label", "give_brick_card", "give_sheep_card", "give_ore_card", "give_wheat_card", "give_wood_card", "give_brick_amount", "give_sheep_amount", "give_ore_amount", "give_wheat_amount", "give_wood_amount", "receive_brick_amount", "receive_sheep_amount", "receive_ore_amount", "receive_wheat_amount", "receive_wood_amount")]
+[node name="PlayerTradeOffer" type="Control" node_paths=PackedStringArray("trader_label", "accept_button", "decline_button", "give_brick_card", "give_sheep_card", "give_ore_card", "give_wheat_card", "give_wood_card", "give_brick_amount", "give_sheep_amount", "give_ore_amount", "give_wheat_amount", "give_wood_amount", "receive_brick_amount", "receive_sheep_amount", "receive_ore_amount", "receive_wheat_amount", "receive_wood_amount")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,6 +12,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_4v8oy")
 trader_label = NodePath("TraderLabel")
+accept_button = NodePath("AcceptOffer")
+decline_button = NodePath("DeclineOffer")
 give_brick_card = NodePath("GiveBrick")
 give_sheep_card = NodePath("GiveSheep")
 give_ore_card = NodePath("GiveOre")
@@ -56,6 +58,7 @@ offset_left = 595.0
 offset_top = 420.0
 offset_right = 714.0
 offset_bottom = 451.0
+disabled = true
 text = "Accept Offer"
 
 [node name="DeclineOffer" type="Button" parent="."]

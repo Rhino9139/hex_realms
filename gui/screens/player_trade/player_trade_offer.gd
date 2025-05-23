@@ -1,6 +1,10 @@
 extends Screen
 
+signal trade_closed(id: int, accepted: bool)
+
 @export var trader_label: Label
+@export var accept_button: Button
+@export var decline_button: Button
 @export_group("Cards")
 @export var give_brick_card: ResourceCard
 @export var give_sheep_card: ResourceCard
@@ -37,9 +41,18 @@ func _ready() -> void:
 	receive_ore_amount.text = str(trade_receive[2])
 	receive_wheat_amount.text = str(trade_receive[3])
 	receive_wood_amount.text = str(trade_receive[4])
+	
+	var tradable: bool = true
+	for i in 5:
+		if trade_receive[i] > Player.LOCAL_PLAYER.resources[i]:
+			tradable = false
+	if tradable == false:
+		_on_decline_offer_pressed()
 
 func _on_accept_offer_pressed() -> void:
-	pass # Replace with function body.
+	trade_closed.emit(Player.LOCAL_PLAYER.player_id, true)
+	queue_free()
 
 func _on_decline_offer_pressed() -> void:
+	trade_closed.emit(Player.LOCAL_PLAYER.player_id, false)
 	queue_free()
