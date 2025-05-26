@@ -11,7 +11,7 @@ cam = NodePath("HorizontalPivot/VerticalPivot/Camera")
 [node name="HorizontalPivot" type="Node3D" parent="."]
 
 [node name="VerticalPivot" type="Node3D" parent="HorizontalPivot"]
-transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.874831, 0.484428, 0, -0.484428, 0.874831, 0, 0, 0)
 
 [node name="Camera" type="Camera3D" parent="HorizontalPivot/VerticalPivot"]
-transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195, 0, 0, 60.9288)
+transform = Transform3D(1, 0, 0, 0, 0.996194, 0.0871557, 0, -0.0871557, 0.996194, 0, -1.88999, 71.6475)

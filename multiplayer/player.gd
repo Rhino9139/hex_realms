@@ -36,6 +36,7 @@ var has_longest_road: bool = false
 var has_largest_army: bool = false
 
 func _ready() -> void:
+	MultiplayerManager.NUM_PLAYERS += 1
 	if multiplayer.is_server() == false:
 		request_id.rpc_id(1)
 	elif player_id == 1:
@@ -54,6 +55,11 @@ func trade_resources() -> void:
 		change_resource(i, -trade_remove[i])
 	trade_remove = [0, 0, 0, 0, 0]
 	trade_add = [0, 0, 0, 0, 0]
+
+func manual_trade(add: Array[int], remove: Array[int]) -> void:
+	for i in 5:
+		change_resource(i, add[i])
+		change_resource(i, -remove[i])
 
 func _on_name_changed(new_name: String) -> void:
 	player_name = new_name

@@ -12,9 +12,10 @@ func _ready() -> void:
 	trade_stack.type = type
 
 func _process(_delta: float) -> void:
-	owned_stack.refresh(amount - trade_amount)
-	trade_stack.refresh(trade_amount)
-	Player.LOCAL_PLAYER.trade_add[type.index] = trade_amount
+	if visible:
+		owned_stack.refresh(amount - trade_amount)
+		trade_stack.refresh(trade_amount)
+		Player.LOCAL_PLAYER.trade_add[type.index] = trade_amount
 
 func disable() -> void:
 	visible = false

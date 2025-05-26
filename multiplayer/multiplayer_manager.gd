@@ -22,14 +22,12 @@ static func ADD_PLAYER(new_id: int) -> void:
 	new_player.player_id = new_id
 	new_player.name = str(new_id)
 	MASTER.player_boss.add_child(new_player)
-	NUM_PLAYERS += 1
 
 static func REMOVE_PLAYER(id: int) -> void:
 	for child in MASTER.get_children():
 		if child is Player:
 			if child.player_id == id:
 				child.queue_free()
-				NUM_PLAYERS -= 1
 
 static func RETURN_PLAYERS() -> Array:
 	MASTER.sort_players()

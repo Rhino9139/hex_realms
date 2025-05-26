@@ -50,9 +50,9 @@ func _ready() -> void:
 		_on_decline_offer_pressed()
 
 func _on_accept_offer_pressed() -> void:
-	trade_closed.emit(Player.LOCAL_PLAYER.player_id, true)
+	trade_closed.emit(true)
 	queue_free()
 
 func _on_decline_offer_pressed() -> void:
-	trade_closed.emit(Player.LOCAL_PLAYER.player_id, false)
+	trade_closed.emit(false)
 	queue_free()

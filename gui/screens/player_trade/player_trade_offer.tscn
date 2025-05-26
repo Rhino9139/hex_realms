@@ -58,7 +58,6 @@ offset_left = 595.0
 offset_top = 420.0
 offset_right = 714.0
 offset_bottom = 451.0
-disabled = true
 text = "Accept Offer"
 
 [node name="DeclineOffer" type="Button" parent="."]
