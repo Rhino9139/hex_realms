@@ -1,0 +1,220 @@
+[gd_scene load_steps=3 format=3 uid="uid://ynnsk44tgphk"]
+
+[ext_resource type="Script" uid="uid://pci83iredw3g" path="res://_GUI/screens/player_trade/player_trade_offer.gd" id="1_4v8oy"]
+[ext_resource type="PackedScene" uid="uid://d4d1p4l68ffyr" path="res://_2D/resource_cards/resource_card.tscn" id="2_ll8hj"]
+
+[node name="PlayerTradeOffer" type="Control" node_paths=PackedStringArray("trader_label", "accept_button", "decline_button", "give_brick_card", "give_sheep_card", "give_ore_card", "give_wheat_card", "give_wood_card", "give_brick_amount", "give_sheep_amount", "give_ore_amount", "give_wheat_amount", "give_wood_amount", "receive_brick_amount", "receive_sheep_amount", "receive_ore_amount", "receive_wheat_amount", "receive_wood_amount")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4v8oy")
+trader_label = NodePath("TraderLabel")
+accept_button = NodePath("AcceptOffer")
+decline_button = NodePath("DeclineOffer")
+give_brick_card = NodePath("GiveBrick")
+give_sheep_card = NodePath("GiveSheep")
+give_ore_card = NodePath("GiveOre")
+give_wheat_card = NodePath("GiveWheat")
+give_wood_card = NodePath("GiveWood")
+give_brick_amount = NodePath("GiveBrickLabel")
+give_sheep_amount = NodePath("GiveSheepLabel")
+give_ore_amount = NodePath("GiveOreLabel")
+give_wheat_amount = NodePath("GiveWheatLabel")
+give_wood_amount = NodePath("GiveWoodLabel")
+receive_brick_amount = NodePath("ReceiveBrickLabel")
+receive_sheep_amount = NodePath("ReceiveSheepLabel")
+receive_ore_amount = NodePath("ReceiveOreLabel")
+receive_wheat_amount = NodePath("ReceiveWheatLabel")
+receive_wood_amount = NodePath("ReceiveWoodLabel")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -168.0
+offset_top = -83.0
+offset_right = 168.0
+offset_bottom = 83.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VSeparator" type="VSeparator" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AcceptOffer" type="Button" parent="."]
+layout_mode = 0
+offset_left = 595.0
+offset_top = 420.0
+offset_right = 714.0
+offset_bottom = 451.0
+text = "Accept Offer"
+
+[node name="DeclineOffer" type="Button" parent="."]
+layout_mode = 0
+offset_left = 426.0
+offset_top = 420.0
+offset_right = 545.0
+offset_bottom = 451.0
+text = "Decline Offer"
+
+[node name="TraderLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 417.0
+offset_top = 253.0
+offset_right = 566.0
+offset_bottom = 276.0
+text = "Player1 Gives Away"
+
+[node name="GiveBrick" parent="." instance=ExtResource("2_ll8hj")]
+position = Vector2(426, 334)
+scale = Vector2(0.06, 0.06)
+type_index = 0
+
+[node name="GiveSheep" parent="." instance=ExtResource("2_ll8hj")]
+position = Vector2(454, 334)
+scale = Vector2(0.06, 0.06)
+type_index = 1
+
+[node name="GiveOre" parent="." instance=ExtResource("2_ll8hj")]
+position = Vector2(484, 334)
+scale = Vector2(0.06, 0.06)
+type_index = 2
+
+[node name="GiveWheat" parent="." instance=ExtResource("2_ll8hj")]
+position = Vector2(512, 334)
+scale = Vector2(0.06, 0.06)
+type_index = 3
+
+[node name="GiveWood" parent="." instance=ExtResource("2_ll8hj")]
+position = Vector2(539, 334)
+scale = Vector2(0.06, 0.06)
+type_index = 4
+
+[node name="GiveBrickLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 421.0
+offset_top = 349.0
+offset_right = 431.0
+offset_bottom = 372.0
+text = "0"
+
+[node name="GiveSheepLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 450.0
+offset_top = 349.0
+offset_right = 460.0
+offset_bottom = 372.0
+text = "0"
+
+[node name="GiveOreLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 349.0
+offset_right = 490.0
+offset_bottom = 372.0
+text = "0"
+
+[node name="GiveWheatLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 507.0
+offset_top = 350.0
+offset_right = 517.0
+offset_bottom = 373.0
+text = "0"
+
+[node name="GiveWoodLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 534.0
+offset_top = 350.0
+offset_right = 544.0
+offset_bottom = 373.0
+text = "0"
+
+[node name="ReceiverLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 583.0
+offset_top = 254.0
+offset_right = 732.0
+offset_bottom = 277.0
+text = "You Give Away"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReceiveBrick" parent="." instance=ExtResource("2_ll8hj")]
+position = Vector2(603.74, 335)
+scale = Vector2(0.06, 0.06)
+type_index = 0
+
+[node name="ReceiveSheep" parent="." instance=ExtResource("2_ll8hj")]
+position = Vector2(631.74, 335)
+scale = Vector2(0.06, 0.06)
+type_index = 1
+
+[node name="ReceiveOre" parent="." instance=ExtResource("2_ll8hj")]
+position = Vector2(661.74, 335)
+scale = Vector2(0.06, 0.06)
+type_index = 2
+
+[node name="ReceiveWheat" parent="." instance=ExtResource("2_ll8hj")]
+position = Vector2(689.74, 335)
+scale = Vector2(0.06, 0.06)
+type_index = 3
+
+[node name="ReceiveWood" parent="." instance=ExtResource("2_ll8hj")]
+position = Vector2(716.74, 335)
+scale = Vector2(0.06, 0.06)
+type_index = 4
+
+[node name="ReceiveBrickLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 598.0
+offset_top = 352.0
+offset_right = 608.0
+offset_bottom = 375.0
+text = "0"
+
+[node name="ReceiveSheepLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 627.0
+offset_top = 352.0
+offset_right = 637.0
+offset_bottom = 375.0
+text = "0"
+
+[node name="ReceiveOreLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 657.0
+offset_top = 352.0
+offset_right = 667.0
+offset_bottom = 375.0
+text = "0"
+
+[node name="ReceiveWheatLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 686.0
+offset_top = 352.0
+offset_right = 696.0
+offset_bottom = 375.0
+text = "0"
+
+[node name="ReceiveWoodLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 711.0
+offset_top = 353.0
+offset_right = 721.0
+offset_bottom = 376.0
+text = "0"
+
+[connection signal="pressed" from="AcceptOffer" to="." method="_on_accept_offer_pressed"]
+[connection signal="pressed" from="DeclineOffer" to="." method="_on_decline_offer_pressed"]

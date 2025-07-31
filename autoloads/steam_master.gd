@@ -1,10 +1,10 @@
-extends Node
-
-const _APP_ID: int = 480
-
+#extends Node
+#
+#const _APP_ID: int = 00000
+#
 #func _ready() -> void:
-	#OS.set_environment("SteamAppID", str(480))
-	#OS.set_environment("SteamGameID", str(480))
+	#OS.set_environment("SteamAppID", str(_APP_ID))
+	#OS.set_environment("SteamGameID", str(_APP_ID))
 	#
 	#Steam.steamInit()
 	#

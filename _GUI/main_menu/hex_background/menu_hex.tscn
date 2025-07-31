@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://bg33rxss1n8ba"]
+
+[ext_resource type="Texture2D" uid="uid://bfw77q7wcxhsv" path="res://common/shapes/hexagon_flat.svg" id="1_is4ux"]
+[ext_resource type="Shader" uid="uid://bd3y87rbkobtb" path="res://_GUI/main_menu/hex_background/menu_hex.tres" id="1_kcixu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_41r1p"]
+shader = ExtResource("1_kcixu")
+
+[node name="MenuHex" type="Node2D"]
+
+[node name="MenuHex" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_41r1p")
+rotation = 0.523599
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("1_is4ux")

@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://60364lp76bce"]
+
+[ext_resource type="Script" uid="uid://cwr1n548f52o3" path="res://_MAIN/game.gd" id="1_1d8ik"]
+[ext_resource type="Script" uid="uid://chmasxillij8m" path="res://_MAIN/master_3d.gd" id="2_6cq1h"]
+[ext_resource type="Script" uid="uid://dwiv0u0uoi357" path="res://_MAIN/master_gui.gd" id="4_kbd63"]
+[ext_resource type="Script" uid="uid://cirv36ol5fg2y" path="res://multiplayer/multiplayer_manager.gd" id="5_dapri"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_1d8ik")
+
+[node name="Master3D" type="Node3D" parent="."]
+script = ExtResource("2_6cq1h")
+
+[node name="GuiCanvas" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="MasterGui" type="Control" parent="GuiCanvas"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("4_kbd63")
+
+[node name="MultiplayerManager" type="Node" parent="."]
+script = ExtResource("5_dapri")
+
+[node name="PlayerBoss" type="Node" parent="MultiplayerManager"]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="MultiplayerManager"]
+_spawnable_scenes = PackedStringArray("uid://bu0f2ax5ubopd")
+spawn_path = NodePath("../PlayerBoss")

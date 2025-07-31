@@ -1,0 +1,107 @@
+[gd_scene load_steps=7 format=3 uid="uid://c1gixsxmqfk6c"]
+
+[ext_resource type="Script" uid="uid://bb00f7hhnfyx1" path="res://_GUI/screens/monopoly_screen/monopoly_card_screen.gd" id="1_43ufa"]
+[ext_resource type="PackedScene" uid="uid://d4d1p4l68ffyr" path="res://_2D/resource_cards/resource_card.tscn" id="1_nkwic"]
+
+[sub_resource type="Gradient" id="Gradient_43ufa"]
+colors = PackedColorArray(0, 1, 0, 1, 0.652826, 1, 0.624003, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_t1ycj"]
+gradient = SubResource("Gradient_43ufa")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_43ufa"]
+size = Vector2(366.667, 516.667)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t1ycj"]
+bg_color = Color(0.0352941, 0.717647, 0.0352941, 1)
+
+[node name="MonopolyCardScreen" type="Control" node_paths=PackedStringArray("brick_card", "ore_card", "sheep_card", "wheat_card", "wood_card", "confirm_outline")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_43ufa")
+brick_card = NodePath("Brick")
+ore_card = NodePath("Ore")
+sheep_card = NodePath("Sheep")
+wheat_card = NodePath("Wheat")
+wood_card = NodePath("Wood")
+confirm_outline = NodePath("ConfirmOutline")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 372.0
+offset_top = 247.0
+offset_right = 733.0
+offset_bottom = 400.0
+mouse_filter = 2
+
+[node name="ConfirmOutline" type="Sprite2D" parent="."]
+position = Vector2(476, 299)
+scale = Vector2(0.812499, 1.125)
+texture = SubResource("GradientTexture2D_t1ycj")
+
+[node name="Brick" parent="." instance=ExtResource("1_nkwic")]
+position = Vector2(476, 299)
+
+[node name="BrickArea" type="Area2D" parent="Brick"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Brick/BrickArea"]
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_43ufa")
+
+[node name="Ore" parent="." instance=ExtResource("1_nkwic")]
+position = Vector2(526, 299)
+
+[node name="OreArea" type="Area2D" parent="Ore"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ore/OreArea"]
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_43ufa")
+
+[node name="Sheep" parent="." instance=ExtResource("1_nkwic")]
+position = Vector2(576, 299)
+
+[node name="SheepArea" type="Area2D" parent="Sheep"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sheep/SheepArea"]
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_43ufa")
+
+[node name="Wheat" parent="." instance=ExtResource("1_nkwic")]
+position = Vector2(626, 299)
+
+[node name="WheatArea" type="Area2D" parent="Wheat"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wheat/WheatArea"]
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_43ufa")
+
+[node name="Wood" parent="." instance=ExtResource("1_nkwic")]
+position = Vector2(676, 299)
+
+[node name="WoodArea" type="Area2D" parent="Wood"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wood/WoodArea"]
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_43ufa")
+
+[node name="Confirm" type="Button" parent="."]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 357.0
+offset_right = 601.0
+offset_bottom = 377.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_t1ycj")
+text = "Confirm"
+
+[connection signal="input_event" from="Brick/BrickArea" to="." method="_on_area_clicked" binds= [0]]
+[connection signal="input_event" from="Ore/OreArea" to="." method="_on_area_clicked" binds= [1]]
+[connection signal="input_event" from="Sheep/SheepArea" to="." method="_on_area_clicked" binds= [2]]
+[connection signal="input_event" from="Wheat/WheatArea" to="." method="_on_area_clicked" binds= [3]]
+[connection signal="input_event" from="Wood/WoodArea" to="." method="_on_area_clicked" binds= [4]]
+[connection signal="pressed" from="Confirm" to="." method="_on_confirm_pressed"]

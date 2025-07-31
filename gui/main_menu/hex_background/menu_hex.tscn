@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bg33rxss1n8ba"]
-
-[ext_resource type="Texture2D" uid="uid://bfw77q7wcxhsv" path="res://common/shapes/hexagon_flat.svg" id="1_is4ux"]
-
-[node name="MenuHex" type="Sprite2D"]
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("1_is4ux")

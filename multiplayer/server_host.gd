@@ -9,13 +9,16 @@ static var MAX_PLAYERS: int = 4
 
 var peer: MultiplayerPeer
 
+
 func _init() -> void:
 	MASTER = self
+
 
 func _ready() -> void:
 	name = "ServerHost"
 	peer = ENetMultiplayerPeer.new()
 	start_host()
+
 
 func start_host():
 	peer.create_server(_PORT, MAX_PLAYERS)
@@ -25,9 +28,11 @@ func start_host():
 	print("Hosting on port: ", _PORT)
 	MultiplayerManager.ADD_PLAYER(1)
 
+
 func _on_peer_connected(id: int):
 	print("Player ", id, " connected!")
 	MultiplayerManager.ADD_PLAYER(id)
+
 
 func _on_peer_disconnected(id: int) -> void:
 	print("Player ", id, " disconnected!")

@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://tcs871fcwdsa"]
+
+[ext_resource type="Script" uid="uid://c301cybdi62i" path="res://_3D/components/terrain_scenes/terrain.gd" id="1_t4obl"]
+[ext_resource type="Material" uid="uid://fq11bi1uisg1" path="res://_3D/materials/ore_mat.tres" id="3_n1ylb"]
+[ext_resource type="ArrayMesh" uid="uid://hekk5nakg8xv" path="res://imports/vox_files/ore_mine.vox" id="4_n1ylb"]
+[ext_resource type="ArrayMesh" uid="uid://1iuedors6h4c" path="res://imports/blend_files/hexes/holo_hex_mesh.res" id="5_np0hf"]
+
+[node name="OreTerrain" type="Node3D"]
+script = ExtResource("1_t4obl")
+metadata/_custom_type_script = "uid://c301cybdi62i"
+
+[node name="OreMine" type="MeshInstance3D" parent="."]
+transform = Transform3D(3.6, 0, 0, 0, 3.6, 0, 0, 0, 3.6, -0.183512, -3.36525, 0)
+mesh = ExtResource("4_n1ylb")
+
+[node name="InnerHex" type="MeshInstance3D" parent="."]
+mesh = ExtResource("5_np0hf")
+surface_material_override/0 = ExtResource("3_n1ylb")

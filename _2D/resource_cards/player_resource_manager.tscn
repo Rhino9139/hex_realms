@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2i3hhft1o5tt"]
+
+[ext_resource type="Script" uid="uid://cjt72ywtnplhg" path="res://_2D/resource_cards/player_resource_manager.gd" id="1_b0vwk"]
+[ext_resource type="PackedScene" uid="uid://dfpkyntgfrs8" path="res://_2D/resource_cards/card_stack.tscn" id="2_c5x36"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b0vwk"]
+size = Vector2(51, 66)
+
+[node name="PlayerResourceManager" type="Node2D" node_paths=PackedStringArray("owned_stack", "trade_stack", "add_area", "reduce_area") groups=["PlayerResourceCards"]]
+script = ExtResource("1_b0vwk")
+owned_stack = NodePath("OwnedStack")
+trade_stack = NodePath("TradeStack")
+add_area = NodePath("OwnedStack/AddClick")
+reduce_area = NodePath("TradeStack/ReduceClick")
+
+[node name="OwnedStack" parent="." instance=ExtResource("2_c5x36")]
+
+[node name="AddClick" type="Area2D" parent="OwnedStack"]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OwnedStack/AddClick"]
+position = Vector2(25.5, -3)
+shape = SubResource("RectangleShape2D_b0vwk")
+
+[node name="TradeStack" parent="." instance=ExtResource("2_c5x36")]
+visible = false
+position = Vector2(67, 0)
+
+[node name="ReduceClick" type="Area2D" parent="TradeStack"]
+position = Vector2(-95, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TradeStack/ReduceClick"]
+position = Vector2(120, -3)
+shape = SubResource("RectangleShape2D_b0vwk")
+
+[connection signal="input_event" from="OwnedStack/AddClick" to="." method="_on_add_click_input_event"]
+[connection signal="input_event" from="TradeStack/ReduceClick" to="." method="_on_reduce_click_input_event"]

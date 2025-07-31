@@ -1,0 +1,38 @@
+[gd_scene load_steps=8 format=3 uid="uid://drdu850r37k2i"]
+
+[ext_resource type="Shader" uid="uid://k7umkoj5sm3h" path="res://_3D/shaders/water_shader.tres" id="1_cqmiw"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_cqmiw"]
+noise_type = 3
+frequency = 0.1067
+fractal_type = 2
+fractal_octaves = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6p5wg"]
+seamless = true
+seamless_blend_skirt = 1.0
+noise = SubResource("FastNoiseLite_cqmiw")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6p5wg"]
+noise_type = 3
+frequency = 0.1215
+fractal_type = 2
+fractal_octaves = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_h8srm"]
+seamless = true
+seamless_blend_skirt = 1.0
+noise = SubResource("FastNoiseLite_6p5wg")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6p5wg"]
+render_priority = 0
+shader = ExtResource("1_cqmiw")
+shader_parameter/WaveNoise1 = SubResource("NoiseTexture2D_6p5wg")
+shader_parameter/WaveNoise2 = SubResource("NoiseTexture2D_h8srm")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_i11sn"]
+material = SubResource("ShaderMaterial_6p5wg")
+size = Vector2(2000, 2000)
+
+[node name="Water" type="MeshInstance3D"]
+mesh = SubResource("PlaneMesh_i11sn")

@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://ddayrfad1byx4" path="res://common/icons/resources/wheat.png" id="1_6wq0f"]
 [ext_resource type="Script" uid="uid://ctlendbhxgjxy" path="res://custom/terrain_resources/terrain_res.gd" id="1_vhdor"]
-[ext_resource type="Material" uid="uid://d1f3chw6ljd1r" path="res://3D/materials/wheat_mat.tres" id="2_6pl5g"]
-[ext_resource type="PackedScene" uid="uid://cxbdpnlc2b1rm" path="res://3D/components/terrain_scenes/wheat_terrain.tscn" id="4_0rmo6"]
+[ext_resource type="Material" uid="uid://d1f3chw6ljd1r" path="res://_3D/materials/wheat_mat.tres" id="2_6pl5g"]
+[ext_resource type="PackedScene" uid="uid://cxbdpnlc2b1rm" path="res://_3D/components/terrain_scenes/wheat_terrain.tscn" id="4_0rmo6"]
 
 [resource]
 script = ExtResource("1_vhdor")

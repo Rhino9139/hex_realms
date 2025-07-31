@@ -1,0 +1,59 @@
+[gd_scene load_steps=10 format=3 uid="uid://del6455x1rio1"]
+
+[ext_resource type="Script" uid="uid://bvm0v3l1xnpb3" path="res://_3D/components/building_hotspot/building_hotspot.gd" id="1_ql0ga"]
+[ext_resource type="ArrayMesh" uid="uid://bidbr0bcuk1ut" path="res://imports/blend_files/structures/castle_mesh.res" id="2_v2e2f"]
+[ext_resource type="ArrayMesh" uid="uid://cm8oy0ivr1yx8" path="res://imports/blend_files/structures/settlement_mesh.res" id="3_jrjif"]
+[ext_resource type="Material" uid="uid://bhusjf7o7dpr3" path="res://_3D/materials/light_grey.tres" id="5_jrjif"]
+[ext_resource type="Material" uid="uid://cpvde0u8isi5h" path="res://_3D/shaders/hologram_material.tres" id="7_jrjif"]
+[ext_resource type="Material" uid="uid://bhs52l6pfbpg7" path="res://_3D/materials/player_colors/green.tres" id="8_2pc7y"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_8sy7l"]
+radius = 3.56683
+
+[sub_resource type="TorusMesh" id="TorusMesh_v2e2f"]
+material = ExtResource("8_2pc7y")
+inner_radius = 2.0
+outer_radius = 2.5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bpe7p"]
+radius = 9.0
+
+[node name="BuildingHotspot" type="Area3D" node_paths=PackedStringArray("neighbor_area", "available_indicator", "settlement_model", "castle_model") groups=["Empty"]]
+script = ExtResource("1_ql0ga")
+neighbor_area = NodePath("NeighborArea")
+holo_mat = ExtResource("7_jrjif")
+available_indicator = NodePath("AvailableIndicator")
+settlement_model = NodePath("SettlementModel")
+castle_model = NodePath("CastleModel")
+castle_base_mat = ExtResource("5_jrjif")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.81646, 0)
+shape = SubResource("SphereShape3D_8sy7l")
+debug_color = Color(0, 0.717647, 0.705882, 1)
+
+[node name="AvailableIndicator" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.374704, 0)
+visible = false
+mesh = SubResource("TorusMesh_v2e2f")
+
+[node name="CastleModel" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("2_v2e2f")
+
+[node name="SettlementModel" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+visible = false
+mesh = ExtResource("3_jrjif")
+
+[node name="NeighborArea" type="Area3D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 15
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NeighborArea"]
+shape = SubResource("SphereShape3D_bpe7p")
+debug_color = Color(1, 0.137255, 0.411765, 1)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_entered" from="NeighborArea" to="." method="_on_neighbor_area_area_entered"]

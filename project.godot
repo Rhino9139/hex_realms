@@ -16,8 +16,6 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 
 [autoload]
 
-MasterNetwork="*res://autoloads/master_network.gd"
-SteamMaster="*res://autoloads/steam_master.gd"
 DevMode="*res://autoloads/dev_mode.gd"
 
 [display]
@@ -48,6 +46,8 @@ MyRoads=""
 
 timers/tooltip_delay_sec=0.1
 timers/tooltip_delay_sec.editor_hint=0.25
+theme/custom="uid://dl0v3tmlywawx"
+theme/custom_font="uid://c750bskylts6i"
 
 [input]
 
