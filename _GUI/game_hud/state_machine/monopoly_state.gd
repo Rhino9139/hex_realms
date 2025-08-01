@@ -4,7 +4,7 @@ var screen: Screen
 var responses: int = 0:
 	set(new_value):
 		responses = new_value
-		check_if_finished()
+		#check_if_finished()
 
 func enter() -> void:
 	responses = 0
@@ -19,9 +19,9 @@ func _on_type_chosen(type_index: int) -> void:
 	print(Global.TYPE_RES[type_index].type)
 	request_resources.rpc(type_index)
 
-func check_if_finished() -> void:
-	if responses == MultiplayerManager.NUM_PLAYERS - 1:
-		state_changed.emit("ActiveState")
+#func check_if_finished() -> void:
+	#if responses == MultiplayerManager.NUM_PLAYERS - 1:
+		#state_changed.emit("ActiveState")
 
 @rpc("any_peer", "call_remote")
 func request_resources(type_index: int) -> void:

@@ -104,7 +104,7 @@ func _on_neighbor_area_entered(area: Area3D) -> void:
 
 @rpc("any_peer", "call_local")
 func build(player_index: int) -> void:
-	player = MultiplayerManager.RETURN_PLAYERS()[player_index]
+	#player = MultiplayerManager.RETURN_PLAYERS()[player_index]
 	player.add_road()
 	remove_from_group("RoadEmpty")
 	if is_in_group("SetupRoads"):

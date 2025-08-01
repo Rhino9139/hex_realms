@@ -27,14 +27,8 @@ func _init() -> void:
 	MASTER = self
 
 
-func _ready() -> void:
-	name_input.text = Main.GET_NAME()
-
-
 func _on_start_pressed() -> void:
-	wait_screen.visible = true
-	
-	Main.BEGIN_MATCH_REQUEST.call_deferred()
+	pass
 
 
 func _on_host_pressed() -> void:
@@ -52,4 +46,4 @@ func _on_join_pressed() -> void:
 
 func _on_name_input_text_submitted(new_text: String) -> void:
 	get_viewport().gui_get_focus_owner().release_focus()
-	Main.SET_NAME(new_text)
+	EventBus.local_name_changed.emit(new_text)

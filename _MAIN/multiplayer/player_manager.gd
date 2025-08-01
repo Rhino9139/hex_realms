@@ -1,0 +1,43 @@
+class_name PlayerManager
+extends Node
+
+
+const _PATHS: Dictionary[String, String] = {
+	"Player" : "uid://cjwp661yn28ll",
+}
+
+
+func add_player(new_id: int) -> void:
+	var new_player: Player = load(_PATHS["Player"]).instantiate()
+	new_player.player_id = new_id
+	add_child(new_player)
+
+
+#static func REMOVE_PLAYER(id: int) -> void:
+	#for child in MASTER.get_children():
+		#if child is Player:
+			#if child.player_id == id:
+				#child.queue_free()
+
+
+#static func RETURN_PLAYERS() -> Array:
+	#MASTER.sort_players()
+	#return MASTER.player_array
+
+
+#static func GET_PLAYER(player_id: int) -> Player:
+	#for player in RETURN_PLAYERS():
+		#if player.player_id == player_id:
+			#return player
+	#return null
+
+
+#func sort_players() -> void:
+	#player_array = player_manager.get_children()
+	#player_array.sort_custom(sort_ascending)
+#
+#
+#func sort_ascending(a, b) -> bool:
+	#if a.turn_index < b.turn_index:
+		#return true
+	#return false

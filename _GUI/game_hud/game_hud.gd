@@ -47,15 +47,15 @@ static func GET_TURN_INDEX() -> int:
 func _init() -> void:
 	MASTER = self
 
-func _ready() -> void:
-	for child in MultiplayerManager.RETURN_PLAYERS():
-		if child.player_id == multiplayer.get_unique_id():
-			player = child
+#func _ready() -> void:
+	#for child in MultiplayerManager.RETURN_PLAYERS():
+		#if child.player_id == multiplayer.get_unique_id():
+			#player = child
 
-func add_player_cards() -> void:
-	var player_list: Array = MultiplayerManager.RETURN_PLAYERS()
-	for i in player_list.size():
-		player_card_parent.add_child(PlayerCard.CREATE(player_list[i]))
+#func add_player_cards() -> void:
+	#var player_list: Array = MultiplayerManager.RETURN_PLAYERS()
+	#for i in player_list.size():
+		#player_card_parent.add_child(PlayerCard.CREATE(player_list[i]))
 
 func update_timer_progress(new_value: float) -> void:
 	turn_progress_bar.value = new_value
@@ -109,7 +109,7 @@ func begin_new_turn(turn_index: int, round_index: int) -> void:
 @rpc("any_peer", "call_remote")
 func notify_turn_ended() -> void:
 	current_turn_index += 1
-	if current_turn_index == MultiplayerManager.NUM_PLAYERS:
-		current_turn_index = 0
-		current_round_index += 1
+	#if current_turn_index == MultiplayerManager.NUM_PLAYERS:
+		#current_turn_index = 0
+		#current_round_index += 1
 	begin_new_turn.rpc(current_turn_index, current_round_index)

@@ -65,8 +65,8 @@ func respond_to_offer(accepted: bool) -> void:
 		completed = true
 		player.manual_trade(offer_add, offer_remove)
 		share_trade_confirm.rpc_id(responder_id, offer_remove, offer_add)
-	if num_responded == MultiplayerManager.NUM_PLAYERS - 1:
-		state_changed.emit("ActiveState")
+	#if num_responded == MultiplayerManager.NUM_PLAYERS - 1:
+		#state_changed.emit("ActiveState")
 
 @rpc("any_peer", "call_remote")
 func share_trade_confirm(trade_add: Array[int], trade_remove: Array[int]) -> void:

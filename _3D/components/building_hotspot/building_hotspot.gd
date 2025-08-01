@@ -40,7 +40,7 @@ func starting_resources() -> void:
 
 func build_settlement(player_index: int) -> void:
 	current_building = "Settlement"
-	player = MultiplayerManager.RETURN_PLAYERS()[player_index]
+	#player = MultiplayerManager.RETURN_PLAYERS()[player_index]
 	if player.settlement_count == 1:
 		starting_resources()
 	player.add_settlement()
