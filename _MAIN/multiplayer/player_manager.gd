@@ -1,16 +1,42 @@
 class_name PlayerManager
 extends Node
 
+static var MASTER: PlayerManager
 
 const _PATHS: Dictionary[String, String] = {
 	"Player" : "uid://cjwp661yn28ll",
 }
 
 
+static func GET_PLAYERS() -> Array[Player]:
+	var list: Array[Player]
+	for child in MASTER.get_children():
+		if child is Player:
+			list.append(child)
+	return list
+
+
+func _init() -> void:
+	MASTER = self
+
+
+func _ready() -> void:
+	multiplayer.peer_connected.connect(_on_peer_connected)
+	EventBus.server_created.connect(_on_server_created)
+
+
 func add_player(new_id: int) -> void:
 	var new_player: Player = load(_PATHS["Player"]).instantiate()
 	new_player.player_id = new_id
 	add_child(new_player)
+
+
+func _on_server_created() -> void:
+	add_player(0)
+
+
+func _on_peer_connected(new_id: int) -> void:
+	add_player(new_id)
 
 
 #static func REMOVE_PLAYER(id: int) -> void:

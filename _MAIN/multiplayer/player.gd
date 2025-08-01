@@ -41,7 +41,7 @@ func _ready() -> void:
 	if multiplayer.is_server() == false:
 		request_id.rpc_id(1)
 	elif player_id == 1:
-		player_name
+		player_name = Main.PLAYER_NAME
 		LOCAL_PLAYER = self
 	player_mat = Global.PLAYER_MATS[get_index()]
 	player_color = player_mat.albedo_color

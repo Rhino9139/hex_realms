@@ -1,18 +1,24 @@
 class_name HexMap
 extends Node3D
 
-const PATH: String = "uid://ckg14hym327hj"
+const _PATHS: Dictionary[int, String] = {
+	0 : "uid://ckg14hym327hj",
+}
 
 @export var region_manager: Node3D
 
-static func CREATE() -> HexMap:
-	var new_map: HexMap = load(PATH).instantiate()
+
+static func CREATE(index: int = 0) -> HexMap:
+	var new_map: HexMap = load(_PATHS[index]).instantiate()
 	return new_map
 
+
 func _ready() -> void:
+	add_child(Robber.CREATE())
 	add_hex_regions()
 	await get_tree().create_timer(2.0).timeout
 	get_tree().call_group("Building", "get_neighbors")
+
 
 func add_hex_regions() -> void:
 	#Row 1, 3 hexes

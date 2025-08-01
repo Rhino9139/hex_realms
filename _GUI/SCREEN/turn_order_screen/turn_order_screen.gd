@@ -7,8 +7,9 @@ var num_players: int = 4
 var num_done: int = 0
 var x_pos: float = 0
 
+
 func _ready() -> void:
-	var players: Array = MultiplayerManager.RETURN_PLAYERS()
+	var players: Array[Player] = PlayerManager.GET_PLAYERS()
 	num_players = players.size()
 	for i in num_players:
 		
@@ -21,15 +22,18 @@ func _ready() -> void:
 		new_row.name = str("Player ", i)
 		rows.append(new_row)
 
+
 func reorder_rows() -> void:
 	for i in rows.size():
 		rows[i].move_row(i * 75)
 		rows[i].player.turn_index = i
 
+
 func sort_decending(a, b) -> bool:
 	if a.roll_final > b.roll_final:
 		return true
 	return false
+
 
 func _on_roll_finished() -> void:
 	rows.sort_custom(sort_decending)

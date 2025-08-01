@@ -1,45 +1,24 @@
-class_name MainMenu
-extends Control
-
-const _PATH: String = "uid://w2srhsq0e6wx"
-
-static var MASTER: MainMenu
+extends Menu
 
 @export var start_button: Button
 @export var host_button: Button
 @export var join_button: Button
 @export var name_input: LineEdit
-@export var wait_screen: TextureRect
-
-var tween: Tween
-
-
-static func CREATE() -> MainMenu:
-	var new_menu: MainMenu = load(_PATH).instantiate()
-	return new_menu
-
-
-static func DESTROY() -> void:
-	MASTER.queue_free()
-
-
-func _init() -> void:
-	MASTER = self
 
 
 func _on_start_pressed() -> void:
-	pass
+	EventBus.match_started.emit()
 
 
 func _on_host_pressed() -> void:
-	MultiplayerManager.CREATE_SERVER_HOST()
+	EventBus.server_requested.emit()
 	host_button.disabled = true
 	join_button.disabled = true
 	start_button.disabled = false
 
 
 func _on_join_pressed() -> void:
-	MultiplayerManager.CREATE_CLIENT()
+	EventBus.client_requested.emit()
 	host_button.disabled = true
 	join_button.disabled = true
 

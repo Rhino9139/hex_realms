@@ -39,7 +39,7 @@ func _ready() -> void:
 		add_child(terrain_model)
 	if type == 5:
 		roll = 7
-		Robber.CREATE(global_position)
+		EventBus.move_robber_requested.emit(global_position)
 		ROBBER_HEX = self
 	else:
 		roll = Global.HEX_ROLLS.pop_at(0)
@@ -100,4 +100,4 @@ func get_neighbor_players() -> Array[Player]:
 @rpc("any_peer", "call_local")
 func move_robber() -> void:
 	ROBBER_HEX = self
-	Robber.MOVE_ROBBER(global_position)
+	EventBus.move_robber_requested.emit(global_position)

@@ -1,33 +1,25 @@
 class_name MasterGUI
 extends Control
 
-static var MASTER: MasterGUI
+
+var current_menu: Menu
 
 
-static func START_MENU() -> void:
-	MASTER.add_main_menu()
+func _ready() -> void:
+	EventBus.program_started.connect(_on_program_started)
+	EventBus.match_started.connect(_on_match_started)
 
 
-static func LEAVE_MENUS() -> void:
-	for child in MASTER.get_children():
-		child.queue_free()
+func _on_program_started() -> void:
+	if current_menu:
+		current_menu.queue_free()
+	
+	current_menu = Menu.CREATE(Menu.Types.MAIN)
+	add_child(current_menu)
 
 
-static func ENTER_MATCH() -> void:
-	MASTER.add_game_hud()
-
-
-static func ADD_SCREEN(new_screen: Screen) -> void:
-	MASTER.add_child(new_screen)
-
-
-func _init() -> void:
-	MASTER = self
-
-
-func add_main_menu() -> void:
-	add_child(MainMenu.CREATE())
-
-
-func add_game_hud() -> void:
-	add_child(GameHUD.CREATE())
+func _on_match_started() -> void:
+	if current_menu:
+		current_menu.queue_free()
+	
+	add_child(Screen.CREATE(Screen.Headers.TURN_ORDER))

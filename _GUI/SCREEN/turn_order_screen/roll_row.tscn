@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cx0ndasoeyppx"]
 
-[ext_resource type="Script" uid="uid://8mjjgop0802j" path="res://_GUI/screens/turn_rolling/roll_row.gd" id="1_8cv56"]
+[ext_resource type="Script" uid="uid://8mjjgop0802j" path="res://_GUI/SCREEN/turn_order_screen/roll_row.gd" id="1_8cv56"]
 [ext_resource type="Texture2D" uid="uid://bi2g1fvp40kme" path="res://common/icons/ui_buttons/dice_3D_detailed.svg" id="2_4w2vr"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_bs7s0"]

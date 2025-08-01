@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c1la11wpv2w0f"]
 
-[ext_resource type="Script" uid="uid://skmakoujm2qn" path="res://_GUI/screens/steal_screen/steal_resource_screen.gd" id="1_fxdg0"]
+[ext_resource type="Script" uid="uid://skmakoujm2qn" path="res://_GUI/SCREEN/steal_screen/steal_resource_screen.gd" id="1_fxdg0"]
 
 [node name="StealResourceScreen" type="Control" node_paths=PackedStringArray("p1_button", "p2_button", "p3_button")]
 layout_mode = 3
