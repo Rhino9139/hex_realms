@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b17g86bbvfydc"]
 
-[ext_resource type="Script" uid="uid://c5q6mbwra6jt1" path="res://_GUI/game_hud/components/roll_screen.gd" id="1_a3sve"]
+[ext_resource type="Script" uid="uid://c5q6mbwra6jt1" path="res://_GUI/HUD/components/roll_screen.gd" id="1_a3sve"]
 
 [sub_resource type="Gradient" id="Gradient_a3sve"]
 colors = PackedColorArray(0, 1, 0, 1, 1, 1, 1, 0)

@@ -51,9 +51,9 @@ func post_player_ready() -> void:
 	var id: int = multiplayer.get_remote_sender_id()
 	if players_ready.has(id) == false:
 		players_ready.append(id)
-	#if players_ready.size() == MultiplayerManager.NUM_PLAYERS:
-		#if multiplayer.is_server():
-			#resume_turns.rpc(GameHUD.GET_TURN_INDEX())
+	if players_ready.size() == PlayerManager.GET_NUM_PLAYERS():
+		if multiplayer.is_server():
+			resume_turns.rpc(MatchManager.current_turn)
 
 @rpc("authority", "call_local")
 func resume_turns(turn: int) -> void:

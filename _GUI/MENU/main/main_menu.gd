@@ -6,8 +6,12 @@ extends Menu
 @export var name_input: LineEdit
 
 
+func _ready() -> void:
+	name_input.text = Main.PLAYER_NAME
+
+
 func _on_start_pressed() -> void:
-	EventBus.match_started.emit()
+	EventBus.host_match_started.emit()
 
 
 func _on_host_pressed() -> void:

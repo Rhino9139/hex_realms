@@ -10,6 +10,7 @@ static var LARGEST_ARMY: int = 2
 
 var player_id: int = 0
 var player_name: String = "New Player"
+var player_index: int = 0
 var turn_index: int = -1
 
 var resources: Array[int] = [0, 0, 0, 0, 0]
@@ -37,13 +38,13 @@ var has_largest_army: bool = false
 
 
 func _ready() -> void:
-	#MultiplayerManager.NUM_PLAYERS += 1
-	if multiplayer.is_server() == false:
-		request_id.rpc_id(1)
-	elif player_id == 1:
+	if multiplayer.is_server():
 		player_name = Main.PLAYER_NAME
 		LOCAL_PLAYER = self
-	player_mat = Global.PLAYER_MATS[get_index()]
+	else:
+		request_id.rpc_id(1)
+	player_index = get_index() + 1
+	player_mat = Global.PLAYER_MATS[player_index]
 	player_color = player_mat.albedo_color
 
 
@@ -143,7 +144,7 @@ func request_id() -> void:
 func response_id(new_id: int) -> void:
 	player_id = new_id
 	if player_id == multiplayer.get_unique_id():
-		player_name
+		player_name = Main.PLAYER_NAME
 		share_name.rpc(player_name)
 		LOCAL_PLAYER = self
 
@@ -168,6 +169,6 @@ func share_knight_count(new_count: int) -> void:
 	if knight_used > LARGEST_ARMY:
 		LARGEST_ARMY = knight_used
 		has_largest_army = true
-	#for i in PlayerManager.RETURN_PLAYERS():
-		#if i.knight_used < LARGEST_ARMY:
-			#i.has_largest_army = false
+	for i in PlayerManager.GET_PLAYERS():
+		if i.knight_used < LARGEST_ARMY:
+			i.has_largest_army = false

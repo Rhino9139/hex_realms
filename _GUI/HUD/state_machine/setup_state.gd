@@ -12,7 +12,7 @@ func exit() -> void:
 	base.turn_ended.disconnect(_on_turn_ended)
 	Player.LOCAL_PLAYER.settlement_built.disconnect(_on_settlement_built)
 	Player.LOCAL_PLAYER.road_built.disconnect(_on_road_built)
-	if GameHUD.GET_ROUND_INDEX() == 1:
+	if MatchManager.current_round == 2:
 		get_tree().call_group("Empty", "remove_from_group", "Empty")
 
 func _on_settlement_built() -> void:

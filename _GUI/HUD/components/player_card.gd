@@ -37,5 +37,5 @@ func _process(_delta: float) -> void:
 
 func check_turn() -> void:
 	turn_arrow.visible = false
-	if GameHUD.MASTER.current_turn_index == player.turn_index:
+	if MatchManager.current_turn == player.turn_index:
 		turn_arrow.visible = true

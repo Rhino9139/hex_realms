@@ -16,23 +16,35 @@ static func GET_PLAYERS() -> Array[Player]:
 	return list
 
 
+static func GET_NUM_PLAYERS() -> int:
+	return GET_PLAYERS().size()
+
+
+static func GET_PLAYER_BY_ID(player_id: int) -> Player:
+	for player in GET_PLAYERS():
+		if player.player_id == player_id:
+			return player
+	push_error("Player not found with the ID: ", player_id)
+	return null
+
+
 func _init() -> void:
 	MASTER = self
 
 
 func _ready() -> void:
-	multiplayer.peer_connected.connect(_on_peer_connected)
 	EventBus.server_created.connect(_on_server_created)
 
 
 func add_player(new_id: int) -> void:
 	var new_player: Player = load(_PATHS["Player"]).instantiate()
 	new_player.player_id = new_id
-	add_child(new_player)
+	add_child(new_player, true)
 
 
 func _on_server_created() -> void:
-	add_player(0)
+	multiplayer.peer_connected.connect(_on_peer_connected)
+	add_player(1)
 
 
 func _on_peer_connected(new_id: int) -> void:

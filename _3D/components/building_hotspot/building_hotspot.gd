@@ -21,9 +21,11 @@ var upgrade_spot: Callable = build_settlement
 var holo_mesh: MeshInstance3D
 var current_building: String = "Empty"
 
+
 func _init() -> void:
 	idx = current_index
 	current_index += 1
+
 
 func _ready() -> void:
 	settlement_model.set_surface_override_material(0, holo_mat)
@@ -33,14 +35,16 @@ func _ready() -> void:
 	collision_layer = 0
 	collision_mask = 0
 
+
 func starting_resources() -> void:
 	for i in terrains:
 		if i.type_res.index != 5:
 			player.change_resource(i.type_res.index, 1)
 
-func build_settlement(player_index: int) -> void:
+
+func build_settlement(player_id: int) -> void:
 	current_building = "Settlement"
-	#player = MultiplayerManager.RETURN_PLAYERS()[player_index]
+	player = PlayerManager.GET_PLAYER_BY_ID(player_id)
 	if player.settlement_count == 1:
 		starting_resources()
 	player.add_settlement()
@@ -56,7 +60,7 @@ func build_settlement(player_index: int) -> void:
 			i.queue_free()
 	if player == Player.LOCAL_PLAYER:
 		add_to_group("Settlement")
-		if GameHUD.GET_ROUND_INDEX() <= 1:
+		if MatchManager.current_round <= 2:
 			for i in roads:
 				if is_instance_valid(i):
 					i.add_to_group("SetupRoads")
@@ -70,7 +74,8 @@ func build_settlement(player_index: int) -> void:
 				else:
 					player.trade_ratios[ports[0].type_res.index] = 2
 
-func build_castle(_player_index: int) -> void:
+
+func build_castle(_player_id: int) -> void:
 	current_building = "Castle"
 	player.castle_built()
 	settlement_model.visible = false
@@ -83,19 +88,24 @@ func build_castle(_player_index: int) -> void:
 		remove_from_group("Settlement")
 		add_to_group("Castle")
 
+
 func make_available(_player_id: int) -> void:
 	available_indicator.visible = true
 	collision_layer = 1
+
 
 func make_unavailable() -> void:
 	available_indicator.visible = false
 	collision_layer = 0
 
+
 func show_hover() -> void:
 	settlement_model.visible = true
 
+
 func hide_hover() -> void:
 	settlement_model.visible = false
+
 
 func resource_rolled(type_index: int) -> void:
 	if player == null:
@@ -105,9 +115,11 @@ func resource_rolled(type_index: int) -> void:
 	elif current_building == "Castle":
 		player.change_resource(type_index, 2)
 
+
 func make_reachable() -> void:
 	if player == null:
 		add_to_group("Empty")
+
 
 func _on_area_entered(area: Area3D) -> void:
 	if area is BuildingHotspot:
@@ -115,6 +127,7 @@ func _on_area_entered(area: Area3D) -> void:
 			area.queue_free()
 		else:
 			queue_free()
+
 
 func _on_neighbor_area_area_entered(area: Area3D) -> void:
 	if area is BuildingHotspot:
@@ -131,9 +144,10 @@ func _on_neighbor_area_area_entered(area: Area3D) -> void:
 		if ports.has(area.get_root()) == false:
 			ports.append(area.get_root())
 
+
 @rpc("any_peer", "call_local")
-func build(player_index: int) -> void:
-	upgrade_spot.call(player_index)
+func build(player_id: int) -> void:
+	upgrade_spot.call(player_id)
 	get_tree().call_group("BuyButton", "buy_pressed", null)
 	if is_in_group("Empty"):
 		remove_from_group("Empty")

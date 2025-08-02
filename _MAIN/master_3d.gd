@@ -3,7 +3,7 @@ extends Node3D
 
 
 func _ready() -> void:
-	EventBus.match_started.connect(_on_match_started)
+	EventBus.host_match_started.connect(_on_match_started)
 
 
 func _on_match_started() -> void:

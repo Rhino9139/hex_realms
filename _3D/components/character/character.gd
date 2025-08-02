@@ -87,7 +87,7 @@ func update_hover_raycast(clicked: bool = false) -> void:
 			if collider is HexRegion:
 				current_hover.move_robber.rpc()
 			else:
-				current_hover.build.rpc(Player.LOCAL_PLAYER.turn_index)
+				current_hover.build.rpc(Player.LOCAL_PLAYER.player_id)
 	else:
 		get_tree().call_group("Empty", "hide_hover")
 		get_tree().call_group("RoadEmpty", "hide_hover")

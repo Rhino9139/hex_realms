@@ -13,3 +13,11 @@ const _PATHS: Dictionary[int, String] = {
 static func CREATE(new_header: Screen.Headers) -> Screen:
 	var new_screen: Screen = load(_PATHS[new_header]).instantiate()
 	return new_screen
+
+
+func _ready() -> void:
+	EventBus.board_shared.connect(_on_board_shared)
+
+
+func _on_board_shared() -> void:
+	add_child(Screen.CREATE(Screen.Headers.TURN_ORDER))

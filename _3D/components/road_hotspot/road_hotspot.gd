@@ -23,9 +23,11 @@ var marked: bool = false
 var tail_size: int = 0
 var road_tails: Array[int] = []
 
+
 func _init() -> void:
 	idx = current_index
 	current_index += 1
+
 
 func _ready() -> void:
 	await get_tree().create_timer(2.0).timeout
@@ -36,24 +38,30 @@ func _ready() -> void:
 		if is_instance_valid(neighbors[i]):
 			neighbors_clean.append(neighbors[i])
 
+
 func make_available(_player_id: int) -> void:
 	set_collision_layer_value(2, true)
 	indicator_model.visible = true
+
 
 func make_unavailable() -> void:
 	set_collision_layer_value(2, false)
 	indicator_model.visible = false
 	hide_hover()
 
+
 func show_hover() -> void:
 	road_model.visible = true
+
 
 func hide_hover() -> void:
 	road_model.visible = false
 
+
 func make_reachable() -> void:
 	if player == null:
 		add_to_group("RoadEmpty")
+
 
 func begin_length_search() -> void:
 	var roads: Array[Node] = get_tree().get_nodes_in_group("MyRoads")
@@ -62,6 +70,7 @@ func begin_length_search() -> void:
 			i.chain_length(0, null)
 		get_tree().call_group("MyRoads", "reset_longest")
 	print("Current Longest: ", LONGEST)
+
 
 func chain_length(current_length: int, upstream_segment: RoadHotspot) -> void:
 	tail_segements = []
@@ -78,16 +87,19 @@ func chain_length(current_length: int, upstream_segment: RoadHotspot) -> void:
 		LONGEST = tail_size
 	print(tail_size)
 
+
 func reset_longest() -> void:
 	tail_segements = []
 	marked = false
 	tail_size = 0
+
 
 func reset_ally_neighbors() -> void:
 	ally_neighbors = []
 	for i in neighbors_clean:
 		if i.is_in_group("MyRoads"):
 			ally_neighbors.append(i)
+
 
 func _on_area_entered(area: Area3D) -> void:
 	if area is RoadHotspot:
@@ -96,15 +108,17 @@ func _on_area_entered(area: Area3D) -> void:
 		else:
 			queue_free()
 
+
 func _on_neighbor_area_entered(area: Area3D) -> void:
 	if area == self:
 		return
 	if neighbors.has(area as RoadHotspot) == false:
 		neighbors.append(area as RoadHotspot)
 
+
 @rpc("any_peer", "call_local")
-func build(player_index: int) -> void:
-	#player = MultiplayerManager.RETURN_PLAYERS()[player_index]
+func build(player_id: int) -> void:
+	player = PlayerManager.GET_PLAYER_BY_ID(player_id)
 	player.add_road()
 	remove_from_group("RoadEmpty")
 	if is_in_group("SetupRoads"):

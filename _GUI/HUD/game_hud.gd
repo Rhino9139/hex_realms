@@ -1,12 +1,7 @@
-class_name GameHUD
-extends Control
+extends HUD
 
 signal turn_started(turn_index: int, round_index: int)
 signal turn_ended
-
-const _PATH: String = "uid://dlysvvr1aprdc"
-
-static var MASTER: GameHUD
 
 @export var turn_progress_bar: TextureProgressBar
 @export var roll_button: Button
@@ -23,36 +18,30 @@ static var MASTER: GameHUD
 
 var player: Player
 var bar_tween: Tween
+
 var current_turn_index: int = 0
 var current_round_index: int = 0
 
-static func CREATE() -> GameHUD:
-	var new_hud: GameHUD = load(_PATH).instantiate()
-	return new_hud
 
-static func DESTROY() -> void:
-	MASTER.queue_free()
+#static func ADD_PLAYER_CARDS() -> void:
+	#MASTER.add_player_cards()
+	#if MASTER.multiplayer.is_server():
+		#MASTER.begin_new_turn.rpc(MASTER.current_turn_index, MASTER.current_round_index)
 
-static func ADD_PLAYER_CARDS() -> void:
-	MASTER.add_player_cards()
-	if MASTER.multiplayer.is_server():
-		MASTER.begin_new_turn.rpc(MASTER.current_turn_index, MASTER.current_round_index)
+#static func GET_ROUND_INDEX() -> int:
+	#return MASTER.current_round_index
 
-static func GET_ROUND_INDEX() -> int:
-	return MASTER.current_round_index
+#static func GET_TURN_INDEX() -> int:
+	#return MASTER.current_turn_index
 
-static func GET_TURN_INDEX() -> int:
-	return MASTER.current_turn_index
-
-func _init() -> void:
-	MASTER = self
 
 #func _ready() -> void:
 	#for child in MultiplayerManager.RETURN_PLAYERS():
 		#if child.player_id == multiplayer.get_unique_id():
 			#player = child
 
-#func add_player_cards() -> void:
+func add_player_cards() -> void:
+	pass
 	#var player_list: Array = MultiplayerManager.RETURN_PLAYERS()
 	#for i in player_list.size():
 		#player_card_parent.add_child(PlayerCard.CREATE(player_list[i]))

@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://ccs81bk4s65rk"]
+[gd_scene load_steps=3 format=3 uid="uid://ccs81bk4s65rk"]
 
 [ext_resource type="Script" uid="uid://bkm0fesc6nqyx" path="res://_GUI/SCREEN/turn_order_screen/turn_order_screen.gd" id="1_uexwo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qle5g"]
+bg_color = Color(0.227451, 0.227451, 0.227451, 0.882353)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.888425, 0.888425, 0.888425, 1)
 
 [node name="TurnRollScreen" type="Control" node_paths=PackedStringArray("center_pivot")]
 layout_mode = 3
@@ -26,6 +34,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qle5g")
 
 [node name="CenterPivot" type="Control" parent="Panel"]
 layout_mode = 1

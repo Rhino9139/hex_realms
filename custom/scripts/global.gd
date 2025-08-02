@@ -7,12 +7,12 @@ const _CARD: String = "Card"
 
 static var HOLO_MAT: ShaderMaterial = load("uid://cpvde0u8isi5h")
 
-static var PLAYER_MATS: Array[StandardMaterial3D] = [
-	load("uid://db6xyoo8kvsrv"),
-	load("uid://d1ba7go2vhy1k"),
-	load("uid://dt1yjobw0uctu"),
-	load("uid://dd6lp3tkgw0lc")
-]
+static var PLAYER_MATS: Dictionary[int, StandardMaterial3D] = {
+	1 : load("uid://db6xyoo8kvsrv"),
+	2 : load("uid://d1ba7go2vhy1k"),
+	3 : load("uid://t2cj5x2ybelm"),
+	4 : load("uid://dd6lp3tkgw0lc"),
+}
 
 static var TYPE_RES: Dictionary[int, TerrainType] = {
 	0 : load("uid://03f6o1ggd8di"), #Brick

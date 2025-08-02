@@ -66,7 +66,7 @@ func Castle() -> void:
 	get_tree().call_group("Settlement", "make_available", -1)
 
 func Road() -> void:
-	if GameHUD.GET_ROUND_INDEX() <= 1:
+	if MatchManager.current_round <= 2:
 		get_tree().call_group("SetupRoads",  "make_available", -1)
 	else:
 		get_tree().call_group("RoadEmpty", "make_available", -1)

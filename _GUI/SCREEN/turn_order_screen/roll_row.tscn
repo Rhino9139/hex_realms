@@ -3,44 +3,65 @@
 [ext_resource type="Script" uid="uid://8mjjgop0802j" path="res://_GUI/SCREEN/turn_order_screen/roll_row.gd" id="1_8cv56"]
 [ext_resource type="Texture2D" uid="uid://bi2g1fvp40kme" path="res://common/icons/ui_buttons/dice_3D_detailed.svg" id="2_4w2vr"]
 
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_bs7s0"]
-color = Color(1, 1, 1, 1)
-grow_begin = -5.0
-grow_end = -5.0
-thickness = 6
-vertical = true
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1myd7"]
+bg_color = Color(0.164706, 0.741176, 0.258824, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
-[node name="RollRow" type="HBoxContainer" node_paths=PackedStringArray("name_label", "roll_label", "roll_button")]
+[node name="RollRow" type="HBoxContainer" node_paths=PackedStringArray("name_label", "roll_label", "roll_button", "button_pivot")]
 custom_minimum_size = Vector2(225, 75)
-offset_right = 223.0
+offset_right = 500.0
 offset_bottom = 75.0
 script = ExtResource("1_8cv56")
 name_label = NodePath("NameLabel")
 roll_label = NodePath("RollLabel")
-roll_button = NodePath("Roll")
+roll_button = NodePath("RollPivot/Roll")
+button_pivot = NodePath("RollPivot")
 
-[node name="NameLabel" type="Label" parent="."]
+[node name="RollPivot" type="Control" parent="."]
+visible = false
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "Default"
 
-[node name="VSeparator" type="VSeparator" parent="."]
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_bs7s0")
+[node name="Roll" type="Button" parent="RollPivot"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_1myd7")
+icon = ExtResource("2_4w2vr")
+expand_icon = true
 
 [node name="RollLabel" type="Label" parent="."]
-custom_minimum_size = Vector2(50, 0)
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 35
 text = "00"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Roll" type="Button" parent="."]
-visible = false
-custom_minimum_size = Vector2(50, 50)
+[node name="NameLabel" type="Label" parent="."]
 layout_mode = 2
-icon = ExtResource("2_4w2vr")
-expand_icon = true
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "Default"
 
-[connection signal="pressed" from="Roll" to="." method="_on_roll_pressed"]
+[connection signal="pressed" from="RollPivot/Roll" to="." method="_on_roll_pressed"]

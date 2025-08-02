@@ -12,9 +12,7 @@ func _ready() -> void:
 	var players: Array[Player] = PlayerManager.GET_PLAYERS()
 	num_players = players.size()
 	for i in num_players:
-		
 		var new_row: RollRow = RollRow.CREATE(players[i])
-		
 		center_pivot.add_child(new_row)
 		new_row.position.y = i * 75
 		new_row.position.x = x_pos
@@ -39,7 +37,8 @@ func _on_roll_finished() -> void:
 	rows.sort_custom(sort_decending)
 	num_done += 1
 	if num_done == num_players:
+		await get_tree().create_timer(1.0).timeout
 		reorder_rows()
 		await get_tree().create_timer(2.0).timeout
-		GameHUD.ADD_PLAYER_CARDS()
+		EventBus.turn_order_created.emit()
 		queue_free()
