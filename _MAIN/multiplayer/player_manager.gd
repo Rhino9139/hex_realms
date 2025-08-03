@@ -33,7 +33,7 @@ func _init() -> void:
 
 
 func _ready() -> void:
-	EventBus.server_created.connect(_on_server_created)
+	Events.server_created.connect(_on_server_created)
 
 
 func add_player(new_id: int) -> void:

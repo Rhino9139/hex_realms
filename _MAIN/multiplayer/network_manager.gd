@@ -3,8 +3,8 @@ extends Node
 
 
 func _ready() -> void:
-	EventBus.server_requested.connect(_on_server_host_created)
-	EventBus.client_requested.connect(_on_client_created)
+	Events.server_requested.connect(_on_server_host_created)
+	Events.client_requested.connect(_on_client_created)
 
 
 func _on_server_host_created() -> void:

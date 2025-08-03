@@ -1,9 +1,13 @@
 class_name Global
 
-const _SETTLEMENT: String = "Settlement"
-const _CASTLE: String = "Castle"
-const _ROAD: String = "Road"
-const _CARD: String = "Card"
+enum BuyOptions{SETTLEMENT, CASTLE, ROAD, CARD}
+
+const _BUY_OPTION_NAMES: Dictionary[Global.BuyOptions, String] = {
+	BuyOptions.SETTLEMENT : "Settlement",
+	BuyOptions.CASTLE : "Castle",
+	BuyOptions.ROAD : "Road",
+	BuyOptions.CARD : "Card",
+}
 
 static var HOLO_MAT: ShaderMaterial = load("uid://cpvde0u8isi5h")
 

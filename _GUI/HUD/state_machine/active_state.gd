@@ -46,15 +46,15 @@ func exit() -> void:
 func update(_delta: float) -> void:
 	get_tree().call_group("BuyButton", "check_cost")
 
-func _on_item_bought(item: String) -> void:
+func _on_item_bought(item: Global.BuyOptions) -> void:
 	match item:
-		Global._SETTLEMENT:
+		Global.BuyOptions.SETTLEMENT:
 			Player.LOCAL_PLAYER.pay_settlement()
-		Global._CASTLE:
+		Global.BuyOptions.CASTLE:
 			Player.LOCAL_PLAYER.pay_castle()
-		Global._ROAD:
+		Global.BuyOptions.ROAD:
 			Player.LOCAL_PLAYER.pay_road()
-		Global._CARD:
+		Global.BuyOptions.CARD:
 			Player.LOCAL_PLAYER.pay_card()
 	get_tree().call_group("BuyButton", "check_cost")
 

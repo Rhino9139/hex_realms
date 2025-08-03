@@ -14,7 +14,7 @@ static func CREATE(new_type: HUD.Types) -> HUD:
 
 
 func _ready() -> void:
-	EventBus.turn_order_created.connect(_on_turn_order_created)
+	Events.turn_order_created.connect(_on_turn_order_created)
 
 
 func _on_turn_order_created() -> void:

@@ -3,7 +3,7 @@ extends Node3D
 
 
 func _ready() -> void:
-	EventBus.host_match_started.connect(_on_match_started)
+	Events.host_match_started.connect(_on_match_started)
 
 
 func _on_match_started() -> void:
@@ -32,4 +32,4 @@ func share_board(new_types: Array, new_rolls: Array, new_ports: Array) -> void:
 	add_child(HexMap.CREATE())
 	add_child(Character.CREATE())
 	
-	EventBus.board_shared.emit()
+	Events.board_shared.emit()

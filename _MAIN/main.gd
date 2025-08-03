@@ -6,12 +6,13 @@ static var PLAYER_NAME: String = "New Player"
 
 
 func _ready() -> void:
-	EventBus.local_name_changed.connect(_on_local_name_changed)
+	Events.local_name_changed.connect(_on_local_name_changed)
 	
 	if OS.is_debug_build():
 		DEBUG_setup_multiple_windows()
 	
-	EventBus.program_started.emit()
+	
+	Events.program_started.emit()
 
 
 func DEBUG_setup_multiple_windows() -> void:

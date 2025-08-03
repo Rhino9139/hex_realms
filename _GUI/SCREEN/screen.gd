@@ -16,7 +16,7 @@ static func CREATE(new_header: Screen.Headers) -> Screen:
 
 
 func _ready() -> void:
-	EventBus.board_shared.connect(_on_board_shared)
+	Events.board_shared.connect(_on_board_shared)
 
 
 func _on_board_shared() -> void:

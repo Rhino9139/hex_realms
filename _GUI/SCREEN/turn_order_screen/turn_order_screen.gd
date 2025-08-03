@@ -40,5 +40,5 @@ func _on_roll_finished() -> void:
 		await get_tree().create_timer(1.0).timeout
 		reorder_rows()
 		await get_tree().create_timer(2.0).timeout
-		EventBus.turn_order_created.emit()
+		Events.turn_order_created.emit()
 		queue_free()

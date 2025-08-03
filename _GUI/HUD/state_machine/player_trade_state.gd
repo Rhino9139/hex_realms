@@ -10,6 +10,7 @@ var completed: bool = false
 var offer_add: Array[int]
 var offer_remove: Array[int]
 
+
 func enter() -> void:
 	completed = false
 	num_responded = 0
@@ -21,9 +22,11 @@ func enter() -> void:
 	base.trade_panel.visible = true
 	activate_trade.disabled = false
 
+
 func exit() -> void:
 	player = null
 	player_trade.set_pressed_no_signal(false)
+
 
 func offer_trade() -> void:
 	offer_add = player.trade_add
@@ -35,9 +38,11 @@ func offer_trade() -> void:
 	base.trade_panel.visible = false
 	activate_trade.disabled = true
 
+
 func _on_player_trade_pressed(toggled_on: bool) -> void:
 	if toggled_on:
 		state_changed.emit("ActiveState")
+
 
 func _on_trade_offer_pressed() -> void:
 	offer_trade()
@@ -45,14 +50,16 @@ func _on_trade_offer_pressed() -> void:
 	print(offer_remove)
 	share_trade_offer.rpc(offer_remove, offer_add)
 
+
 func _on_trade_responded(accepted: bool) -> void:
 	respond_to_offer.rpc_id(offer_player_id, accepted)
+
 
 @rpc("any_peer", "call_remote")
 func share_trade_offer(remove: Array[int], add: Array[int]) -> void:
 	offer_player_id = multiplayer.get_remote_sender_id()
-	var screen: Screen = Screen.CREATE_TRADE_OFFER_SCREEN(offer_player_id, remove, add)
-	screen.trade_closed.connect(_on_trade_responded)
+	#TODO create trade offer screen
+
 
 @rpc("any_peer", "call_remote")
 func respond_to_offer(accepted: bool) -> void:
@@ -65,8 +72,9 @@ func respond_to_offer(accepted: bool) -> void:
 		completed = true
 		player.manual_trade(offer_add, offer_remove)
 		share_trade_confirm.rpc_id(responder_id, offer_remove, offer_add)
-	#if num_responded == MultiplayerManager.NUM_PLAYERS - 1:
-		#state_changed.emit("ActiveState")
+	if num_responded == PlayerManager.GET_NUM_PLAYERS() - 1:
+		state_changed.emit("ActiveState")
+
 
 @rpc("any_peer", "call_remote")
 func share_trade_confirm(trade_add: Array[int], trade_remove: Array[int]) -> void:

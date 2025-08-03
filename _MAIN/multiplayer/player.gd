@@ -72,7 +72,7 @@ func _on_name_changed(new_name: String) -> void:
 
 
 func add_settlement() -> void:
-	item_bought.emit(Global._SETTLEMENT)
+	item_bought.emit(Global.BuyOptions.SETTLEMENT)
 	settlement_built.emit()
 	settlement_count += 1
 	settlement_credits -= 1
@@ -84,7 +84,7 @@ func pay_settlement() -> void:
 
 
 func castle_built() -> void:
-	item_bought.emit(Global._CASTLE)
+	item_bought.emit(Global.BuyOptions.CASTLE)
 	settlement_count -= 1
 	castle_count += 1
 
@@ -95,7 +95,7 @@ func pay_castle() -> void:
 
 
 func add_road() -> void:
-	item_bought.emit(Global._ROAD)
+	item_bought.emit(Global.BuyOptions.ROAD)
 	road_built.emit()
 	road_count += 1
 	road_credits -= 1
@@ -107,7 +107,7 @@ func pay_road() -> void:
 
 
 func add_card() -> void:
-	item_bought.emit(Global._CARD)
+	item_bought.emit(Global.BuyOptions.CARD)
 
 
 func pay_card() -> void:

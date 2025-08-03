@@ -4,14 +4,14 @@ var player: Player
 var screen: Screen
 
 func enter() -> void:
-	EventBus.robber_moved.connect(_on_robber_moved)
+	Events.robber_moved.connect(_on_robber_moved)
 	Character.SWAP_TO_HOVER()
 	get_tree().call_group("Hex", "make_available")
 	player = Player.LOCAL_PLAYER
 
 func _on_robber_moved() -> void:
 	get_tree().call_group("Hex", "make_unavailable")
-	EventBus.robber_moved.disconnect(_on_robber_moved)
+	Events.robber_moved.disconnect(_on_robber_moved)
 	Character.SWAP_T0_IDLE()
 	var tradable: bool = false
 	var players: Array[Player] = HexRegion.ROBBER_HEX.get_neighbor_players()
@@ -26,10 +26,10 @@ func _on_robber_moved() -> void:
 			if i.num_cards > 0:
 				tradable = true
 	if tradable:
-		EventBus.robber_steal_activated.emit()
+		Events.robber_steal_activated.emit()
 		#screen = Screen.CREATE_STEAL_SCREEN(players)
 		
-		EventBus.robber_resource_stolen.connect(_on_resource_stolen)
+		Events.robber_resource_stolen.connect(_on_resource_stolen)
 		#screen.resource_stolen.connect(_on_resource_stolen)
 	else:
 		finish_robber_move()

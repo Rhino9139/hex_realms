@@ -17,7 +17,8 @@ static func CREATE(new_type: Menu.Types) -> Menu:
 
 
 func _ready() -> void:
-	EventBus.program_started.connect(_on_program_started)
+	Events.program_started.connect(_on_program_started)
+	Events.board_shared.connect(_on_board_shared)
 
 
 func _on_program_started() -> void:
@@ -26,3 +27,7 @@ func _on_program_started() -> void:
 	
 	current_menu = Menu.CREATE(Menu.Types.MAIN)
 	add_child(current_menu)
+
+
+func _on_board_shared() -> void:
+	current_menu.queue_free()
