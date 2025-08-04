@@ -23,8 +23,8 @@ var road_count: int = 0
 var knight_count: int = 0
 var num_cards: int = 0
 var total_points: int = 0
-var cards_in_hand: Array[Global.CardType]
-var cards_used: Array[Global.CardType]
+var cards_in_hand: Array[Global.ActionCardType]
+var cards_used: Array[Global.ActionCardType]
 
 var has_longest_road: bool = false:
 	set(new_value):
@@ -47,7 +47,7 @@ func _ready() -> void:
 	player_mat = Global.PLAYER_MATS[player_index]
 	player_color = player_mat.albedo_color
 	
-	Events.item_bought.connect(_on_item_bought)
+	EventTower.item_bought.connect(_on_item_bought)
 
 
 func trade_resources() -> void:
@@ -97,12 +97,12 @@ func add_card() -> void:
 	pass
 
 
-func use_card(card_type: Global.CardType) -> void:
+func use_card(card_type: Global.ActionCardType) -> void:
 	cards_in_hand.erase(card_type)
 	cards_used.append(card_type)
 	knight_count = 0
 	for card in cards_used:
-		if card == Global.CardType.KNIGHT:
+		if card == Global.ActionCardType.KNIGHT:
 			knight_count += 1
 	
 	share_knight_count.rpc(knight_count)
@@ -114,23 +114,25 @@ func change_resource(index: int, amount: int) -> void:
 	for value in resources:
 		num_cards += value
 	
-	Events.resources_changed.emit(player_id, resources)
+	EventTower.resources_changed.emit(player_id, resources)
 	
 	if multiplayer.get_unique_id() == player_id:
 		share_cards.rpc(resources)
 
 
-func change_resources(cost: Array[int]) -> void:
-	for i in 5:
-		resources[i] -= cost[i]
-	
-	Events.resources_changed.emit(player_id, resources)
+func change_resources(amount: Array[int], is_added: bool = true) -> void:
+	if is_added:
+		for i in 5:
+			change_resource(i, amount[i])
+	else:
+		for i in 5:
+			change_resource(i, -amount[i])
 
 
 func calculate_points() -> void:
 	var point_cards: int = 0
 	for card in cards_used:
-		if card == Global.CardType.VICTORY_POINT:
+		if card == Global.ActionCardType.VICTORY_POINT:
 			point_cards += 1
 	
 	total_points = point_cards + settlement_count + (castle_count * 2)
@@ -140,7 +142,7 @@ func calculate_points() -> void:
 	if has_largest_army:
 		total_points += 2
 	
-	Events.points_changed.emit()
+	EventTower.points_changed.emit()
 
 
 @rpc("any_peer")

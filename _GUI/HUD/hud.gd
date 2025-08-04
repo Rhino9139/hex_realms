@@ -7,13 +7,13 @@ const _PATHS: Dictionary[int, String] = {
 	Header.GAME : "uid://dlysvvr1aprdc",
 }
 
-var current_hud: HUD
+var current_hud: Control
 
 
 func add_hud(header: HUD.Header) -> void:
 	clear_hud()
 	
-	var new_hud: HUD = load(_PATHS[header]).instantiate()
+	var new_hud: Control = load(_PATHS[header]).instantiate()
 	add_child(new_hud)
 
 

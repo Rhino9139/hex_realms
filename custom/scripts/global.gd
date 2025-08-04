@@ -1,7 +1,7 @@
 class_name Global
 
 enum BuyOption{SETTLEMENT, CASTLE, ROAD, CARD}
-enum CardType{KNIGHT, VICTORY_POINT, YEAR_OF_PLENTY, MONOPOLY, FREE_ROADS}
+enum ActionCardType{KNIGHT, VICTORY_POINT, YEAR_OF_PLENTY, MONOPOLY, FREE_ROADS}
 
 const _BUY_OPTION_NAMES: Dictionary[Global.BuyOption, String] = {
 	BuyOption.SETTLEMENT : "Settlement",
@@ -48,7 +48,7 @@ static var HEX_TYPES: Array[int] = [
 	0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5
 ]
 static var HEX_ROLLS: Array[int] = [
-	2, 3, 3, 4, 4, 5, 5, 6, 6, 8, 8, 9, 9, 10, 10, 11, 11, 12
+	2, 3, 3, 4, 4, 5, 5, 6, 6, 8, 8, 9, 9, 10, 10, 11, 11, 12, 7
 ]
 static var PORT_TYPES: Array[int] = [
 	0, 1, 2, 3, 4, 5, 5, 5, 5

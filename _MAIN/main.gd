@@ -6,18 +6,13 @@ static var PLAYER_NAME: String = "New Player"
 
 
 func _ready() -> void:
-	Events.local_name_changed.connect(_on_local_name_changed)
+	EventTower.local_name_changed.connect(_on_local_name_changed)
 	
 	if OS.is_debug_build():
 		DEBUG_setup_multiple_windows()
 	
-	Events.game_started.emit()
-	
-	Events.local_player.local_player_loaded.connect(test)
-	Events.local_player.local_player_loaded.emit()
+	EventTower.game_opened.emit()
 
-func test() -> void:
-	print("Test object signal")
 
 func DEBUG_setup_multiple_windows() -> void:
 	if OS.get_cmdline_args().size() > 1:

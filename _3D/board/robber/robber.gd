@@ -12,9 +12,9 @@ static func CREATE() -> Robber:
 
 
 func _ready() -> void:
-	Events.move_robber_requested.connect(_on_move_robber_requested)
+	EventTower.move_robber_requested.connect(_on_move_robber_requested)
 
 
 func _on_move_robber_requested(new_pos: Vector3) -> void:
 	global_position = new_pos
-	Events.robber_moved.emit()
+	EventTower.robber_moved.emit()

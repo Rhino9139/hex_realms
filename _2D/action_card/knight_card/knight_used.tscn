@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://dkbj14fu5sllm"]
+
+[ext_resource type="Script" uid="uid://dju8khnmf41vp" path="res://_2D/action_card/knight_card/knight_used.gd" id="1_mxh6q"]
+[ext_resource type="Texture2D" uid="uid://8qvknhn03s7a" path="res://common/shapes/card_outer.svg" id="2_4wn5a"]
+[ext_resource type="Texture2D" uid="uid://blgoh8phcuqpj" path="res://common/shapes/card_inner.svg" id="3_ceinr"]
+
+[sub_resource type="SystemFont" id="SystemFont_dq0cm"]
+font_names = PackedStringArray("Corbel")
+subpixel_positioning = 0
+multichannel_signed_distance_field = true
+
+[sub_resource type="SystemFont" id="SystemFont_dtpcq"]
+font_names = PackedStringArray("Corbel")
+subpixel_positioning = 0
+multichannel_signed_distance_field = true
+
+[node name="KnightUsed" type="Node2D" node_paths=PackedStringArray("amount_label")]
+script = ExtResource("1_mxh6q")
+amount_label = NodePath("Amount")
+
+[node name="OuterSprite" type="Sprite2D" parent="."]
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("2_4wn5a")
+
+[node name="InnerSprite" type="Sprite2D" parent="OuterSprite"]
+modulate = Color(0.250213, 0.250213, 0.250213, 1)
+texture = ExtResource("3_ceinr")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -17.0
+offset_top = -25.0
+offset_right = 17.0
+offset_bottom = -12.75
+theme_override_fonts/font = SubResource("SystemFont_dq0cm")
+theme_override_font_sizes/font_size = 12
+text = "Knight"
+
+[node name="Amount" type="Label" parent="."]
+offset_left = -8.0
+offset_top = -9.0
+offset_right = 8.0
+offset_bottom = 21.625
+theme_override_fonts/font = SubResource("SystemFont_dtpcq")
+theme_override_font_sizes/font_size = 30
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1

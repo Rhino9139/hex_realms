@@ -20,6 +20,7 @@ DevMode="*res://autoloads/dev_mode.gd"
 Events="*res://autoloads/events.gd"
 MatchManager="*res://autoloads/match_manager.gd"
 SignalLens="*res://addons/signal_lens/autoload/signal_lens_autoload.gd"
+EventTower="*res://autoloads/event_tower.gd"
 
 [display]
 

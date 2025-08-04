@@ -28,12 +28,18 @@ static func GET_PLAYER_BY_ID(player_id: int) -> Player:
 	return null
 
 
+static func REMOVE_ALL_PLAYERS() -> void:
+	for child in MASTER.get_children():
+		child.queue_free()
+
+
 func _init() -> void:
 	MASTER = self
 
 
 func _ready() -> void:
-	Events.server_created.connect(_on_server_created)
+	EventTower.server_created.connect(_on_server_created)
+	EventTower.server_destroyed.connect(_on_server_destroyed)
 
 
 func add_player(new_id: int) -> void:
@@ -47,35 +53,9 @@ func _on_server_created() -> void:
 	add_player(1)
 
 
+func _on_server_destroyed() -> void:
+	multiplayer.peer_connected.disconnect(_on_peer_connected)
+
+
 func _on_peer_connected(new_id: int) -> void:
 	add_player(new_id)
-
-
-#static func REMOVE_PLAYER(id: int) -> void:
-	#for child in MASTER.get_children():
-		#if child is Player:
-			#if child.player_id == id:
-				#child.queue_free()
-
-
-#static func RETURN_PLAYERS() -> Array:
-	#MASTER.sort_players()
-	#return MASTER.player_array
-
-
-#static func GET_PLAYER(player_id: int) -> Player:
-	#for player in RETURN_PLAYERS():
-		#if player.player_id == player_id:
-			#return player
-	#return null
-
-
-#func sort_players() -> void:
-	#player_array = player_manager.get_children()
-	#player_array.sort_custom(sort_ascending)
-#
-#
-#func sort_ascending(a, b) -> bool:
-	#if a.turn_index < b.turn_index:
-		#return true
-	#return false

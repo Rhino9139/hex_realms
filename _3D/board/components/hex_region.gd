@@ -1,7 +1,6 @@
 class_name HexRegion
 extends Area3D
 
-static var HEXES: Array[HexRegion] = []
 static var ROBBER_HEX: HexRegion
 
 const _PATH: String = "uid://coa2enk271cgj"
@@ -25,13 +24,9 @@ static func CREATE(new_coord: Vector2i = Vector2i(0, 0)) -> HexRegion:
 	return new_region
 
 
-func _init() -> void:
-	HEXES.append(self)
-
-
 func _ready() -> void:
 	global_position = get_world_coord(hex_coord)
-	var idx: int = HEXES.find(self)
+	var idx: int = get_index()
 	var type: int = Global.HEX_TYPES[idx]
 	type_res = Global.TYPE_RES[type]
 	if type_res.terrain_scene:
@@ -39,10 +34,10 @@ func _ready() -> void:
 		add_child(terrain_model)
 	if type == 5:
 		roll = 7
-		Events.move_robber_requested.emit(global_position)
+		EventTower.move_robber_requested.emit(global_position)
 		ROBBER_HEX = self
 	else:
-		roll = Global.HEX_ROLLS.pop_at(0)
+		roll = Global.HEX_ROLLS[idx]
 		roll_sprite.texture = load(Global.ROLL_SPRITES[roll])
 	await get_tree().create_timer(1.0).timeout
 	collision_layer = 0
@@ -100,4 +95,4 @@ func get_neighbor_players() -> Array[Player]:
 @rpc("any_peer", "call_local")
 func move_robber() -> void:
 	ROBBER_HEX = self
-	Events.move_robber_requested.emit(global_position)
+	EventTower.move_robber_requested.emit(global_position)

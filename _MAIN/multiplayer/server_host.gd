@@ -20,7 +20,7 @@ func start_host():
 	multiplayer.multiplayer_peer = peer
 	multiplayer.peer_connected.connect(_on_peer_connected)
 	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
-	Events.server_created.emit()
+	EventTower.server_created.emit()
 	print("Hosting on port: ", _PORT)
 
 
