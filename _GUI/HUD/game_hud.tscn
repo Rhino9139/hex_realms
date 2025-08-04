@@ -150,25 +150,25 @@ grow_vertical = 0
 
 [node name="BuySettlement" parent="UIButtons" node_paths=PackedStringArray("confirm") instance=ExtResource("7_iwlbn")]
 layout_mode = 2
-type = "Settlement"
+type = null
 confirm = NodePath("../../Confirm")
 
 [node name="BuyCastle" parent="UIButtons" node_paths=PackedStringArray("confirm") instance=ExtResource("7_iwlbn")]
 layout_mode = 2
 icon = ExtResource("8_en8hq")
-type = "Castle"
+type = 1
 confirm = NodePath("../../Confirm")
 
 [node name="BuyRoad" parent="UIButtons" node_paths=PackedStringArray("confirm") instance=ExtResource("7_iwlbn")]
 layout_mode = 2
 icon = ExtResource("10_t7dor")
-type = "Road"
+type = 2
 confirm = NodePath("../../Confirm")
 
 [node name="BuyCard" parent="UIButtons" node_paths=PackedStringArray("confirm") instance=ExtResource("7_iwlbn")]
 layout_mode = 2
 icon = ExtResource("9_iwlbn")
-type = "Card"
+type = 3
 confirm = NodePath("../../Confirm")
 
 [node name="SupplyTrade" type="Button" parent="UIButtons"]

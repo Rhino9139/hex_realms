@@ -14,8 +14,8 @@ static func CREATE(index: int = 0) -> HexMap:
 
 
 func _ready() -> void:
-	add_child(Robber.CREATE())
 	add_hex_regions()
+	
 	await get_tree().create_timer(2.0).timeout
 	get_tree().call_group("Building", "get_neighbors")
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c61bjrs5f08w6"]
 
-[ext_resource type="Script" uid="uid://c301cybdi62i" path="res://_3D/components/terrain_scenes/terrain.gd" id="1_45uhp"]
+[ext_resource type="Script" uid="uid://c301cybdi62i" path="res://_3D/board/terrain_scenes/terrain.gd" id="1_45uhp"]
 [ext_resource type="Material" uid="uid://bjfuru3xc5v3e" path="res://_3D/materials/sheep_mat.tres" id="3_a6vlv"]
 [ext_resource type="ArrayMesh" uid="uid://dk1ubjp7mqm8g" path="res://imports/blend_files/hexes/hex_mesh.res" id="3_x5nyn"]
 [ext_resource type="ArrayMesh" uid="uid://tr8wnquta4hn" path="res://imports/vox_files/sheep.vox" id="4_a6vlv"]
@@ -16,9 +16,10 @@ script = ExtResource("1_45uhp")
 metadata/_custom_type_script = "uid://c301cybdi62i"
 
 [node name="Sheeps" type="MultiMeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.562184, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.062184, 0)
 multimesh = SubResource("MultiMesh_a6vlv")
 
 [node name="HexMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh = ExtResource("3_x5nyn")
 surface_material_override/0 = ExtResource("3_a6vlv")

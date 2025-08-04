@@ -1,21 +1,22 @@
 class_name HUD
 extends Control
 
-enum Types{GAME}
+enum Header{GAME}
 
 const _PATHS: Dictionary[int, String] = {
-	Types.GAME : "uid://dlysvvr1aprdc",
+	Header.GAME : "uid://dlysvvr1aprdc",
 }
 
-
-static func CREATE(new_type: HUD.Types) -> HUD:
-	var new_hud: HUD = load(_PATHS[new_type]).instantiate()
-	return new_hud
+var current_hud: HUD
 
 
-func _ready() -> void:
-	Events.turn_order_created.connect(_on_turn_order_created)
+func add_hud(header: HUD.Header) -> void:
+	clear_hud()
+	
+	var new_hud: HUD = load(_PATHS[header]).instantiate()
+	add_child(new_hud)
 
 
-func _on_turn_order_created() -> void:
-	add_child(HUD.CREATE(HUD.Types.GAME))
+func clear_hud() -> void:
+	if current_hud:
+		current_hud.queue_free()

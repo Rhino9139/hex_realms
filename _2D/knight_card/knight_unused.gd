@@ -5,6 +5,10 @@ signal clicked
 @export var amount_label: Label
 
 
+func _ready() -> void:
+	pass
+
+
 func _process(_delta: float) -> void:
 	var amount: int = Player.LOCAL_PLAYER.knight_unused
 	amount_label.text = str(amount)

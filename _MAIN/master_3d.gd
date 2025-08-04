@@ -14,7 +14,7 @@ func randomize_board() -> void:
 	Global.HEX_TYPES.shuffle()
 	Global.HEX_ROLLS.shuffle()
 	Global.PORT_TYPES.shuffle()
-	Global.ACTION_CARD_TYPES.shuffle()
+	Global.ACTION_CARDS.shuffle()
 	
 	var hex_types: Array = Global.HEX_TYPES
 	var hex_rolls: Array = Global.HEX_ROLLS

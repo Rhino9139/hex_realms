@@ -9,6 +9,7 @@ extends State
 @export var year_of_plenty: Area2D
 @export var free_roads: Area2D
 
+
 func enter() -> void:
 	free_roads.clicked.connect(_on_free_roads_used)
 	year_of_plenty.clicked.connect(_on_year_of_plenty_used)
@@ -27,6 +28,7 @@ func enter() -> void:
 	get_tree().call_group("BuyButton", "check_cost")
 	get_tree().call_group("ActionCard", "activate")
 
+
 func exit() -> void:
 	free_roads.clicked.disconnect(_on_free_roads_used)
 	year_of_plenty.clicked.disconnect(_on_year_of_plenty_used)
@@ -43,20 +45,23 @@ func exit() -> void:
 	base.end_turn_button.visible = false
 	get_tree().call_group("ActionCard", "deactivate")
 
+
 func update(_delta: float) -> void:
 	get_tree().call_group("BuyButton", "check_cost")
 
-func _on_item_bought(item: Global.BuyOptions) -> void:
+
+func _on_item_bought(item: Global.BuyOption) -> void:
 	match item:
-		Global.BuyOptions.SETTLEMENT:
+		Global.BuyOption.SETTLEMENT:
 			Player.LOCAL_PLAYER.pay_settlement()
-		Global.BuyOptions.CASTLE:
+		Global.BuyOption.CASTLE:
 			Player.LOCAL_PLAYER.pay_castle()
-		Global.BuyOptions.ROAD:
+		Global.BuyOption.ROAD:
 			Player.LOCAL_PLAYER.pay_road()
-		Global.BuyOptions.CARD:
+		Global.BuyOption.CARD:
 			Player.LOCAL_PLAYER.pay_card()
 	get_tree().call_group("BuyButton", "check_cost")
+
 
 func _on_knight_used() -> void:
 	var player: Player = Player.LOCAL_PLAYER
@@ -64,12 +69,13 @@ func _on_knight_used() -> void:
 		player.knight_unused -= 1
 		player.knight_used += 1
 		state_changed.emit("RobberMoveState")
-		player.share_knight_count.rpc(player.knight_used)
+
 
 func _on_point_used() -> void:
 	if Player.LOCAL_PLAYER.point_card_usused > 0:
 		Player.LOCAL_PLAYER.point_card_usused -= 1
 		Player.LOCAL_PLAYER.point_card_used += 1
+
 
 func _on_card_bought() -> void:
 	for i in 5:
@@ -80,25 +86,16 @@ func _on_card_bought() -> void:
 	else:
 		request_action_card.rpc_id(1)
 
+
 func _on_player_trade_started(toggled_on: bool) -> void:
 	if toggled_on:
 		state_changed.emit("PlayerTradeState")
 
-func aquire_card(card_index: int) -> void:
+
+func aquire_card(card_index: Global.CardType) -> void:
 	var player: Player = Player.LOCAL_PLAYER
-	match card_index:
-		0:
-			player.knight_unused += 1
-		1:
-			player.point_card_usused += 1
-		2:
-			player.year_of_plenty_cards += 1
-		3:
-			player.monopoly_cards += 1
-		4:
-			player.free_roads_cards += 1
-		null:
-			print("out of cards")
+	player
+
 
 func _on_monopoly_used() -> void:
 	var amount: int = Player.LOCAL_PLAYER.monopoly_cards
@@ -106,11 +103,13 @@ func _on_monopoly_used() -> void:
 		Player.LOCAL_PLAYER.monopoly_cards -= 1
 		state_changed.emit("MonopolyState")
 
+
 func _on_year_of_plenty_used() -> void:
 	var amount: int = Player.LOCAL_PLAYER.year_of_plenty_cards
 	if amount > 0:
 		Player.LOCAL_PLAYER.year_of_plenty_cards -= 1
 		state_changed.emit("YearOfPlentyState")
+
 
 func _on_free_roads_used() -> void:
 	var amount: int = Player.LOCAL_PLAYER.free_roads_cards
@@ -119,22 +118,27 @@ func _on_free_roads_used() -> void:
 		Player.LOCAL_PLAYER.free_roads_cards -= 1
 		state_changed.emit("FreeRoadsState")
 
+
 func _on_turn_ended() -> void:
 	state_changed.emit("InactiveState")
+
 
 func _on_supply_trade_toggled(toggled_on: bool) -> void:
 	if toggled_on:
 		state_changed.emit("SupplyTradeState")
 
+
 func server_get_card() -> void:
-	var card_index: int = Global.ACTION_CARD_TYPES.pop_front()
-	aquire_card(card_index)
+	var card_type: int = Global.ACTION_CARDS.pop_front()
+	aquire_card(card_type)
+
 
 @rpc("any_peer", "call_remote")
 func request_action_card() -> void:
-	var card_index: int = Global.ACTION_CARD_TYPES.pop_front()
+	var card_type: int = Global.ACTION_CARDS.pop_front()
 	var player_id: int = multiplayer.get_remote_sender_id()
-	respond_action_card.rpc_id(player_id, card_index)
+	respond_action_card.rpc_id(player_id, card_type)
+
 
 @rpc("authority", "call_remote")
 func respond_action_card(new_card: int) -> void:

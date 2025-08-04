@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://e81sacjtusa"]
 
-[ext_resource type="Script" uid="uid://c301cybdi62i" path="res://_3D/components/terrain_scenes/terrain.gd" id="1_4avep"]
+[ext_resource type="Script" uid="uid://c301cybdi62i" path="res://_3D/board/terrain_scenes/terrain.gd" id="1_4avep"]
 [ext_resource type="ArrayMesh" uid="uid://dk1ubjp7mqm8g" path="res://imports/blend_files/hexes/hex_mesh.res" id="3_ha67t"]
 [ext_resource type="Material" uid="uid://b6tpt437kk0w6" path="res://_3D/materials/wood_mat.tres" id="3_k7hm3"]
 [ext_resource type="ArrayMesh" uid="uid://dwnrtixao0mnr" path="res://imports/vox_files/tree_1.vox" id="4_k7hm3"]
@@ -16,9 +16,10 @@ script = ExtResource("1_4avep")
 metadata/_custom_type_script = "uid://c301cybdi62i"
 
 [node name="HexMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh = ExtResource("3_ha67t")
 surface_material_override/0 = ExtResource("3_k7hm3")
 
 [node name="Trees" type="MultiMeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.584378, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.084378, 0)
 multimesh = SubResource("MultiMesh_w4orc")

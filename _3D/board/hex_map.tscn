@@ -1,35 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckg14hym327hj"]
+[gd_scene load_steps=3 format=3 uid="uid://ckg14hym327hj"]
 
-[ext_resource type="Script" uid="uid://urfb014eou0t" path="res://_3D/compounds/hex_map.gd" id="1_l6uyn"]
-[ext_resource type="PackedScene" uid="uid://drdu850r37k2i" path="res://_3D/components/environment/water.tscn" id="3_wt58j"]
-[ext_resource type="PackedScene" uid="uid://c7c6bp287ee3d" path="res://_3D/components/board/port.tscn" id="4_qgvmh"]
-
-[sub_resource type="Environment" id="Environment_ypr7u"]
-background_mode = 1
-background_color = Color(0.30986, 0.660791, 0.797127, 1)
-ambient_light_source = 2
-ambient_light_color = Color(1, 1, 1, 1)
-ambient_light_energy = 0.1
+[ext_resource type="Script" uid="uid://urfb014eou0t" path="res://_3D/board/hex_map.gd" id="1_l6uyn"]
+[ext_resource type="PackedScene" uid="uid://c7c6bp287ee3d" path="res://_3D/board/components/port.tscn" id="4_qgvmh"]
 
 [node name="HexMap" type="Node3D" node_paths=PackedStringArray("region_manager")]
 script = ExtResource("1_l6uyn")
 region_manager = NodePath("Regions")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_ypr7u")
-
-[node name="KeyLight" type="DirectionalLight3D" parent="WorldEnvironment"]
-transform = Transform3D(0.823988, -0.406248, 0.394976, 0, 0.69709, 0.716984, -0.566608, -0.590786, 0.574394, 0, 0, 0)
-light_energy = 0.6
-shadow_opacity = 0.51
-
-[node name="BackLight" type="DirectionalLight3D" parent="WorldEnvironment"]
-transform = Transform3D(-0.696213, 0.514676, -0.500395, -2.45567e-08, 0.69709, 0.716984, 0.717835, 0.499174, -0.485324, 0, 0, -1.12294)
-light_energy = 0.2
-
 [node name="Regions" type="Node3D" parent="."]
 
 [node name="Ports" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.679338, 0)
 
 [node name="Port0" parent="Ports" instance=ExtResource("4_qgvmh")]
 transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 32.9612, -0.249992, -24.6897)
@@ -66,6 +47,3 @@ idx = 7
 [node name="Port8" parent="Ports" instance=ExtResource("4_qgvmh")]
 transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 5.65858, -0.249992, -40.5564)
 idx = 8
-
-[node name="Water" parent="." instance=ExtResource("3_wt58j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.8723, 0)

@@ -11,9 +11,13 @@ func _ready() -> void:
 	if OS.is_debug_build():
 		DEBUG_setup_multiple_windows()
 	
+	Events.game_started.emit()
 	
-	Events.program_started.emit()
+	Events.local_player.local_player_loaded.connect(test)
+	Events.local_player.local_player_loaded.emit()
 
+func test() -> void:
+	print("Test object signal")
 
 func DEBUG_setup_multiple_windows() -> void:
 	if OS.get_cmdline_args().size() > 1:

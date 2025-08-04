@@ -1,23 +1,25 @@
 class_name Screen
 extends Control
 
-enum Headers{MONOPOLY, PLAYER_TRADE, STEAL, TURN_ORDER}
+enum Header{MONOPOLY, PLAYER_TRADE, STEAL, TURN_ORDER}
 
 const _PATHS: Dictionary[int, String] = {
-	Headers.MONOPOLY : "uid://c1gixsxmqfk6c",
-	Headers.PLAYER_TRADE : "uid://ynnsk44tgphk",
-	Headers.STEAL : "uid://c1la11wpv2w0f",
-	Headers.TURN_ORDER : "uid://ccs81bk4s65rk",
+	Header.MONOPOLY : "uid://c1gixsxmqfk6c",
+	Header.PLAYER_TRADE : "uid://ynnsk44tgphk",
+	Header.STEAL : "uid://c1la11wpv2w0f",
+	Header.TURN_ORDER : "uid://ccs81bk4s65rk",
 }
 
-static func CREATE(new_header: Screen.Headers) -> Screen:
-	var new_screen: Screen = load(_PATHS[new_header]).instantiate()
-	return new_screen
+var current_screen: Screen
 
 
-func _ready() -> void:
-	Events.board_shared.connect(_on_board_shared)
+func add_screen(header: Screen.Header) -> void:
+	clear_screen()
+	
+	var new_screen: Screen = load(_PATHS[header]).instantiate()
+	add_child(new_screen)
 
 
-func _on_board_shared() -> void:
-	add_child(Screen.CREATE(Screen.Headers.TURN_ORDER))
+func clear_screen() -> void:
+	if current_screen:
+		current_screen.queue_free()

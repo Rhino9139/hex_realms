@@ -4,7 +4,7 @@ extends UIButton
 static var SETTLEMENT_BUY: BuyButton
 static var ROAD_BUY: BuyButton
 
-@export_enum("Settlement", "Castle", "Road", "Card") var type: String
+@export var type: Global.BuyOption
 @export var confirm: Button
 
 var cost: Array[int] = []
@@ -24,7 +24,7 @@ static func DISABLE_ROAD() -> void:
 func _ready() -> void:
 	super()
 	match type:
-		"Settlement":
+		Global.BuyOption:
 			cost = Global.SETTLEMENT_COST
 			SETTLEMENT_BUY = self
 		"Castle":
@@ -46,7 +46,7 @@ func _on_toggled(toggled_on: bool) -> void:
 	confirm.visible = false
 	if toggled_on:
 		get_tree().call_group("BuyButton", "buy_pressed", self)
-		call(type)
+		call(Global._BUY_OPTION_NAMES[type])
 
 func check_cost() -> void:
 	var can_afford: bool = true

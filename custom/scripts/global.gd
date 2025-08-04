@@ -1,32 +1,20 @@
 class_name Global
 
-enum BuyOptions{SETTLEMENT, CASTLE, ROAD, CARD}
+enum BuyOption{SETTLEMENT, CASTLE, ROAD, CARD}
+enum CardType{KNIGHT, VICTORY_POINT, YEAR_OF_PLENTY, MONOPOLY, FREE_ROADS}
 
-const _BUY_OPTION_NAMES: Dictionary[Global.BuyOptions, String] = {
-	BuyOptions.SETTLEMENT : "Settlement",
-	BuyOptions.CASTLE : "Castle",
-	BuyOptions.ROAD : "Road",
-	BuyOptions.CARD : "Card",
+const _BUY_OPTION_NAMES: Dictionary[Global.BuyOption, String] = {
+	BuyOption.SETTLEMENT : "Settlement",
+	BuyOption.CASTLE : "Castle",
+	BuyOption.ROAD : "Road",
+	BuyOption.CARD : "Card",
 }
-
-static var HOLO_MAT: ShaderMaterial = load("uid://cpvde0u8isi5h")
-
-static var PLAYER_MATS: Dictionary[int, StandardMaterial3D] = {
-	1 : load("uid://db6xyoo8kvsrv"),
-	2 : load("uid://d1ba7go2vhy1k"),
-	3 : load("uid://t2cj5x2ybelm"),
-	4 : load("uid://dd6lp3tkgw0lc"),
+const _BUY_COST: Dictionary[Global.BuyOption, Array] = {
+	BuyOption.SETTLEMENT : [1, 0, 1, 1, 1],
+	BuyOption.CASTLE : [0, 3, 0, 2, 0],
+	BuyOption.ROAD : [1, 0, 0, 0, 1],
+	BuyOption.CARD : [0, 1, 1, 1, 0],
 }
-
-static var TYPE_RES: Dictionary[int, TerrainType] = {
-	0 : load("uid://03f6o1ggd8di"), #Brick
-	1 : load("uid://brghdbk4jlcyo"), #Ore
-	2 : load("uid://clhpnv8ji1oud"), #Sheep
-	3 : load("uid://dxj3v0c7du1px"), #Wheat
-	4 : load("uid://cvo8kw33xdrta"), #Wood
-	5 : load("uid://bcuums3me4afe")
-}
-
 const ROLL_SPRITES: Dictionary = {
 	2 : "uid://inbnixypi3tk",
 	3 : "uid://j8fdr2h6cwu5",
@@ -41,28 +29,42 @@ const ROLL_SPRITES: Dictionary = {
 	12 : "uid://qpsusqjkfbux",
 }
 
+static var HOLO_MAT: ShaderMaterial = load("uid://cpvde0u8isi5h")
+static var PLAYER_MATS: Dictionary[int, StandardMaterial3D] = {
+	1 : load("uid://db6xyoo8kvsrv"),
+	2 : load("uid://d1ba7go2vhy1k"),
+	3 : load("uid://t2cj5x2ybelm"),
+	4 : load("uid://dd6lp3tkgw0lc"),
+}
+static var TYPE_RES: Dictionary[int, TerrainType] = {
+	0 : load("uid://03f6o1ggd8di"), #Brick
+	1 : load("uid://brghdbk4jlcyo"), #Ore
+	2 : load("uid://clhpnv8ji1oud"), #Sheep
+	3 : load("uid://dxj3v0c7du1px"), #Wheat
+	4 : load("uid://cvo8kw33xdrta"), #Wood
+	5 : load("uid://bcuums3me4afe")
+}
 static var HEX_TYPES: Array[int] = [
 	0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5
 ]
-
 static var HEX_ROLLS: Array[int] = [
 	2, 3, 3, 4, 4, 5, 5, 6, 6, 8, 8, 9, 9, 10, 10, 11, 11, 12
 ]
-
 static var PORT_TYPES: Array[int] = [
 	0, 1, 2, 3, 4, 5, 5, 5, 5
 ]
-
-static var ACTION_CARD_TYPES: Array[int] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,\
-	1, 1, 1, 1, 1, 2, 2, 3, 3, 4, 4]
-
+static var ACTION_CARDS: Array[int] = [
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 3, 3, 4, 4
+	]
 static var SETTLEMENT_COST: Array[int] = [1, 0, 1, 1, 1]
 static var CASTLE_COST: Array[int] = [0, 3, 0, 2, 0]
 static var ROAD_COST: Array[int] = [1, 0, 0, 0, 1]
 static var CARD_COST: Array[int] = [0, 1, 1, 1, 0]
 
+
 static func MAKE_ROAD_FREE() -> void:
 	ROAD_COST = [0, 0, 0, 0, 0]
+
 
 static func MAKE_ROAD_COST() -> void:
 	ROAD_COST = [1, 0, 0, 0, 1]

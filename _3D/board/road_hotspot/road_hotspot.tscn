@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://ojj448xhq20k"]
 
-[ext_resource type="Script" uid="uid://d2jr0umsp6yd3" path="res://_3D/components/road_hotspot/road_hotspot.gd" id="1_4fib4"]
+[ext_resource type="Script" uid="uid://d2jr0umsp6yd3" path="res://_3D/board/road_hotspot/road_hotspot.gd" id="1_4fib4"]
 [ext_resource type="Material" uid="uid://dnsu2x2mv1386" path="res://_3D/materials/road_holo.tres" id="2_4fib4"]
 [ext_resource type="Material" uid="uid://dd6lp3tkgw0lc" path="res://_3D/materials/player_colors/yellow.tres" id="2_geh7g"]
 [ext_resource type="Material" uid="uid://bhs52l6pfbpg7" path="res://_3D/materials/player_colors/green.tres" id="3_ph1bp"]

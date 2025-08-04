@@ -46,8 +46,6 @@ func _on_player_trade_pressed(toggled_on: bool) -> void:
 
 func _on_trade_offer_pressed() -> void:
 	offer_trade()
-	print(offer_add)
-	print(offer_remove)
 	share_trade_offer.rpc(offer_remove, offer_add)
 
 

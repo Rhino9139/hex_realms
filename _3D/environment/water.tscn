@@ -25,7 +25,7 @@ seamless_blend_skirt = 1.0
 noise = SubResource("FastNoiseLite_6p5wg")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6p5wg"]
-render_priority = 0
+render_priority = -1
 shader = ExtResource("1_cqmiw")
 shader_parameter/WaveNoise1 = SubResource("NoiseTexture2D_6p5wg")
 shader_parameter/WaveNoise2 = SubResource("NoiseTexture2D_h8srm")

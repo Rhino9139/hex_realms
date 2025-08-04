@@ -28,32 +28,27 @@ var current_round_index: int = 0
 	#if MASTER.multiplayer.is_server():
 		#MASTER.begin_new_turn.rpc(MASTER.current_turn_index, MASTER.current_round_index)
 
-#static func GET_ROUND_INDEX() -> int:
-	#return MASTER.current_round_index
+func _ready() -> void:
+	add_player_cards()
 
-#static func GET_TURN_INDEX() -> int:
-	#return MASTER.current_turn_index
-
-
-#func _ready() -> void:
-	#for child in MultiplayerManager.RETURN_PLAYERS():
-		#if child.player_id == multiplayer.get_unique_id():
-			#player = child
 
 func add_player_cards() -> void:
-	pass
-	#var player_list: Array = MultiplayerManager.RETURN_PLAYERS()
-	#for i in player_list.size():
-		#player_card_parent.add_child(PlayerCard.CREATE(player_list[i]))
+	var player_list: Array = PlayerManager.GET_PLAYERS()
+	for i in player_list.size():
+		player_card_parent.add_child(PlayerCard.CREATE(player_list[i]))
+
 
 func update_timer_progress(new_value: float) -> void:
 	turn_progress_bar.value = new_value
 
+
 func enable_roll() -> void:
 	roll_button.disabled = false
 
+
 func disable_roll() -> void:
 	roll_button.disabled = true
+
 
 func activate_timer_bar(new_time: float, type: String) -> void:
 	turn_progress_bar.max_value = new_time
@@ -66,12 +61,15 @@ func activate_timer_bar(new_time: float, type: String) -> void:
 	else:
 		bar_tween.tween_callback(end_turn)
 
+
 func disable_timer() -> void:
 	if bar_tween:
 		bar_tween.kill()
 
+
 func auto_roll() -> void:
 	roll_button.pressed.emit()
+
 
 func end_turn() -> void:
 	disable_timer()
@@ -82,10 +80,12 @@ func end_turn() -> void:
 	else:
 		notify_turn_ended()
 
+
 func _on_end_turn_button_pressed() -> void:
 	end_turn_button.disabled = true
 	end_turn_button.visible = false
 	end_turn()
+
 
 @rpc("authority", "call_local")
 func begin_new_turn(turn_index: int, round_index: int) -> void:
@@ -94,6 +94,7 @@ func begin_new_turn(turn_index: int, round_index: int) -> void:
 	get_tree().call_group("PlayerCard", "check_turn")
 	if turn_index == player.turn_index:
 		turn_started.emit(round_index)
+
 
 @rpc("any_peer", "call_remote")
 func notify_turn_ended() -> void:

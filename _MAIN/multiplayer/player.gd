@@ -1,10 +1,6 @@
 class_name Player
 extends Node
 
-signal settlement_built
-signal road_built
-signal item_bought(item: String)
-
 static var LOCAL_PLAYER: Player
 static var LARGEST_ARMY: int = 2
 
@@ -24,17 +20,21 @@ var player_color: Color
 var settlement_count: int = 0
 var castle_count: int = 0
 var road_count: int = 0
-var knight_unused: int = 0
-var knight_used: int = 0
+var knight_count: int = 0
 var num_cards: int = 0
-var point_card_usused: int = 0
-var point_card_used: int = 0
-var monopoly_cards: int = 0
-var free_roads_cards: int = 0
-var year_of_plenty_cards: int = 0
 var total_points: int = 0
-var has_longest_road: bool = false
-var has_largest_army: bool = false
+var cards_in_hand: Array[Global.CardType]
+var cards_used: Array[Global.CardType]
+
+var has_longest_road: bool = false:
+	set(new_value):
+		has_longest_road = new_value
+		calculate_points()
+
+var has_largest_army: bool = false:
+	set(new_value):
+		has_largest_army = new_value
+		calculate_points()
 
 
 func _ready() -> void:
@@ -46,10 +46,8 @@ func _ready() -> void:
 	player_index = get_index() + 1
 	player_mat = Global.PLAYER_MATS[player_index]
 	player_color = player_mat.albedo_color
-
-
-func _process(_delta: float) -> void:
-	calc_points()
+	
+	Events.item_bought.connect(_on_item_bought)
 
 
 func trade_resources() -> void:
@@ -71,65 +69,78 @@ func _on_name_changed(new_name: String) -> void:
 	share_name.rpc(new_name)
 
 
+func _on_item_bought(new_player_id: int, item_type: Global.BuyOption) -> void:
+	if new_player_id != player_id:
+		return
+	var cost: Array[int] = Global._BUY_COST[item_type] as Array[int]
+	change_resources(cost)
+
+
 func add_settlement() -> void:
-	item_bought.emit(Global.BuyOptions.SETTLEMENT)
-	settlement_built.emit()
 	settlement_count += 1
 	settlement_credits -= 1
+	calculate_points()
 
 
-func pay_settlement() -> void:
-	for i in 5:
-		change_resource(i, -Global.SETTLEMENT_COST[i])
-
-
-func castle_built() -> void:
-	item_bought.emit(Global.BuyOptions.CASTLE)
+func add_castle() -> void:
 	settlement_count -= 1
 	castle_count += 1
-
-
-func pay_castle() -> void:
-	for i in 5:
-		change_resource(i, -Global.CASTLE_COST[i])
+	calculate_points()
 
 
 func add_road() -> void:
-	item_bought.emit(Global.BuyOptions.ROAD)
-	road_built.emit()
 	road_count += 1
 	road_credits -= 1
 
 
-func pay_road() -> void:
-	for i in 5:
-		change_resource(i, -Global.ROAD_COST[i])
-
-
 func add_card() -> void:
-	item_bought.emit(Global.BuyOptions.CARD)
+	pass
 
 
-func pay_card() -> void:
-	for i in 5:
-		change_resource(i, -Global.CARD_COST[i])
+func use_card(card_type: Global.CardType) -> void:
+	cards_in_hand.erase(card_type)
+	cards_used.append(card_type)
+	knight_count = 0
+	for card in cards_used:
+		if card == Global.CardType.KNIGHT:
+			knight_count += 1
+	
+	share_knight_count.rpc(knight_count)
 
 
 func change_resource(index: int, amount: int) -> void:
 	resources[index] += amount
 	num_cards = 0
-	for i in resources:
-		num_cards += i
+	for value in resources:
+		num_cards += value
+	
+	Events.resources_changed.emit(player_id, resources)
+	
 	if multiplayer.get_unique_id() == player_id:
 		share_cards.rpc(resources)
 
 
-func calc_points() -> void:
-	total_points = point_card_used + settlement_count + (castle_count * 2)
+func change_resources(cost: Array[int]) -> void:
+	for i in 5:
+		resources[i] -= cost[i]
+	
+	Events.resources_changed.emit(player_id, resources)
+
+
+func calculate_points() -> void:
+	var point_cards: int = 0
+	for card in cards_used:
+		if card == Global.CardType.VICTORY_POINT:
+			point_cards += 1
+	
+	total_points = point_cards + settlement_count + (castle_count * 2)
+	
 	if has_longest_road:
 		total_points += 2
 	if has_largest_army:
 		total_points += 2
+	
+	Events.points_changed.emit()
 
 
 @rpc("any_peer")
@@ -156,8 +167,7 @@ func share_name(new_name: String) -> void:
 
 @rpc("any_peer", "call_remote")
 func share_cards(resource_cards: Array[int]) -> void:
-	for i in 5:
-		resources[i] = resource_cards[i]
+	resources = resource_cards
 	num_cards = 0
 	for i in resources:
 		num_cards += i
@@ -165,10 +175,10 @@ func share_cards(resource_cards: Array[int]) -> void:
 
 @rpc("any_peer", "call_local")
 func share_knight_count(new_count: int) -> void:
-	knight_used = new_count
-	if knight_used > LARGEST_ARMY:
-		LARGEST_ARMY = knight_used
+	knight_count = new_count
+	if knight_count > LARGEST_ARMY:
+		LARGEST_ARMY = knight_count
 		has_largest_army = true
-	for i in PlayerManager.GET_PLAYERS():
-		if i.knight_used < LARGEST_ARMY:
-			i.has_largest_army = false
+	for player in PlayerManager.GET_PLAYERS():
+		if player.knight_used < LARGEST_ARMY:
+			player.has_largest_army = false
