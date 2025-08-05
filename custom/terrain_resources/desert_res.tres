@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://ptowle3vxt7r" path="res://common/icons/resources/poly.png" id="1_1mcy6"]
 [ext_resource type="Material" uid="uid://dp55vrnvnende" path="res://_3D/materials/desert_mat.tres" id="1_cguvx"]
-[ext_resource type="Script" uid="uid://ctlendbhxgjxy" path="res://custom/terrain_resources/terrain_res.gd" id="1_tphvy"]
-[ext_resource type="PackedScene" uid="uid://bocaxmwxgyws5" path="res://_3D/board/terrain_scenes/desert_terrain.tscn" id="3_86l61"]
+[ext_resource type="Script" uid="uid://ctlendbhxgjxy" path="res://_2D/action_card/terrain_res.gd" id="1_tphvy"]
+[ext_resource type="PackedScene" uid="uid://bocaxmwxgyws5" path="res://_3D/board/terrain/_desert_terrain.tscn" id="3_86l61"]
 
 [resource]
 script = ExtResource("1_tphvy")

@@ -2,6 +2,7 @@ class_name Global
 
 enum BuyOption{SETTLEMENT, CASTLE, ROAD, CARD}
 enum ActionCardType{KNIGHT, VICTORY_POINT, YEAR_OF_PLENTY, MONOPOLY, FREE_ROADS}
+enum Resources{BRICK, ORE, SHEEP, WHEAT, WOOD}
 
 const _BUY_OPTION_NAMES: Dictionary[Global.BuyOption, String] = {
 	BuyOption.SETTLEMENT : "Settlement",
@@ -35,14 +36,6 @@ static var PLAYER_MATS: Dictionary[int, StandardMaterial3D] = {
 	2 : load("uid://d1ba7go2vhy1k"),
 	3 : load("uid://t2cj5x2ybelm"),
 	4 : load("uid://dd6lp3tkgw0lc"),
-}
-static var TYPE_RES: Dictionary[int, TerrainType] = {
-	0 : load("uid://03f6o1ggd8di"), #Brick
-	1 : load("uid://brghdbk4jlcyo"), #Ore
-	2 : load("uid://clhpnv8ji1oud"), #Sheep
-	3 : load("uid://dxj3v0c7du1px"), #Wheat
-	4 : load("uid://cvo8kw33xdrta"), #Wood
-	5 : load("uid://bcuums3me4afe")
 }
 static var HEX_TYPES: Array[int] = [
 	0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5

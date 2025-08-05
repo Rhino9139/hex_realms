@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="TerrainType" load_steps=5 format=3 uid="uid://03f6o1ggd8di"]
 
 [ext_resource type="Texture2D" uid="uid://821wyrwyqror" path="res://common/icons/resources/brick.png" id="1_2pmai"]
-[ext_resource type="Script" uid="uid://ctlendbhxgjxy" path="res://custom/terrain_resources/terrain_res.gd" id="1_j6lq5"]
+[ext_resource type="Script" uid="uid://ctlendbhxgjxy" path="res://_2D/action_card/terrain_res.gd" id="1_j6lq5"]
 [ext_resource type="Material" uid="uid://ddftnmdjynn7l" path="res://_3D/materials/brick_mat.tres" id="2_nncrr"]
-[ext_resource type="PackedScene" uid="uid://bdxeiyt4fltk8" path="res://_3D/board/terrain_scenes/brick_terrain.tscn" id="4_07xfw"]
+[ext_resource type="PackedScene" uid="uid://bdxeiyt4fltk8" path="res://_3D/board/terrain/_brick_terrain.tscn" id="4_07xfw"]
 
 [resource]
 script = ExtResource("1_j6lq5")

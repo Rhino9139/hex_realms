@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://chmasxillij8m" path="res://_MAIN/master_3d.gd" id="4_hhsx1"]
 [ext_resource type="PackedScene" uid="uid://drdu850r37k2i" path="res://_3D/environment/water.tscn" id="5_0djke"]
 [ext_resource type="Script" uid="uid://dwiv0u0uoi357" path="res://_MAIN/master_gui.gd" id="5_tdj4x"]
-[ext_resource type="PackedScene" uid="uid://c7c6bp287ee3d" path="res://_3D/board/components/port.tscn" id="6_0djke"]
+[ext_resource type="PackedScene" uid="uid://c7c6bp287ee3d" path="res://_3D/port/port.tscn" id="6_0djke"]
 [ext_resource type="Script" uid="uid://urfb014eou0t" path="res://_3D/board/board.gd" id="6_2k1gh"]
 [ext_resource type="Script" uid="uid://cjamklsqyhwh5" path="res://_GUI/MENU/menu.gd" id="6_hhsx1"]
 [ext_resource type="Script" uid="uid://d1n5rqi6aeqi5" path="res://_GUI/HUD/hud.gd" id="7_tdj4x"]

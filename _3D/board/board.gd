@@ -1,6 +1,9 @@
 class_name Board
 extends Node3D
 
+static var HEX_TYPES: Array[int] = [
+	0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5
+]
 
 func _ready() -> void:
 	EventTower.add_board_requested.connect(_on_add_board_requested)
@@ -47,21 +50,22 @@ func _on_destroy_board_requested() -> void:
 
 
 func _on_generate_board_requested() -> void:
-	Global.HEX_TYPES.shuffle()
-	Global.HEX_ROLLS.shuffle()
-	Global.PORT_TYPES.shuffle()
-	Global.ACTION_CARDS.shuffle()
+	Terrain.TYPE_ARRAY.shuffle()
 	
-	var hex_types: Array = Global.HEX_TYPES
+	#Global.HEX_ROLLS.shuffle()
+	#Global.PORT_TYPES.shuffle()
+	#Global.ACTION_CARDS.shuffle()
+	
+	var terrain_types: Array[Terrain.Type] = Terrain.TYPE_ARRAY
 	var hex_rolls: Array = Global.HEX_ROLLS
 	var port_types: Array = Global.PORT_TYPES
 	
-	share_board.rpc(hex_types, hex_rolls, port_types)
+	share_board.rpc(terrain_types, hex_rolls, port_types)
 
 
 @rpc("authority", "call_local")
-func share_board(new_types: Array, new_rolls: Array, new_ports: Array) -> void:
-	Global.HEX_TYPES = new_types
+func share_board(new_terrain: Array, new_rolls: Array, new_ports: Array) -> void:
+	Terrain.TYPE_ARRAY = new_terrain
 	Global.HEX_ROLLS = new_rolls
 	Global.PORT_TYPES = new_ports
 	

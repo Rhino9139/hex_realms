@@ -1,6 +1,5 @@
-[gd_scene load_steps=6 format=3 uid="uid://cxbdpnlc2b1rm"]
+[gd_scene load_steps=5 format=3 uid="uid://cxbdpnlc2b1rm"]
 
-[ext_resource type="Script" uid="uid://c301cybdi62i" path="res://_3D/board/terrain_scenes/terrain.gd" id="1_yqu3j"]
 [ext_resource type="ArrayMesh" uid="uid://dk1ubjp7mqm8g" path="res://imports/blend_files/hexes/hex_mesh.res" id="3_bmam4"]
 [ext_resource type="Material" uid="uid://d1f3chw6ljd1r" path="res://_3D/materials/wheat_mat.tres" id="3_qapip"]
 [ext_resource type="ArrayMesh" uid="uid://cytkje01kll4o" path="res://imports/vox_files/wheat.vox" id="4_qapip"]
@@ -15,8 +14,6 @@ item/0/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 
 item/0/navigation_layers = 1
 
 [node name="WheatTerrain" type="Node3D"]
-script = ExtResource("1_yqu3j")
-metadata/_custom_type_script = "uid://c301cybdi62i"
 
 [node name="GridMap" type="GridMap" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

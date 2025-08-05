@@ -1,6 +1,5 @@
-[gd_scene load_steps=6 format=3 uid="uid://c61bjrs5f08w6"]
+[gd_scene load_steps=5 format=3 uid="uid://c61bjrs5f08w6"]
 
-[ext_resource type="Script" uid="uid://c301cybdi62i" path="res://_3D/board/terrain_scenes/terrain.gd" id="1_45uhp"]
 [ext_resource type="Material" uid="uid://bjfuru3xc5v3e" path="res://_3D/materials/sheep_mat.tres" id="3_a6vlv"]
 [ext_resource type="ArrayMesh" uid="uid://dk1ubjp7mqm8g" path="res://imports/blend_files/hexes/hex_mesh.res" id="3_x5nyn"]
 [ext_resource type="ArrayMesh" uid="uid://tr8wnquta4hn" path="res://imports/vox_files/sheep.vox" id="4_a6vlv"]
@@ -12,8 +11,6 @@ mesh = ExtResource("4_a6vlv")
 buffer = PackedFloat32Array(0.103235, 0, -0.332304, -5.3108, 0, 0.347971, 0, 0.560119, 0.332304, 0, 0.103235, -1.52433, -0.336887, 0, 0.218503, 2.12051, 0, 0.401543, 0, 0.560119, -0.218503, 0, -0.336887, 6.0434, 0.646537, 0, -0.263837, -2.52059, 0, 0.698298, 0, 0.560119, 0.263837, 0, 0.646537, 2.23569, 0.244396, 0, 0.115069, 3.32792, 0, 0.270131, 0, 0.560119, -0.115069, 0, 0.244396, -1.55508, 0.287904, 0, -0.071306, 0.0963989, 0, 0.296603, 0, 0.560119, 0.071306, 0, 0.287904, -1.08489, 0.698617, 0, 0.23484, -4.92218, 0, 0.737032, 0, 0.560119, -0.23484, 0, 0.698617, 0.544044, 0.0389545, 0, 0.753871, -4.54767, 0, 0.754877, 0, 0.560119, -0.753871, 0, 0.0389545, 4.97293, 0.365551, 0, -0.0422135, -2.10427, 0, 0.36798, 0, 0.560119, 0.0422135, 0, 0.365551, -3.65891, -0.167606, 0, -0.208638, 4.8496, 0, 0.267622, 0, 0.560119, 0.208638, 0, -0.167606, -1.81117, -0.0800941, 0, 0.693649, 4.82374, 0, 0.698258, 0, 0.560119, -0.693649, 0, -0.0800941, 0.787924)
 
 [node name="SheepTerrain" type="Node3D"]
-script = ExtResource("1_45uhp")
-metadata/_custom_type_script = "uid://c301cybdi62i"
 
 [node name="Sheeps" type="MultiMeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.062184, 0)

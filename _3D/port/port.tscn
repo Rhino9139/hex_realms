@@ -2,10 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://cfk8k251nclrm" path="res://imports/blend_files/structures/port_v1.blend" id="1_cvhol"]
 [ext_resource type="Material" uid="uid://dlx508kc77hgm" path="res://_3D/materials/dock_wood_1.tres" id="2_ghy8w"]
-[ext_resource type="Script" uid="uid://fqbstw0wq1i3" path="res://_3D/board/components/port.gd" id="2_qlobu"]
+[ext_resource type="Script" uid="uid://fqbstw0wq1i3" path="res://_3D/port/port.gd" id="2_qlobu"]
 [ext_resource type="Material" uid="uid://bbkaacxhqahpn" path="res://_3D/materials/dock_wood_2.tres" id="3_n1pyi"]
 [ext_resource type="ArrayMesh" uid="uid://d4nw630e1m601" path="res://imports/blend_files/structures/sailboat_mesh.res" id="6_srmjm"]
-[ext_resource type="Script" uid="uid://cblo3hduisukh" path="res://_3D/board/components/port_area.gd" id="7_8372c"]
+[ext_resource type="Script" uid="uid://cblo3hduisukh" path="res://_3D/port/port_area.gd" id="7_8372c"]
 [ext_resource type="Texture2D" uid="uid://ddayrfad1byx4" path="res://common/icons/resources/wheat.png" id="7_aq3pp"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_srmjm"]
