@@ -15,7 +15,7 @@
 
 [sub_resource type="Environment" id="Environment_tdj4x"]
 background_mode = 1
-background_color = Color(0.30986, 0.660791, 0.797127, 1)
+background_color = Color(0.264879, 0.70058, 1, 1)
 ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 0.1
@@ -51,49 +51,49 @@ transform = Transform3D(-0.696213, 0.514676, -0.500395, -2.45567e-08, 0.69709, 0
 light_energy = 0.2
 
 [node name="Water" parent="Master3D/Environment" instance=ExtResource("5_0djke")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Board" type="Node3D" parent="Master3D"]
 script = ExtResource("6_2k1gh")
 metadata/_custom_type_script = "uid://urfb014eou0t"
 
 [node name="Port" type="Node3D" parent="Master3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.679338, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 
 [node name="Port0" parent="Master3D/Port" instance=ExtResource("6_0djke")]
-transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 32.9612, -0.249992, -24.6897)
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 31.9603, -0.249992, -23.0608)
 idx = 0
 
 [node name="Port1" parent="Master3D/Port" instance=ExtResource("6_0djke")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.1241, -0.249992, -0.0166683)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.783, -0.249992, 0.371235)
 idx = 1
 
 [node name="Port2" parent="Master3D/Port" instance=ExtResource("6_0djke")]
-transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 32.3029, -0.249992, 24.3494)
+transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 31.1075, -0.249992, 23.5174)
 idx = 2
 
 [node name="Port3" parent="Master3D/Port" instance=ExtResource("6_0djke")]
-transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 4.73718, -0.249992, 40.6196)
+transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 4.19246, -0.249992, 39.0078)
 idx = 3
 
 [node name="Port4" parent="Master3D/Port" instance=ExtResource("6_0djke")]
-transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -23.1303, -0.249992, 39.4961)
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -22.355, -0.249992, 38.6191)
 idx = 4
 
 [node name="Port5" parent="Master3D/Port" instance=ExtResource("6_0djke")]
-transform = Transform3D(-1, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -1, -37.2365, -0.249992, 16.3381)
+transform = Transform3D(-1, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -1, -36.0232, -0.249992, 15.2807)
 idx = 5
 
 [node name="Port6" parent="Master3D/Port" instance=ExtResource("6_0djke")]
-transform = Transform3D(-1, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -1, -37.4239, -0.249992, -16.7359)
+transform = Transform3D(-1, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -1, -36.0763, -0.249992, -15.7829)
 idx = 6
 
 [node name="Port7" parent="Master3D/Port" instance=ExtResource("6_0djke")]
-transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, -22.88, -0.25, -40.4012)
+transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, -22.1351, -0.25, -38.8235)
 idx = 7
 
 [node name="Port8" parent="Master3D/Port" instance=ExtResource("6_0djke")]
-transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 5.65858, -0.249992, -40.5564)
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 5.04149, -0.249992, -38.6339)
 idx = 8
 
 [node name="Character" type="Node3D" parent="Master3D"]

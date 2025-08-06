@@ -7,7 +7,7 @@ extends Character
 var orbiting: bool = false
 var rotate_vec: Vector2 = Vector2.ZERO
 var h_rot_target: float = 0.0
-var v_rot_target: float = 0.0
+var v_rot_target: float = 45.0
 var status_update: Callable = status_idle
 var current_hover: Area3D
 
@@ -28,8 +28,9 @@ func _input(event: InputEvent) -> void:
 		orbiting = false
 	elif event is InputEventMouseMotion and orbiting:
 		rotate_vec = event.screen_relative / 6.0
-		h_rot_target -= rotate_vec.x
-		v_rot_target -= rotate_vec.y
+		h_pivot.rotation_degrees.y -= rotate_vec.x
+		v_pivot.rotation_degrees.x -= rotate_vec.y
+		v_pivot.rotation_degrees.x = clamp(v_pivot.rotation_degrees.x, -85.0, -10.0)
 	elif event.is_action_pressed("zoom_cam_in"):
 		cam.position.z -= event.get_action_strength("zoom_cam_in") * 6.0
 		cam.position.z = clamp(cam.position.z, 15, 90)
@@ -41,7 +42,6 @@ func _input(event: InputEvent) -> void:
 
 
 func _process(delta: float) -> void:
-	update_lerps(delta)
 	status_update.call(delta, false)
 
 

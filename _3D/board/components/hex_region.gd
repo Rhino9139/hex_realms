@@ -26,28 +26,21 @@ static func CREATE(new_coord: Vector2i = Vector2i(0, 0)) -> HexRegion:
 
 
 func _ready() -> void:
-	#global_position = get_world_coord(hex_coord)
 	var idx: int = int(name)
 	
 	if is_desert:
 		var terrain: Node3D = Terrain._SCENES[Terrain.Type.DESERT].instantiate()
 		add_child(terrain)
 		terrain.global_position = global_position
+		roll = 7
+		#Robber Hex
 	else:
 		var type_idx: int = Terrain.TYPE_ARRAY[idx]
 		var terrain: Node3D = Terrain._SCENES[type_idx].instantiate()
 		add_child(terrain)
 		terrain.global_position = global_position
-	#if type_res.terrain_scene:
-		#terrain_model = type_res.terrain_scene.instantiate()
-		#add_child(terrain_model)
-	#if type == 5:
-		#roll = 7
-		#EventTower.move_robber_requested.emit(global_position)
-		#ROBBER_HEX = self
-	#else:
-		#roll = Global.HEX_ROLLS[idx]
-		#roll_sprite.texture = load(Global.ROLL_SPRITES[roll])
+		roll = Global.HEX_ROLLS[idx]
+		roll_sprite.texture = load(Global.ROLL_SPRITES[roll])
 	
 	
 	await get_tree().create_timer(1.0).timeout
