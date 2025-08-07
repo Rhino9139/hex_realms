@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cxbdpnlc2b1rm"]
 
 [ext_resource type="ArrayMesh" uid="uid://dk1ubjp7mqm8g" path="res://imports/blend_files/hexes/hex_mesh.res" id="3_bmam4"]
-[ext_resource type="Material" uid="uid://d1f3chw6ljd1r" path="res://_3D/materials/wheat_mat.tres" id="3_qapip"]
+[ext_resource type="Material" uid="uid://d1f3chw6ljd1r" path="res://common/materials/wheat_mat.tres" id="3_qapip"]
 [ext_resource type="ArrayMesh" uid="uid://cytkje01kll4o" path="res://imports/vox_files/wheat.vox" id="4_qapip"]
 
 [sub_resource type="MeshLibrary" id="MeshLibrary_bmam4"]

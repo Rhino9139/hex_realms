@@ -2,7 +2,7 @@ extends State
 
 
 func enter() -> void:
-	EventTower.robber_moved.connect(_on_robber_moved)
+	Events.robber_moved.connect(_on_robber_moved)
 	#Character.SWAP_TO_HOVER()
 	get_tree().call_group("Hex", "make_available")
 
@@ -27,8 +27,8 @@ func _on_robber_moved() -> void:
 				#tradable = true
 	
 	if tradable:
-		EventTower.robber_steal_activated.emit()
-		EventTower.robber_resource_stolen.connect(_on_resource_stolen)
+		Events.robber_steal_activated.emit()
+		Events.robber_resource_stolen.connect(_on_resource_stolen)
 	else:
 		state_changed.emit("ActiveState")
 
@@ -46,8 +46,8 @@ func _on_resource_stolen(target_player: Player) -> void:
 
 
 func exit() -> void:
-	EventTower.robber_moved.disconnect(_on_robber_moved)
-	EventTower.robber_resource_stolen.disconnect(_on_resource_stolen)
+	Events.robber_moved.disconnect(_on_robber_moved)
+	Events.robber_resource_stolen.disconnect(_on_resource_stolen)
 
 
 @rpc("any_peer", "call_remote")

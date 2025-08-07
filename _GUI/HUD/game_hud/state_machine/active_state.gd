@@ -92,7 +92,6 @@ func _on_player_trade_started(toggled_on: bool) -> void:
 
 func aquire_card(card_index: Global.ActionCardType) -> void:
 	var player: Player = Player.LOCAL_PLAYER
-	player
 
 
 func _on_monopoly_used() -> void:

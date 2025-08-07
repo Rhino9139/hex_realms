@@ -9,8 +9,8 @@ var responses: int = 0:
 
 func enter() -> void:
 	responses = 0
-	EventTower.monopoly_state_entered.emit()
-	EventTower.type_chosen.connect(_on_type_chosen)
+	Events.monopoly_state_entered.emit()
+	Events.type_chosen.connect(_on_type_chosen)
 	
 
 
@@ -19,7 +19,7 @@ func exit() -> void:
 
 
 func _on_type_chosen(type_index: int) -> void:
-	EventTower.type_chosen.disconnect(_on_type_chosen)
+	Events.type_chosen.disconnect(_on_type_chosen)
 	request_resources.rpc(type_index)
 
 

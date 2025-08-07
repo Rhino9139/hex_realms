@@ -1,11 +1,11 @@
-[gd_scene load_steps=33 format=3 uid="uid://dlysvvr1aprdc"]
+[gd_scene load_steps=39 format=3 uid="uid://dlysvvr1aprdc"]
 
 [ext_resource type="Script" uid="uid://cxaj2txgrot0c" path="res://_GUI/HUD/game_hud/game_hud.gd" id="1_2v08g"]
+[ext_resource type="PackedScene" uid="uid://cug7reenm11sr" path="res://_GUI/HUD/hud_layout.tscn" id="2_hfobc"]
 [ext_resource type="PackedScene" uid="uid://c38lsr2lu1i4t" path="res://_GUI/HUD/game_hud/components/buy_button.tscn" id="7_iwlbn"]
 [ext_resource type="Texture2D" uid="uid://b0xh3lcnrqboa" path="res://common/icons/ui_buttons/structure_gate.png" id="8_en8hq"]
 [ext_resource type="Texture2D" uid="uid://c1d8lhog071sm" path="res://common/icons/ui_buttons/card_lift.png" id="9_iwlbn"]
 [ext_resource type="Texture2D" uid="uid://do5fpysxkbwj2" path="res://common/icons/ui_buttons/arrow_diagonal.png" id="10_t7dor"]
-[ext_resource type="Texture2D" uid="uid://cu15plfdy0eo1" path="res://common/shapes/ring_20_256.png" id="11_en8hq"]
 [ext_resource type="Texture2D" uid="uid://cfgp3vuehr7tn" path="res://common/icons/ui_buttons/pouch_remove.svg" id="12_cohbh"]
 [ext_resource type="Texture2D" uid="uid://begn511dpycyv" path="res://common/icons/ui_buttons/hourglass.png" id="12_iwlbn"]
 [ext_resource type="Script" uid="uid://bvsalc57dvu50" path="res://_GUI/HUD/game_hud/components/ui_button.gd" id="13_hhadb"]
@@ -31,11 +31,32 @@
 [ext_resource type="Script" uid="uid://ce2niffrhnt1o" path="res://_GUI/HUD/game_hud/state_machine/monopoly_state.gd" id="37_sqd25"]
 [ext_resource type="Script" uid="uid://d1ai8ehn8kh1u" path="res://_GUI/HUD/game_hud/state_machine/player_trade_state.gd" id="38_bmphe"]
 
+[sub_resource type="Gradient" id="Gradient_hfobc"]
+offsets = PackedFloat32Array(0, 0.647727, 1)
+colors = PackedColorArray(0, 0.955698, 0, 1, 1, 1, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_56vj1"]
+gradient = SubResource("Gradient_hfobc")
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hhadb"]
 bg_color = Color(1.28509e-05, 0.87516, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vvj38"]
 bg_color = Color(1.28509e-05, 0.87516, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_y8wuv"]
+colors = PackedColorArray(0.44098, 0.440979, 0.440979, 0.784314, 0.44098, 0.440979, 0.440979, 0.784314)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hfobc"]
+gradient = SubResource("Gradient_y8wuv")
+fill_from = Vector2(1, 1)
+
+[sub_resource type="Gradient" id="Gradient_56vj1"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_o4t6f"]
+gradient = SubResource("Gradient_56vj1")
+fill_from = Vector2(1, 1)
 
 [node name="GameHUD" type="Control" node_paths=PackedStringArray("turn_progress_bar", "roll_button", "end_turn_button", "player_card_parent")]
 layout_mode = 3
@@ -46,15 +67,21 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_2v08g")
+timer_gradient = SubResource("GradientTexture1D_56vj1")
 turn_progress_bar = NodePath("TurnProgress")
 roll_button = NodePath("RollButton")
 end_turn_button = NodePath("EndTurnButton")
 player_card_parent = NodePath("PlayerCards")
 
+[node name="hud_layout" parent="." instance=ExtResource("2_hfobc")]
+layout_mode = 1
+
 [node name="PlayerCards" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
+offset_top = 8.0
+offset_bottom = 72.0
 grow_horizontal = 2
 alignment = 1
 
@@ -65,35 +92,56 @@ anchor_left = 0.02
 anchor_top = 0.98
 anchor_right = 0.02
 anchor_bottom = 0.98
-offset_top = -40.0
-offset_right = 40.0
+offset_left = -15.04
+offset_top = -59.04
+offset_right = 304.96
+offset_bottom = 4.95996
 grow_vertical = 0
+alignment = 1
 
 [node name="BuySettlement" parent="UIButtons" node_paths=PackedStringArray("confirm") instance=ExtResource("7_iwlbn")]
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+icon_alignment = 1
 confirm = NodePath("../../Confirm")
 
 [node name="BuyCastle" parent="UIButtons" node_paths=PackedStringArray("confirm") instance=ExtResource("7_iwlbn")]
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
 icon = ExtResource("8_en8hq")
+icon_alignment = 1
 type = 1
 confirm = NodePath("../../Confirm")
 
 [node name="BuyRoad" parent="UIButtons" node_paths=PackedStringArray("confirm") instance=ExtResource("7_iwlbn")]
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
 icon = ExtResource("10_t7dor")
+icon_alignment = 1
 type = 2
 confirm = NodePath("../../Confirm")
 
 [node name="BuyCard" parent="UIButtons" node_paths=PackedStringArray("confirm") instance=ExtResource("7_iwlbn")]
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
 icon = ExtResource("9_iwlbn")
+icon_alignment = 1
 type = 3
 confirm = NodePath("../../Confirm")
 
 [node name="SupplyTrade" type="Button" parent="UIButtons"]
-custom_minimum_size = Vector2(40, 30)
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
 theme_override_styles/pressed = SubResource("StyleBoxFlat_hhadb")
 toggle_mode = true
 icon = ExtResource("12_cohbh")
@@ -103,25 +151,29 @@ script = ExtResource("13_hhadb")
 metadata/_custom_type_script = "uid://bvsalc57dvu50"
 
 [node name="PlayerTrade" type="Button" parent="UIButtons"]
-custom_minimum_size = Vector2(40, 30)
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
 theme_override_styles/pressed = SubResource("StyleBoxFlat_vvj38")
 toggle_mode = true
 icon = ExtResource("14_vvj38")
+icon_alignment = 1
 expand_icon = true
 script = ExtResource("13_hhadb")
 metadata/_custom_type_script = "uid://bvsalc57dvu50"
 
 [node name="RollButton" type="Button" parent="."]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.99
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.99
-offset_left = -41.5
-offset_top = -50.0
-offset_right = 41.5
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = -64.0
+offset_right = 40.0
+offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 0
 focus_mode = 0
@@ -149,26 +201,21 @@ icon_alignment = 1
 [node name="TurnProgress" type="TextureProgressBar" parent="."]
 visible = false
 layout_mode = 1
-anchors_preset = 3
+anchors_preset = 11
 anchor_left = 1.0
-anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -123.0
-offset_top = -123.0
-offset_right = -3.0
-offset_bottom = -3.0
+offset_left = -10.0
 grow_horizontal = 0
-grow_vertical = 0
+grow_vertical = 2
 max_value = 60.0
 step = 0.01
 value = 60.0
-fill_mode = 5
+fill_mode = 2
 nine_patch_stretch = true
-texture_under = ExtResource("11_en8hq")
-texture_progress = ExtResource("11_en8hq")
+texture_under = SubResource("GradientTexture2D_hfobc")
+texture_progress = SubResource("GradientTexture2D_o4t6f")
 tint_under = Color(1, 1, 1, 0.427451)
-tint_progress = Color(0, 1, 0, 1)
 
 [node name="RollScreen" parent="." instance=ExtResource("13_ryev7")]
 layout_mode = 1
@@ -183,25 +230,25 @@ offset_bottom = 563.0
 text = "Buy Action Card"
 
 [node name="KnightUnused" parent="." instance=ExtResource("20_aa2f2")]
-position = Vector2(721, 606)
+position = Vector2(728, 608)
 
 [node name="PointUnused" parent="." instance=ExtResource("21_8ewad")]
-position = Vector2(773, 606)
+position = Vector2(776, 608)
 
 [node name="MonopolyUnused" parent="." instance=ExtResource("24_alt8r")]
-position = Vector2(825, 606)
+position = Vector2(824, 608)
 
 [node name="YearOfPlenty" parent="." instance=ExtResource("33_k2n6s")]
-position = Vector2(877, 606)
+position = Vector2(872, 608)
 
 [node name="FreeRoadsCard" parent="." instance=ExtResource("24_tjr3c")]
-position = Vector2(930, 606)
+position = Vector2(920, 608)
 
 [node name="KnightUsed" parent="." instance=ExtResource("29_3rj33")]
-position = Vector2(37, 150)
+position = Vector2(408, 608)
 
 [node name="PointCardUsed" parent="." instance=ExtResource("31_3ldut")]
-position = Vector2(91, 150)
+position = Vector2(462, 608)
 
 [node name="StateMaster" type="Node" parent="." node_paths=PackedStringArray("base")]
 script = ExtResource("13_t7dor")

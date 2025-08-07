@@ -38,8 +38,8 @@ func _init() -> void:
 
 
 func _ready() -> void:
-	EventTower.server_created.connect(_on_server_created)
-	EventTower.server_destroyed.connect(_on_server_destroyed)
+	Events.server_created.connect(_on_server_created)
+	Events.server_destroyed.connect(_on_server_destroyed)
 
 
 func add_player(new_id: int) -> void:

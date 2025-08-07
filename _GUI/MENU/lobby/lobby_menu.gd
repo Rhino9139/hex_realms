@@ -5,7 +5,7 @@ extends Menu
 
 
 func _ready() -> void:
-	EventTower.board_generated.connect(_on_board_generated)
+	Events.board_generated.connect(_on_board_generated)
 
 
 func _on_board_generated() -> void:
@@ -14,19 +14,19 @@ func _on_board_generated() -> void:
 
 
 func _on_start_game_pressed() -> void:
-	EventTower.host_match_started.emit()
+	Events.host_match_started.emit()
 
 
 func _on_generate_board_pressed() -> void:
 	start_game_button.disabled = true
 	generate_board_button.disabled = true
-	EventTower.generate_board_requested.emit()
+	Events.generate_board_requested.emit()
 
 
 func _on_main_menu_pressed() -> void:
-	EventTower.lobby_disconnected.emit()
+	Events.lobby_disconnected.emit()
 	menu_changed.emit(Header.MAIN)
 
 
 func _on_destroy_board_pressed() -> void:
-	EventTower.destroy_board_requested.emit()
+	Events.destroy_board_requested.emit()

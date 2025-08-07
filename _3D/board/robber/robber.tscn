@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://bn28v17yjc7he"]
 
-[ext_resource type="Material" uid="uid://bogtx2h5cdnp3" path="res://_3D/materials/dark_grey.tres" id="1_abcon"]
+[ext_resource type="Material" uid="uid://bogtx2h5cdnp3" path="res://common/materials/dark_grey.tres" id="1_abcon"]
 [ext_resource type="Script" uid="uid://c5pnk3ulfvjoe" path="res://_3D/board/robber/robber.gd" id="1_rlaph"]
-[ext_resource type="Material" uid="uid://bhusjf7o7dpr3" path="res://_3D/materials/light_grey.tres" id="2_rlaph"]
+[ext_resource type="Material" uid="uid://bhusjf7o7dpr3" path="res://common/materials/light_grey.tres" id="2_rlaph"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_vsntt"]
 radius = 1.5

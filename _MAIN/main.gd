@@ -10,7 +10,7 @@ func _ready() -> void:
 	if OS.is_debug_build():
 		DEBUG_setup_multiple_windows()
 	
-	EventTower.game_opened.emit()
+	Events.game_opened.emit()
 
 
 func DEBUG_setup_multiple_windows() -> void:

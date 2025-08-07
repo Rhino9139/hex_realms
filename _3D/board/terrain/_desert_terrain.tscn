@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bocaxmwxgyws5"]
 
-[ext_resource type="Material" uid="uid://dp55vrnvnende" path="res://_3D/materials/desert_mat.tres" id="2_dk8p4"]
+[ext_resource type="Material" uid="uid://dp55vrnvnende" path="res://common/materials/desert_mat.tres" id="2_dk8p4"]
 [ext_resource type="ArrayMesh" uid="uid://dk1ubjp7mqm8g" path="res://imports/blend_files/hexes/hex_mesh.res" id="3_otlr1"]
 [ext_resource type="ArrayMesh" uid="uid://l5p1memestf7" path="res://imports/vox_files/cactus.vox" id="4_otlr1"]
 

@@ -1,8 +1,8 @@
 extends Control
 
-signal turn_started(turn_index: int, round_index: int)
 signal turn_ended
 
+@export var timer_gradient: GradientTexture1D
 @export var turn_progress_bar: TextureProgressBar
 @export var roll_button: Button
 @export var end_turn_button: Button
@@ -12,8 +12,6 @@ signal turn_ended
 @export var castle_buy: Button
 @export var road_buy: Button
 @export var card_buy: Button
-@export_group("Trade")
-@export var trade_panel: Panel
 
 
 var player: Player
@@ -80,4 +78,4 @@ func _on_end_turn_button_pressed() -> void:
 
 @rpc("any_peer", "call_local")
 func share_turn_ended() -> void:
-	EventTower.player_turn_ended.emit()
+	Events.player_turn_ended.emit()

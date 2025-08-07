@@ -14,7 +14,7 @@ var has_robber: bool = false
 
 
 func _ready() -> void:
-	EventTower.selectable_hovered.connect(_on_selectable_hovered)
+	Events.selectable_hovered.connect(_on_selectable_hovered)
 	
 	var idx: int = int(name)
 	if is_desert:
@@ -59,4 +59,4 @@ func _on_selectable_hovered(hovered_object: Node3D) -> void:
 @rpc("any_peer", "call_local")
 func move_robber() -> void:
 	has_robber = true
-	EventTower.robber_moved.emit(global_position)
+	Events.robber_moved.emit(global_position)

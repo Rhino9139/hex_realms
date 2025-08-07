@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://tcs871fcwdsa"]
 
-[ext_resource type="Material" uid="uid://fq11bi1uisg1" path="res://_3D/materials/ore_mat.tres" id="3_n1ylb"]
+[ext_resource type="Material" uid="uid://fq11bi1uisg1" path="res://common/materials/ore_mat.tres" id="3_n1ylb"]
 [ext_resource type="ArrayMesh" uid="uid://hekk5nakg8xv" path="res://imports/vox_files/ore_mine.vox" id="4_n1ylb"]
-[ext_resource type="Shader" uid="uid://dgwf6yu32i2iq" path="res://_3D/shaders/water_mask.gdshader" id="5_1ttq0"]
+[ext_resource type="Shader" uid="uid://dgwf6yu32i2iq" path="res://common/shaders/water_mask.gdshader" id="5_1ttq0"]
 [ext_resource type="ArrayMesh" uid="uid://1iuedors6h4c" path="res://imports/blend_files/hexes/holo_hex_mesh.res" id="5_np0hf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8tp2h"]

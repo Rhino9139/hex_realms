@@ -6,9 +6,9 @@ var client: Client
 
 
 func _ready() -> void:
-	EventTower.server_requested.connect(_on_server_host_created)
-	EventTower.client_requested.connect(_on_client_created)
-	EventTower.lobby_disconnected.connect(_on_lobby_disconnected)
+	Events.server_requested.connect(_on_server_host_created)
+	Events.client_requested.connect(_on_client_created)
+	Events.lobby_disconnected.connect(_on_lobby_disconnected)
 
 
 func _on_server_host_created() -> void:
@@ -25,8 +25,8 @@ func _on_lobby_disconnected() -> void:
 	multiplayer.multiplayer_peer = null
 	if client:
 		client.queue_free()
-		EventTower.client_destroyed.emit()
+		Events.client_destroyed.emit()
 	if server:
 		server.queue_free()
-		EventTower.server_destroyed.emit()
+		Events.server_destroyed.emit()
 	PlayerManager.REMOVE_ALL_PLAYERS()

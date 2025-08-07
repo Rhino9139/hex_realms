@@ -7,9 +7,9 @@ extends Control
 
 
 func _ready() -> void:
-	EventTower.game_opened.connect(_on_game_opened)
-	EventTower.host_match_started.connect(_on_host_match_started)
-	EventTower.turn_order_created.connect(_on_turn_order_created)
+	Events.game_opened.connect(_on_game_opened)
+	Events.host_match_started.connect(_on_host_match_started)
+	Events.turn_order_created.connect(_on_turn_order_created)
 
 
 func _on_game_opened() -> void:

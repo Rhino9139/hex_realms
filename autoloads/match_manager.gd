@@ -5,7 +5,7 @@ var current_round: int = 1
 
 
 func _ready() -> void:
-	EventTower.player_turn_ended.connect(_on_player_turn_ended)
+	Events.player_turn_ended.connect(_on_player_turn_ended)
 
 
 func _on_player_turn_ended() -> void:
@@ -13,4 +13,4 @@ func _on_player_turn_ended() -> void:
 	if current_turn > PlayerManager.GET_NUM_PLAYERS():
 		current_turn = 1
 		current_round += 1
-	EventTower.player_turn_started.emit()
+	Events.player_turn_started.emit()

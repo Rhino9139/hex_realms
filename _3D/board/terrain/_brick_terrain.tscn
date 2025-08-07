@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bdxeiyt4fltk8"]
 
-[ext_resource type="Material" uid="uid://ddftnmdjynn7l" path="res://_3D/materials/brick_mat.tres" id="3_bq8sl"]
+[ext_resource type="Material" uid="uid://ddftnmdjynn7l" path="res://common/materials/brick_mat.tres" id="3_bq8sl"]
 [ext_resource type="ArrayMesh" uid="uid://1iuedors6h4c" path="res://imports/blend_files/hexes/holo_hex_mesh.res" id="3_fbp6g"]
 [ext_resource type="ArrayMesh" uid="uid://xicdwxhej25g" path="res://imports/vox_files/brick.vox" id="4_a3n72"]
 

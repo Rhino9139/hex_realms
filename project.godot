@@ -17,10 +17,8 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 [autoload]
 
 DevMode="*res://autoloads/dev_mode.gd"
-Events="*res://autoloads/events.gd"
 MatchManager="*res://autoloads/match_manager.gd"
-SignalLens="*res://addons/signal_lens/autoload/signal_lens_autoload.gd"
-EventTower="*res://autoloads/event_tower.gd"
+Events="*res://autoloads/events.gd"
 
 [display]
 
@@ -28,7 +26,7 @@ window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/MagicaVoxel_Importer_with_Extensions/plugin.cfg", "res://addons/favorite_scenes/plugin.cfg", "res://addons/script-ide/plugin.cfg", "res://addons/signal_lens/plugin.cfg")
+enabled=PackedStringArray("res://addons/MagicaVoxel_Importer_with_Extensions/plugin.cfg", "res://addons/favorite_scenes/plugin.cfg", "res://addons/script-ide/plugin.cfg")
 
 [global_group]
 
@@ -40,7 +38,6 @@ Castle=""
 RoadEmpty=""
 PlayerCard=""
 SetupRoads=""
-PlayerResourceCards=""
 ActionCard=""
 MyRoads=""
 

@@ -7,11 +7,11 @@ extends Node3D
 
 
 func _ready() -> void:
-	EventTower.add_board_requested.connect(_on_add_board_requested)
-	EventTower.destroy_board_requested.connect(_on_destroy_board_requested)
-	EventTower.generate_board_requested.connect(_on_generate_board_requested)
-	EventTower.camera_activated.connect(_on_camera_activated)
-	EventTower.camera_deactivated.connect(_on_camera_deactivated)
+	Events.add_board_requested.connect(_on_add_board_requested)
+	Events.destroy_board_requested.connect(_on_destroy_board_requested)
+	Events.generate_board_requested.connect(_on_generate_board_requested)
+	Events.camera_activated.connect(_on_camera_activated)
+	Events.camera_deactivated.connect(_on_camera_deactivated)
 
 
 func _on_add_board_requested() -> void:

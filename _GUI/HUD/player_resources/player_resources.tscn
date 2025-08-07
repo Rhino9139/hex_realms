@@ -1,81 +1,102 @@
-[gd_scene load_steps=11 format=3 uid="uid://mss40dxrydbv"]
+[gd_scene load_steps=7 format=3 uid="uid://mss40dxrydbv"]
 
 [ext_resource type="Script" uid="uid://b1q4nwd7y15d5" path="res://_GUI/HUD/player_resources/player_resources.gd" id="1_18gle"]
-[ext_resource type="PackedScene" uid="uid://i3gn4b2vnsus" path="res://_GUI/HUD/player_resources/resource_cards/supply_resource_manager.tscn" id="1_mkark"]
-[ext_resource type="Resource" uid="uid://03f6o1ggd8di" path="res://custom/terrain_resources/brick_res.tres" id="2_18gle"]
-[ext_resource type="Resource" uid="uid://brghdbk4jlcyo" path="res://custom/terrain_resources/ore_res.tres" id="3_ffxwq"]
-[ext_resource type="Resource" uid="uid://clhpnv8ji1oud" path="res://custom/terrain_resources/sheep_res.tres" id="4_7pmk5"]
-[ext_resource type="Resource" uid="uid://dxj3v0c7du1px" path="res://custom/terrain_resources/wheat_res.tres" id="5_svjy2"]
-[ext_resource type="Resource" uid="uid://cvo8kw33xdrta" path="res://custom/terrain_resources/wood_res.tres" id="6_wl507"]
+[ext_resource type="PackedScene" uid="uid://d4d1p4l68ffyr" path="res://_GUI/HUD/player_resources/resource_cards/resource_card.tscn" id="3_dlxj0"]
+[ext_resource type="PackedScene" uid="uid://cug7reenm11sr" path="res://_GUI/HUD/hud_layout.tscn" id="4_7q825"]
 [ext_resource type="Texture2D" uid="uid://bnpkbketmom4c" path="res://common/icons/ui_buttons/arrow_reserve.svg" id="7_3qplb"]
-[ext_resource type="PackedScene" uid="uid://b2i3hhft1o5tt" path="res://_GUI/HUD/player_resources/resource_cards/player_resource_manager.tscn" id="8_o4j40"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ibqqg"]
 bg_color = Color(0.906854, 0.12763, 0.130916, 1)
 
-[node name="PlayerResources" type="Control"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7q825"]
+bg_color = Color(0, 0.72549, 0, 1)
+
+[node name="PlayerResources" type="Control" node_paths=PackedStringArray("bank_trade_panel", "trade_accept_button")]
+custom_minimum_size = Vector2(0, 415)
 layout_mode = 3
-anchor_left = 0.01
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 0.01
 anchor_bottom = 0.5
+offset_left = 16.0
+offset_top = -207.0
+offset_right = 384.0
+offset_bottom = 208.0
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_18gle")
+bank_trade_panel = NodePath("BankTradePanel")
+trade_accept_button = NodePath("BankTradePanel/TradeAccept")
+
+[node name="hud_layout" parent="." instance=ExtResource("4_7q825")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -16.0
+offset_top = -116.5
+offset_right = -16.0
+offset_bottom = -116.5
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="BankTradePanel" type="Panel" parent="."]
-layout_mode = 0
-offset_left = -0.52
-offset_top = -144.0
-offset_right = 354.48
-offset_bottom = 239.0
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 
-[node name="SupplyBrick" parent="BankTradePanel" instance=ExtResource("1_mkark")]
-position = Vector2(295, 53)
-type = ExtResource("2_18gle")
-
-[node name="SupplyOre" parent="BankTradePanel" instance=ExtResource("1_mkark")]
-position = Vector2(295, 123)
-type = ExtResource("3_ffxwq")
-
-[node name="SupplySheep" parent="BankTradePanel" instance=ExtResource("1_mkark")]
-position = Vector2(295, 194)
-type = ExtResource("4_7pmk5")
-
-[node name="SupplyWheat" parent="BankTradePanel" instance=ExtResource("1_mkark")]
-position = Vector2(295, 268)
-type = ExtResource("5_svjy2")
-
-[node name="SupplyWood" parent="BankTradePanel" instance=ExtResource("1_mkark")]
-position = Vector2(295, 340)
-type = ExtResource("6_wl507")
-
 [node name="TradeAccept" type="Button" parent="BankTradePanel"]
-layout_mode = 0
-offset_left = 144.0
-offset_top = 163.0
-offset_right = 204.0
-offset_bottom = 221.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -29.0
+offset_right = 30.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_styles/disabled = SubResource("StyleBoxFlat_ibqqg")
+theme_override_styles/normal = SubResource("StyleBoxFlat_7q825")
+disabled = true
 icon = ExtResource("7_3qplb")
+icon_alignment = 1
 
-[node name="Brick" parent="." instance=ExtResource("8_o4j40")]
-position = Vector2(1.48, -87)
-type = ExtResource("2_18gle")
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -162.0
+offset_right = 225.0
+offset_bottom = 163.0
+grow_vertical = 2
+theme_override_constants/separation = 8
+alignment = 1
 
-[node name="Ore" parent="." instance=ExtResource("8_o4j40")]
-position = Vector2(1.48, -17)
-type = ExtResource("3_ffxwq")
+[node name="PlayerBrick" parent="VBoxContainer" instance=ExtResource("3_dlxj0")]
+layout_mode = 2
 
-[node name="Sheep" parent="." instance=ExtResource("8_o4j40")]
-position = Vector2(1.48, 53)
-type = ExtResource("4_7pmk5")
+[node name="PlayerOre" parent="VBoxContainer" instance=ExtResource("3_dlxj0")]
+layout_mode = 2
+resource_type = 1
 
-[node name="Wheat" parent="." instance=ExtResource("8_o4j40")]
-position = Vector2(1.48, 123)
-type = ExtResource("5_svjy2")
+[node name="PlayerSheep" parent="VBoxContainer" instance=ExtResource("3_dlxj0")]
+layout_mode = 2
+resource_type = 2
 
-[node name="Wood" parent="." instance=ExtResource("8_o4j40")]
-position = Vector2(1.48, 193)
-type = ExtResource("6_wl507")
+[node name="PlayerWheat" parent="VBoxContainer" instance=ExtResource("3_dlxj0")]
+layout_mode = 2
+resource_type = 3
+
+[node name="PlayerWood" parent="VBoxContainer" instance=ExtResource("3_dlxj0")]
+layout_mode = 2
+resource_type = 4
+
+[connection signal="pressed" from="BankTradePanel/TradeAccept" to="." method="_on_trade_accept_pressed"]

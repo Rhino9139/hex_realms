@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://bvm0v3l1xnpb3" path="res://_3D/board/building_hotspot/building_hotspot.gd" id="1_ql0ga"]
 [ext_resource type="ArrayMesh" uid="uid://bidbr0bcuk1ut" path="res://imports/blend_files/structures/castle_mesh.res" id="2_v2e2f"]
 [ext_resource type="ArrayMesh" uid="uid://cm8oy0ivr1yx8" path="res://imports/blend_files/structures/settlement_mesh.res" id="3_jrjif"]
-[ext_resource type="Material" uid="uid://bhusjf7o7dpr3" path="res://_3D/materials/light_grey.tres" id="5_jrjif"]
-[ext_resource type="Material" uid="uid://cpvde0u8isi5h" path="res://_3D/shaders/hologram_material.tres" id="7_jrjif"]
-[ext_resource type="Material" uid="uid://bhs52l6pfbpg7" path="res://_3D/materials/player_colors/green.tres" id="8_2pc7y"]
+[ext_resource type="Material" uid="uid://bhusjf7o7dpr3" path="res://common/materials/light_grey.tres" id="5_jrjif"]
+[ext_resource type="Material" uid="uid://cpvde0u8isi5h" path="res://common/shaders/hologram_material.tres" id="7_jrjif"]
+[ext_resource type="Material" uid="uid://bhs52l6pfbpg7" path="res://common/materials/player_mats/green.tres" id="8_2pc7y"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_8sy7l"]
 radius = 3.56683

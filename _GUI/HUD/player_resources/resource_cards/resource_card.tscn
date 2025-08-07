@@ -1,23 +1,50 @@
-[gd_scene load_steps=5 format=3 uid="uid://d4d1p4l68ffyr"]
+[gd_scene load_steps=3 format=3 uid="uid://d4d1p4l68ffyr"]
 
-[ext_resource type="Texture2D" uid="uid://8qvknhn03s7a" path="res://common/shapes/card_outer.svg" id="1_t8pmi"]
-[ext_resource type="Texture2D" uid="uid://blgoh8phcuqpj" path="res://common/shapes/card_inner.svg" id="2_5qtyd"]
 [ext_resource type="Script" uid="uid://cubyjeqftdnba" path="res://_GUI/HUD/player_resources/resource_cards/resource_card.gd" id="2_wr0th"]
-[ext_resource type="Texture2D" uid="uid://wrlvx80hbbkn" path="res://common/icons/resources/wood.png" id="3_kasln"]
 
-[node name="ResourceCard" type="Sprite2D" node_paths=PackedStringArray("inner_sprite", "icon_sprite")]
-scale = Vector2(0.12, 0.12)
-texture = ExtResource("1_t8pmi")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iux7l"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 16
+
+[node name="ResourceCard" type="Panel" node_paths=PackedStringArray("icon_sprite", "amount_label")]
+custom_minimum_size = Vector2(50, 75)
+offset_right = 50.0
+offset_bottom = 75.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_iux7l")
 script = ExtResource("2_wr0th")
-inner_sprite = NodePath("InnerSprite")
-icon_sprite = NodePath("IconSprite")
-metadata/_edit_lock_ = true
+icon_sprite = NodePath("VBoxContainer/ResourceIcon")
+amount_label = NodePath("VBoxContainer/Amount")
 
-[node name="InnerSprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_5qtyd")
-metadata/_edit_lock_ = true
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="IconSprite" type="Sprite2D" parent="."]
-position = Vector2(8.33334, -50)
-scale = Vector2(0.416667, 0.416667)
-texture = ExtResource("3_kasln")
+[node name="ResourceIcon" type="TextureRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_vertical = 10
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Amount" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 24
+text = "0"
+horizontal_alignment = 1

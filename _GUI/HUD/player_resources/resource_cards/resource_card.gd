@@ -1,33 +1,20 @@
 class_name ResourceCard
-extends Sprite2D
+extends Panel
 
-@export var inner_sprite: Sprite2D
-@export var icon_sprite: Sprite2D
-@export var type_index: int = -1
-
-var type: TerrainType:
-	set(new_value):
-		type = new_value
-		assign()
+@export var resource_type: Global.Resources
+@export var icon_sprite: TextureRect
+@export var amount_label: Label
 
 
 func _ready() -> void:
-	if type_index != -1:
-		get_type()
+	icon_sprite.texture = load(Global.RESOURCE_ICONS[resource_type])
+	self_modulate = Global.RESOURCE_MATERIALS[resource_type].albedo_color
+	Events.resources_changed.connect(_on_resources_changed)
 
 
-func assign() -> void:
-	inner_sprite.modulate = type.material.albedo_color
-	icon_sprite.texture = type.icon_texture
-
-
-func show_unavailable() -> void:
-	modulate = Color(1.0, 1.0, 1.0, 0.1)
-
-
-func show_available() -> void:
-	modulate = Color(1.0, 1.0, 1.0, 1.0)
-
-
-func get_type() -> void:
-	pass
+func _on_resources_changed(player_id: int, resources: Array[int]) -> void:
+	if player_id != multiplayer.get_unique_id():
+		return
+	
+	var amount: int = resources[resource_type]
+	amount_label.text = str(amount)

@@ -15,7 +15,7 @@ func start_client():
 	connect_to_host(ServerHost._LOCAL_HOST, ServerHost._PORT)
 	multiplayer.connected_to_server.connect(_on_server_connected)
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
-	EventTower.client_created.emit()
+	Events.client_created.emit()
 
 
 func connect_to_host(host_ip: String, host_port: int) -> void:

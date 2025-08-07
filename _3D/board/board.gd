@@ -45,5 +45,5 @@ func share_board(new_terrain: Array, new_rolls: Array, new_ports: Array) -> void
 	
 	Global.HEX_ROLLS = new_rolls
 	
-	EventTower.board_generated.emit()
-	EventTower.add_board_requested.emit()
+	Events.board_generated.emit()
+	Events.add_board_requested.emit()

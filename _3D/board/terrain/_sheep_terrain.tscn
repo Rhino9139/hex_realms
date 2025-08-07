@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://c61bjrs5f08w6"]
 
-[ext_resource type="Material" uid="uid://bjfuru3xc5v3e" path="res://_3D/materials/sheep_mat.tres" id="3_a6vlv"]
+[ext_resource type="Material" uid="uid://bjfuru3xc5v3e" path="res://common/materials/sheep_mat.tres" id="3_a6vlv"]
 [ext_resource type="ArrayMesh" uid="uid://dk1ubjp7mqm8g" path="res://imports/blend_files/hexes/hex_mesh.res" id="3_x5nyn"]
 [ext_resource type="ArrayMesh" uid="uid://tr8wnquta4hn" path="res://imports/vox_files/sheep.vox" id="4_a6vlv"]
 

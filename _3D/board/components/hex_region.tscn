@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://b108anyn817ik" path="res://_3D/board/components/hex_region.gd" id="1_x2km7"]
 [ext_resource type="ArrayMesh" uid="uid://dsgb7xo0ja4db" path="res://imports/blend_files/hexes/holo_hex_outer.res" id="2_ccdea"]
-[ext_resource type="Material" uid="uid://4xxu5p5stsvc" path="res://_3D/materials/dirt.tres" id="5_awe0n"]
+[ext_resource type="Material" uid="uid://4xxu5p5stsvc" path="res://common/materials/dirt.tres" id="5_awe0n"]
 [ext_resource type="ArrayMesh" uid="uid://dk1ubjp7mqm8g" path="res://imports/blend_files/hexes/hex_mesh.res" id="6_qexo0"]
-[ext_resource type="Material" uid="uid://dnsu2x2mv1386" path="res://_3D/materials/road_holo.tres" id="7_aaw0a"]
+[ext_resource type="Material" uid="uid://dnsu2x2mv1386" path="res://common/materials/road_holo.tres" id="7_aaw0a"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_t61bs"]
 height = 1.63477

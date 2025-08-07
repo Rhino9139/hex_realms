@@ -47,7 +47,7 @@ func _ready() -> void:
 	player_mat = Global.PLAYER_MATS[player_index]
 	player_color = player_mat.albedo_color
 	
-	EventTower.item_bought.connect(_on_item_bought)
+	Events.item_bought.connect(_on_item_bought)
 
 
 func trade_resources() -> void:
@@ -108,13 +108,13 @@ func use_card(card_type: Global.ActionCardType) -> void:
 	share_knight_count.rpc(knight_count)
 
 
-func change_resource(index: int, amount: int) -> void:
+func change_resource(index: Global.Resources, amount: int) -> void:
 	resources[index] += amount
 	num_cards = 0
 	for value in resources:
 		num_cards += value
 	
-	EventTower.resources_changed.emit(player_id, resources)
+	Events.resources_changed.emit(player_id, resources)
 	
 	if multiplayer.get_unique_id() == player_id:
 		share_cards.rpc(resources)
@@ -142,7 +142,7 @@ func calculate_points() -> void:
 	if has_largest_army:
 		total_points += 2
 	
-	EventTower.points_changed.emit()
+	Events.points_changed.emit()
 
 
 @rpc("any_peer")

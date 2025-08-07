@@ -32,7 +32,7 @@ func _ready() -> void:
 		"Road":
 			cost = Global.ROAD_COST
 			ROAD_BUY = self
-			#TODO working on EventTower.item_bought signal
+			#TODO working on Events.item_bought signal
 			#Player.LOCAL_PLAYER.road_built.connect(set_pressed_no_signal.bind(false))
 		"Card":
 			cost = Global.CARD_COST

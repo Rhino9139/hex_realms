@@ -63,14 +63,14 @@ func update_hover_raycast(clicked: bool = false) -> void:
 	var result = space_state.intersect_ray(query)
 	if result:
 		var collider = result.get("collider")
-		EventTower.selectable_hovered.emit(collider)
+		Events.selectable_hovered.emit(collider)
 		if clicked:
 			if collider is HexRegion:
 				current_hover.move_robber.rpc()
 			else:
 				current_hover.build.rpc(Player.LOCAL_PLAYER.player_id)
 	else:
-		EventTower.selectable_hovered.emit(null)
+		Events.selectable_hovered.emit(null)
 
 
 func change_to_hover() -> void:
@@ -79,4 +79,4 @@ func change_to_hover() -> void:
 
 func change_to_idle() -> void:
 	status_update = status_idle
-	EventTower.selectable_hovered.emit(null)
+	Events.selectable_hovered.emit(null)
