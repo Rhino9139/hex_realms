@@ -123,7 +123,7 @@ func _on_turn_ended() -> void:
 
 func _on_supply_trade_toggled(toggled_on: bool) -> void:
 	if toggled_on:
-		state_changed.emit("SupplyTradeState")
+		state_changed.emit("BankTradeState")
 
 
 func server_get_card() -> void:

@@ -1,15 +1,7 @@
-[gd_scene load_steps=42 format=3 uid="uid://dlysvvr1aprdc"]
+[gd_scene load_steps=33 format=3 uid="uid://dlysvvr1aprdc"]
 
 [ext_resource type="Script" uid="uid://cxaj2txgrot0c" path="res://_GUI/HUD/game_hud/game_hud.gd" id="1_2v08g"]
-[ext_resource type="PackedScene" uid="uid://b2i3hhft1o5tt" path="res://_2D/resource_cards/player_resource_manager.tscn" id="2_svuxb"]
-[ext_resource type="PackedScene" uid="uid://i3gn4b2vnsus" path="res://_2D/resource_cards/supply_resource_manager.tscn" id="2_vvj38"]
-[ext_resource type="Resource" uid="uid://03f6o1ggd8di" path="res://custom/terrain_resources/brick_res.tres" id="3_0wm5q"]
-[ext_resource type="Resource" uid="uid://brghdbk4jlcyo" path="res://custom/terrain_resources/ore_res.tres" id="4_5a7ot"]
-[ext_resource type="Resource" uid="uid://clhpnv8ji1oud" path="res://custom/terrain_resources/sheep_res.tres" id="5_cohbh"]
-[ext_resource type="Resource" uid="uid://dxj3v0c7du1px" path="res://custom/terrain_resources/wheat_res.tres" id="6_hhadb"]
 [ext_resource type="PackedScene" uid="uid://c38lsr2lu1i4t" path="res://_GUI/HUD/game_hud/components/buy_button.tscn" id="7_iwlbn"]
-[ext_resource type="Resource" uid="uid://cvo8kw33xdrta" path="res://custom/terrain_resources/wood_res.tres" id="7_vvj38"]
-[ext_resource type="Texture2D" uid="uid://bnpkbketmom4c" path="res://common/icons/ui_buttons/arrow_reserve.svg" id="8_26734"]
 [ext_resource type="Texture2D" uid="uid://b0xh3lcnrqboa" path="res://common/icons/ui_buttons/structure_gate.png" id="8_en8hq"]
 [ext_resource type="Texture2D" uid="uid://c1d8lhog071sm" path="res://common/icons/ui_buttons/card_lift.png" id="9_iwlbn"]
 [ext_resource type="Texture2D" uid="uid://do5fpysxkbwj2" path="res://common/icons/ui_buttons/arrow_diagonal.png" id="10_t7dor"]
@@ -39,16 +31,13 @@
 [ext_resource type="Script" uid="uid://ce2niffrhnt1o" path="res://_GUI/HUD/game_hud/state_machine/monopoly_state.gd" id="37_sqd25"]
 [ext_resource type="Script" uid="uid://d1ai8ehn8kh1u" path="res://_GUI/HUD/game_hud/state_machine/player_trade_state.gd" id="38_bmphe"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ibqqg"]
-bg_color = Color(0.906854, 0.12763, 0.130916, 1)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hhadb"]
 bg_color = Color(1.28509e-05, 0.87516, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vvj38"]
 bg_color = Color(1.28509e-05, 0.87516, 0, 1)
 
-[node name="GameHUD" type="Control" node_paths=PackedStringArray("turn_progress_bar", "roll_button", "end_turn_button", "player_card_parent", "trade_panel")]
+[node name="GameHUD" type="Control" node_paths=PackedStringArray("turn_progress_bar", "roll_button", "end_turn_button", "player_card_parent")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -61,45 +50,6 @@ turn_progress_bar = NodePath("TurnProgress")
 roll_button = NodePath("RollButton")
 end_turn_button = NodePath("EndTurnButton")
 player_card_parent = NodePath("PlayerCards")
-trade_panel = NodePath("SupplyTradePanel")
-
-[node name="SupplyTradePanel" type="Panel" parent="."]
-visible = false
-layout_mode = 0
-offset_left = 11.0
-offset_top = 180.0
-offset_right = 366.0
-offset_bottom = 563.0
-mouse_filter = 2
-
-[node name="SupplyBrick" parent="SupplyTradePanel" instance=ExtResource("2_vvj38")]
-position = Vector2(295, 53)
-type = ExtResource("3_0wm5q")
-
-[node name="SupplyOre" parent="SupplyTradePanel" instance=ExtResource("2_vvj38")]
-position = Vector2(295, 123)
-type = ExtResource("4_5a7ot")
-
-[node name="SupplySheep" parent="SupplyTradePanel" instance=ExtResource("2_vvj38")]
-position = Vector2(295, 194)
-type = ExtResource("5_cohbh")
-
-[node name="SupplyWheat" parent="SupplyTradePanel" instance=ExtResource("2_vvj38")]
-position = Vector2(295, 268)
-type = ExtResource("6_hhadb")
-
-[node name="SupplyWood" parent="SupplyTradePanel" instance=ExtResource("2_vvj38")]
-position = Vector2(295, 340)
-type = ExtResource("7_vvj38")
-
-[node name="TradeAccept" type="Button" parent="SupplyTradePanel"]
-layout_mode = 0
-offset_left = 144.0
-offset_top = 163.0
-offset_right = 204.0
-offset_bottom = 221.0
-theme_override_styles/disabled = SubResource("StyleBoxFlat_ibqqg")
-icon = ExtResource("8_26734")
 
 [node name="PlayerCards" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -107,35 +57,6 @@ anchors_preset = -1
 anchor_right = 1.0
 grow_horizontal = 2
 alignment = 1
-
-[node name="PlayerResources" type="Control" parent="."]
-layout_mode = 1
-anchor_left = 0.01
-anchor_top = 0.5
-anchor_right = 0.01
-anchor_bottom = 0.5
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="Brick" parent="PlayerResources" instance=ExtResource("2_svuxb")]
-position = Vector2(1.48, -87)
-type = ExtResource("3_0wm5q")
-
-[node name="Ore" parent="PlayerResources" instance=ExtResource("2_svuxb")]
-position = Vector2(1.48, -17)
-type = ExtResource("4_5a7ot")
-
-[node name="Sheep" parent="PlayerResources" instance=ExtResource("2_svuxb")]
-position = Vector2(1.48, 53)
-type = ExtResource("5_cohbh")
-
-[node name="Wheat" parent="PlayerResources" instance=ExtResource("2_svuxb")]
-position = Vector2(1.48, 123)
-type = ExtResource("6_hhadb")
-
-[node name="Wood" parent="PlayerResources" instance=ExtResource("2_svuxb")]
-position = Vector2(1.48, 193)
-type = ExtResource("7_vvj38")
 
 [node name="UIButtons" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -316,20 +237,17 @@ script = ExtResource("18_3o7oo")
 script = ExtResource("19_qo7ve")
 metadata/_custom_type_script = "uid://b4n8p8i631us2"
 
-[node name="SupplyTradeState" type="Node" parent="StateMaster" node_paths=PackedStringArray("supply_button", "accept_trade")]
+[node name="BankTradeState" type="Node" parent="StateMaster" node_paths=PackedStringArray("supply_button")]
 script = ExtResource("24_hhadb")
 supply_button = NodePath("../../UIButtons/SupplyTrade")
-accept_trade = NodePath("../../SupplyTradePanel/TradeAccept")
 metadata/_custom_type_script = "uid://b4n8p8i631us2"
 
-[node name="CutResourcesState" type="Node" parent="StateMaster" node_paths=PackedStringArray("accept_trade")]
+[node name="CutResourcesState" type="Node" parent="StateMaster"]
 script = ExtResource("27_ibqqg")
-accept_trade = NodePath("../../SupplyTradePanel/TradeAccept")
 metadata/_custom_type_script = "uid://b4n8p8i631us2"
 
-[node name="YearOfPlentyState" type="Node" parent="StateMaster" node_paths=PackedStringArray("accept_trade")]
+[node name="YearOfPlentyState" type="Node" parent="StateMaster"]
 script = ExtResource("35_3td1n")
-accept_trade = NodePath("../../SupplyTradePanel/TradeAccept")
 metadata/_custom_type_script = "uid://b4n8p8i631us2"
 
 [node name="FreeRoadsState" type="Node" parent="StateMaster"]
@@ -340,9 +258,8 @@ metadata/_custom_type_script = "uid://b4n8p8i631us2"
 script = ExtResource("37_sqd25")
 metadata/_custom_type_script = "uid://b4n8p8i631us2"
 
-[node name="PlayerTradeState" type="Node" parent="StateMaster" node_paths=PackedStringArray("activate_trade", "player_trade")]
+[node name="PlayerTradeState" type="Node" parent="StateMaster" node_paths=PackedStringArray("player_trade")]
 script = ExtResource("38_bmphe")
-activate_trade = NodePath("../../SupplyTradePanel/TradeAccept")
 player_trade = NodePath("../../UIButtons/PlayerTrade")
 metadata/_custom_type_script = "uid://b4n8p8i631us2"
 

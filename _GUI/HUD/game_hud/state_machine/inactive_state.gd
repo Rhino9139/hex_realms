@@ -4,7 +4,7 @@ func enter() -> void:
 	base.turn_started.connect(_on_turn_started)
 	UIButton.DISABLE_UI()
 	base.disable_roll()
-	Character.SWAP_T0_IDLE()
+	EventTower.camera_deactivated.emit()
 
 func exit() -> void:
 	base.turn_started.disconnect(_on_turn_started)

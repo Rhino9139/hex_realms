@@ -7,7 +7,7 @@ const _PATHS: Dictionary[Header, String] = {
 	Header.PLAYER_CAMERA : "uid://dqts8cum5xryh"
 }
 
-var current_camera: Character
+var current_camera: PlayerCamera
 
 
 func add_camera() -> void:
@@ -20,3 +20,13 @@ func add_camera() -> void:
 func destroy_camera() -> void:
 	if current_camera:
 		current_camera.queue_free()
+
+
+func activate_camera() -> void:
+	if current_camera:
+		current_camera.change_to_hover()
+
+
+func deactivate_camera() -> void:
+	if current_camera:
+		current_camera.change_to_idle()

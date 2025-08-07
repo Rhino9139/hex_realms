@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://chmasxillij8m" path="res://_MAIN/master_3d.gd" id="4_hhsx1"]
 [ext_resource type="PackedScene" uid="uid://drdu850r37k2i" path="res://_3D/environment/water.tscn" id="5_0djke"]
 [ext_resource type="Script" uid="uid://dwiv0u0uoi357" path="res://_MAIN/master_gui.gd" id="5_tdj4x"]
-[ext_resource type="PackedScene" uid="uid://c7c6bp287ee3d" path="res://_3D/port/port.tscn" id="6_0djke"]
+[ext_resource type="Script" uid="uid://wvrtd0a71a3j" path="res://_3D/environment/environment.gd" id="5_yu52p"]
 [ext_resource type="Script" uid="uid://urfb014eou0t" path="res://_3D/board/board.gd" id="6_2k1gh"]
 [ext_resource type="Script" uid="uid://cjamklsqyhwh5" path="res://_GUI/MENU/menu.gd" id="6_hhsx1"]
 [ext_resource type="Script" uid="uid://d1n5rqi6aeqi5" path="res://_GUI/HUD/hud.gd" id="7_tdj4x"]
@@ -38,65 +38,27 @@ script = ExtResource("4_hhsx1")
 board = NodePath("Board")
 character = NodePath("Character")
 
-[node name="Environment" type="Node3D" parent="Master3D"]
+[node name="World" type="Node3D" parent="Master3D"]
+script = ExtResource("5_yu52p")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Master3D/Environment"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Master3D/World"]
 environment = SubResource("Environment_tdj4x")
 
-[node name="KeyLight" type="DirectionalLight3D" parent="Master3D/Environment/WorldEnvironment"]
+[node name="KeyLight" type="DirectionalLight3D" parent="Master3D/World/WorldEnvironment"]
 transform = Transform3D(0.823988, -0.406248, 0.394976, 0, 0.69709, 0.716984, -0.566608, -0.590786, 0.574394, 0, 0, 0)
 light_energy = 0.6
 shadow_opacity = 0.51
 
-[node name="BackLight" type="DirectionalLight3D" parent="Master3D/Environment/WorldEnvironment"]
+[node name="BackLight" type="DirectionalLight3D" parent="Master3D/World/WorldEnvironment"]
 transform = Transform3D(-0.696213, 0.514676, -0.500395, -2.45567e-08, 0.69709, 0.716984, 0.717835, 0.499174, -0.485324, 0, 0, -1.12294)
 light_energy = 0.2
 
-[node name="Water" parent="Master3D/Environment" instance=ExtResource("5_0djke")]
+[node name="Water" parent="Master3D/World" instance=ExtResource("5_0djke")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Board" type="Node3D" parent="Master3D"]
 script = ExtResource("6_2k1gh")
 metadata/_custom_type_script = "uid://urfb014eou0t"
-
-[node name="Port" type="Node3D" parent="Master3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-
-[node name="Port0" parent="Master3D/Port" instance=ExtResource("6_0djke")]
-transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 31.9603, -0.249992, -23.0608)
-idx = 0
-
-[node name="Port1" parent="Master3D/Port" instance=ExtResource("6_0djke")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.783, -0.249992, 0.371235)
-idx = 1
-
-[node name="Port2" parent="Master3D/Port" instance=ExtResource("6_0djke")]
-transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 31.1075, -0.249992, 23.5174)
-idx = 2
-
-[node name="Port3" parent="Master3D/Port" instance=ExtResource("6_0djke")]
-transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 4.19246, -0.249992, 39.0078)
-idx = 3
-
-[node name="Port4" parent="Master3D/Port" instance=ExtResource("6_0djke")]
-transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -22.355, -0.249992, 38.6191)
-idx = 4
-
-[node name="Port5" parent="Master3D/Port" instance=ExtResource("6_0djke")]
-transform = Transform3D(-1, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -1, -36.0232, -0.249992, 15.2807)
-idx = 5
-
-[node name="Port6" parent="Master3D/Port" instance=ExtResource("6_0djke")]
-transform = Transform3D(-1, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -1, -36.0763, -0.249992, -15.7829)
-idx = 6
-
-[node name="Port7" parent="Master3D/Port" instance=ExtResource("6_0djke")]
-transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, -22.1351, -0.25, -38.8235)
-idx = 7
-
-[node name="Port8" parent="Master3D/Port" instance=ExtResource("6_0djke")]
-transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 5.04149, -0.249992, -38.6339)
-idx = 8
 
 [node name="Character" type="Node3D" parent="Master3D"]
 script = ExtResource("8_kpb75")

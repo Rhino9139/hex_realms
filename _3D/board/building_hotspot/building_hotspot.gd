@@ -140,9 +140,7 @@ func _on_neighbor_area_area_entered(area: Area3D) -> void:
 		area.add_build_spot(self)
 		if terrains.has(area) == false:
 			terrains.append(area)
-	elif area is PortArea:
-		if ports.has(area.get_root()) == false:
-			ports.append(area.get_root())
+
 
 
 @rpc("any_peer", "call_local")

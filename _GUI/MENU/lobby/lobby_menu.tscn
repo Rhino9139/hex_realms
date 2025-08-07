@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://d357mywfows4f"]
+[gd_scene load_steps=5 format=3 uid="uid://d357mywfows4f"]
 
 [ext_resource type="Script" uid="uid://cb1rvcb0tyd7e" path="res://_GUI/MENU/lobby/lobby_menu.gd" id="1_6laa8"]
 [ext_resource type="Script" uid="uid://dcdbsbvg5vqoi" path="res://_GUI/MENU/lobby/components/player_list.gd" id="2_nflxy"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_sno02"]
 thickness = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nflxy"]
+bg_color = Color(1.04925e-05, 0.907887, 0.202547, 1)
 
 [node name="LobbyMenu" type="Control" node_paths=PackedStringArray("start_game_button", "generate_board_button")]
 layout_mode = 3
@@ -50,6 +53,7 @@ offset_left = 102.0
 offset_top = 60.0
 offset_right = 207.0
 offset_bottom = 105.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_nflxy")
 disabled = true
 text = "Start Game"
 

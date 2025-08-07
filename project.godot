@@ -42,7 +42,6 @@ PlayerCard=""
 SetupRoads=""
 PlayerResourceCards=""
 ActionCard=""
-SupplyResources=""
 MyRoads=""
 
 [gui]

@@ -69,11 +69,7 @@ func auto_roll() -> void:
 func end_turn() -> void:
 	disable_timer()
 	turn_ended.emit()
-	get_tree().call_group("BuyButton", "set_pressed", false)
-	if multiplayer.is_server() == false:
-		notify_turn_ended.rpc_id(1)
-	else:
-		notify_turn_ended()
+	share_turn_ended.rpc()
 
 
 func _on_end_turn_button_pressed() -> void:
@@ -82,19 +78,6 @@ func _on_end_turn_button_pressed() -> void:
 	end_turn()
 
 
-@rpc("authority", "call_local")
-func begin_new_turn(turn_index: int, round_index: int) -> void:
-	current_turn_index = turn_index
-	current_round_index = round_index
-	get_tree().call_group("PlayerCard", "check_turn")
-	if turn_index == player.turn_index:
-		turn_started.emit(round_index)
-
-
-@rpc("any_peer", "call_remote")
-func notify_turn_ended() -> void:
-	current_turn_index += 1
-	#if current_turn_index == MultiplayerManager.NUM_PLAYERS:
-		#current_turn_index = 0
-		#current_round_index += 1
-	begin_new_turn.rpc(current_turn_index, current_round_index)
+@rpc("any_peer", "call_local")
+func share_turn_ended() -> void:
+	EventTower.player_turn_ended.emit()

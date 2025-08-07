@@ -11,7 +11,7 @@ height = 1.63477
 radius = 7.02832
 
 [node name="HexRegion" type="Area3D" node_paths=PackedStringArray("roll_sprite", "hover_indicator")]
-collision_layer = 4
+collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_x2km7")
 roll_sprite = NodePath("RollSprite")

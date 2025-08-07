@@ -8,6 +8,11 @@ func _ready() -> void:
 	EventTower.board_generated.connect(_on_board_generated)
 
 
+func _on_board_generated() -> void:
+	start_game_button.disabled = false
+	generate_board_button.disabled = false
+
+
 func _on_start_game_pressed() -> void:
 	EventTower.host_match_started.emit()
 
@@ -16,11 +21,6 @@ func _on_generate_board_pressed() -> void:
 	start_game_button.disabled = true
 	generate_board_button.disabled = true
 	EventTower.generate_board_requested.emit()
-
-
-func _on_board_generated() -> void:
-	start_game_button.disabled = false
-	generate_board_button.disabled = false
 
 
 func _on_main_menu_pressed() -> void:

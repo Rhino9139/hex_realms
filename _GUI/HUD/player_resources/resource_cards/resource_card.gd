@@ -10,19 +10,24 @@ var type: TerrainType:
 		type = new_value
 		assign()
 
+
 func _ready() -> void:
 	if type_index != -1:
 		get_type()
+
 
 func assign() -> void:
 	inner_sprite.modulate = type.material.albedo_color
 	icon_sprite.texture = type.icon_texture
 
+
 func show_unavailable() -> void:
 	modulate = Color(1.0, 1.0, 1.0, 0.1)
+
 
 func show_available() -> void:
 	modulate = Color(1.0, 1.0, 1.0, 1.0)
 
+
 func get_type() -> void:
-	type = Global.TYPE_RES[type_index]
+	pass

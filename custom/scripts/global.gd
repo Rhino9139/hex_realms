@@ -16,7 +16,7 @@ const _BUY_COST: Dictionary[Global.BuyOption, Array] = {
 	BuyOption.ROAD : [1, 0, 0, 0, 1],
 	BuyOption.CARD : [0, 1, 1, 1, 0],
 }
-const ROLL_SPRITES: Dictionary = {
+const ROLL_SPRITES: Dictionary[int, String] = {
 	2 : "uid://inbnixypi3tk",
 	3 : "uid://j8fdr2h6cwu5",
 	4 : "uid://c2jmh2t1cu0h3",
@@ -43,9 +43,7 @@ static var HEX_TYPES: Array[int] = [
 static var HEX_ROLLS: Array[int] = [
 	2, 3, 3, 4, 4, 5, 5, 6, 6, 8, 8, 9, 9, 10, 10, 11, 11, 12, 7
 ]
-static var PORT_TYPES: Array[int] = [
-	0, 1, 2, 3, 4, 5, 5, 5, 5
-]
+
 static var ACTION_CARDS: Array[int] = [
 	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 3, 3, 4, 4
 	]

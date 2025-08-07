@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://c1gixsxmqfk6c"]
 
 [ext_resource type="Script" uid="uid://bb00f7hhnfyx1" path="res://_GUI/SCREEN/monopoly_screen/monopoly_card_screen.gd" id="1_43ufa"]
-[ext_resource type="PackedScene" uid="uid://d4d1p4l68ffyr" path="res://_2D/resource_cards/resource_card.tscn" id="1_nkwic"]
+[ext_resource type="PackedScene" uid="uid://d4d1p4l68ffyr" path="res://_GUI/HUD/player_resources/resource_cards/resource_card.tscn" id="1_nkwic"]
 
 [sub_resource type="Gradient" id="Gradient_43ufa"]
 colors = PackedColorArray(0, 1, 0, 1, 0.652826, 1, 0.624003, 1)

@@ -1,3 +1,4 @@
+class_name PlayerCamera
 extends Character
 
 @export var h_pivot: Node3D
@@ -62,25 +63,14 @@ func update_hover_raycast(clicked: bool = false) -> void:
 	var result = space_state.intersect_ray(query)
 	if result:
 		var collider = result.get("collider")
-		if collider == current_hover:
-			current_hover.show_hover()
-		else:
-			get_tree().call_group("Empty", "hide_hover")
-			get_tree().call_group("RoadEmpty", "hide_hover")
-			get_tree().call_group("SetupRoads", "hide_hover")
-			get_tree().call_group("Hex", "hide_hover")
-			current_hover = collider
-			current_hover.show_hover()
+		EventTower.selectable_hovered.emit(collider)
 		if clicked:
 			if collider is HexRegion:
 				current_hover.move_robber.rpc()
 			else:
 				current_hover.build.rpc(Player.LOCAL_PLAYER.player_id)
 	else:
-		get_tree().call_group("Empty", "hide_hover")
-		get_tree().call_group("RoadEmpty", "hide_hover")
-		get_tree().call_group("SetupRoads", "hide_hover")
-		get_tree().call_group("Hex", "hide_hover")
+		EventTower.selectable_hovered.emit(null)
 
 
 func change_to_hover() -> void:
@@ -89,3 +79,4 @@ func change_to_hover() -> void:
 
 func change_to_idle() -> void:
 	status_update = status_idle
+	EventTower.selectable_hovered.emit(null)

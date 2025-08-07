@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dfpkyntgfrs8"]
 
-[ext_resource type="Script" uid="uid://iveu1hqh5fw2" path="res://_2D/resource_cards/card_stack.gd" id="1_ys8e2"]
-[ext_resource type="PackedScene" uid="uid://d4d1p4l68ffyr" path="res://_2D/resource_cards/resource_card.tscn" id="2_pd2um"]
+[ext_resource type="Script" uid="uid://iveu1hqh5fw2" path="res://_GUI/HUD/player_resources/resource_cards/card_stack.gd" id="1_ys8e2"]
+[ext_resource type="PackedScene" uid="uid://d4d1p4l68ffyr" path="res://_GUI/HUD/player_resources/resource_cards/resource_card.tscn" id="2_pd2um"]
 
 [sub_resource type="SystemFont" id="SystemFont_b0vwk"]
 font_names = PackedStringArray("Verdana")

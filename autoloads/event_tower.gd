@@ -9,6 +9,8 @@ signal board_generated
 signal board_shared
 signal add_board_requested
 signal destroy_board_requested
+signal camera_activated
+signal camera_deactivated
 
 signal host_match_started
 signal match_started
@@ -22,14 +24,18 @@ signal client_created
 signal client_destroyed
 signal lobby_disconnected
 
+signal player_turn_ended
+signal player_turn_started
+
 signal robber_created
-signal move_robber_requested
 signal robber_moved
 signal robber_steal_activated
 signal robber_resource_stolen(target_player: Player)
 
 signal type_chosen(type_index: int)
 signal monopoly_state_entered
+
+signal selectable_hovered(hovered_object: Node3D)
 
 signal settlement_built
 signal road_built
