@@ -1,4 +1,4 @@
-class_name NetworkManager
+class_name MasterNetwork
 extends Node
 
 var server: ServerHost

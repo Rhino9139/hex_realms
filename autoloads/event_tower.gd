@@ -10,9 +10,6 @@ signal board_shared
 signal add_board_requested
 signal destroy_board_requested
 
-signal add_player_camera_requested
-signal destroy_player_camera_requested
-
 signal host_match_started
 signal match_started
 signal turn_order_created

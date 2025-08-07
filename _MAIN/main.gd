@@ -6,7 +6,6 @@ static var PLAYER_NAME: String = "New Player"
 
 
 func _ready() -> void:
-	EventTower.local_name_changed.connect(_on_local_name_changed)
 	
 	if OS.is_debug_build():
 		DEBUG_setup_multiple_windows()

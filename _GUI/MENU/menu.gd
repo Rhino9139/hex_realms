@@ -2,7 +2,7 @@ class_name Menu
 extends Control
 
 @warning_ignore_start("unused_signal")
-signal menu_changed(new_header: Header)
+signal menu_changed(new_menu: Header)
 
 enum Header{MAIN, LOBBY}
 
@@ -12,10 +12,6 @@ const _PATHS: Dictionary[int, String] = {
 }
 
 var current_menu: Menu
-
-
-func _ready() -> void:
-	EventTower.game_opened.connect(_on_game_opened)
 
 
 func add_menu(header: Menu.Header) -> void:
@@ -29,10 +25,6 @@ func add_menu(header: Menu.Header) -> void:
 func clear_menu() -> void:
 	if current_menu:
 		current_menu.queue_free()
-
-
-func _on_game_opened() -> void:
-	add_menu(Menu.Header.MAIN)
 
 
 func _on_menu_changed(new_menu: Menu.Header) -> void:

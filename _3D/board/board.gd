@@ -14,25 +14,17 @@ static var HEX_TYPES: Array[int] = [
 var current_board: Node3D
 
 
-func _ready() -> void:
-	EventTower.add_board_requested.connect(_on_add_board_requested)
-	EventTower.destroy_board_requested.connect(_on_destroy_board_requested)
-	EventTower.generate_board_requested.connect(_on_generate_board_requested)
-
-
-func _on_add_board_requested() -> void:
-	EventTower.add_player_camera_requested.emit()
+func add_board() -> void:
 	current_board = load(_PATHS[Type.STANDARD]).instantiate()
 	add_child(current_board)
 
 
-func _on_destroy_board_requested() -> void:
-	EventTower.destroy_player_camera_requested.emit()
+func destroy_board() -> void:
 	if current_board:
 		current_board.queue_free()
 
 
-func _on_generate_board_requested() -> void:
+func generate_board() -> void:
 	Terrain.TYPE_ARRAY.shuffle()
 	
 	Global.HEX_ROLLS.shuffle()

@@ -10,18 +10,13 @@ const _PATHS: Dictionary[Header, String] = {
 var current_camera: Character
 
 
-func _ready() -> void:
-	EventTower.add_player_camera_requested.connect(_on_add_player_camera_requested)
-	EventTower.destroy_player_camera_requested.connect(_on_destroy_player_camera_requested)
-
-
-func _on_add_player_camera_requested() -> void:
+func add_camera() -> void:
 	if current_camera:
-		current_camera.queue_free()
+		return
 	current_camera = load(_PATHS[Header.PLAYER_CAMERA]).instantiate()
 	add_child(current_camera)
 
 
-func _on_destroy_player_camera_requested() -> void:
+func destroy_camera() -> void:
 	if current_camera:
 		current_camera.queue_free()

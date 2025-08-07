@@ -11,15 +11,6 @@ var v_rot_target: float = 45.0
 var status_update: Callable = status_idle
 var current_hover: Area3D
 
-#static func SWAP_TO_HOVER() -> void:
-	#LOCAL_CHARACTER.status_update = LOCAL_CHARACTER.status_hover
-#
-#static func SWAP_T0_IDLE() -> void:
-	#LOCAL_CHARACTER.status_update = LOCAL_CHARACTER.status_idle
-
-func _ready() -> void:
-	pass
-
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("orbit_cam"):
@@ -90,3 +81,11 @@ func update_hover_raycast(clicked: bool = false) -> void:
 		get_tree().call_group("RoadEmpty", "hide_hover")
 		get_tree().call_group("SetupRoads", "hide_hover")
 		get_tree().call_group("Hex", "hide_hover")
+
+
+func change_to_hover() -> void:
+	status_update = status_hover
+
+
+func change_to_idle() -> void:
+	status_update = status_idle
