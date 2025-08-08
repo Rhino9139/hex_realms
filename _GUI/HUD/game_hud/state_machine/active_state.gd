@@ -21,7 +21,6 @@ func enter() -> void:
 	player_trade.toggled.connect(_on_player_trade_started)
 	base.turn_ended.connect(_on_turn_ended)
 	#Player.LOCAL_PLAYER.item_bought.connect(_on_item_bought)
-	UIButton.ENABLE_UI()
 	#Character.SWAP_TO_HOVER()
 	base.end_turn_button.disabled = false
 	base.end_turn_button.visible = true
@@ -40,7 +39,6 @@ func exit() -> void:
 	player_trade.toggled.disconnect(_on_player_trade_started)
 	base.turn_ended.disconnect(_on_turn_ended)
 	Player.LOCAL_PLAYER.item_bought.disconnect(_on_item_bought)
-	UIButton.DISABLE_UI()
 	base.end_turn_button.disabled = true
 	base.end_turn_button.visible = false
 	get_tree().call_group("ActionCard", "deactivate")

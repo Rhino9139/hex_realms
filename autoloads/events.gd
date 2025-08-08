@@ -12,19 +12,19 @@ signal destroy_board_requested
 signal player_activated
 signal player_deactivated
 
+signal server_requested
+signal server_created
+signal server_destroyed
+signal client_requested
+signal client_created
+signal client_destroyed
+signal lobby_disconnected
+
 signal host_match_started
 signal match_started
 signal turn_order_created
 signal player_turn_ended
 signal player_turn_started
-
-signal server_requested
-signal client_requested
-signal server_created
-signal server_destroyed
-signal client_created
-signal client_destroyed
-signal lobby_disconnected
 
 signal robber_created
 signal robber_moved
@@ -46,6 +46,7 @@ signal selectable_hovered(hovered_object: Hotspot)
 signal settlement_built
 signal road_built
 signal item_bought(player_id: int, item: Global.BuyOption)
+
 signal points_changed
 signal info_changed
 signal resources_changed(player_id: int, resources: Array[int])

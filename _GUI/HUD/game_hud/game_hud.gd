@@ -1,5 +1,6 @@
 extends Control
 
+@warning_ignore("unused_signal")
 signal turn_ended
 
 @export var timer_gradient: GradientTexture1D
@@ -21,16 +22,16 @@ var current_round_index: int = 0
 
 
 func _ready() -> void:
-	add_player_cards()
+	#add_player_cards()
 	Events.player_turn_started.connect(_on_player_turn_started)
 
 
-func add_player_cards() -> void:
-	var player_list: Array = PlayerManager.GET_PLAYERS()
-	for i in player_list.size():
-		player_card_parent.add_child(PlayerCard.CREATE(player_list[i]))
-	for card in player_card_parent.get_children():
-		player_card_parent.move_child(card, card.player.turn_index - 1)
+#func add_player_cards() -> void:
+	#var player_list: Array = PlayerManager.GET_PLAYERS()
+	#for i in player_list.size():
+		#player_card_parent.add_child(PlayerCard.CREATE(player_list[i]))
+	#for card in player_card_parent.get_children():
+		#player_card_parent.move_child(card, card.player.turn_index - 1)
 
 
 func update_timer_progress(new_value: float) -> void:

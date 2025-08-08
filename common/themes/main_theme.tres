@@ -1,9 +1,18 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://dl0v3tmlywawx"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://dl0v3tmlywawx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sw3fs"]
 bg_color = Color(0.509804, 0.129412, 0, 0.882353)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u8ybs"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7edsg"]
 bg_color = Color(0.320264, 0.595971, 0.367717, 1)
 border_width_left = 2
 border_width_top = 2
@@ -15,7 +24,49 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hd5ga"]
+bg_color = Color(0, 0.920311, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u8ybs"]
+bg_color = Color(0.259042, 0.495465, 0.300161, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6uab0"]
+bg_color = Color(0, 0.920311, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
 [resource]
 UIButton/base_type = &"Button"
 UIButton/styles/disabled = SubResource("StyleBoxFlat_sw3fs")
+UIButton/styles/hover = SubResource("StyleBoxFlat_7edsg")
+UIButton/styles/hover_pressed = SubResource("StyleBoxFlat_hd5ga")
 UIButton/styles/normal = SubResource("StyleBoxFlat_u8ybs")
+UIButton/styles/pressed = SubResource("StyleBoxFlat_6uab0")

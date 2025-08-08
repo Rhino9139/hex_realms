@@ -1,8 +1,9 @@
-[gd_scene load_steps=39 format=3 uid="uid://dlysvvr1aprdc"]
+[gd_scene load_steps=38 format=3 uid="uid://dlysvvr1aprdc"]
 
 [ext_resource type="Script" uid="uid://cxaj2txgrot0c" path="res://_GUI/HUD/game_hud/game_hud.gd" id="1_2v08g"]
 [ext_resource type="PackedScene" uid="uid://cug7reenm11sr" path="res://_GUI/HUD/hud_layout.tscn" id="2_hfobc"]
-[ext_resource type="PackedScene" uid="uid://c38lsr2lu1i4t" path="res://_GUI/HUD/game_hud/components/buy_button.tscn" id="7_iwlbn"]
+[ext_resource type="ButtonGroup" uid="uid://dge70xeowhnu" path="res://_GUI/HUD/game_hud/components/ui_buttons.tres" id="3_56vj1"]
+[ext_resource type="Texture2D" uid="uid://may10jqwt0e1" path="res://common/icons/ui_buttons/structure_house.png" id="3_hfobc"]
 [ext_resource type="Texture2D" uid="uid://b0xh3lcnrqboa" path="res://common/icons/ui_buttons/structure_gate.png" id="8_en8hq"]
 [ext_resource type="Texture2D" uid="uid://c1d8lhog071sm" path="res://common/icons/ui_buttons/card_lift.png" id="9_iwlbn"]
 [ext_resource type="Texture2D" uid="uid://do5fpysxkbwj2" path="res://common/icons/ui_buttons/arrow_diagonal.png" id="10_t7dor"]
@@ -37,12 +38,6 @@ colors = PackedColorArray(0, 0.955698, 0, 1, 1, 1, 0, 1, 1, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_56vj1"]
 gradient = SubResource("Gradient_hfobc")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hhadb"]
-bg_color = Color(1.28509e-05, 0.87516, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vvj38"]
-bg_color = Color(1.28509e-05, 0.87516, 0, 1)
 
 [sub_resource type="Gradient" id="Gradient_y8wuv"]
 colors = PackedColorArray(0.44098, 0.440979, 0.440979, 0.784314, 0.44098, 0.440979, 0.440979, 0.784314)
@@ -102,58 +97,98 @@ anchor_right = 0.02
 anchor_bottom = 0.98
 offset_left = -15.04
 offset_top = -59.04
-offset_right = 304.96
-offset_bottom = 4.95996
+offset_right = 352.96
+offset_bottom = 4.96002
 grow_vertical = 0
 alignment = 1
 
-[node name="BuySettlement" parent="UIButtons" node_paths=PackedStringArray("confirm") instance=ExtResource("7_iwlbn")]
+[node name="BuySettlement" type="Button" parent="UIButtons"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
+focus_mode = 0
+theme_type_variation = &"UIButton"
+disabled = true
+toggle_mode = true
+action_mode = 0
+button_group = ExtResource("3_56vj1")
+icon = ExtResource("3_hfobc")
 icon_alignment = 1
-confirm = NodePath("../../Confirm")
+expand_icon = true
+script = ExtResource("13_hhadb")
+metadata/_custom_type_script = "uid://bvsalc57dvu50"
 
-[node name="BuyCastle" parent="UIButtons" node_paths=PackedStringArray("confirm") instance=ExtResource("7_iwlbn")]
+[node name="BuyCastle" type="Button" parent="UIButtons"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
+focus_mode = 0
+theme_type_variation = &"UIButton"
+disabled = true
+toggle_mode = true
+action_mode = 0
+button_group = ExtResource("3_56vj1")
 icon = ExtResource("8_en8hq")
 icon_alignment = 1
-confirm = NodePath("../../Confirm")
+expand_icon = true
+script = ExtResource("13_hhadb")
+button_type = 1
+metadata/_custom_type_script = "uid://bvsalc57dvu50"
 
-[node name="BuyRoad" parent="UIButtons" node_paths=PackedStringArray("confirm") instance=ExtResource("7_iwlbn")]
+[node name="BuyRoad" type="Button" parent="UIButtons"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
+focus_mode = 0
+theme_type_variation = &"UIButton"
+disabled = true
+toggle_mode = true
+action_mode = 0
+button_group = ExtResource("3_56vj1")
 icon = ExtResource("10_t7dor")
 icon_alignment = 1
-confirm = NodePath("../../Confirm")
+expand_icon = true
+script = ExtResource("13_hhadb")
+button_type = 2
+metadata/_custom_type_script = "uid://bvsalc57dvu50"
 
-[node name="BuyCard" parent="UIButtons" node_paths=PackedStringArray("confirm") instance=ExtResource("7_iwlbn")]
+[node name="BuyCard" type="Button" parent="UIButtons"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
+focus_mode = 0
+theme_type_variation = &"UIButton"
+disabled = true
+toggle_mode = true
+action_mode = 0
+button_group = ExtResource("3_56vj1")
 icon = ExtResource("9_iwlbn")
 icon_alignment = 1
-confirm = NodePath("../../Confirm")
+expand_icon = true
+script = ExtResource("13_hhadb")
+button_type = 3
+metadata/_custom_type_script = "uid://bvsalc57dvu50"
 
 [node name="BankTrade" type="Button" parent="UIButtons"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
+focus_mode = 0
 theme_type_variation = &"UIButton"
-theme_override_styles/pressed = SubResource("StyleBoxFlat_hhadb")
+disabled = true
 toggle_mode = true
+action_mode = 0
+button_group = ExtResource("3_56vj1")
 icon = ExtResource("12_cohbh")
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("13_hhadb")
+button_type = 4
 metadata/_custom_type_script = "uid://bvsalc57dvu50"
 
 [node name="PlayerTrade" type="Button" parent="UIButtons"]
@@ -161,13 +196,17 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
+focus_mode = 0
 theme_type_variation = &"UIButton"
-theme_override_styles/pressed = SubResource("StyleBoxFlat_vvj38")
+disabled = true
 toggle_mode = true
+action_mode = 0
+button_group = ExtResource("3_56vj1")
 icon = ExtResource("14_vvj38")
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("13_hhadb")
+button_type = 5
 metadata/_custom_type_script = "uid://bvsalc57dvu50"
 
 [node name="RollButton" type="Button" parent="."]
@@ -252,10 +291,10 @@ position = Vector2(872, 608)
 position = Vector2(920, 608)
 
 [node name="KnightUsed" parent="." instance=ExtResource("29_3rj33")]
-position = Vector2(408, 608)
+position = Vector2(1040, 608)
 
 [node name="PointCardUsed" parent="." instance=ExtResource("31_3ldut")]
-position = Vector2(462, 608)
+position = Vector2(1094, 608)
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("base")]
 script = ExtResource("19_hfobc")
@@ -319,8 +358,3 @@ metadata/_custom_type_script = "uid://b4n8p8i631us2"
 
 [connection signal="pressed" from="RollButton" to="StateMachine/NeedRollState" method="_on_roll_button_pressed"]
 [connection signal="pressed" from="EndTurnButton" to="." method="_on_end_turn_button_pressed"]
-
-[editable path="UIButtons/BuySettlement"]
-[editable path="UIButtons/BuyCastle"]
-[editable path="UIButtons/BuyRoad"]
-[editable path="UIButtons/BuyCard"]
