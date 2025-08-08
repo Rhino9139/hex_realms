@@ -30,6 +30,7 @@ visible = false
 shape = SubResource("BoxShape3D_4fib4")
 
 [node name="RoadModel" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("BoxMesh_u45lf")
 surface_material_override/0 = ExtResource("2_4fib4")
 

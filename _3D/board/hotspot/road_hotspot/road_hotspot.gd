@@ -33,8 +33,9 @@ func get_availability() -> bool:
 	var is_available: bool = false
 	var local_id: int = multiplayer.get_unique_id()
 	for road in adjacent_roads:
-		if road.player_owner.player_id == local_id:
-			is_available = true
+		if road.player_owner != null:
+			if road.player_owner.player_id == local_id:
+				is_available = true
 	for building in adjacent_buildings:
 		if is_instance_valid(building):
 			if building.player_owner != null:
@@ -92,6 +93,8 @@ func _on_selectable_hovered(hovered_object: Hotspot) -> void:
 
 
 func _on_add_road_entered() -> void:
+	if player_owner != null:
+		return
 	if get_availability():
 		collision_layer = 1
 		indicator_model.visible = true

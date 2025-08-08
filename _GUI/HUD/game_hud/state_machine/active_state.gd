@@ -20,7 +20,7 @@ func enter() -> void:
 	supply_trade.toggled.connect(_on_supply_trade_toggled)
 	player_trade.toggled.connect(_on_player_trade_started)
 	base.turn_ended.connect(_on_turn_ended)
-	Player.LOCAL_PLAYER.item_bought.connect(_on_item_bought)
+	#Player.LOCAL_PLAYER.item_bought.connect(_on_item_bought)
 	UIButton.ENABLE_UI()
 	#Character.SWAP_TO_HOVER()
 	base.end_turn_button.disabled = false

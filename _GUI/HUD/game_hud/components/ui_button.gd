@@ -1,15 +1,6 @@
 class_name UIButton
 extends Button
 
-static var BUTTONS: Array[UIButton]
+enum Type{SETTLEMENT, CASTLE, ROAD, CARD, BANK_TRADE, PLAYER_TRADE}
 
-static func DISABLE_UI() -> void:
-	for i in BUTTONS:
-		i.disabled = true
-
-static func ENABLE_UI() -> void:
-	for i in BUTTONS:
-		i.disabled = false
-
-func _ready() -> void:
-	BUTTONS.append(self)
+@export var button_type: Type

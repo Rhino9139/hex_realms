@@ -122,7 +122,6 @@ size_flags_horizontal = 6
 size_flags_vertical = 4
 icon = ExtResource("8_en8hq")
 icon_alignment = 1
-type = 1
 confirm = NodePath("../../Confirm")
 
 [node name="BuyRoad" parent="UIButtons" node_paths=PackedStringArray("confirm") instance=ExtResource("7_iwlbn")]
@@ -132,7 +131,6 @@ size_flags_horizontal = 6
 size_flags_vertical = 4
 icon = ExtResource("10_t7dor")
 icon_alignment = 1
-type = 2
 confirm = NodePath("../../Confirm")
 
 [node name="BuyCard" parent="UIButtons" node_paths=PackedStringArray("confirm") instance=ExtResource("7_iwlbn")]
@@ -142,14 +140,14 @@ size_flags_horizontal = 6
 size_flags_vertical = 4
 icon = ExtResource("9_iwlbn")
 icon_alignment = 1
-type = 3
 confirm = NodePath("../../Confirm")
 
-[node name="SupplyTrade" type="Button" parent="UIButtons"]
+[node name="BankTrade" type="Button" parent="UIButtons"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
+theme_type_variation = &"UIButton"
 theme_override_styles/pressed = SubResource("StyleBoxFlat_hhadb")
 toggle_mode = true
 icon = ExtResource("12_cohbh")
@@ -163,6 +161,7 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
+theme_type_variation = &"UIButton"
 theme_override_styles/pressed = SubResource("StyleBoxFlat_vvj38")
 toggle_mode = true
 icon = ExtResource("14_vvj38")
@@ -275,7 +274,7 @@ metadata/_custom_type_script = "uid://b4n8p8i631us2"
 
 [node name="ActiveState" type="Node" parent="StateMachine" node_paths=PackedStringArray("supply_trade", "action_card_confirm", "player_trade", "knight_card", "point_card", "monopoly_card", "year_of_plenty", "free_roads")]
 script = ExtResource("16_p1mox")
-supply_trade = NodePath("../../UIButtons/SupplyTrade")
+supply_trade = NodePath("../../UIButtons/BankTrade")
 action_card_confirm = NodePath("../../Confirm")
 player_trade = NodePath("../../UIButtons/PlayerTrade")
 knight_card = NodePath("../../KnightUnused")
@@ -294,7 +293,7 @@ metadata/_custom_type_script = "uid://b4n8p8i631us2"
 
 [node name="BankTradeState" type="Node" parent="StateMachine" node_paths=PackedStringArray("supply_button")]
 script = ExtResource("24_hhadb")
-supply_button = NodePath("../../UIButtons/SupplyTrade")
+supply_button = NodePath("../../UIButtons/BankTrade")
 metadata/_custom_type_script = "uid://b4n8p8i631us2"
 
 [node name="CutResourcesState" type="Node" parent="StateMachine"]
@@ -318,7 +317,6 @@ script = ExtResource("38_bmphe")
 player_trade = NodePath("../../UIButtons/PlayerTrade")
 metadata/_custom_type_script = "uid://b4n8p8i631us2"
 
-[connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="pressed" from="RollButton" to="StateMachine/NeedRollState" method="_on_roll_button_pressed"]
 [connection signal="pressed" from="EndTurnButton" to="." method="_on_end_turn_button_pressed"]
 

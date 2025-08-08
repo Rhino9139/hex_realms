@@ -1,14 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://c38lsr2lu1i4t"]
+[gd_scene load_steps=3 format=3 uid="uid://c38lsr2lu1i4t"]
 
 [ext_resource type="Texture2D" uid="uid://may10jqwt0e1" path="res://common/icons/ui_buttons/structure_house.png" id="1_2fxvl"]
 [ext_resource type="Script" uid="uid://bmoi77kafs78a" path="res://_GUI/HUD/game_hud/components/buy_button.gd" id="2_ghkxn"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2fxvl"]
-bg_color = Color(1.28509e-05, 0.87516, 0, 1)
-
-[node name="BuyButton" type="Button" groups=["BuyButton"]]
+[node name="BuyButton" type="Button"]
 custom_minimum_size = Vector2(40, 30)
-theme_override_styles/pressed = SubResource("StyleBoxFlat_2fxvl")
+theme_type_variation = &"UIButton"
 toggle_mode = true
 icon = ExtResource("1_2fxvl")
 expand_icon = true

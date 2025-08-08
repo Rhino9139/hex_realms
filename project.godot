@@ -30,7 +30,6 @@ enabled=PackedStringArray("res://addons/MagicaVoxel_Importer_with_Extensions/plu
 
 [global_group]
 
-BuyButton=""
 Empty=""
 Settlement=""
 Hotspot=""

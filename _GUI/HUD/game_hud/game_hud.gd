@@ -1,5 +1,6 @@
 extends Control
 
+signal turn_ended
 
 @export var timer_gradient: GradientTexture1D
 @export var turn_progress_bar: TextureProgressBar
