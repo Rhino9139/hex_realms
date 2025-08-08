@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://coa2enk271cgj"]
 
-[ext_resource type="Script" uid="uid://b108anyn817ik" path="res://_3D/board/components/hex_region.gd" id="1_x2km7"]
+[ext_resource type="Script" uid="uid://b108anyn817ik" path="res://_3D/board/hotspot/hex_hotspot/hex_hotspot.gd" id="1_x2km7"]
 [ext_resource type="ArrayMesh" uid="uid://dsgb7xo0ja4db" path="res://imports/blend_files/hexes/holo_hex_outer.res" id="2_ccdea"]
 [ext_resource type="Material" uid="uid://4xxu5p5stsvc" path="res://common/materials/dirt.tres" id="5_awe0n"]
 [ext_resource type="ArrayMesh" uid="uid://dk1ubjp7mqm8g" path="res://imports/blend_files/hexes/hex_mesh.res" id="6_qexo0"]
@@ -10,7 +10,7 @@
 height = 1.63477
 radius = 7.02832
 
-[node name="HexRegion" type="Area3D" node_paths=PackedStringArray("roll_sprite", "hover_indicator")]
+[node name="HexHotspot" type="Area3D" node_paths=PackedStringArray("roll_sprite", "hover_indicator")]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_x2km7")

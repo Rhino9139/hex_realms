@@ -1,6 +1,5 @@
 extends Control
 
-signal turn_ended
 
 @export var timer_gradient: GradientTexture1D
 @export var turn_progress_bar: TextureProgressBar
@@ -68,7 +67,6 @@ func auto_roll() -> void:
 
 func end_turn() -> void:
 	disable_timer()
-	turn_ended.emit()
 	share_turn_ended.rpc()
 
 

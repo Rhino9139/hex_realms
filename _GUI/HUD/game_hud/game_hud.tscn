@@ -258,8 +258,9 @@ position = Vector2(408, 608)
 [node name="PointCardUsed" parent="." instance=ExtResource("31_3ldut")]
 position = Vector2(462, 608)
 
-[node name="StateMachine" type="Node" parent="."]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("base")]
 script = ExtResource("19_hfobc")
+base = NodePath("..")
 metadata/_custom_type_script = "uid://dd2nneu3quv1y"
 
 [node name="InactiveState" type="Node" parent="StateMachine"]

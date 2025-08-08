@@ -90,8 +90,8 @@ func _on_player_trade_started(toggled_on: bool) -> void:
 		state_changed.emit("PlayerTradeState")
 
 
-func aquire_card(card_index: Global.ActionCardType) -> void:
-	var player: Player = Player.LOCAL_PLAYER
+func aquire_card(_card_index: Global.ActionCardType) -> void:
+	pass
 
 
 func _on_monopoly_used() -> void:

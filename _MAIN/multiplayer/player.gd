@@ -7,14 +7,12 @@ static var LARGEST_ARMY: int = 2
 var player_id: int = 0
 var player_name: String = "New Player"
 var player_index: int = 0
-var turn_index: int = -1
+var turn_index: int = 1
 
 var resources: Array[int] = [0, 0, 0, 0, 0]
 var trade_remove: Array[int] = [0, 0, 0, 0, 0]
 var trade_add: Array[int] = [0, 0, 0, 0, 0]
 var trade_ratios: Array[int] = [4, 4, 4, 4, 4]
-var settlement_credits: int = 0
-var road_credits: int = 0
 var player_mat: StandardMaterial3D
 var player_color: Color
 var settlement_count: int = 0
@@ -38,14 +36,15 @@ var has_largest_army: bool = false:
 
 
 func _ready() -> void:
-	if multiplayer.is_server():
-		player_name = Main.PLAYER_NAME
-		LOCAL_PLAYER = self
-	else:
-		request_id.rpc_id(1)
-	player_index = get_index() + 1
-	player_mat = Global.PLAYER_MATS[player_index]
-	player_color = player_mat.albedo_color
+	#if multiplayer.is_server() and multiplayer.get_unique_id() == 1:
+		#LOCAL_PLAYER = self
+		#player_name = Main.PLAYER_NAME
+	#else:
+		#request_id.rpc_id(1)
+	
+	#player_index = get_index() + 1
+	#player_mat = Global.PLAYER_MATS[player_index]
+	#player_color = player_mat.albedo_color
 	
 	Events.item_bought.connect(_on_item_bought)
 
@@ -78,7 +77,6 @@ func _on_item_bought(new_player_id: int, item_type: Global.BuyOption) -> void:
 
 func add_settlement() -> void:
 	settlement_count += 1
-	settlement_credits -= 1
 	calculate_points()
 
 
@@ -90,7 +88,6 @@ func add_castle() -> void:
 
 func add_road() -> void:
 	road_count += 1
-	road_credits -= 1
 
 
 func add_card() -> void:

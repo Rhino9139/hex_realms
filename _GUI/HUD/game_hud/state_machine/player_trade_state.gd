@@ -54,8 +54,8 @@ func _on_trade_responded(accepted: bool) -> void:
 
 
 @rpc("any_peer", "call_remote")
-func share_trade_offer(remove: Array[int], add: Array[int]) -> void:
-	offer_player_id = multiplayer.get_remote_sender_id()
+func share_trade_offer(_remove: Array[int], _add: Array[int]) -> void:
+	pass
 	#TODO create trade offer screen
 
 

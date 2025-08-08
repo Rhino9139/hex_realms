@@ -1,7 +1,10 @@
 extends State
 
 func enter() -> void:
-	Events.setup_entered.emit()
+	Events.add_building_exited.connect(_on_add_building_exited)
+	Events.add_road_exited.connect(_on_add_road_exited)
+	
+	Events.add_building_entered.emit(Hotspot.Type.EMPTY)
 	Events.player_activated.emit()
 
 
@@ -9,9 +12,13 @@ func exit() -> void:
 	Events.player_deactivated.emit()
 
 
-func _on_settlement_built() -> void:
-	pass
+func _on_add_building_exited() -> void:
+	Events.add_building_exited.disconnect(_on_add_building_exited)
+	
+	Events.add_road_entered.emit()
 
 
-func _on_road_built() -> void:
+func _on_add_road_exited() -> void:
+	Events.add_road_exited.disconnect(_on_add_road_exited)
+	base.end_turn()
 	state_changed.emit("InactiveState")

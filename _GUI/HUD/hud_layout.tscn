@@ -7,11 +7,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="ReferenceRect" type="ReferenceRect" parent="."]
 layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0
+mouse_filter = 2
 border_color = Color(1, 0, 0, 0.392157)
 border_width = 4.0
 
@@ -20,6 +22,7 @@ layout_mode = 0
 offset_top = 576.0
 offset_right = 1152.0
 offset_bottom = 648.0
+mouse_filter = 2
 border_color = Color(1, 0, 0, 0.392157)
 border_width = 4.0
 
@@ -27,6 +30,7 @@ border_width = 4.0
 layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 72.0
+mouse_filter = 2
 border_color = Color(1, 0, 0, 0.392157)
 border_width = 4.0
 
@@ -34,5 +38,6 @@ border_width = 4.0
 layout_mode = 0
 offset_right = 384.0
 offset_bottom = 648.0
+mouse_filter = 2
 border_color = Color(1, 0, 0, 0.392157)
 border_width = 4.0

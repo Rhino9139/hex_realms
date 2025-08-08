@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://del6455x1rio1"]
 
-[ext_resource type="Script" uid="uid://bvm0v3l1xnpb3" path="res://_3D/board/road_hotspot/building_hotspot.gd" id="1_ql0ga"]
+[ext_resource type="Script" uid="uid://bvm0v3l1xnpb3" path="res://_3D/board/hotspot/building_hotspot/building_hotspot.gd" id="1_ql0ga"]
 [ext_resource type="ArrayMesh" uid="uid://bidbr0bcuk1ut" path="res://imports/blend_files/structures/castle_mesh.res" id="2_v2e2f"]
 [ext_resource type="ArrayMesh" uid="uid://cm8oy0ivr1yx8" path="res://imports/blend_files/structures/settlement_mesh.res" id="3_jrjif"]
 [ext_resource type="Material" uid="uid://bhusjf7o7dpr3" path="res://common/materials/light_grey.tres" id="5_jrjif"]

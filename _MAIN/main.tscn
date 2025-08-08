@@ -26,8 +26,9 @@ script = ExtResource("1_45b34")
 [node name="MasterNetwork" type="Node" parent="."]
 script = ExtResource("2_3e27e")
 
-[node name="PlayerManager" type="Node" parent="MasterNetwork"]
+[node name="PlayerManager" type="Node" parent="MasterNetwork" node_paths=PackedStringArray("spawner")]
 script = ExtResource("3_g5ko0")
+spawner = NodePath("../MultiplayerSpawner")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="MasterNetwork"]
 _spawnable_scenes = PackedStringArray("uid://cjwp661yn28ll")

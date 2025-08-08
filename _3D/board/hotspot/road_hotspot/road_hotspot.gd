@@ -1,18 +1,21 @@
 class_name RoadHotspot
-extends Area3D
+extends Hotspot
 
 static var LONGEST: int = 0
 
 @export var road_model: MeshInstance3D
 @export var indicator_model: MeshInstance3D
 @export var TEST_MAT: StandardMaterial3D
+@export var adjacent_roads: Array[RoadHotspot]
+@export var adjacent_buildings: Array[BuildingHotspot]
 
 var neighbors: Array[RoadHotspot] = []
 var neighbors_clean: Array[RoadHotspot] = []
 var ally_neighbors: Array[RoadHotspot] = []
 var tail_segements: Array[RoadHotspot] = []
 var tail_id: Array[int] = [0, 1, 2, 3]
-var player: Player
+var can_build: bool = false
+var player_owner: Player
 
 #Longest Road Logic
 var marked: bool = false
@@ -21,31 +24,24 @@ var road_tails: Array[int] = []
 
 
 func _ready() -> void:
-	pass
+	super()
+	Events.add_road_entered.connect(_on_add_road_entered)
+	Events.add_road_exited.connect(_on_add_road_exited)
 
 
-func make_available(_player_id: int) -> void:
-	set_collision_layer_value(2, true)
-	indicator_model.visible = true
-
-
-func make_unavailable() -> void:
-	set_collision_layer_value(2, false)
-	indicator_model.visible = false
-	hide_hover()
-
-
-func show_hover() -> void:
-	road_model.visible = true
-
-
-func hide_hover() -> void:
-	road_model.visible = false
-
-
-func make_reachable() -> void:
-	if player == null:
-		add_to_group("RoadEmpty")
+func get_availability() -> bool:
+	var is_available: bool = false
+	var local_id: int = multiplayer.get_unique_id()
+	for road in adjacent_roads:
+		if road.player_owner.player_id == local_id:
+			is_available = true
+	for building in adjacent_buildings:
+		if is_instance_valid(building):
+			if building.player_owner != null:
+				if building.player_owner.player_id == local_id:
+					is_available = true
+	
+	return is_available
 
 
 func begin_length_search() -> void:
@@ -54,7 +50,7 @@ func begin_length_search() -> void:
 		if i.ally_neighbors.size() <= 2:
 			i.chain_length(0, null)
 		get_tree().call_group("MyRoads", "reset_longest")
-	print("Current Longest: ", LONGEST)
+	#print("Current Longest: ", LONGEST)
 
 
 func chain_length(current_length: int, upstream_segment: RoadHotspot) -> void:
@@ -70,7 +66,7 @@ func chain_length(current_length: int, upstream_segment: RoadHotspot) -> void:
 			i.chain_length(tail_size, self)
 	if tail_size > LONGEST:
 		LONGEST = tail_size
-	print(tail_size)
+	#print(tail_size)
 
 
 func reset_longest() -> void:
@@ -86,30 +82,39 @@ func reset_ally_neighbors() -> void:
 			ally_neighbors.append(i)
 
 
-func _on_neighbor_area_entered(area: Area3D) -> void:
-	if area == self:
+func _on_selectable_hovered(hovered_object: Hotspot) -> void:
+	if player_owner != null:
 		return
-	if neighbors.has(area as RoadHotspot) == false:
-		neighbors.append(area as RoadHotspot)
+	if hovered_object == self:
+		road_model.visible = true
+	else:
+		road_model.visible = false
+
+
+func _on_add_road_entered() -> void:
+	collision_layer = 1
+	indicator_model.visible = true
+
+
+func _on_add_road_exited() -> void:
+	collision_layer = 0
+	indicator_model.visible = false
+
+
+func hotspot_clicked(player_id: int) -> void:
+	build.rpc(player_id)
 
 
 @rpc("any_peer", "call_local")
 func build(player_id: int) -> void:
-	player = PlayerManager.GET_PLAYER_BY_ID(player_id)
-	player.add_road()
-	remove_from_group("RoadEmpty")
-	if is_in_group("SetupRoads"):
-		remove_from_group("SetupRoads")
-	make_unavailable()
+	player_owner = PlayerManager.GET_PLAYER_BY_ID(player_id)
+	player_owner.add_road()
 	road_model.visible = true
-	var mat: StandardMaterial3D = player.player_mat
-	road_model.set_surface_override_material(0, mat)
-	get_tree().call_group("RoadEmpty", "make_unavailable")
-	get_tree().call_group("SetupRoads", "make_unavailable")
-	if player == Player.LOCAL_PLAYER:
+	road_model.set_surface_override_material(0, player_owner.player_mat)
+	if player_owner == player_owner.LOCAL_PLAYER:
 		add_to_group("MyRoads")
 		get_tree().call_group("MyRoads", "reset_longest")
 		get_tree().call_group("MyRoads", "reset_ally_neighbors")
-		for i in neighbors_clean:
-			i.make_reachable()
 		begin_length_search()
+	
+	Events.add_road_exited.emit()

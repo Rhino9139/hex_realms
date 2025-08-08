@@ -41,5 +41,4 @@ func _on_roll_finished() -> void:
 		reorder_rows()
 		await get_tree().create_timer(1.0).timeout
 		Events.turn_order_created.emit()
-		Events.player_turn_started.emit()
 		queue_free()

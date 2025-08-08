@@ -36,8 +36,12 @@ signal setup_entered
 signal monopoly_state_entered
 signal bank_trade_started
 signal bank_trade_completed
+signal add_building_entered(building_type: Hotspot.Type)
+signal add_building_exited
+signal add_road_entered
+signal add_road_exited
 
-signal selectable_hovered(hovered_object: Node3D)
+signal selectable_hovered(hovered_object: Hotspot)
 
 signal settlement_built
 signal road_built

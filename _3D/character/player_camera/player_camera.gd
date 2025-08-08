@@ -65,11 +65,8 @@ func update_hover_raycast(clicked: bool = false) -> void:
 		var collider = result.get("collider")
 		Events.selectable_hovered.emit(collider)
 		if clicked:
-			if collider is HexRegion:
-				collider.move_robber.rpc()
-			else:
-				var id: int = multiplayer.get_unique_id()
-				collider.build.rpc(id)
+			var id: int = multiplayer.get_unique_id()
+			collider.hotspot_clicked(id)
 	else:
 		Events.selectable_hovered.emit(null)
 

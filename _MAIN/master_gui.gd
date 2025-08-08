@@ -28,5 +28,6 @@ func server_start_match() -> void:
 
 func _on_turn_order_created() -> void:
 	screen.clear_screen()
-	hud.add_hud(HUD.Header.GAME)
 	hud.add_hud(HUD.Header.PLAYER_RESOURCES)
+	hud.add_hud(HUD.Header.GAME)
+	Events.player_turn_started.emit()

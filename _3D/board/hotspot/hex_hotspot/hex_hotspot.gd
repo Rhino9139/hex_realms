@@ -1,5 +1,5 @@
-class_name HexRegion
-extends Area3D
+class_name HexHotspot
+extends Hotspot
 
 @export var is_desert: bool = false
 @export var roll_sprite: Sprite3D
@@ -14,8 +14,7 @@ var has_robber: bool = false
 
 
 func _ready() -> void:
-	Events.selectable_hovered.connect(_on_selectable_hovered)
-	
+	super()
 	var idx: int = int(name)
 	if is_desert:
 		terrain_type = Terrain.Type.DESERT
