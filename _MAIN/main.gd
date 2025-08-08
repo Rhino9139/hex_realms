@@ -3,7 +3,7 @@ extends Node
 
 
 static var PLAYER_NAME: String = "New Player"
-var player_name: String
+var debug_name: String
 
 func _ready() -> void:
 	
@@ -18,9 +18,9 @@ func DEBUG_setup_multiple_windows() -> void:
 		var new_name: String = OS.get_cmdline_args()[1]
 		var new_pos: Vector2 = Vector2(100, 100)
 		PLAYER_NAME = new_name
-		player_name = new_name
+		debug_name = new_name
 		match new_name:
-			"Kai":
+			"Arpos":
 				new_pos = Vector2(4000, 200)
 			"Valmar":
 				new_pos = Vector2(200, 200)

@@ -36,15 +36,17 @@ var has_largest_army: bool = false:
 
 
 func _ready() -> void:
-	#if multiplayer.is_server() and multiplayer.get_unique_id() == 1:
-		#LOCAL_PLAYER = self
-		#player_name = Main.PLAYER_NAME
-	#else:
-		#request_id.rpc_id(1)
+	if player_id == multiplayer.get_unique_id():
+		player_name = Main.PLAYER_NAME
+		share_name.rpc(player_name)
+		LOCAL_PLAYER = self
+	elif multiplayer.is_server() == false:
+		request_name.rpc_id(player_id)
 	
-	#player_index = get_index() + 1
-	#player_mat = Global.PLAYER_MATS[player_index]
-	#player_color = player_mat.albedo_color
+	PlayerManager.NUM_PLAYERS += 1
+	player_index = get_index() + 1
+	player_mat = Global.PLAYER_MATS[player_index]
+	player_color = player_mat.albedo_color
 	
 	Events.item_bought.connect(_on_item_bought)
 
@@ -101,7 +103,6 @@ func use_card(card_type: Global.ActionCardType) -> void:
 	for card in cards_used:
 		if card == Global.ActionCardType.KNIGHT:
 			knight_count += 1
-	
 	share_knight_count.rpc(knight_count)
 
 
@@ -110,9 +111,7 @@ func change_resource(index: Global.Resources, amount: int) -> void:
 	num_cards = 0
 	for value in resources:
 		num_cards += value
-	
 	Events.resources_changed.emit(player_id, resources)
-	
 	if multiplayer.get_unique_id() == player_id:
 		share_cards.rpc(resources)
 
@@ -131,37 +130,23 @@ func calculate_points() -> void:
 	for card in cards_used:
 		if card == Global.ActionCardType.VICTORY_POINT:
 			point_cards += 1
-	
 	total_points = point_cards + settlement_count + (castle_count * 2)
-	
 	if has_longest_road:
 		total_points += 2
 	if has_largest_army:
 		total_points += 2
-	
 	Events.points_changed.emit()
-
-
-@rpc("any_peer")
-func request_id() -> void:
-	var id: int = multiplayer.get_remote_sender_id()
-	response_id.rpc_id(id, player_id)
-	if id != player_id:
-		share_name.rpc_id(id, player_name)
-
-
-@rpc("authority")
-func response_id(new_id: int) -> void:
-	player_id = new_id
-	if player_id == multiplayer.get_unique_id():
-		player_name = Main.PLAYER_NAME
-		share_name.rpc(player_name)
-		LOCAL_PLAYER = self
 
 
 @rpc("any_peer", "call_remote")
 func share_name(new_name: String) -> void:
 	player_name = new_name
+
+
+@rpc("any_peer", "call_remote")
+func request_name() -> void:
+	var request_id: int = multiplayer.get_remote_sender_id()
+	share_name.rpc_id(request_id, player_name)
 
 
 @rpc("any_peer", "call_remote")

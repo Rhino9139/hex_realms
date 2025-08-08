@@ -41,7 +41,7 @@ static func REMOVE_ALL_PLAYERS() -> void:
 		child.queue_free()
 
 
-@export var spawner: MultiplayerSpawner
+@export var player_spawner: MultiplayerSpawner
 
 
 func _init() -> void:
@@ -51,18 +51,18 @@ func _init() -> void:
 func _ready() -> void:
 	Events.server_created.connect(_on_server_created)
 	Events.server_destroyed.connect(_on_server_destroyed)
+	player_spawner.spawn_function = spawn_player
 
 
-func add_player(new_id: int) -> void:
+func spawn_player(new_id: int) -> Node:
 	var new_player: Player = load(_PATHS["Player"]).instantiate()
 	new_player.player_id = new_id
-	add_child(new_player, true)
-	NUM_PLAYERS += 1
+	return new_player
 
 
 func _on_server_created() -> void:
 	multiplayer.peer_connected.connect(_on_peer_connected)
-	add_player(1)
+	player_spawner.spawn(1)
 
 
 func _on_server_destroyed() -> void:
@@ -70,4 +70,4 @@ func _on_server_destroyed() -> void:
 
 
 func _on_peer_connected(new_id: int) -> void:
-	add_player(new_id)
+	player_spawner.spawn(new_id)

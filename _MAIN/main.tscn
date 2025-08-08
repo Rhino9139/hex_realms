@@ -26,12 +26,11 @@ script = ExtResource("1_45b34")
 [node name="MasterNetwork" type="Node" parent="."]
 script = ExtResource("2_3e27e")
 
-[node name="PlayerManager" type="Node" parent="MasterNetwork" node_paths=PackedStringArray("spawner")]
+[node name="PlayerManager" type="Node" parent="MasterNetwork" node_paths=PackedStringArray("player_spawner")]
 script = ExtResource("3_g5ko0")
-spawner = NodePath("../MultiplayerSpawner")
+player_spawner = NodePath("../MultiplayerSpawner")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="MasterNetwork"]
-_spawnable_scenes = PackedStringArray("uid://cjwp661yn28ll")
 spawn_path = NodePath("../PlayerManager")
 
 [node name="Master3D" type="Node3D" parent="." node_paths=PackedStringArray("board", "character")]
