@@ -14,6 +14,7 @@ script = ExtResource("1_g3712")
 [node name="StandardBoardMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 mesh = ExtResource("2_k6xns")
+metadata/_edit_lock_ = true
 
 [node name="Terrain" type="Node3D" parent="."]
 script = ExtResource("3_w6rhv")
@@ -77,388 +78,560 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.32, 0, 30)
 is_desert = true
 
 [node name="Buildings" type="Node3D" parent="."]
+visible = false
 
-[node name="1" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="1" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes", "port") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.9602, 0, -34.9553)
+adjacent_buildings = [NodePath("../2"), NodePath("../8")]
+adjacent_hexes = [NodePath("../../Terrain/16")]
+port = NodePath("../../Port/7")
 
-[node name="2" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="2" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes", "port") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.3082, 0, -39.9959)
+adjacent_buildings = [NodePath("../1"), NodePath("../3")]
+adjacent_hexes = [NodePath("../../Terrain/16")]
+port = NodePath("../../Port/7")
 
-[node name="3" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="3" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.65795, 0, -35.012)
+adjacent_buildings = [NodePath("../2"), NodePath("../4"), NodePath("../10")]
+adjacent_hexes = [NodePath("../../Terrain/15"), NodePath("../../Terrain/16")]
 
-[node name="4" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="4" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes", "port") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008, 0, -40)
+adjacent_buildings = [NodePath("../3"), NodePath("../5")]
+adjacent_hexes = [NodePath("../../Terrain/15")]
+port = NodePath("../../Port/8")
 
-[node name="5" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="5" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes", "port") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.66228, 0, -34.9929)
+adjacent_buildings = [NodePath("../4"), NodePath("../6"), NodePath("../12")]
+adjacent_hexes = [NodePath("../../Terrain/14"), NodePath("../../Terrain/15")]
+port = NodePath("../../Port/8")
 
-[node name="6" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="6" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.3172, 0, -39.9888)
+adjacent_buildings = [NodePath("../5"), NodePath("../7")]
+adjacent_hexes = [NodePath("../../Terrain/14")]
 
-[node name="7" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="7" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.9836, 0, -34.9926)
+adjacent_buildings = [NodePath("../6"), NodePath("../14")]
+adjacent_hexes = [NodePath("../../Terrain/14")]
 
-[node name="8" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="8" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.9745, 0, -24.9957)
+adjacent_buildings = [NodePath("../1"), NodePath("../9"), NodePath("../16")]
+adjacent_hexes = [NodePath("../../Terrain/13"), NodePath("../../Terrain/16")]
 
-[node name="9" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="9" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.3432, 0, -20.0644)
+adjacent_buildings = [NodePath("../8"), NodePath("../10"), NodePath("../20")]
+adjacent_hexes = [NodePath("../../Terrain/12"), NodePath("../../Terrain/13"), NodePath("../../Terrain/16")]
 
-[node name="10" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="10" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.65143, 0, -24.9851)
+adjacent_buildings = [NodePath("../3"), NodePath("../9"), NodePath("../11")]
+adjacent_hexes = [NodePath("../../Terrain/16"), NodePath("../../Terrain/15"), NodePath("../../Terrain/12")]
 
-[node name="11" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="11" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00349283, 0, -19.9932)
+adjacent_buildings = [NodePath("../10"), NodePath("../12"), NodePath("../22")]
+adjacent_hexes = [NodePath("../../Terrain/15"), NodePath("../../Terrain/11"), NodePath("../../Terrain/12")]
 
-[node name="12" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="12" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.65997, 0, -25.0024)
+adjacent_buildings = [NodePath("../5"), NodePath("../11"), NodePath("../13")]
+adjacent_hexes = [NodePath("../../Terrain/15"), NodePath("../../Terrain/14"), NodePath("../../Terrain/11")]
 
-[node name="13" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="13" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.3338, 0, -19.9708)
+adjacent_buildings = [NodePath("../12"), NodePath("../14"), NodePath("../24")]
+adjacent_hexes = [NodePath("../../Terrain/14"), NodePath("../../Terrain/10"), NodePath("../../Terrain/11")]
 
-[node name="14" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="14" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes", "port") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.9839, 0, -24.9995)
+adjacent_buildings = [NodePath("../7"), NodePath("../13"), NodePath("../15")]
+adjacent_hexes = [NodePath("../../Terrain/10"), NodePath("../../Terrain/14")]
+port = NodePath("../../Port/0")
 
-[node name="15" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="15" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes", "port") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.6276, 0, -19.9814)
+adjacent_buildings = [NodePath("../14"), NodePath("../26")]
+adjacent_hexes = [NodePath("../../Terrain/10")]
+port = NodePath("../../Port/0")
 
-[node name="16" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="16" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes", "port") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.6502, 0, -19.996)
+adjacent_buildings = [NodePath("../8"), NodePath("../18")]
+adjacent_hexes = [NodePath("../../Terrain/13")]
+port = NodePath("../../Port/6")
 
-[node name="17" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="17" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.3193, 0, -4.9952)
+adjacent_buildings = [NodePath("../18"), NodePath("../28")]
+adjacent_hexes = [NodePath("../../Terrain/5")]
 
-[node name="18" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="18" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes", "port") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.6478, 0, -10.0021)
+adjacent_buildings = [NodePath("../16"), NodePath("../17"), NodePath("../19")]
+adjacent_hexes = [NodePath("../../Terrain/5"), NodePath("../../Terrain/13")]
+port = NodePath("../../Port/6")
 
-[node name="19" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="19" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.9891, 0, -4.98129)
+adjacent_buildings = [NodePath("../18"), NodePath("../20"), NodePath("../30")]
+adjacent_hexes = [NodePath("../../Terrain/13"), NodePath("../../Terrain/4"), NodePath("../../Terrain/5")]
 
-[node name="20" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="20" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.318, 0, -10.0062)
+adjacent_buildings = [NodePath("../9"), NodePath("../19"), NodePath("../21")]
+adjacent_hexes = [NodePath("../../Terrain/4"), NodePath("../../Terrain/12"), NodePath("../../Terrain/13")]
 
-[node name="21" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="21" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.67387, 0, -4.9936)
+adjacent_buildings = [NodePath("../20"), NodePath("../22"), NodePath("../32")]
+adjacent_hexes = [NodePath("../../Terrain/12"), NodePath("../../Terrain/4"), NodePath("../../Terrain/18")]
 
-[node name="22" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="22" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00362158, 0, -9.99196)
+adjacent_buildings = [NodePath("../11"), NodePath("../21"), NodePath("../23")]
+adjacent_hexes = [NodePath("../../Terrain/12"), NodePath("../../Terrain/11"), NodePath("../../Terrain/18")]
 
-[node name="23" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="23" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.66747, 0, -5.01271)
+adjacent_buildings = [NodePath("../22"), NodePath("../24"), NodePath("../34")]
+adjacent_hexes = [NodePath("../../Terrain/2"), NodePath("../../Terrain/11"), NodePath("../../Terrain/18")]
 
-[node name="24" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="24" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.3163, 0, -9.98896)
+adjacent_buildings = [NodePath("../13"), NodePath("../23"), NodePath("../25")]
+adjacent_hexes = [NodePath("../../Terrain/10"), NodePath("../../Terrain/11"), NodePath("../../Terrain/2")]
 
-[node name="25" parent="Buildings" instance=ExtResource("3_tcvqv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.3163, 0, -9.98896)
-
-[node name="26" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="25" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.0014, 0, -5.00994)
+adjacent_buildings = [NodePath("../24"), NodePath("../26"), NodePath("../36")]
+adjacent_hexes = [NodePath("../../Terrain/10"), NodePath("../../Terrain/2"), NodePath("../../Terrain/3")]
 
-[node name="27" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="26" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.6327, 0, -9.9984)
+adjacent_buildings = [NodePath("../15"), NodePath("../25"), NodePath("../27")]
+adjacent_hexes = [NodePath("../../Terrain/10"), NodePath("../../Terrain/3")]
 
-[node name="28" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="27" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes", "port") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.2902, 0, -4.99786)
+adjacent_buildings = [NodePath("../26"), NodePath("../38")]
+adjacent_hexes = [NodePath("../../Terrain/3")]
+port = NodePath("../../Port/1")
 
-[node name="29" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="28" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.3008, 0, 5.03554)
+adjacent_buildings = [NodePath("../17"), NodePath("../29")]
+adjacent_hexes = [NodePath("../../Terrain/5")]
 
-[node name="30" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="29" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes", "port") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.6739, 0, 10.0345)
+adjacent_buildings = [NodePath("../28"), NodePath("../30"), NodePath("../39")]
+adjacent_hexes = [NodePath("../../Terrain/5"), NodePath("../../Terrain/9")]
+port = NodePath("../../Port/5")
 
-[node name="31" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="30" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.0048, 0, 4.97227)
+adjacent_buildings = [NodePath("../19"), NodePath("../29"), NodePath("../31")]
+adjacent_hexes = [NodePath("../../Terrain/5"), NodePath("../../Terrain/4"), NodePath("../../Terrain/9")]
 
-[node name="32" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="31" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.3302, 0, 10.0034)
+adjacent_buildings = [NodePath("../30"), NodePath("../32"), NodePath("../41")]
+adjacent_hexes = [NodePath("../../Terrain/4"), NodePath("../../Terrain/8"), NodePath("../../Terrain/9")]
 
-[node name="33" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="32" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.66383, 0, 5.00565)
+adjacent_buildings = [NodePath("../21"), NodePath("../31"), NodePath("../33")]
+adjacent_hexes = [NodePath("../../Terrain/4"), NodePath("../../Terrain/8"), NodePath("../../Terrain/18")]
 
-[node name="34" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="33" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0107403, 0, 10.0167)
+adjacent_buildings = [NodePath("../32"), NodePath("../34"), NodePath("../43")]
+adjacent_hexes = [NodePath("../../Terrain/18"), NodePath("../../Terrain/8"), NodePath("../../Terrain/7")]
 
-[node name="35" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="34" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.69551, 0, 5.00565)
+adjacent_buildings = [NodePath("../23"), NodePath("../33"), NodePath("../35")]
+adjacent_hexes = [NodePath("../../Terrain/18"), NodePath("../../Terrain/2"), NodePath("../../Terrain/7")]
 
-[node name="36" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="35" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.3087, 0, 10.03)
+adjacent_buildings = [NodePath("../34"), NodePath("../36"), NodePath("../45")]
+adjacent_hexes = [NodePath("../../Terrain/2"), NodePath("../../Terrain/7"), NodePath("../../Terrain/6")]
 
-[node name="37" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="36" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.9884, 0, 5.01894)
+adjacent_buildings = [NodePath("../25"), NodePath("../35"), NodePath("../37")]
+adjacent_hexes = [NodePath("../../Terrain/2"), NodePath("../../Terrain/3"), NodePath("../../Terrain/6")]
 
-[node name="38" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="37" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.6282, 0, 10.0034)
+adjacent_buildings = [NodePath("../36"), NodePath("../38"), NodePath("../47")]
+adjacent_hexes = [NodePath("../../Terrain/3"), NodePath("../../Terrain/6")]
 
-[node name="39" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="38" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes", "port") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.2722, 0, 4.95811)
+adjacent_buildings = [NodePath("../27"), NodePath("../37")]
+adjacent_hexes = [NodePath("../../Terrain/3")]
+port = NodePath("../../Port/1")
 
-[node name="40" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="39" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes", "port") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.6817, 0, 20.0278)
+adjacent_buildings = [NodePath("../29"), NodePath("../40")]
+adjacent_hexes = [NodePath("../../Terrain/9")]
+port = NodePath("../../Port/5")
 
-[node name="41" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="40" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.9867, 0, 25.0077)
+adjacent_buildings = [NodePath("../39"), NodePath("../41"), NodePath("../48")]
+adjacent_hexes = [NodePath("../../Terrain/9"), NodePath("../../Terrain/0")]
 
-[node name="42" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="41" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.3032, 0, 19.9822)
+adjacent_buildings = [NodePath("../31"), NodePath("../40"), NodePath("../42")]
+adjacent_hexes = [NodePath("../../Terrain/9"), NodePath("../../Terrain/8"), NodePath("../../Terrain/0")]
 
-[node name="43" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="42" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.6424, 0, 25.0077)
+adjacent_buildings = [NodePath("../41"), NodePath("../43"), NodePath("../50")]
+adjacent_hexes = [NodePath("../../Terrain/8"), NodePath("../../Terrain/0"), NodePath("../../Terrain/1")]
 
-[node name="44" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="43" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0044241, 0, 20.0164)
+adjacent_buildings = [NodePath("../33"), NodePath("../42"), NodePath("../44")]
+adjacent_hexes = [NodePath("../../Terrain/7"), NodePath("../../Terrain/8"), NodePath("../../Terrain/1")]
 
-[node name="45" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="44" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.66774, 0, 25.0077)
+adjacent_buildings = [NodePath("../43"), NodePath("../45"), NodePath("../52")]
+adjacent_hexes = [NodePath("../../Terrain/7"), NodePath("../../Terrain/17"), NodePath("../../Terrain/1")]
 
-[node name="46" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="45" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.3285, 0, 20.0164)
+adjacent_buildings = [NodePath("../35"), NodePath("../44"), NodePath("../46")]
+adjacent_hexes = [NodePath("../../Terrain/7"), NodePath("../../Terrain/6"), NodePath("../../Terrain/17")]
 
-[node name="47" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="46" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes", "port") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.9665, 0, 24.9963)
+adjacent_buildings = [NodePath("../45"), NodePath("../47"), NodePath("../54")]
+adjacent_hexes = [NodePath("../../Terrain/6"), NodePath("../../Terrain/17")]
+port = NodePath("../../Port/2")
 
-[node name="48" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="47" parent="Buildings" node_paths=PackedStringArray("adjacent_hexes", "port") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.6045, 0, 19.9822)
+adjacent_hexes = [NodePath("../../Terrain/6")]
+port = NodePath("../../Port/2")
 
-[node name="49" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="48" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes", "port") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.0186, 0, 35.0844)
+adjacent_buildings = [NodePath("../40"), NodePath("../49")]
+adjacent_hexes = [NodePath("../../Terrain/0")]
+port = NodePath("../../Port/4")
 
-[node name="50" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="49" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes", "port") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.3017, 0, 40.0211)
+adjacent_buildings = [NodePath("../48"), NodePath("../50")]
+adjacent_hexes = [NodePath("../../Terrain/0")]
+port = NodePath("../../Port/4")
 
-[node name="51" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="50" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.65023, 0, 35.0572)
+adjacent_buildings = [NodePath("../42"), NodePath("../49"), NodePath("../51")]
+adjacent_hexes = [NodePath("../../Terrain/0"), NodePath("../../Terrain/1")]
 
-[node name="52" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="51" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes", "port") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00121784, 0, 39.9857)
+adjacent_buildings = [NodePath("../50"), NodePath("../52")]
+adjacent_hexes = [NodePath("../../Terrain/1")]
+port = NodePath("../../Port/3")
 
-[node name="53" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="52" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes", "port") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.68812, 0, 34.9863)
+adjacent_buildings = [NodePath("../44"), NodePath("../51"), NodePath("../53")]
+adjacent_hexes = [NodePath("../../Terrain/1"), NodePath("../../Terrain/17")]
+port = NodePath("../../Port/3")
 
-[node name="54" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="53" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.3041, 0, 39.9857)
+adjacent_buildings = [NodePath("../52"), NodePath("../54")]
+adjacent_hexes = [NodePath("../../Terrain/17")]
 
-[node name="55" parent="Buildings" instance=ExtResource("3_tcvqv")]
+[node name="54" parent="Buildings" node_paths=PackedStringArray("adjacent_buildings", "adjacent_hexes") instance=ExtResource("3_tcvqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.9733, 0, 35.004)
+adjacent_buildings = [NodePath("../46"), NodePath("../53")]
+adjacent_hexes = [NodePath("../../Terrain/17")]
 
 [node name="Roads" type="Node3D" parent="."]
 
-[node name="1" parent="Roads" instance=ExtResource("6_gqk4j")]
+[node name="1" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.9046, 0, -30.0104)
+adjacent_roads = [NodePath("../2"), NodePath("../4"), NodePath("../52")]
 
-[node name="2" parent="Roads" instance=ExtResource("6_gqk4j")]
+[node name="2" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
 transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -21.5897, 0, -37.5872)
+adjacent_roads = [NodePath("../1"), NodePath("../3")]
 
-[node name="3" parent="Roads" instance=ExtResource("6_gqk4j")]
+[node name="3" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
 transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -13.034, 0, -37.5872)
+adjacent_roads = [NodePath("../2"), NodePath("../26"), NodePath("../25")]
 
-[node name="50" parent="Roads" instance=ExtResource("6_gqk4j")]
+[node name="4" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
 transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -21.3915, 0, -22.3607)
+adjacent_roads = [NodePath("../1"), NodePath("../52"), NodePath("../33"), NodePath("../53")]
 
-[node name="51" parent="Roads" instance=ExtResource("6_gqk4j")]
+[node name="5" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
 transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -4.42811, 0, -22.538)
+adjacent_roads = [NodePath("../25"), NodePath("../53"), NodePath("../34"), NodePath("../54")]
 
-[node name="52" parent="Roads" instance=ExtResource("6_gqk4j")]
+[node name="6" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
 transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 12.9737, 0, -22.4869)
+adjacent_roads = [NodePath("../28"), NodePath("../54"), NodePath("../55"), NodePath("../35")]
 
-[node name="53" parent="Roads" instance=ExtResource("6_gqk4j")]
+[node name="7" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
 transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 30.309, 0, -22.491)
+adjacent_roads = [NodePath("../55"), NodePath("../31"), NodePath("../36")]
 
-[node name="54" parent="Roads" instance=ExtResource("6_gqk4j")]
+[node name="8" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
 transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -30.3408, 0, -7.47091)
+adjacent_roads = [NodePath("../56"), NodePath("../32"), NodePath("../57"), NodePath("../38")]
 
-[node name="55" parent="Roads" instance=ExtResource("6_gqk4j")]
+[node name="9" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
 transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -12.9453, 0, -7.4548)
+adjacent_roads = [NodePath("../33"), NodePath("../57"), NodePath("../58"), NodePath("../39")]
 
-[node name="56" parent="Roads" instance=ExtResource("6_gqk4j")]
+[node name="10" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
 transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 4.19508, 0, -7.60057)
+adjacent_roads = [NodePath("../34"), NodePath("../58"), NodePath("../40"), NodePath("../59")]
 
-[node name="57" parent="Roads" instance=ExtResource("6_gqk4j")]
+[node name="11" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
 transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 21.5374, 0, -7.58686)
+adjacent_roads = [NodePath("../35"), NodePath("../59"), NodePath("../41"), NodePath("../60")]
 
-[node name="58" parent="Roads" instance=ExtResource("6_gqk4j")]
+[node name="12" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
 transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 39.0924, 0, -7.48252)
+adjacent_roads = [NodePath("../42"), NodePath("../60"), NodePath("../36")]
 
-[node name="59" parent="Roads" instance=ExtResource("6_gqk4j")]
+[node name="13" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
 transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -39.2092, 0, 7.46298)
+adjacent_roads = [NodePath("../37"), NodePath("../43"), NodePath("../63")]
 
-[node name="60" parent="Roads" instance=ExtResource("6_gqk4j")]
+[node name="14" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
 transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -21.6034, 0, 7.51131)
+adjacent_roads = [NodePath("../38"), NodePath("../63"), NodePath("../44"), NodePath("../64")]
 
-[node name="61" parent="Roads" instance=ExtResource("6_gqk4j")]
+[node name="15" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
 transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -4.38838, 0, 7.48655)
+adjacent_roads = [NodePath("../39"), NodePath("../64"), NodePath("../65"), NodePath("../45")]
 
-[node name="62" parent="Roads" instance=ExtResource("6_gqk4j")]
+[node name="16" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
 transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 12.9325, 0, 7.46357)
+adjacent_roads = [NodePath("../40"), NodePath("../65"), NodePath("../46"), NodePath("../66")]
 
-[node name="63" parent="Roads" instance=ExtResource("6_gqk4j")]
+[node name="17" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
 transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 30.3517, 0, 7.47456)
-
-[node name="64" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -30.3875, 0, 22.5714)
-
-[node name="66" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -12.9677, 0, 22.4949)
-
-[node name="70" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -21.722, 0, 37.6483)
-
-[node name="71" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -4.42171, 0, 37.5315)
-
-[node name="72" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 12.7728, 0, 37.458)
-
-[node name="67" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 4.1687, 0, 22.4182)
-
-[node name="68" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 21.6123, 0, 22.4761)
-
-[node name="4" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-1, 0, 1.19209e-07, 0, 1, 0, -1.19209e-07, 0, -1, -8.642, 0, -30.015)
-
-[node name="5" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, -0.5, -4.30634, 0, -37.588)
-
-[node name="6" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 4.34572, 0, -37.5302)
-
-[node name="7" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(1, 0, -2.38419e-07, 0, 1, 0, 2.38419e-07, 0, 1, 8.70608, 0, -29.9558)
-
-[node name="8" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(0.5, 0, -0.866026, 0, 1, 0, 0.866026, 0, 0.5, 12.8417, 0, -37.5302)
-
-[node name="9" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 21.5624, 0, -37.5976)
-
-[node name="10" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-1, 0, 3.8743e-07, 0, 1, 0, -3.8743e-07, 0, -1, 25.9902, 0, -30.0457)
-
-[node name="11" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-1, 0, 3.8743e-07, 0, 1, 0, -3.8743e-07, 0, -1, -34.638, 0, -15.1633)
-
-[node name="31" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-1, 0, 3.8743e-07, 0, 1, 0, -3.8743e-07, 0, -1, -17.3053, 0, -15.1633)
-
-[node name="32" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-1, 0, 3.8743e-07, 0, 1, 0, -3.8743e-07, 0, -1, 0.0174217, 0, -15.1633)
-
-[node name="33" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-1, 0, 3.8743e-07, 0, 1, 0, -3.8743e-07, 0, -1, 17.3115, 0, -15.1633)
-
-[node name="34" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-1, 0, 3.8743e-07, 0, 1, 0, -3.8743e-07, 0, -1, 34.6265, 0, -15.1633)
-
-[node name="35" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-1, 0, 3.8743e-07, 0, 1, 0, -3.8743e-07, 0, -1, -43.3151, 0, -0.000544727)
-
-[node name="36" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-1, 0, 3.8743e-07, 0, 1, 0, -3.8743e-07, 0, -1, -25.9823, 0, -0.000544727)
-
-[node name="37" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-1, 0, 3.8743e-07, 0, 1, 0, -3.8743e-07, 0, -1, -8.66096, 0, -0.000544727)
-
-[node name="38" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-1, 0, 3.8743e-07, 0, 1, 0, -3.8743e-07, 0, -1, 8.68382, 0, -0.000544727)
-
-[node name="39" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-1, 0, 3.8743e-07, 0, 1, 0, -3.8743e-07, 0, -1, 25.9918, 0, -0.000544727)
-
-[node name="40" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-1, 0, 3.8743e-07, 0, 1, 0, -3.8743e-07, 0, -1, 43.3001, 0, -0.000544727)
-
-[node name="41" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-1, 0, 3.8743e-07, 0, 1, 0, -3.8743e-07, 0, -1, -34.6519, 0, 15.1099)
-
-[node name="42" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-1, 0, 3.8743e-07, 0, 1, 0, -3.8743e-07, 0, -1, -17.2955, 0, 15.1099)
-
-[node name="43" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-1, 0, 3.8743e-07, 0, 1, 0, -3.8743e-07, 0, -1, 0.0194206, 0, 15.1099)
-
-[node name="44" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-1, 0, 3.8743e-07, 0, 1, 0, -3.8743e-07, 0, -1, 17.3245, 0, 15.1099)
-
-[node name="45" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-1, 0, 3.8743e-07, 0, 1, 0, -3.8743e-07, 0, -1, 34.634, 0, 15.1099)
-
-[node name="46" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-1, 0, 3.8743e-07, 0, 1, 0, -3.8743e-07, 0, -1, -25.9951, 0, 30.1354)
-
-[node name="47" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-1, 0, 3.8743e-07, 0, 1, 0, -3.8743e-07, 0, -1, -8.64631, 0, 30.1354)
-
-[node name="48" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-1, 0, 3.8743e-07, 0, 1, 0, -3.8743e-07, 0, -1, 8.68312, 0, 30.1354)
-
-[node name="49" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-1, 0, 3.8743e-07, 0, 1, 0, -3.8743e-07, 0, -1, 25.981, 0, 30.1354)
-
-[node name="12" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, -0.5, -30.3001, 0, -22.513)
-
-[node name="13" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, -0.5, -13.0639, 0, -22.4644)
-
-[node name="14" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, -0.5, 4.41022, 0, -22.5642)
-
-[node name="15" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, -0.5, 21.6548, 0, -22.5209)
-
-[node name="16" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, -0.5, -38.9876, 0, -7.54254)
-
-[node name="17" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, -0.5, -21.8272, 0, -7.45838)
+adjacent_roads = [NodePath("../41"), NodePath("../66"), NodePath("../47"), NodePath("../61")]
 
 [node name="18" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, -0.5, -4.19771, 0, -7.60542)
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -30.3875, 0, 22.5714)
 
 [node name="19" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, -0.5, 13.1254, 0, -7.60224)
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -12.9677, 0, 22.4949)
 
 [node name="20" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, -0.5, 30.4027, 0, -7.56036)
-
-[node name="65" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, -0.5, 39.2327, 0, 7.42087)
-
-[node name="69" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, -0.5, 30.4907, 0, 22.5722)
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -21.722, 0, 37.6483)
 
 [node name="21" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, -0.5, -30.3604, 0, 7.47332)
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -4.42171, 0, 37.5315)
 
 [node name="22" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, -0.5, -12.7758, 0, 7.32989)
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 12.7728, 0, 37.458)
 
 [node name="23" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, -0.5, 4.39607, 0, 7.45224)
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 4.1687, 0, 22.4182)
 
 [node name="24" parent="Roads" instance=ExtResource("6_gqk4j")]
-transform = Transform3D(-0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, -0.5, 21.567, 0, 7.50089)
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 21.6123, 0, 22.4761)
 
-[node name="25" parent="Roads" instance=ExtResource("6_gqk4j")]
+[node name="25" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
+transform = Transform3D(-1, 0, 1.19209e-07, 0, 1, 0, -1.19209e-07, 0, -1, -8.642, 0, -30.015)
+adjacent_roads = [NodePath("../3"), NodePath("../26"), NodePath("../5"), NodePath("../53")]
+
+[node name="26" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
+transform = Transform3D(-0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, -0.5, -4.30634, 0, -37.588)
+adjacent_roads = [NodePath("../3"), NodePath("../25"), NodePath("../27")]
+
+[node name="27" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 4.34572, 0, -37.5302)
+adjacent_roads = [NodePath("../26"), NodePath("../29"), NodePath("../28")]
+
+[node name="28" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
+transform = Transform3D(1, 0, -2.38419e-07, 0, 1, 0, 2.38419e-07, 0, 1, 8.70608, 0, -29.9558)
+adjacent_roads = [NodePath("../27"), NodePath("../29"), NodePath("../6"), NodePath("../54")]
+
+[node name="29" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
+transform = Transform3D(0.5, 0, -0.866026, 0, 1, 0, 0.866026, 0, 0.5, 12.8417, 0, -37.5302)
+adjacent_roads = [NodePath("../27"), NodePath("../28"), NodePath("../30")]
+
+[node name="30" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 21.5624, 0, -37.5976)
+adjacent_roads = [NodePath("../29"), NodePath("../31")]
+
+[node name="31" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
+transform = Transform3D(-1, 0, 3.8743e-07, 0, 1, 0, -3.8743e-07, 0, -1, 25.9902, 0, -30.0457)
+adjacent_roads = [NodePath("../30"), NodePath("../7"), NodePath("../55")]
+
+[node name="32" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
+transform = Transform3D(-1, 0, 3.8743e-07, 0, 1, 0, -3.8743e-07, 0, -1, -34.638, 0, -15.1633)
+adjacent_roads = [NodePath("../52"), NodePath("../8"), NodePath("../56")]
+
+[node name="33" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
+transform = Transform3D(-1, 0, 3.8743e-07, 0, 1, 0, -3.8743e-07, 0, -1, -17.3053, 0, -15.1633)
+adjacent_roads = [NodePath("../4"), NodePath("../53"), NodePath("../9"), NodePath("../57")]
+
+[node name="34" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
+transform = Transform3D(-1, 0, 3.8743e-07, 0, 1, 0, -3.8743e-07, 0, -1, 0.0174217, 0, -15.1633)
+adjacent_roads = [NodePath("../5"), NodePath("../54"), NodePath("../10"), NodePath("../58")]
+
+[node name="35" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
+transform = Transform3D(-1, 0, 3.8743e-07, 0, 1, 0, -3.8743e-07, 0, -1, 17.3115, 0, -15.1633)
+adjacent_roads = [NodePath("../6"), NodePath("../55"), NodePath("../11"), NodePath("../59")]
+
+[node name="36" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
+transform = Transform3D(-1, 0, 3.8743e-07, 0, 1, 0, -3.8743e-07, 0, -1, 34.6265, 0, -15.1633)
+adjacent_roads = [NodePath("../7"), NodePath("../12"), NodePath("../60")]
+
+[node name="37" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
+transform = Transform3D(-1, 0, 3.8743e-07, 0, 1, 0, -3.8743e-07, 0, -1, -43.3151, 0, -0.000544727)
+adjacent_roads = [NodePath("../13"), NodePath("../56")]
+
+[node name="38" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
+transform = Transform3D(-1, 0, 3.8743e-07, 0, 1, 0, -3.8743e-07, 0, -1, -25.9823, 0, -0.000544727)
+adjacent_roads = [NodePath("../8"), NodePath("../57"), NodePath("../14"), NodePath("../63")]
+
+[node name="39" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
+transform = Transform3D(-1, 0, 3.8743e-07, 0, 1, 0, -3.8743e-07, 0, -1, -8.66096, 0, -0.000544727)
+adjacent_roads = [NodePath("../9"), NodePath("../58"), NodePath("../15"), NodePath("../64")]
+
+[node name="40" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
+transform = Transform3D(-1, 0, 3.8743e-07, 0, 1, 0, -3.8743e-07, 0, -1, 8.68382, 0, -0.000544727)
+adjacent_roads = [NodePath("../10"), NodePath("../59"), NodePath("../16"), NodePath("../65")]
+
+[node name="41" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
+transform = Transform3D(-1, 0, 3.8743e-07, 0, 1, 0, -3.8743e-07, 0, -1, 25.9918, 0, -0.000544727)
+adjacent_roads = [NodePath("../11"), NodePath("../60"), NodePath("../17"), NodePath("../66")]
+
+[node name="42" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
+transform = Transform3D(-1, 0, 3.8743e-07, 0, 1, 0, -3.8743e-07, 0, -1, 43.3001, 0, -0.000544727)
+adjacent_roads = [NodePath("../12"), NodePath("../61")]
+
+[node name="43" parent="Roads" instance=ExtResource("6_gqk4j")]
+transform = Transform3D(-1, 0, 3.8743e-07, 0, 1, 0, -3.8743e-07, 0, -1, -34.6519, 0, 15.1099)
+
+[node name="44" parent="Roads" instance=ExtResource("6_gqk4j")]
+transform = Transform3D(-1, 0, 3.8743e-07, 0, 1, 0, -3.8743e-07, 0, -1, -17.2955, 0, 15.1099)
+
+[node name="45" parent="Roads" instance=ExtResource("6_gqk4j")]
+transform = Transform3D(-1, 0, 3.8743e-07, 0, 1, 0, -3.8743e-07, 0, -1, 0.0194206, 0, 15.1099)
+
+[node name="46" parent="Roads" instance=ExtResource("6_gqk4j")]
+transform = Transform3D(-1, 0, 3.8743e-07, 0, 1, 0, -3.8743e-07, 0, -1, 17.3245, 0, 15.1099)
+
+[node name="47" parent="Roads" instance=ExtResource("6_gqk4j")]
+transform = Transform3D(-1, 0, 3.8743e-07, 0, 1, 0, -3.8743e-07, 0, -1, 34.634, 0, 15.1099)
+
+[node name="48" parent="Roads" instance=ExtResource("6_gqk4j")]
+transform = Transform3D(-1, 0, 3.8743e-07, 0, 1, 0, -3.8743e-07, 0, -1, -25.9951, 0, 30.1354)
+
+[node name="49" parent="Roads" instance=ExtResource("6_gqk4j")]
+transform = Transform3D(-1, 0, 3.8743e-07, 0, 1, 0, -3.8743e-07, 0, -1, -8.64631, 0, 30.1354)
+
+[node name="50" parent="Roads" instance=ExtResource("6_gqk4j")]
+transform = Transform3D(-1, 0, 3.8743e-07, 0, 1, 0, -3.8743e-07, 0, -1, 8.68312, 0, 30.1354)
+
+[node name="51" parent="Roads" instance=ExtResource("6_gqk4j")]
+transform = Transform3D(-1, 0, 3.8743e-07, 0, 1, 0, -3.8743e-07, 0, -1, 25.981, 0, 30.1354)
+
+[node name="52" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
+transform = Transform3D(-0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, -0.5, -30.3001, 0, -22.513)
+adjacent_roads = [NodePath("../32"), NodePath("../1"), NodePath("../4")]
+
+[node name="53" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
+transform = Transform3D(-0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, -0.5, -13.0639, 0, -22.4644)
+adjacent_roads = [NodePath("../4"), NodePath("../33"), NodePath("../5"), NodePath("../25")]
+
+[node name="54" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
+transform = Transform3D(-0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, -0.5, 4.41022, 0, -22.5642)
+adjacent_roads = [NodePath("../5"), NodePath("../34"), NodePath("../6"), NodePath("../28")]
+
+[node name="55" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
+transform = Transform3D(-0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, -0.5, 21.6548, 0, -22.5209)
+adjacent_roads = [NodePath("../6"), NodePath("../35"), NodePath("../7"), NodePath("../31")]
+
+[node name="56" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
+transform = Transform3D(-0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, -0.5, -38.9876, 0, -7.54254)
+adjacent_roads = [NodePath("../37"), NodePath("../8"), NodePath("../32")]
+
+[node name="57" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
+transform = Transform3D(-0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, -0.5, -21.8272, 0, -7.45838)
+adjacent_roads = [NodePath("../8"), NodePath("../38"), NodePath("../33"), NodePath("../9")]
+
+[node name="58" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
+transform = Transform3D(-0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, -0.5, -4.19771, 0, -7.60542)
+adjacent_roads = [NodePath("../9"), NodePath("../39"), NodePath("../34"), NodePath("../10")]
+
+[node name="59" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
+transform = Transform3D(-0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, -0.5, 13.1254, 0, -7.60224)
+adjacent_roads = [NodePath("../10"), NodePath("../40"), NodePath("../35"), NodePath("../11")]
+
+[node name="60" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
+transform = Transform3D(-0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, -0.5, 30.4027, 0, -7.56036)
+adjacent_roads = [NodePath("../11"), NodePath("../41"), NodePath("../12"), NodePath("../36")]
+
+[node name="61" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
+transform = Transform3D(-0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, -0.5, 39.2327, 0, 7.42087)
+adjacent_roads = [NodePath("../42"), NodePath("../17"), NodePath("../47")]
+
+[node name="62" parent="Roads" instance=ExtResource("6_gqk4j")]
+transform = Transform3D(-0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, -0.5, 30.4907, 0, 22.5722)
+
+[node name="63" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
+transform = Transform3D(-0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, -0.5, -30.3604, 0, 7.47332)
+adjacent_roads = [NodePath("../13"), NodePath("../43"), NodePath("../14"), NodePath("../38")]
+
+[node name="64" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
+transform = Transform3D(-0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, -0.5, -12.7758, 0, 7.32989)
+adjacent_roads = [NodePath("../14"), NodePath("../44"), NodePath("../15"), NodePath("../39")]
+
+[node name="65" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
+transform = Transform3D(-0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, -0.5, 4.39607, 0, 7.45224)
+adjacent_roads = [NodePath("../15"), NodePath("../45"), NodePath("../40"), NodePath("../16")]
+
+[node name="66" parent="Roads" node_paths=PackedStringArray("adjacent_roads") instance=ExtResource("6_gqk4j")]
+transform = Transform3D(-0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, -0.5, 21.567, 0, 7.50089)
+adjacent_roads = [NodePath("../16"), NodePath("../46"), NodePath("../17"), NodePath("../41")]
+
+[node name="67" parent="Roads" instance=ExtResource("6_gqk4j")]
 transform = Transform3D(-0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, -0.5, -21.5218, 0, 22.4348)
 
-[node name="26" parent="Roads" instance=ExtResource("6_gqk4j")]
+[node name="68" parent="Roads" instance=ExtResource("6_gqk4j")]
 transform = Transform3D(-0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, -0.5, -4.27023, 0, 22.4348)
 
-[node name="27" parent="Roads" instance=ExtResource("6_gqk4j")]
+[node name="69" parent="Roads" instance=ExtResource("6_gqk4j")]
 transform = Transform3D(-0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, -0.5, 13.0405, 0, 22.4505)
 
-[node name="28" parent="Roads" instance=ExtResource("6_gqk4j")]
+[node name="70" parent="Roads" instance=ExtResource("6_gqk4j")]
 transform = Transform3D(-0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, -0.5, -13.0618, 0, 37.545)
 
-[node name="29" parent="Roads" instance=ExtResource("6_gqk4j")]
+[node name="71" parent="Roads" instance=ExtResource("6_gqk4j")]
 transform = Transform3D(-0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, -0.5, 4.33616, 0, 37.6138)
 
-[node name="30" parent="Roads" instance=ExtResource("6_gqk4j")]
+[node name="72" parent="Roads" instance=ExtResource("6_gqk4j")]
 transform = Transform3D(-0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, -0.5, 21.7621, 0, 37.4344)
 
 [node name="Port" type="Node3D" parent="."]
@@ -493,3 +666,4 @@ transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 5.04149, -
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.951669, 0.299731, 0.0669813, -0.307124, 0.928761, 0.207552, 0, -0.218092, 0.975928, -0.308539, 11.3596, -7.62939e-06)
+visible = false

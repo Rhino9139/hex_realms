@@ -19,6 +19,6 @@ func _on_add_building_exited() -> void:
 
 
 func _on_add_road_exited() -> void:
+	state_changed.emit("InactiveState")
 	Events.add_road_exited.disconnect(_on_add_road_exited)
 	base.end_turn()
-	state_changed.emit("InactiveState")

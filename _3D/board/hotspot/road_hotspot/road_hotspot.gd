@@ -92,11 +92,13 @@ func _on_selectable_hovered(hovered_object: Hotspot) -> void:
 
 
 func _on_add_road_entered() -> void:
-	collision_layer = 1
-	indicator_model.visible = true
+	if get_availability():
+		collision_layer = 1
+		indicator_model.visible = true
 
 
 func _on_add_road_exited() -> void:
+	
 	collision_layer = 0
 	indicator_model.visible = false
 
