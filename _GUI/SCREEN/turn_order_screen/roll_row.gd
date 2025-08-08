@@ -14,10 +14,12 @@ var player: Player
 var roll_array: Array[int] = []
 var roll_final: int = 0
 
+
 static func CREATE(new_player: Player) -> RollRow:
 	var new_row: RollRow = load(_PATH).instantiate()
 	new_row.player = new_player
 	return new_row
+
 
 func _ready() -> void:
 	name_label.text = player.player_name
@@ -29,16 +31,19 @@ func _ready() -> void:
 		button_pivot.visible = true
 		roll_label.visible = false
 
+
 func move_row(new_y: float) -> void:
 	var tween: Tween = create_tween()
 	tween.set_trans(Tween.TRANS_SPRING)
 	tween.tween_property(self, "position", Vector2(position.x, new_y), 0.75)
 
+
 func _on_roll_pressed() -> void:
 	roll_label.visible = true
 	share_roll_pressed.rpc(roll_array)
 
-@rpc("any_peer", "call_local") 
+
+@rpc("any_peer", "call_local")
 func share_roll_pressed(new_roll_array: Array[int]) -> void:
 	roll_array = new_roll_array
 	roll_button.disabled = true

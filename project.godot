@@ -36,10 +36,13 @@ Settlement=""
 Hotspot=""
 Castle=""
 RoadEmpty=""
-PlayerCard=""
 SetupRoads=""
 ActionCard=""
 MyRoads=""
+P1Roads=""
+P2Roads=""
+P3Roads=""
+P4Roads=""
 
 [gui]
 

@@ -26,24 +26,14 @@ func destroy_board() -> void:
 
 func generate_board() -> void:
 	Terrain.TYPE_ARRAY.shuffle()
-	Port.PORT_ARRAY.shuffle()
-	
 	Global.HEX_ROLLS.shuffle()
+	Port.PORT_ARRAY.shuffle()
 	Global.ACTION_CARDS.shuffle()
-	
-	var terrain_types: Array[Terrain.Type] = Terrain.TYPE_ARRAY
-	var hex_rolls: Array = Global.HEX_ROLLS
-	var port_types: Array = Port.PORT_ARRAY
-	
-	share_board.rpc(terrain_types, hex_rolls, port_types)
+	Events.board_generated.emit()
 
 
 @rpc("authority", "call_local")
 func share_board(new_terrain: Array, new_rolls: Array, new_ports: Array) -> void:
 	Terrain.TYPE_ARRAY = new_terrain
 	Port.PORT_ARRAY = new_ports
-	
 	Global.HEX_ROLLS = new_rolls
-	
-	Events.board_generated.emit()
-	Events.add_board_requested.emit()

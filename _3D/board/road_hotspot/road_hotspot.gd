@@ -1,16 +1,12 @@
 class_name RoadHotspot
 extends Area3D
 
-static var current_index: int = 0
-static var num_hotspots: int = 0
 static var LONGEST: int = 0
 
 @export var road_model: MeshInstance3D
 @export var indicator_model: MeshInstance3D
-@export var neighbor_area: Area3D
 @export var TEST_MAT: StandardMaterial3D
 
-var idx: int = -1
 var neighbors: Array[RoadHotspot] = []
 var neighbors_clean: Array[RoadHotspot] = []
 var ally_neighbors: Array[RoadHotspot] = []
@@ -24,19 +20,8 @@ var tail_size: int = 0
 var road_tails: Array[int] = []
 
 
-func _init() -> void:
-	idx = current_index
-	current_index += 1
-
-
 func _ready() -> void:
-	await get_tree().create_timer(2.0).timeout
-	neighbor_area.queue_free()
-	collision_layer = 0
-	collision_mask = 0
-	for i in neighbors.size():
-		if is_instance_valid(neighbors[i]):
-			neighbors_clean.append(neighbors[i])
+	pass
 
 
 func make_available(_player_id: int) -> void:
@@ -99,14 +84,6 @@ func reset_ally_neighbors() -> void:
 	for i in neighbors_clean:
 		if i.is_in_group("MyRoads"):
 			ally_neighbors.append(i)
-
-
-func _on_area_entered(area: Area3D) -> void:
-	if area is RoadHotspot:
-		if area.idx < idx:
-			area.queue_free()
-		else:
-			queue_free()
 
 
 func _on_neighbor_area_entered(area: Area3D) -> void:

@@ -28,6 +28,13 @@ static func GET_PLAYER_BY_ID(player_id: int) -> Player:
 	return null
 
 
+static func GET_PLAYER_BY_TURN(turn_index: int) -> Player:
+	for player in GET_PLAYERS():
+		if player.turn_index == turn_index:
+			return player
+	return null
+
+
 static func REMOVE_ALL_PLAYERS() -> void:
 	for child in MASTER.get_children():
 		child.queue_free()
@@ -40,6 +47,7 @@ func _init() -> void:
 func _ready() -> void:
 	Events.server_created.connect(_on_server_created)
 	Events.server_destroyed.connect(_on_server_destroyed)
+	Events.turn_order_created.connect(_on_turn_order_created)
 
 
 func add_player(new_id: int) -> void:
@@ -55,6 +63,10 @@ func _on_server_created() -> void:
 
 func _on_server_destroyed() -> void:
 	multiplayer.peer_connected.disconnect(_on_peer_connected)
+
+
+func _on_turn_order_created() -> void:
+	pass
 
 
 func _on_peer_connected(new_id: int) -> void:

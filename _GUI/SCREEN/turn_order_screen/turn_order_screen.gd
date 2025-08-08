@@ -24,7 +24,7 @@ func _ready() -> void:
 func reorder_rows() -> void:
 	for i in rows.size():
 		rows[i].move_row(i * 75)
-		rows[i].player.turn_index = i
+		rows[i].player.turn_index = i + 1
 
 
 func sort_decending(a, b) -> bool:
@@ -41,4 +41,5 @@ func _on_roll_finished() -> void:
 		reorder_rows()
 		await get_tree().create_timer(1.0).timeout
 		Events.turn_order_created.emit()
+		Events.player_turn_started.emit()
 		queue_free()

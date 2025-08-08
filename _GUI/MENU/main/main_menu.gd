@@ -20,6 +20,7 @@ func _on_join_pressed() -> void:
 	Events.client_requested.emit()
 	host_button.disabled = true
 	join_button.disabled = true
+	menu_changed.emit(Header.LOBBY)
 
 
 func _on_name_input_text_submitted(new_text: String) -> void:

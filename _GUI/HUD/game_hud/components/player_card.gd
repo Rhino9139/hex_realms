@@ -1,5 +1,5 @@
 class_name PlayerCard
-extends VBoxContainer
+extends PanelContainer
 
 const _PATH: String = "uid://ds5xamo25scxy"
 
@@ -22,7 +22,7 @@ static func CREATE(new_player: Player) -> PlayerCard:
 
 func _ready() -> void:
 	name_label.text = player.player_name
-	modulate = Global.PLAYER_MATS[player.player_index].albedo_color
+	self_modulate = Global.PLAYER_MATS[player.player_index].albedo_color
 
 
 func _process(_delta: float) -> void:

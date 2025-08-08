@@ -17,6 +17,11 @@ func _on_game_opened() -> void:
 
 
 func _on_host_match_started() -> void:
+	server_start_match.rpc()
+
+
+@rpc("authority", "call_local")
+func server_start_match() -> void:
 	menu.clear_menu()
 	screen.add_screen(Screen.Header.TURN_ORDER)
 

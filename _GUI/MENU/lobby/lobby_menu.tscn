@@ -9,7 +9,7 @@ thickness = 4
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nflxy"]
 bg_color = Color(1.04925e-05, 0.907887, 0.202547, 1)
 
-[node name="LobbyMenu" type="Control" node_paths=PackedStringArray("start_game_button", "generate_board_button")]
+[node name="LobbyMenu" type="Control" node_paths=PackedStringArray("start_game_button", "generate_board_button", "destroy_board_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,6 +20,7 @@ mouse_filter = 2
 script = ExtResource("1_6laa8")
 start_game_button = NodePath("StartGame")
 generate_board_button = NodePath("GenerateBoard")
+destroy_board_button = NodePath("DestroyBoard")
 
 [node name="PlayerList" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -63,6 +64,7 @@ offset_left = 258.0
 offset_top = 60.0
 offset_right = 385.0
 offset_bottom = 105.0
+disabled = true
 text = "Generate Board"
 
 [node name="MainMenu" type="Button" parent="."]
@@ -79,6 +81,7 @@ offset_left = 442.0
 offset_top = 59.0
 offset_right = 577.0
 offset_bottom = 101.0
+disabled = true
 text = "Destroy Board"
 
 [connection signal="timeout" from="PlayerList/RefreshTimer" to="PlayerList" method="_on_refresh_timer_timeout"]

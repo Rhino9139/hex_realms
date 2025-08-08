@@ -1,10 +1,19 @@
-[gd_scene load_steps=12 format=3 uid="uid://ds5xamo25scxy"]
+[gd_scene load_steps=13 format=3 uid="uid://ds5xamo25scxy"]
 
 [ext_resource type="Script" uid="uid://dmpcf3uafwwqb" path="res://_GUI/HUD/game_hud/components/player_card.gd" id="1_phpnn"]
 [ext_resource type="Texture2D" uid="uid://ibcxvrn31d73" path="res://common/shapes/arrow_right.svg" id="2_av00l"]
 [ext_resource type="Texture2D" uid="uid://c5n8j1msbyyfw" path="res://common/icons/ui_buttons/award.png" id="3_srsvd"]
 [ext_resource type="Texture2D" uid="uid://7c07j3mka7gt" path="res://common/icons/ui_buttons/cards_stack_high.svg" id="5_qsapx"]
 [ext_resource type="Texture2D" uid="uid://cn5n770sekdva" path="res://common/icons/ui_buttons/chess_knight.svg" id="6_vchbw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1uu2n"]
+bg_color = Color(0.192157, 0.192157, 0.192157, 0.784314)
+border_width_left = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [sub_resource type="Gradient" id="Gradient_phpnn"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
@@ -24,98 +33,109 @@ colors = PackedColorArray(0.768627, 0, 0, 1, 0.776471, 0, 0, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_vdy26"]
 gradient = SubResource("Gradient_vchbw")
 
-[node name="PlayerCard" type="VBoxContainer" node_paths=PackedStringArray("name_label", "turn_arrow", "point_label", "card_count_label", "knight_count_label", "longest_road", "largest_army") groups=["PlayerCard"]]
-offset_right = 145.0
-offset_bottom = 30.0
+[node name="PlayerCard" type="PanelContainer" node_paths=PackedStringArray("name_label", "turn_arrow", "point_label", "card_count_label", "knight_count_label", "longest_road", "largest_army")]
+custom_minimum_size = Vector2(184, 0)
+offset_right = 184.0
+offset_bottom = 72.0
 size_flags_horizontal = 6
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_1uu2n")
 script = ExtResource("1_phpnn")
-name_label = NodePath("TopRow/NameLabel")
-turn_arrow = NodePath("TopRow/TurnArrow")
-point_label = NodePath("Stats/VictoryPoints")
-card_count_label = NodePath("Stats/CardCount")
-knight_count_label = NodePath("Stats/KnightCount")
-longest_road = NodePath("Special/LongestRoad")
-largest_army = NodePath("Special/LargestArmy")
+name_label = NodePath("Rows/TopRow/NameLabel")
+turn_arrow = NodePath("Rows/TopRow/TurnArrow")
+point_label = NodePath("Rows/Stats/VictoryPoints")
+card_count_label = NodePath("Rows/Stats/CardCount")
+knight_count_label = NodePath("Rows/Stats/KnightCount")
+longest_road = NodePath("Rows/Special/LongestRoad")
+largest_army = NodePath("Rows/Special/LargestArmy")
+metadata/_edit_horizontal_guides_ = [-56.0]
 
-[node name="TopRow" type="HBoxContainer" parent="."]
+[node name="Rows" type="VBoxContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 6
+size_flags_vertical = 3
 
-[node name="TurnArrow" type="TextureRect" parent="TopRow"]
+[node name="TopRow" type="HBoxContainer" parent="Rows"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="TurnArrow" type="TextureRect" parent="Rows/TopRow"]
 visible = false
 modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 texture = ExtResource("2_av00l")
 
-[node name="Portrait" type="TextureRect" parent="TopRow"]
+[node name="Portrait" type="TextureRect" parent="Rows/TopRow"]
+visible = false
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 4
 texture = SubResource("GradientTexture1D_av00l")
 expand_mode = 1
 
-[node name="NameLabel" type="Label" parent="TopRow"]
+[node name="NameLabel" type="Label" parent="Rows/TopRow"]
 layout_mode = 2
 text = "Default"
 
-[node name="Stats" type="HBoxContainer" parent="."]
+[node name="Stats" type="HBoxContainer" parent="Rows"]
 layout_mode = 2
+size_flags_vertical = 6
 
-[node name="PointIcon" type="TextureRect" parent="Stats"]
+[node name="PointIcon" type="TextureRect" parent="Rows/Stats"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 texture = ExtResource("3_srsvd")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="VictoryPoints" type="Label" parent="Stats"]
+[node name="VictoryPoints" type="Label" parent="Rows/Stats"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 text = "00"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CardsIcon" type="TextureRect" parent="Stats"]
+[node name="CardsIcon" type="TextureRect" parent="Rows/Stats"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 texture = ExtResource("5_qsapx")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="CardCount" type="Label" parent="Stats"]
+[node name="CardCount" type="Label" parent="Rows/Stats"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 text = "00"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="KnightIcon" type="TextureRect" parent="Stats"]
+[node name="KnightIcon" type="TextureRect" parent="Rows/Stats"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 texture = ExtResource("6_vchbw")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="KnightCount" type="Label" parent="Stats"]
+[node name="KnightCount" type="Label" parent="Rows/Stats"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 text = "00"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Special" type="HBoxContainer" parent="."]
+[node name="Special" type="HBoxContainer" parent="Rows"]
 layout_mode = 2
 
-[node name="LongestRoad" type="TextureRect" parent="Special"]
+[node name="LongestRoad" type="TextureRect" parent="Rows/Special"]
 visible = false
-custom_minimum_size = Vector2(50, 15)
+custom_minimum_size = Vector2(73, 15)
 layout_mode = 2
 size_flags_horizontal = 3
 texture = SubResource("GradientTexture1D_qsapx")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="Special/LongestRoad"]
+[node name="Label" type="Label" parent="Rows/Special/LongestRoad"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -128,15 +148,15 @@ text = "Longest Road"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="LargestArmy" type="TextureRect" parent="Special"]
+[node name="LargestArmy" type="TextureRect" parent="Rows/Special"]
 visible = false
-custom_minimum_size = Vector2(50, 15)
+custom_minimum_size = Vector2(72, 15)
 layout_mode = 2
 size_flags_horizontal = 3
 texture = SubResource("GradientTexture1D_vdy26")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="Special/LargestArmy"]
+[node name="Label" type="Label" parent="Rows/Special/LargestArmy"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
