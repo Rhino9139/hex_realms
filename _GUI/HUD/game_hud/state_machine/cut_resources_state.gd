@@ -59,7 +59,7 @@ func post_player_ready() -> void:
 		players_ready.append(id)
 	if players_ready.size() == PlayerManager.GET_NUM_PLAYERS():
 		if multiplayer.is_server():
-			resume_turns.rpc(MatchManager.current_turn)
+			resume_turns.rpc(1)
 
 
 @rpc("authority", "call_local")

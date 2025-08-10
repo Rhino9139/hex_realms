@@ -49,8 +49,8 @@ func _init() -> void:
 
 
 func _ready() -> void:
-	Events.server_created.connect(_on_server_created)
-	Events.server_destroyed.connect(_on_server_destroyed)
+	Events.NETWORK_START.server_created.connect(_on_server_created)
+	Events.NETWORK_START.server_destroyed.connect(_on_server_destroyed)
 	player_spawner.spawn_function = spawn_player
 
 
@@ -67,6 +67,7 @@ func _on_server_created() -> void:
 
 func _on_server_destroyed() -> void:
 	multiplayer.peer_connected.disconnect(_on_peer_connected)
+	REMOVE_ALL_PLAYERS()
 
 
 func _on_peer_connected(new_id: int) -> void:

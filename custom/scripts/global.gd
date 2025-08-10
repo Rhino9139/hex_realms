@@ -6,10 +6,10 @@ enum Resources{BRICK, ORE, SHEEP, WHEAT, WOOD, POLY}
 
 const RESOURCE_ICONS: Dictionary[Resources, String] = {
 	Resources.BRICK : "uid://blocjyxlgcv2h",
-	Resources.ORE : "uid://cxhauwbsbwvqe",
+	Resources.ORE : "uid://colijar1sm1j2",
 	Resources.SHEEP : "uid://810o0ua6f4aw",
 	Resources.WHEAT : "uid://7dfjrcsdk476",
-	Resources.WOOD : "uid://088glrjkkmwp",
+	Resources.WOOD : "uid://fs12hyda4alo",
 	Resources.POLY : "uid://blccv6dvu4j17",
 }
 const RESOURCE_MATERIALS: Dictionary[Resources, StandardMaterial3D] = {

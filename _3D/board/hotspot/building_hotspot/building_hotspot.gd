@@ -36,7 +36,7 @@ func build_settlement(player_id: int) -> void:
 	current_building = Hotspot.Type.SETTLEMENT
 	player_owner = PlayerManager.GET_PLAYER_BY_ID(player_id)
 	player_owner.add_settlement()
-	if MatchManager.current_round == 2:
+	if MatchLogic.CURRENT_ROUND == 2:
 		get_starting_resources()
 	
 	settlement_model.visible = true

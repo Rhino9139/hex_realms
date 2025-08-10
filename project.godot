@@ -17,7 +17,6 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 [autoload]
 
 DevMode="*res://autoloads/dev_mode.gd"
-MatchManager="*res://autoloads/match_manager.gd"
 Events="*res://autoloads/events.gd"
 
 [display]

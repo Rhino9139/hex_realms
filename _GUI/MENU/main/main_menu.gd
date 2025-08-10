@@ -10,19 +10,18 @@ func _ready() -> void:
 
 
 func _on_host_pressed() -> void:
-	Events.server_requested.emit()
 	host_button.disabled = true
 	join_button.disabled = true
-	menu_changed.emit(Header.LOBBY)
+	Events.MENU_START.host_game_pressed.emit()
 
 
 func _on_join_pressed() -> void:
 	Events.client_requested.emit()
 	host_button.disabled = true
 	join_button.disabled = true
-	menu_changed.emit(Header.LOBBY)
+	Events.MENU_START.join_game_pressed.emit() 
 
 
 func _on_name_input_text_submitted(new_text: String) -> void:
 	get_viewport().gui_get_focus_owner().release_focus()
-	Events.local_name_changed.emit(new_text)
+	Events.MENU_START.local_name_changed.emit(new_text)

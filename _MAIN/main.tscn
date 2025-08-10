@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://60364lp76bce"]
+[gd_scene load_steps=17 format=3 uid="uid://60364lp76bce"]
 
 [ext_resource type="Script" uid="uid://cwr1n548f52o3" path="res://_MAIN/main.gd" id="1_45b34"]
-[ext_resource type="Script" uid="uid://4di50eb5x7ep" path="res://_MAIN/multiplayer/master_network.gd" id="2_3e27e"]
-[ext_resource type="Script" uid="uid://0i141yo3mvfk" path="res://_MAIN/multiplayer/player_manager.gd" id="3_g5ko0"]
+[ext_resource type="Script" uid="uid://bn034crbu2mwi" path="res://_NETWORK/multiplayer/server_host.gd" id="3_3olux"]
+[ext_resource type="Script" uid="uid://0i141yo3mvfk" path="res://_NETWORK/multiplayer/player_manager.gd" id="3_g5ko0"]
 [ext_resource type="Script" uid="uid://chmasxillij8m" path="res://_MAIN/master_3d.gd" id="4_hhsx1"]
+[ext_resource type="Script" uid="uid://caq7g1t676b1v" path="res://_NETWORK/multiplayer/client.gd" id="4_yg3bn"]
 [ext_resource type="PackedScene" uid="uid://drdu850r37k2i" path="res://_3D/environment/water.tscn" id="5_0djke"]
 [ext_resource type="Script" uid="uid://dwiv0u0uoi357" path="res://_MAIN/master_gui.gd" id="5_tdj4x"]
 [ext_resource type="Script" uid="uid://wvrtd0a71a3j" path="res://_3D/environment/environment.gd" id="5_yu52p"]
@@ -12,6 +13,8 @@
 [ext_resource type="Script" uid="uid://d1n5rqi6aeqi5" path="res://_GUI/HUD/hud.gd" id="7_tdj4x"]
 [ext_resource type="Script" uid="uid://dikcael4tly7g" path="res://_GUI/SCREEN/screen.gd" id="8_0djke"]
 [ext_resource type="Script" uid="uid://cx2bp3e3q0qd6" path="res://_3D/character/character.gd" id="8_kpb75"]
+[ext_resource type="Script" uid="uid://dw0a6chnwwqvu" path="res://_LOGIC/menus_logic.gd" id="13_s4vgy"]
+[ext_resource type="Script" uid="uid://tdj54pw5ggwu" path="res://_LOGIC/match_logic.gd" id="13_yu52p"]
 
 [sub_resource type="Environment" id="Environment_tdj4x"]
 background_mode = 1
@@ -24,7 +27,14 @@ ambient_light_energy = 0.1
 script = ExtResource("1_45b34")
 
 [node name="MasterNetwork" type="Node" parent="."]
-script = ExtResource("2_3e27e")
+
+[node name="ServerHost" type="Node" parent="MasterNetwork"]
+script = ExtResource("3_3olux")
+metadata/_custom_type_script = "uid://bn034crbu2mwi"
+
+[node name="Client" type="Node" parent="MasterNetwork"]
+script = ExtResource("4_yg3bn")
+metadata/_custom_type_script = "uid://caq7g1t676b1v"
 
 [node name="PlayerManager" type="Node" parent="MasterNetwork" node_paths=PackedStringArray("player_spawner")]
 script = ExtResource("3_g5ko0")
@@ -64,10 +74,7 @@ metadata/_custom_type_script = "uid://urfb014eou0t"
 script = ExtResource("8_kpb75")
 metadata/_custom_type_script = "uid://cx2bp3e3q0qd6"
 
-[node name="GuiCanvas" type="CanvasLayer" parent="."]
-layer = 2
-
-[node name="MasterGui" type="Control" parent="GuiCanvas" node_paths=PackedStringArray("menu", "hud", "screen")]
+[node name="MasterGui" type="Control" parent="." node_paths=PackedStringArray("menu", "hud", "screen")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -80,7 +87,7 @@ menu = NodePath("Menu")
 hud = NodePath("HUD")
 screen = NodePath("Screen")
 
-[node name="Menu" type="Control" parent="GuiCanvas/MasterGui"]
+[node name="Menu" type="Control" parent="MasterGui"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -91,7 +98,7 @@ mouse_filter = 2
 script = ExtResource("6_hhsx1")
 metadata/_custom_type_script = "uid://cjamklsqyhwh5"
 
-[node name="HUD" type="Control" parent="GuiCanvas/MasterGui"]
+[node name="HUD" type="Control" parent="MasterGui"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -102,7 +109,7 @@ mouse_filter = 2
 script = ExtResource("7_tdj4x")
 metadata/_custom_type_script = "uid://d1n5rqi6aeqi5"
 
-[node name="Screen" type="Control" parent="GuiCanvas/MasterGui"]
+[node name="Screen" type="Control" parent="MasterGui"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -112,3 +119,11 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("8_0djke")
 metadata/_custom_type_script = "uid://dikcael4tly7g"
+
+[node name="MasterLogic" type="Node" parent="."]
+
+[node name="MenusLogic" type="Node" parent="MasterLogic"]
+script = ExtResource("13_s4vgy")
+
+[node name="MatchLogic" type="Node" parent="MasterLogic"]
+script = ExtResource("13_yu52p")

@@ -1,6 +1,4 @@
-extends Control
-
-signal roll_finished(roll_total: int)
+extends Screen
 
 @export var die_1: Label
 @export var die_2: Label
@@ -9,26 +7,12 @@ signal roll_finished(roll_total: int)
 
 var die_array_1: Array[int] = []
 var die_array_2: Array[int] = []
-var die_1_final: int = 0
-var die_2_final: int = 0
 var roll_amount: int = 10
 var screen_size: Vector2
-var roll_wait: float = 0.1
+var roll_wait: float = 0.10
 
-func make_rand_arrays() -> void:
-	die_1_final = randi_range(1, 6)
-	die_2_final = randi_range(1, 6)
 
-func roll_dice(_roll: int = 0) -> void:
-	make_rand_arrays()
-	#roll = 7
-	#if roll == 7:
-		#die_1_final = 3
-		#die_2_final = 4
-	share_roll.rpc(die_1_final, die_2_final)
-
-@rpc("any_peer", "call_local")
-func share_roll(new_die_1: int, new_die_2: int) -> void:
+func roll_dice(new_die_1: int, new_die_2: int) -> void:
 	screen_size = get_viewport_rect().size
 	dice_row.scale = Vector2(1.0, 1.0)
 	dice_row.position = screen_size / 2.0
@@ -49,10 +33,9 @@ func share_roll(new_die_1: int, new_die_2: int) -> void:
 	tween.tween_interval(0.35)
 	tween.tween_property(die_2, "visible", false, 0.0)
 	tween.tween_property(die_1, "text", str(total), 0.0)
-	tween.tween_property(roll_flash, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.75)
-	tween.tween_property(roll_flash, "modulate", Color(1.0, 1.0, 1.0, 0.0), 0.75)
-	tween.tween_property(dice_row, "scale", Vector2.ONE * 0.5, 0.5)
-	tween.parallel().tween_property(dice_row, "position", Vector2(400.0, 576.0), 0.5)
+	tween.tween_property(roll_flash, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.50)
+	tween.tween_property(roll_flash, "modulate", Color(1.0, 1.0, 1.0, 0.0), 0.50)
 	await tween.finished
-	get_tree().call_group("Hex", "number_rolled", total)
-	roll_finished.emit(total)
+	Events.dice_roll_completed.emit(total)
+	Events.screen_task_completed.emit()
+	

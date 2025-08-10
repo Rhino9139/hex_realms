@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dg2efbkrkqw3k"]
 
-[ext_resource type="Script" uid="uid://cc6e51ep1etej" path="res://_2D/action_card/monopoly_card/monopoly_unused.gd" id="1_py3ce"]
+[ext_resource type="Script" uid="uid://cc6e51ep1etej" path="res://_GUI/action_card/monopoly_card/monopoly_unused.gd" id="1_py3ce"]
 [ext_resource type="Texture2D" uid="uid://8qvknhn03s7a" path="res://common/shapes/card_outer.svg" id="2_wpquw"]
 [ext_resource type="Texture2D" uid="uid://blgoh8phcuqpj" path="res://common/shapes/card_inner.svg" id="3_idifp"]
 

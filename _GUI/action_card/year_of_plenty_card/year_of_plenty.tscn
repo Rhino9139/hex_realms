@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cckx0gxh74awr"]
+[gd_scene load_steps=7 format=3 uid="uid://btwcse1pwgy8l"]
 
-[ext_resource type="Script" uid="uid://j6vdp881r5m3" path="res://_2D/action_card/free_roads_card/free_roads_card.gd" id="1_paeqb"]
-[ext_resource type="Texture2D" uid="uid://8qvknhn03s7a" path="res://common/shapes/card_outer.svg" id="2_mbcf8"]
-[ext_resource type="Texture2D" uid="uid://blgoh8phcuqpj" path="res://common/shapes/card_inner.svg" id="3_u38md"]
+[ext_resource type="Script" uid="uid://bc310uwwo7qi0" path="res://_GUI/action_card/year_of_plenty_card/year_of_plenty.gd" id="1_mvmd2"]
+[ext_resource type="Texture2D" uid="uid://8qvknhn03s7a" path="res://common/shapes/card_outer.svg" id="2_nm4r1"]
+[ext_resource type="Texture2D" uid="uid://blgoh8phcuqpj" path="res://common/shapes/card_inner.svg" id="3_yw8np"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dq0cm"]
 size = Vector2(44, 62)
@@ -17,10 +17,10 @@ font_names = PackedStringArray("Corbel")
 subpixel_positioning = 0
 multichannel_signed_distance_field = true
 
-[node name="FreeRoadsCard" type="Area2D" node_paths=PackedStringArray("amount_label") groups=["ActionCard"]]
+[node name="YearOfPlenty" type="Area2D" node_paths=PackedStringArray("amount_label") groups=["ActionCard"]]
 collision_layer = 0
 collision_mask = 0
-script = ExtResource("1_paeqb")
+script = ExtResource("1_mvmd2")
 amount_label = NodePath("Amount")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -28,11 +28,11 @@ shape = SubResource("RectangleShape2D_dq0cm")
 
 [node name="OuterSprite" type="Sprite2D" parent="."]
 scale = Vector2(0.12, 0.12)
-texture = ExtResource("2_mbcf8")
+texture = ExtResource("2_nm4r1")
 
 [node name="InnerSprite" type="Sprite2D" parent="OuterSprite"]
-modulate = Color(0.623529, 0, 0, 1)
-texture = ExtResource("3_u38md")
+modulate = Color(0.623529, 0.686275, 0, 1)
+texture = ExtResource("3_yw8np")
 
 [node name="Label" type="Label" parent="."]
 offset_left = -17.0
@@ -41,7 +41,7 @@ offset_right = 17.0
 offset_bottom = -1.58333
 theme_override_fonts/font = SubResource("SystemFont_dq0cm")
 theme_override_font_sizes/font_size = 10
-text = "2 Free Roads"
+text = "Year Of Plenty"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
