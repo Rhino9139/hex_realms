@@ -63,8 +63,8 @@ signal card_used(card_type: Global.ActionCardType)
 
 var BOARD_START: BoardStart = BoardStart.new()
 var BOARD_END: BoardEnd = BoardEnd.new()
-var CHARACTER_START: = CharacterStart.new()
-var CHARACTER_END: = CharacterEnd.new()
+var CHARACTER_START: CharacterStart = CharacterStart.new()
+var CHARACTER_END: CharacterEnd = CharacterEnd.new()
 var NETWORK_START: NetworkStart = NetworkStart.new()
 var NETWORK_END: NetworkEnd = NetworkEnd.new()
 var MENU_START: MenuStart = MenuStart.new()
@@ -139,6 +139,7 @@ class HUDEnd:
 	signal toggle_buy_button_off
 	signal disable_buy_button(button_type: BuyButton.Type)
 	signal enable_buy_button
+	signal add_player_cards(players: Array[Player])
 
 
 class ScreenStart:

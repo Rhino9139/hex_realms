@@ -9,16 +9,16 @@ extends PanelContainer
 @export var largest_army: TextureRect
 
 var publisher: Player.Publisher
-
+var player_name: String
 
 func _ready() -> void:
-	name_label.text = publisher.player_name
+	name_label.text = player_name
 	self_modulate = publisher.player_color
-	publisher.knights_changed
-	publisher.points_changed
-	publisher.resource_cards_changed
-	publisher.largest_army_updated
-	publisher.longest_road_updated
+	publisher.knights_changed.connect(_knights_changed)
+	publisher.points_changed.connect(_points_changed)
+	publisher.resource_cards_changed.connect(_resource_cards_changed)
+	publisher.largest_army_updated.connect(_largest_army_changed)
+	publisher.longest_road_updated.connect(_longest_road_changed)
 
 
 func _knights_changed(new_count: int) -> void:

@@ -1,14 +1,14 @@
 class_name UIStateMachine
 extends Node
 
-enum States{INACTIVE, SETUP, WAIT_SCREEN, ACTIVE}
+enum States{INACTIVE, ACTIVE, WAIT_SCREEN}
 
 var _state: UIState
 
 var states: Dictionary[States, UIState] = {
 	States.INACTIVE : ui_Inactive.new(),
-	States.WAIT_SCREEN : ui_WaitScreen.new(),
 	States.ACTIVE : ui_Active.new(),
+	States.WAIT_SCREEN : ui_WaitScreen.new(),
 }
 
 
@@ -53,6 +53,8 @@ class ui_Inactive extends UIState:
 
 
 class ui_Active extends UIState:
+	
+	enum SubState{SETUP, STANDARD}
 	
 	func enter() -> void:
 		pass

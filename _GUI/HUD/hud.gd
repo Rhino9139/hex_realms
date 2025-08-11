@@ -7,7 +7,7 @@ const _PATHS: Dictionary[int, String] = {
 	Header.STANDARD : "uid://dlysvvr1aprdc",
 }
 
-var current_hud: HUD
+var current_hud: Control
 
 
 func _ready() -> void:
