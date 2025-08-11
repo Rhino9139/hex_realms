@@ -1,0 +1,133 @@
+[gd_scene load_steps=9 format=3 uid="uid://k2a8pem4oock"]
+
+[ext_resource type="ButtonGroup" uid="uid://dge70xeowhnu" path="res://_GUI/HUD/components/buy_button_section/ui_buttons.tres" id="1_vsmx2"]
+[ext_resource type="Texture2D" uid="uid://may10jqwt0e1" path="res://common/icons/ui_buttons/structure_house.png" id="2_blbcd"]
+[ext_resource type="Script" uid="uid://bvsalc57dvu50" path="res://_GUI/HUD/components/buy_button_section/ui_button.gd" id="3_lnvme"]
+[ext_resource type="Texture2D" uid="uid://b0xh3lcnrqboa" path="res://common/icons/ui_buttons/structure_gate.png" id="4_o2hml"]
+[ext_resource type="Texture2D" uid="uid://do5fpysxkbwj2" path="res://common/icons/ui_buttons/arrow_diagonal.png" id="5_v06k2"]
+[ext_resource type="Texture2D" uid="uid://c1d8lhog071sm" path="res://common/icons/ui_buttons/card_lift.png" id="6_05i5j"]
+[ext_resource type="Texture2D" uid="uid://cfgp3vuehr7tn" path="res://common/icons/ui_buttons/pouch_remove.svg" id="7_jsoux"]
+[ext_resource type="Texture2D" uid="uid://bxgah4kd476pu" path="res://common/icons/ui_buttons/pawn_reverse.svg" id="8_gn4bo"]
+
+[node name="BuyButtonSection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Row" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.98
+anchor_right = 0.02
+anchor_bottom = 0.98
+offset_left = -15.04
+offset_top = -59.04
+offset_right = 352.96
+offset_bottom = 4.96002
+grow_vertical = 0
+alignment = 1
+
+[node name="BuySettlement" type="Button" parent="Row"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+focus_mode = 0
+theme_type_variation = &"UIButton"
+toggle_mode = true
+action_mode = 0
+button_group = ExtResource("1_vsmx2")
+icon = ExtResource("2_blbcd")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("3_lnvme")
+metadata/_custom_type_script = "uid://bvsalc57dvu50"
+
+[node name="BuyCastle" type="Button" parent="Row"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+focus_mode = 0
+theme_type_variation = &"UIButton"
+toggle_mode = true
+action_mode = 0
+button_group = ExtResource("1_vsmx2")
+icon = ExtResource("4_o2hml")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("3_lnvme")
+button_type = 1
+metadata/_custom_type_script = "uid://bvsalc57dvu50"
+
+[node name="BuyRoad" type="Button" parent="Row"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+focus_mode = 0
+theme_type_variation = &"UIButton"
+toggle_mode = true
+action_mode = 0
+button_group = ExtResource("1_vsmx2")
+icon = ExtResource("5_v06k2")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("3_lnvme")
+button_type = 2
+metadata/_custom_type_script = "uid://bvsalc57dvu50"
+
+[node name="BuyCard" type="Button" parent="Row"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+focus_mode = 0
+theme_type_variation = &"UIButton"
+toggle_mode = true
+action_mode = 0
+button_group = ExtResource("1_vsmx2")
+icon = ExtResource("6_05i5j")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("3_lnvme")
+button_type = 3
+metadata/_custom_type_script = "uid://bvsalc57dvu50"
+
+[node name="BankTrade" type="Button" parent="Row"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+focus_mode = 0
+theme_type_variation = &"UIButton"
+toggle_mode = true
+action_mode = 0
+button_group = ExtResource("1_vsmx2")
+icon = ExtResource("7_jsoux")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("3_lnvme")
+button_type = 4
+metadata/_custom_type_script = "uid://bvsalc57dvu50"
+
+[node name="PlayerTrade" type="Button" parent="Row"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+focus_mode = 0
+theme_type_variation = &"UIButton"
+toggle_mode = true
+action_mode = 0
+button_group = ExtResource("1_vsmx2")
+icon = ExtResource("8_gn4bo")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("3_lnvme")
+button_type = 5
+metadata/_custom_type_script = "uid://bvsalc57dvu50"

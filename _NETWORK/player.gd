@@ -7,7 +7,7 @@ static var LARGEST_ARMY: int = 2
 var player_id: int = 0
 var player_name: String = "New Player"
 var player_index: int = 0
-var turn_index: int = 1
+var publisher: Publisher = Publisher.new()
 
 var resources: Array[int] = [0, 0, 0, 0, 0]
 var trade_remove: Array[int] = [0, 0, 0, 0, 0]
@@ -28,11 +28,18 @@ var has_longest_road: bool = false:
 	set(new_value):
 		has_longest_road = new_value
 		calculate_points()
+		publisher.longest_road_updated.emit(has_longest_road)
 
 var has_largest_army: bool = false:
 	set(new_value):
 		has_largest_army = new_value
 		calculate_points()
+		publisher.largest_army_updated.emit(has_largest_army)
+
+var turn_index: int = 1:
+	set(new_value):
+		turn_index = new_value
+		publisher.turn_index = turn_index
 
 
 func _ready() -> void:
@@ -47,8 +54,8 @@ func _ready() -> void:
 	player_index = get_index() + 1
 	player_mat = Global.PLAYER_MATS[player_index]
 	player_color = player_mat.albedo_color
-	
-	Events.item_bought.connect(_on_item_bought)
+	publisher.player_name = player_name
+	publisher.player_color = player_color
 
 
 func trade_resources() -> void:
@@ -135,7 +142,7 @@ func calculate_points() -> void:
 		total_points += 2
 	if has_largest_army:
 		total_points += 2
-	Events.points_changed.emit()
+	publisher.points_changed.emit(total_points)
 
 
 @rpc("any_peer", "call_remote")
@@ -155,6 +162,7 @@ func share_cards(resource_cards: Array[int]) -> void:
 	num_cards = 0
 	for i in resources:
 		num_cards += i
+	publisher.resource_cards_changed.emit(num_cards)
 
 
 @rpc("any_peer", "call_local")
@@ -166,3 +174,16 @@ func share_knight_count(new_count: int) -> void:
 	for player in PlayerManager.GET_PLAYERS():
 		if player.knight_used < LARGEST_ARMY:
 			player.has_largest_army = false
+	publisher.knights_changed.emit(knight_count)
+
+
+class Publisher:
+	signal points_changed(new_points: int)
+	signal knights_changed(new_knights: int)
+	signal resource_cards_changed(new_count: int)
+	signal longest_road_updated(has_longest: bool)
+	signal largest_army_updated(has_largest: bool)
+	
+	var player_name: String
+	var player_color: Color
+	var turn_index: int

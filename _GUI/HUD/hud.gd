@@ -1,19 +1,25 @@
 class_name HUD
 extends Control
 
-enum Header{GAME, PLAYER_RESOURCES}
+enum Header{STANDARD}
 
 const _PATHS: Dictionary[int, String] = {
-	Header.GAME : "uid://dlysvvr1aprdc",
-	Header.PLAYER_RESOURCES : "uid://mss40dxrydbv",
+	Header.STANDARD : "uid://dlysvvr1aprdc",
 }
 
-
-func add_hud(header: HUD.Header) -> void:
-	var new_hud: Control = load(_PATHS[header]).instantiate()
-	add_child(new_hud)
+var current_hud: HUD
 
 
-func clear_hud() -> void:
-	for child in get_children():
-		child.queue_free()
+func _ready() -> void:
+	Events.HUD_END.add_hud.connect(_add_hud)
+	Events.HUD_END.clear_hud.connect(_clear_hud)
+
+
+func _add_hud(header: HUD.Header) -> void:
+	current_hud = load(_PATHS[header]).instantiate()
+	add_child(current_hud)
+
+
+func _clear_hud() -> void:
+	if current_hud:
+		current_hud.queue_free()

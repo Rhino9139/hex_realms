@@ -12,6 +12,7 @@ func _ready() -> void:
 	Events.MENU_START.destroy_board_requested.connect(_destroy_board_requested)
 	Events.BOARD_START.board_generated.connect(_board_generated)
 	Events.BOARD_START.board_destroyed.connect(_board_destroyed)
+	Events.SCREEN_START.turn_order_created.connect(_turn_order_created)
 
 
 func _game_opened() -> void:
@@ -40,8 +41,13 @@ func _menu_changed(new_header: Menu.Header) -> void:
 
 
 func _match_started() -> void:
+	share_match_started.rpc()
+
+
+@rpc("authority", "call_local")
+func share_match_started() -> void:
 	Events.MENU_END.clear_menu.emit()
-	#TODO add turn screen
+	Events.SCREEN_END.add_screen.emit(Screen.Header.TURN_ORDER)
 
 
 func _generate_board_requested() -> void:
@@ -61,3 +67,7 @@ func _board_generated() -> void:
 
 func _board_destroyed() -> void:
 	Events.MENU_END.disable_start_game.emit()
+
+
+func _turn_order_created() -> void:
+	Events.SCREEN_END.clear_screen.emit()

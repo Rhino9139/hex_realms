@@ -1,0 +1,77 @@
+[gd_scene load_steps=6 format=3 uid="uid://h4xt3va73w1r"]
+
+[ext_resource type="Texture2D" uid="uid://begn511dpycyv" path="res://common/icons/ui_buttons/hourglass.png" id="1_1tl85"]
+
+[sub_resource type="Gradient" id="Gradient_y8wuv"]
+colors = PackedColorArray(0.44098, 0.440979, 0.440979, 0.784314, 0.44098, 0.440979, 0.440979, 0.784314)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hfobc"]
+gradient = SubResource("Gradient_y8wuv")
+fill_from = Vector2(1, 1)
+
+[sub_resource type="Gradient" id="Gradient_56vj1"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_o4t6f"]
+gradient = SubResource("Gradient_56vj1")
+fill_from = Vector2(1, 1)
+
+[node name="PrimaryButtons" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RollButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = -64.0
+offset_right = 40.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_mode = 0
+theme_override_font_sizes/font_size = 30
+disabled = true
+text = "ROLL"
+
+[node name="EndTurnButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -87.0
+offset_top = -83.0
+offset_right = -15.0
+offset_bottom = -11.0
+grow_horizontal = 0
+grow_vertical = 0
+icon = ExtResource("1_1tl85")
+icon_alignment = 1
+
+[node name="TurnProgress" type="TextureProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -10.0
+grow_horizontal = 0
+grow_vertical = 2
+max_value = 60.0
+step = 0.01
+value = 60.0
+fill_mode = 2
+nine_patch_stretch = true
+texture_under = SubResource("GradientTexture2D_hfobc")
+texture_progress = SubResource("GradientTexture2D_o4t6f")
+tint_under = Color(1, 1, 1, 0.427451)

@@ -7,8 +7,6 @@ extends Control
 
 
 #func _ready() -> void:
-	#Events.host_match_started.connect(_on_host_match_started)
-	#Events.turn_order_created.connect(_on_turn_order_created)
 	#Events.roll_requested.connect(_on_roll_requested)
 	#Events.dice_roll_completed.connect(_on_dice_roll_completed)
 
@@ -25,8 +23,9 @@ func server_start_match() -> void:
 
 func _on_turn_order_created() -> void:
 	screen.clear_screen()
-	hud.add_hud(HUD.Header.PLAYER_RESOURCES)
-	hud.add_hud(HUD.Header.GAME)
+	
+	#TODO Add hud
+	
 	Events.player_turn_started.emit()
 
 

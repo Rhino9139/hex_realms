@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://dlysvvr1aprdc"]
+
+[ext_resource type="PackedScene" uid="uid://cug7reenm11sr" path="res://_GUI/HUD/hud_layout.tscn" id="2_vvqu1"]
+[ext_resource type="PackedScene" uid="uid://dydwmvrhg4ae8" path="res://_GUI/HUD/components/player_card_banner/player_card_banner.tscn" id="3_5iesp"]
+[ext_resource type="PackedScene" uid="uid://k2a8pem4oock" path="res://_GUI/HUD/components/buy_button_section/buy_button_section.tscn" id="4_ywcjx"]
+[ext_resource type="PackedScene" uid="uid://dfysx2poactud" path="res://_GUI/HUD/components/action_cards/action_cards.tscn" id="5_wx5tk"]
+[ext_resource type="PackedScene" uid="uid://h4xt3va73w1r" path="res://_GUI/HUD/components/primary_buttons/primary_buttons.tscn" id="6_5xxpv"]
+
+[node name="GameHUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="hud_layout" parent="." instance=ExtResource("2_vvqu1")]
+layout_mode = 1
+
+[node name="PlayerCardBanner" parent="." instance=ExtResource("3_5iesp")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+grow_horizontal = 1
+
+[node name="BuyButtonSection" parent="." instance=ExtResource("4_ywcjx")]
+layout_mode = 1
+
+[node name="ActionCards" parent="." instance=ExtResource("5_wx5tk")]
+layout_mode = 1
+
+[node name="PrimaryButtons" parent="." instance=ExtResource("6_5xxpv")]
+layout_mode = 1

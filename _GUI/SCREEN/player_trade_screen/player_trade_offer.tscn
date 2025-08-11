@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ynnsk44tgphk"]
 
 [ext_resource type="Script" uid="uid://pci83iredw3g" path="res://_GUI/SCREEN/player_trade_screen/player_trade_offer.gd" id="1_4v8oy"]
-[ext_resource type="PackedScene" uid="uid://d4d1p4l68ffyr" path="res://_GUI/HUD/player_resources/resource_cards/resource_card.tscn" id="2_ll8hj"]
+[ext_resource type="PackedScene" uid="uid://d4d1p4l68ffyr" path="res://_GUI/HUD/components/player_resources/resource_cards/resource_card.tscn" id="2_ll8hj"]
 
 [node name="PlayerTradeOffer" type="Control" node_paths=PackedStringArray("trader_label", "accept_button", "decline_button", "give_brick_card", "give_sheep_card", "give_ore_card", "give_wheat_card", "give_wood_card", "give_brick_amount", "give_sheep_amount", "give_ore_amount", "give_wheat_amount", "give_wood_amount", "receive_brick_amount", "receive_sheep_amount", "receive_ore_amount", "receive_wheat_amount", "receive_wood_amount")]
 layout_mode = 3

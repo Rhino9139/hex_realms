@@ -1,13 +1,14 @@
 class_name PlayerResources
-extends Node
+extends HUDComponent
 
 @export var bank_trade_panel: Panel
 @export var trade_accept_button: Button
 
 
-func _ready() -> void:
-	Events.bank_trade_started.connect(_on_bank_trade_started)
-	Events.bank_trade_completed.connect(_on_bank_trade_completed)
+#func _ready() -> void:
+	#pass
+	#Events.bank_trade_started.connect(_on_bank_trade_started)
+	#Events.bank_trade_completed.connect(_on_bank_trade_completed)
 
 
 func _on_bank_trade_started() -> void:

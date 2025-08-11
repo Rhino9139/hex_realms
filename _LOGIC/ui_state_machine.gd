@@ -7,10 +7,10 @@ var _state: UIState
 
 var states: Dictionary[States, UIState] = {
 	States.INACTIVE : ui_Inactive.new(),
-	States.SETUP : ui_Setup.new(),
 	States.WAIT_SCREEN : ui_WaitScreen.new(),
 	States.ACTIVE : ui_Active.new(),
 }
+
 
 func _enter_tree():
 	_state = states[States.INACTIVE]
@@ -45,23 +45,31 @@ class UIState:
 class ui_Inactive extends UIState:
 	
 	func enter() -> void:
-		Events.player_turn_started.connect(_on_player_turn_started)
-		Events.player_deactivated.emit()
+		pass
 	
 	
 	func exit() -> void:
-		Events.player_turn_started.disconnect(_on_player_turn_started)
-	
-	
-	func _on_player_turn_started() -> void:
 		pass
-		#if Player.LOCAL_PLAYER.turn_index != MatchManager.current_turn:
-			#return
-		#if MatchManager.current_round <= 2:
-			#state_changed.emit(States.SETUP)
-		#else:
-			#Events.roll_enabled.emit()
-			#state_changed.emit(States.WAIT_SCREEN)
+
+
+class ui_Active extends UIState:
+	
+	func enter() -> void:
+		pass
+	
+	
+	func exit() -> void:
+		pass
+
+
+class ui_WaitScreen extends UIState:
+	
+	func enter() -> void:
+		pass
+	
+	
+	func exit() -> void:
+		pass
 
 
 class ui_Setup extends UIState:
@@ -87,29 +95,3 @@ class ui_Setup extends UIState:
 		state_changed.emit(States.INACTIVE)
 		Events.add_road_exited.disconnect(_on_add_road_exited)
 		Events.turn_finished.emit()
-
-
-class ui_WaitScreen extends UIState:
-	
-	func enter() -> void:
-		Events.screen_task_completed.connect(_on_screen_task_completed)
-	
-	
-	func exit() -> void:
-		Events.screen_task_completed.disconnect(_on_screen_task_completed)
-	
-	
-	func _on_screen_task_completed() -> void:
-		state_changed.emit(States.ACTIVE)
-
-
-class ui_Active extends UIState:
-	
-	func enter() -> void:
-		Events.player_ui_enabled.emit()
-		Events.player_activated.emit()
-	
-	
-	func exit() -> void:
-		Events.player_ui_disabled.emit()
-		Events.player_deactivated.emit()

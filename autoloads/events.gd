@@ -134,13 +134,15 @@ class HUDStart:
 
 
 class HUDEnd:
+	signal add_hud(new_header: HUD.Header)
+	signal clear_hud
 	signal toggle_buy_button_off
 	signal disable_buy_button(button_type: BuyButton.Type)
 	signal enable_buy_button
 
 
 class ScreenStart:
-	pass
+	signal turn_order_created
 
 
 class ScreenEnd:
