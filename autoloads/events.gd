@@ -73,10 +73,12 @@ var HUD_START: HUDStart = HUDStart.new()
 var HUD_END: HUDEnd = HUDEnd.new()
 var SCREEN_START: ScreenStart = ScreenStart.new()
 var SCREEN_END: ScreenEnd = ScreenEnd.new()
+var LOGIC_UP: LogicUp = LogicUp.new()
+var LOGIC_DOWN: LogicDown = LogicDown.new()
 
 
 class CharacterStart:
-	pass
+	signal hotspot_hovered(new_hotspot: Hotspot)
 
 
 class CharacterEnd:
@@ -94,6 +96,8 @@ class BoardStart:
 class BoardEnd:
 	signal generate_board
 	signal destroy_board
+	signal check_if_hovered(new_hotspot: Hotspot)
+	signal make_building_available(new_hotspot: Hotspot.Type)
 
 
 class NetworkStart:
@@ -149,3 +153,11 @@ class ScreenStart:
 class ScreenEnd:
 	signal add_screen(new_header: Screen.Header)
 	signal clear_screen
+
+
+class LogicUp:
+	signal player_turn_finished
+
+
+class LogicDown:
+	signal start_next_turn(current_turn: int, current_round: int)

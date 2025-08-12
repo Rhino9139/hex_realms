@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://d1n5rqi6aeqi5" path="res://_GUI/HUD/hud.gd" id="7_tdj4x"]
 [ext_resource type="Script" uid="uid://dikcael4tly7g" path="res://_GUI/SCREEN/screen.gd" id="8_0djke"]
 [ext_resource type="Script" uid="uid://cx2bp3e3q0qd6" path="res://_3D/character/character.gd" id="8_kpb75"]
-[ext_resource type="Script" uid="uid://dw0a6chnwwqvu" path="res://_LOGIC/menus_event_bridge.gd" id="13_s4vgy"]
+[ext_resource type="Script" uid="uid://dw0a6chnwwqvu" path="res://_LOGIC/menu_logic.gd" id="13_s4vgy"]
 [ext_resource type="Script" uid="uid://tdj54pw5ggwu" path="res://_LOGIC/match_logic.gd" id="13_yu52p"]
 [ext_resource type="Script" uid="uid://cbsy8oyu4bd2f" path="res://_LOGIC/turn_state_machine.gd" id="16_3olux"]
 
@@ -114,11 +114,11 @@ metadata/_custom_type_script = "uid://dikcael4tly7g"
 
 [node name="MasterLogic" type="Node" parent="."]
 
-[node name="MenusEventBridge" type="Node" parent="MasterLogic"]
+[node name="MenuLogic" type="Node" parent="MasterLogic"]
 script = ExtResource("13_s4vgy")
 
 [node name="MatchLogic" type="Node" parent="MasterLogic"]
 script = ExtResource("13_yu52p")
 
-[node name="TurnStateMachine" type="Node" parent="MasterLogic"]
+[node name="TurnStateMachine" type="Node" parent="MasterLogic/MatchLogic"]
 script = ExtResource("16_3olux")

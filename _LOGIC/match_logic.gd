@@ -1,8 +1,8 @@
 class_name MatchLogic
 extends Node
 
-var CURRENT_TURN: int = 1
-var CURRENT_ROUND: int = 1
+static var CURRENT_TURN: int = 1
+static var CURRENT_ROUND: int = 1
 
 
 func _ready() -> void:
@@ -12,3 +12,4 @@ func _ready() -> void:
 func _turn_order_created() -> void:
 	Events.HUD_END.add_hud.emit(HUD.Header.STANDARD)
 	Events.HUD_END.add_player_cards.emit(PlayerManager.GET_PLAYERS())
+	Events.LOGIC_DOWN.start_next_turn.emit(CURRENT_TURN, CURRENT_ROUND)

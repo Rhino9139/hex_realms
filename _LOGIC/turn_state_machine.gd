@@ -1,14 +1,15 @@
 class_name UIStateMachine
 extends Node
 
-enum States{INACTIVE, ACTIVE, WAIT_SCREEN}
+enum States{INACTIVE, WAIT_SCREEN, SETUP, STANDARD}
 
 var _state: UIState
 
 var states: Dictionary[States, UIState] = {
 	States.INACTIVE : ui_Inactive.new(),
-	States.ACTIVE : ui_Active.new(),
 	States.WAIT_SCREEN : ui_WaitScreen.new(),
+	States.SETUP : ui_Setup.new(),
+	States.STANDARD : ui_Standard.new(),
 }
 
 
@@ -45,23 +46,21 @@ class UIState:
 class ui_Inactive extends UIState:
 	
 	func enter() -> void:
-		pass
+		Events.LOGIC_DOWN.start_next_turn.connect(_start_next_turn)
 	
 	
 	func exit() -> void:
-		pass
-
-
-class ui_Active extends UIState:
-	
-	enum SubState{SETUP, STANDARD}
-	
-	func enter() -> void:
-		pass
+		Events.LOGIC_DOWN.start_next_turn.disconnect(_start_next_turn)
 	
 	
-	func exit() -> void:
-		pass
+	func _start_next_turn(current_turn: int, current_round: int) -> void:
+		var local_turn: int = Player.LOCAL_PLAYER.turn_index
+		if current_turn != local_turn:
+			return
+		if current_round <= 2:
+			state_changed.emit(States.SETUP)
+		else:
+			state_changed.emit(States.STANDARD)
 
 
 class ui_WaitScreen extends UIState:
@@ -77,23 +76,22 @@ class ui_WaitScreen extends UIState:
 class ui_Setup extends UIState:
 	
 	func enter() -> void:
-		Events.add_building_exited.connect(_on_add_building_exited)
-		Events.add_road_exited.connect(_on_add_road_exited)
-		Events.add_building_entered.emit(Hotspot.Type.EMPTY)
-		Events.player_activated.emit()
+		Events.BOARD_END.make_building_available.emit(Hotspot.Type.EMPTY)
+		Events.CHARACTER_END.activate_camera.emit()
 	
 	
 	func exit() -> void:
-		Events.player_deactivated.emit()
+		Events.CHARACTER_END.deactivate_camera.emit()
 	
 	
 	func _on_add_building_exited() -> void:
-		Events.add_building_exited.disconnect(_on_add_building_exited)
-		
-		Events.add_road_entered.emit()
+		pass
 	
 	
 	func _on_add_road_exited() -> void:
+		Events.LOGIC_UP.player_turn_finished.emit()
 		state_changed.emit(States.INACTIVE)
-		Events.add_road_exited.disconnect(_on_add_road_exited)
-		Events.turn_finished.emit()
+
+
+class ui_Standard extends UIState:
+	pass

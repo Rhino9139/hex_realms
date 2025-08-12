@@ -19,8 +19,8 @@ var upgrade_spot: Callable = build_settlement
 
 func _ready() -> void:
 	super()
-	Events.add_building_entered.connect(_on_add_building_entered)
-	Events.add_building_exited.connect(_on_add_building_exited)
+	#Events.add_building_entered.connect(_on_add_building_entered)
+	#Events.add_building_exited.connect(_on_add_building_exited)
 	
 	settlement_model.set_surface_override_material(0, holo_mat)
 	settlement_model.set_surface_override_material(1, holo_mat)
