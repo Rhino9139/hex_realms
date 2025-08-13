@@ -10,7 +10,6 @@ var rotate_vec: Vector2 = Vector2.ZERO
 var h_rot_target: float = 0.0
 var v_rot_target: float = 45.0
 var status_update: Callable = status_idle
-var current_hover: Area3D
 
 
 func _input(event: InputEvent) -> void:
@@ -63,12 +62,12 @@ func update_hover_raycast(clicked: bool = false) -> void:
 	var result = space_state.intersect_ray(query)
 	if result:
 		var collider = result.get("collider")
-		Events.selectable_hovered.emit(collider)
+		Events.CHARACTER_START.hotspot_hovered.emit(collider)
 		if clicked:
-			var id: int = multiplayer.get_unique_id()
-			collider.hotspot_clicked(id)
+			var player: Player = Player.LOCAL_PLAYER
+			Events.CHARACTER_START.hotspot_clicked.emit(player, collider)
 	else:
-		Events.selectable_hovered.emit(null)
+		Events.CHARACTER_START.hotspot_hovered.emit(null)
 
 
 func change_to_hover() -> void:

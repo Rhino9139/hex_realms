@@ -14,7 +14,7 @@ func _start_client():
 	peer = ENetMultiplayerPeer.new()
 	peer.create_client(ServerHost._LOCAL_HOST, ServerHost._PORT)
 	multiplayer.multiplayer_peer = peer
-	multiplayer.connected_to_server.connect(_on_server_connected)
+	multiplayer.connected_to_server.connect(_on_connected_to_server)
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
 	print("Starting connection")
 	await multiplayer.connected_to_server
@@ -25,12 +25,12 @@ func _start_client():
 func _stop_client() -> void:
 	peer.close()
 	print(peer)
-	multiplayer.connected_to_server.disconnect(_on_server_connected)
+	multiplayer.connected_to_server.disconnect(_on_connected_to_server)
 	multiplayer.server_disconnected.disconnect(_on_server_disconnected)
 	Events.NETWORK_START.client_destroyed.emit()
 
 
-func _on_server_connected() -> void:
+func _on_connected_to_server() -> void:
 	print("Connected To Server")
 
 

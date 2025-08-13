@@ -53,9 +53,8 @@ class ui_Inactive extends UIState:
 		Events.LOGIC_DOWN.start_next_turn.disconnect(_start_next_turn)
 	
 	
-	func _start_next_turn(current_turn: int, current_round: int) -> void:
-		var local_turn: int = Player.LOCAL_PLAYER.turn_index
-		if current_turn != local_turn:
+	func _start_next_turn(current_turn: int, current_round: int, LP_turn_index) -> void:
+		if current_turn != LP_turn_index:
 			return
 		if current_round <= 2:
 			state_changed.emit(States.SETUP)
@@ -76,7 +75,12 @@ class ui_WaitScreen extends UIState:
 class ui_Setup extends UIState:
 	
 	func enter() -> void:
-		Events.BOARD_END.make_building_available.emit(Hotspot.Type.EMPTY)
+		Events.CHARACTER_START.hotspot_hovered.connect(_hotspot_hovered)
+		Events.CHARACTER_START.hotspot_clicked.connect(_hotspot_clicked)
+		Events.BOARD_START.building_added.connect(_building_added)
+		
+		var message: Hotspot.Message = Hotspot.Message.new(null, Hotspot.Type.EMPTY, null)
+		Events.BOARD_END.make_hotspot_available.emit(message)
 		Events.CHARACTER_END.activate_camera.emit()
 	
 	
@@ -84,14 +88,26 @@ class ui_Setup extends UIState:
 		Events.CHARACTER_END.deactivate_camera.emit()
 	
 	
-	func _on_add_building_exited() -> void:
-		pass
+	func _hotspot_hovered(hotspot: Hotspot) -> void:
+		var local_player: Player = Player.LOCAL_PLAYER
+		var message: Hotspot.Message = \
+				Hotspot.Message.new(local_player, Hotspot.Type.EMPTY, hotspot)
+		Events.BOARD_END.show_hover.emit(message)
 	
 	
-	func _on_add_road_exited() -> void:
-		Events.LOGIC_UP.player_turn_finished.emit()
-		state_changed.emit(States.INACTIVE)
-
+	func _hotspot_clicked(player: Player, hotspot: Hotspot) -> void:
+		var message: Hotspot.Message = \
+				Hotspot.Message.new(player, Hotspot.Type.EMPTY, hotspot)
+		Events.BOARD_END.click_hotspot.emit(message)
+	
+	
+	func _building_added(hotspot: Hotspot) -> void:
+		Events.BOARD_END.make_hotspot_unavailable.emit()
+		if hotspot.hotspot_type == Hotspot.Type.SETTLEMENT:
+			var message: Hotspot.Message = Hotspot.Message.new(null, Hotspot.Type.ROAD, null)
+			Events.BOARD_END.make_hotspot_available.emit(message)
+		else:
+			pass
 
 class ui_Standard extends UIState:
 	pass

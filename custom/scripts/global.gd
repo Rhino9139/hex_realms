@@ -52,9 +52,6 @@ static var PLAYER_MATS: Dictionary[int, StandardMaterial3D] = {
 	3 : load("uid://t2cj5x2ybelm"),
 	4 : load("uid://dd6lp3tkgw0lc"),
 }
-static var HEX_TYPES: Array[int] = [
-	0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5
-]
 static var HEX_ROLLS: Array[int] = [
 	2, 3, 3, 4, 4, 5, 5, 6, 6, 8, 8, 9, 9, 10, 10, 11, 11, 12, 7
 ]

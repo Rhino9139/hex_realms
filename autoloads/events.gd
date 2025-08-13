@@ -1,31 +1,6 @@
 extends Node
 
 @warning_ignore_start("unused_signal")
-signal game_opened
-signal local_name_changed(new_name: String)
-#3D Overview
-signal generate_board_requested
-signal board_generated
-signal board_shared
-signal add_board_requested
-signal destroy_board_requested
-signal player_activated
-signal player_deactivated
-#Networking
-signal server_requested
-signal server_created
-signal server_destroyed
-signal client_requested
-signal client_created
-signal client_destroyed
-signal lobby_disconnected
-#Match logic
-signal host_match_started
-signal match_started
-signal turn_order_created
-signal player_turn_ended
-signal player_turn_started
-signal turn_finished
 #3D Piece
 signal robber_created
 signal robber_moved
@@ -60,7 +35,8 @@ signal resources_changed(player_id: int, resources: Array[int])
 signal card_aquired(card_type: Global.ActionCardType)
 signal card_used(card_type: Global.ActionCardType)
 
-
+var GAME_START: GameStart = GameStart.new()
+var GAME_END: GameEnd = GameEnd.new()
 var BOARD_START: BoardStart = BoardStart.new()
 var BOARD_END: BoardEnd = BoardEnd.new()
 var CHARACTER_START: CharacterStart = CharacterStart.new()
@@ -77,8 +53,17 @@ var LOGIC_UP: LogicUp = LogicUp.new()
 var LOGIC_DOWN: LogicDown = LogicDown.new()
 
 
+class GameStart:
+	signal game_started
+
+
+class GameEnd:
+	signal change_local_name(new_name: String)
+
+
 class CharacterStart:
 	signal hotspot_hovered(new_hotspot: Hotspot)
+	signal hotspot_clicked(player: Player)
 
 
 class CharacterEnd:
@@ -89,15 +74,20 @@ class CharacterEnd:
 
 
 class BoardStart:
-	signal board_generated
+	signal board_layout_generated
 	signal board_destroyed
+	signal board_added
+	signal building_added(hotspot: Hotspot)
 
 
 class BoardEnd:
 	signal generate_board
 	signal destroy_board
-	signal check_if_hovered(new_hotspot: Hotspot)
-	signal make_building_available(new_hotspot: Hotspot.Type)
+	signal add_board
+	signal show_hover(message: Hotspot.Message)
+	signal make_hotspot_available(message: Hotspot.Message)
+	signal make_hotspot_unavailable
+	signal click_hotspot(message: Hotspot.Message)
 
 
 class NetworkStart:
@@ -118,15 +108,14 @@ class MenuStart:
 	signal local_name_changed(new_name: String)
 	signal host_game_pressed
 	signal join_game_pressed
-	signal lobby_exited
-	signal menu_changed(new_header: Menu.Header)
+	signal menu_changed(new_header: MenuManager.Header)
 	signal match_started
 	signal generate_board_requested
 	signal destroy_board_requested
 
 
 class MenuEnd:
-	signal change_menu(new_header: Menu.Header)
+	signal change_menu(new_header: MenuManager.Header)
 	signal clear_menu
 	signal enable_start_game
 	signal disable_start_game
@@ -160,4 +149,4 @@ class LogicUp:
 
 
 class LogicDown:
-	signal start_next_turn(current_turn: int, current_round: int)
+	signal start_next_turn(current_turn: int, current_round: int, LP_turn_index: int)

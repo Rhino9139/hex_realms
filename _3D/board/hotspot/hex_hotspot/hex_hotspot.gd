@@ -13,8 +13,8 @@ var neighbor_players: Array[Player] = []
 var has_robber: bool = false
 
 
-func _ready() -> void:
-	super()
+func inner_ready() -> void:
+	hotspot_type = Hotspot.Type.HEX
 	var idx: int = int(name)
 	if is_desert:
 		terrain_type = Terrain.Type.DESERT

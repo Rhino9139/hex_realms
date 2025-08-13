@@ -11,19 +11,19 @@ shader = ExtResource("5_1ttq0")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_el3d4"]
 material = SubResource("ShaderMaterial_8tp2h")
-size = Vector2(11, 11)
+size = Vector2(12, 12)
 
 [node name="OreTerrain" type="Node3D"]
 
 [node name="OreMine" type="MeshInstance3D" parent="."]
-transform = Transform3D(3.6, 0, 0, 0, 3.6, 0, 0, 0, 3.6, -0.183512, -2.36525, 0)
+transform = Transform3D(3.6, 0, 0, 0, 3.6, 0, 0, 0, 3.6, -0.183512, -2.80058, 0)
 mesh = ExtResource("4_n1ylb")
 
 [node name="InnerHex" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh = ExtResource("5_np0hf")
 surface_material_override/0 = ExtResource("3_n1ylb")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45865, 0)
 mesh = SubResource("PlaneMesh_el3d4")

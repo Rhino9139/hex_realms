@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://del6455x1rio1"]
 
 [ext_resource type="Script" uid="uid://bvm0v3l1xnpb3" path="res://_3D/board/hotspot/building_hotspot/building_hotspot.gd" id="1_ql0ga"]
-[ext_resource type="ArrayMesh" uid="uid://bidbr0bcuk1ut" path="res://imports/blend_files/structures/castle_mesh.res" id="2_v2e2f"]
+[ext_resource type="ArrayMesh" uid="uid://lo1nuqsxllvr" path="res://imports/blend_files/structures/castle_mesh.res" id="2_v2e2f"]
 [ext_resource type="ArrayMesh" uid="uid://cm8oy0ivr1yx8" path="res://imports/blend_files/structures/settlement_mesh.res" id="3_jrjif"]
-[ext_resource type="Material" uid="uid://bhusjf7o7dpr3" path="res://common/materials/light_grey.tres" id="5_jrjif"]
+[ext_resource type="ArrayMesh" uid="uid://dk1ubjp7mqm8g" path="res://imports/blend_files/hexes/hex_mesh.res" id="6_yehwd"]
 [ext_resource type="Material" uid="uid://cpvde0u8isi5h" path="res://common/shaders/hologram_material.tres" id="7_jrjif"]
 [ext_resource type="Material" uid="uid://bhs52l6pfbpg7" path="res://common/materials/player_mats/green.tres" id="8_2pc7y"]
 
@@ -15,15 +15,15 @@ material = ExtResource("8_2pc7y")
 inner_radius = 2.0
 outer_radius = 2.5
 
-[node name="BuildingHotspot" type="Area3D" node_paths=PackedStringArray("available_indicator", "settlement_model", "castle_model")]
+[node name="BuildingHotspot" type="Area3D" node_paths=PackedStringArray("available_indicator", "main_model", "hover_model")]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_ql0ga")
-holo_mat = ExtResource("7_jrjif")
+settlement_mesh = ExtResource("3_jrjif")
+castle_mesh = ExtResource("2_v2e2f")
 available_indicator = NodePath("AvailableIndicator")
-settlement_model = NodePath("SettlementModel")
-castle_model = NodePath("CastleModel")
-castle_base_mat = ExtResource("5_jrjif")
+main_model = NodePath("MainModel")
+hover_model = NodePath("HoverModel")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.81646, 0)
@@ -35,11 +35,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.374704, 0)
 visible = false
 mesh = SubResource("TorusMesh_v2e2f")
 
-[node name="CastleModel" type="MeshInstance3D" parent="."]
-visible = false
-mesh = ExtResource("2_v2e2f")
-
-[node name="SettlementModel" type="MeshInstance3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+[node name="MainModel" type="MeshInstance3D" parent="."]
 visible = false
 mesh = ExtResource("3_jrjif")
+
+[node name="HoverModel" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+visible = false
+mesh = ExtResource("3_jrjif")
+surface_material_override/0 = ExtResource("7_jrjif")
+surface_material_override/1 = ExtResource("7_jrjif")
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 2, 0, 0, 0, 0.25, 0, 0.55, 0)
+mesh = ExtResource("6_yehwd")

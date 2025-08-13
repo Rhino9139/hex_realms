@@ -16,7 +16,6 @@ func _on_host_pressed() -> void:
 
 
 func _on_join_pressed() -> void:
-	Events.client_requested.emit()
 	host_button.disabled = true
 	join_button.disabled = true
 	Events.MENU_START.join_game_pressed.emit() 

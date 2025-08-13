@@ -5,12 +5,14 @@ extends Node
 static var PLAYER_NAME: String = "New Player"
 var debug_name: String
 
+
 func _ready() -> void:
+	Events.GAME_END.change_local_name.connect(_change_local_name)
 	
 	if OS.is_debug_build():
 		DEBUG_setup_multiple_windows()
 	
-	Events.game_opened.emit()
+	Events.GAME_START.game_started.emit()
 
 
 func DEBUG_setup_multiple_windows() -> void:
@@ -30,5 +32,5 @@ func DEBUG_setup_multiple_windows() -> void:
 		DisplayServer.window_set_position(new_pos)
 
 
-func _on_local_name_changed(new_name: String) -> void:
+func _change_local_name(new_name: String) -> void:
 	PLAYER_NAME = new_name

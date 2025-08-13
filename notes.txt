@@ -3,5 +3,7 @@ horizontal spacing between centers is sqrt(3) * size
 vertical spacing between centers is (3/2) * size
 
 CURRENT
-working on ways to active the board hotspots with the ui buttons
-also need to make hotspots inactive when building mode is changed
+Working on the setup state in the state machine
+Hotspots dont have the correct signals yet
+Working with Command System
+where put commands?

@@ -23,8 +23,8 @@ var tail_size: int = 0
 var road_tails: Array[int] = []
 
 
-func _ready() -> void:
-	super()
+func inner_ready() -> void:
+	hotspot_type = Hotspot.Type.ROAD
 	Events.add_road_entered.connect(_on_add_road_entered)
 	Events.add_road_exited.connect(_on_add_road_exited)
 

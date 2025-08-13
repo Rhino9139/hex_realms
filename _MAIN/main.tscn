@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://drdu850r37k2i" path="res://_3D/environment/water.tscn" id="5_0djke"]
 [ext_resource type="Script" uid="uid://wvrtd0a71a3j" path="res://_3D/environment/environment.gd" id="5_yu52p"]
 [ext_resource type="Script" uid="uid://urfb014eou0t" path="res://_3D/board/board.gd" id="6_2k1gh"]
-[ext_resource type="Script" uid="uid://cjamklsqyhwh5" path="res://_GUI/MENU/menu.gd" id="6_hhsx1"]
+[ext_resource type="Script" uid="uid://cjamklsqyhwh5" path="res://_GUI/MENU/menu_manager.gd" id="6_hhsx1"]
 [ext_resource type="Script" uid="uid://d1n5rqi6aeqi5" path="res://_GUI/HUD/hud.gd" id="7_tdj4x"]
 [ext_resource type="Script" uid="uid://dikcael4tly7g" path="res://_GUI/SCREEN/screen.gd" id="8_0djke"]
 [ext_resource type="Script" uid="uid://cx2bp3e3q0qd6" path="res://_3D/character/character.gd" id="8_kpb75"]

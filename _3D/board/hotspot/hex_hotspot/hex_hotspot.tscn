@@ -10,12 +10,13 @@
 height = 1.63477
 radius = 7.02832
 
-[node name="HexHotspot" type="Area3D" node_paths=PackedStringArray("roll_sprite", "hover_indicator")]
+[node name="HexHotspot" type="Area3D" node_paths=PackedStringArray("roll_sprite", "hover_indicator", "available_indicator")]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_x2km7")
 roll_sprite = NodePath("RollSprite")
 hover_indicator = NodePath("HoverIndicator")
+available_indicator = NodePath("HoverIndicator")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.446712, 0)

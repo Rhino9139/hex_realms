@@ -7,7 +7,7 @@
 [node name="BrickTerrain" type="Node3D"]
 
 [node name="Brick" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, -0.382, 0.254949, -0.292)
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, -0.382, 0.19096, -0.292)
 mesh = ExtResource("4_a3n72")
 
 [node name="HoloHexMesh" type="MeshInstance3D" parent="."]

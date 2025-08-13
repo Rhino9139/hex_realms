@@ -42,5 +42,4 @@ func _on_destroy_board_pressed() -> void:
 
 
 func _on_main_menu_pressed() -> void:
-	Events.MENU_START.lobby_exited.emit()
-	Events.MENU_START.menu_changed.emit(Menu.Header.MAIN)
+	Events.MENU_START.menu_changed.emit(MenuManager.Header.MAIN)
