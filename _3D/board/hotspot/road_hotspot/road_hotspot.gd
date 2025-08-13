@@ -24,7 +24,7 @@ func inner_ready() -> void:
 	hotspot_type = Hotspot.Type.ROAD
 
 
-func get_availability() -> bool:
+func has_availability(_message: Message) -> bool:
 	var is_available: bool = false
 	var local_id: int = multiplayer.get_unique_id()
 	for road in adjacent_roads:
@@ -85,6 +85,7 @@ func activate_hotspot(message: Message) -> void:
 
 @rpc("any_peer", "call_local")
 func build(player_id: int) -> void:
+	hotspot_type = Type.BUILT_ROAD
 	player_owner = PlayerManager.GET_PLAYER_BY_ID(player_id)
 	player_owner.add_road()
 	main_model.set_surface_override_material(0, player_owner.player_mat)

@@ -1,7 +1,7 @@
 class_name Hotspot
 extends Area3D
 
-enum Type{EMPTY, SETTLEMENT, CASTLE, HEX, ROAD}
+enum Type{EMPTY, SETTLEMENT, CASTLE, HEX, ROAD, BUILT_ROAD}
 
 @export var available_indicator: MeshInstance3D
 @export var main_model: MeshInstance3D
@@ -32,6 +32,8 @@ func _show_hover(message: Message) -> void:
 
 
 func _make_hotspot_available(message: Message) -> void:
+	if has_availability(message) == false:
+		return
 	if hotspot_type == message.hotspot_type:
 		available_indicator.visible = true
 		collision_layer = 1
@@ -51,6 +53,10 @@ func _click_hotspot(message: Message) -> void:
 
 func activate_hotspot(_message: Message) -> void:
 	pass
+
+
+func has_availability(_message: Message) -> bool:
+	return true
 
 
 class Message:

@@ -33,7 +33,10 @@ func _on_state_changed(next_state: States) -> void:
 class UIState:
 	
 	signal state_changed(next_state: States)
-	signal substate_exited
+	@warning_ignore("unused_signal")
+	signal substate_exited(hotspot_type: Hotspot.Type)
+	
+	var substate: UIState
 	
 	func enter() -> void:
 		pass
@@ -77,44 +80,20 @@ class ui_WaitScreen extends UIState:
 class ui_Setup extends UIState:
 	
 	func enter() -> void:
-		Events.CHARACTER_START.hotspot_hovered.connect(_hotspot_hovered)
-		Events.CHARACTER_START.hotspot_clicked.connect(_hotspot_clicked)
-		Events.BOARD_START.building_added.connect(_building_added)
-		
-		var message: Hotspot.Message = Hotspot.Message.new(null, Hotspot.Type.EMPTY, null)
-		Events.BOARD_END.make_hotspot_available.emit(message)
-		Events.CHARACTER_END.activate_camera.emit()
+		substate = ui_Build.new()
+		substate.hotspot_type = Hotspot.Type.EMPTY
+		substate.substate_exited.connect(_substate_exited)
+		substate.enter()
 	
 	
-	func exit() -> void:
-		Events.CHARACTER_START.hotspot_hovered.disconnect(_hotspot_hovered)
-		Events.CHARACTER_START.hotspot_clicked.disconnect(_hotspot_clicked)
-		Events.BOARD_START.building_added.disconnect(_building_added)
-		
-		Events.CHARACTER_END.deactivate_camera.emit()
-	
-	
-	func _hotspot_hovered(hotspot: Hotspot) -> void:
-		var local_player: Player = Player.LOCAL_PLAYER
-		var message: Hotspot.Message = \
-				Hotspot.Message.new(local_player, Hotspot.Type.EMPTY, hotspot)
-		Events.BOARD_END.show_hover.emit(message)
-	
-	
-	func _hotspot_clicked(player: Player, hotspot: Hotspot) -> void:
-		var message: Hotspot.Message = Hotspot.Message.new(
-				player, 
-				Hotspot.Type.EMPTY, hotspot, 
-				MatchLogic.CURRENT_ROUND
-				)
-		Events.BOARD_END.click_hotspot.emit(message)
-	
-	
-	func _building_added(hotspot: Hotspot) -> void:
-		Events.BOARD_END.make_hotspot_unavailable.emit()
-		if hotspot.hotspot_type == Hotspot.Type.SETTLEMENT:
-			var message: Hotspot.Message = Hotspot.Message.new(null, Hotspot.Type.ROAD, null)
-			Events.BOARD_END.make_hotspot_available.emit(message)
+	func _substate_exited(hotspot_type: Hotspot.Type) -> void:
+		substate.exit()
+		substate = null
+		if hotspot_type == Hotspot.Type.EMPTY:
+			substate = ui_Build.new()
+			substate.hotspot_type = Hotspot.Type.ROAD
+			substate.substate_exited.connect(_substate_exited)
+			substate.enter()
 		else:
 			state_changed.emit(States.INACTIVE)
 			Events.LOGIC_UP.player_turn_finished.emit()
@@ -139,16 +118,20 @@ class ui_Standard extends UIState:
 	func _buy_button_toggled_on(button_type: BuyButton.Type) -> void:
 		match button_type:
 			BuyButton.Type.SETTLEMENT:
-				pass
+				substate = ui_Build.new()
+				substate.hotspot_type = Hotspot.Type.EMPTY
+				substate.substate_exited.connect(_substate_exited)
+				substate.enter()
 			BuyButton.Type.CASTLE:
-				pass
+				substate = ui_Build.new()
+				substate.hotspot_type = Hotspot.Type.SETTLEMENT
+				substate.substate_exited.connect(_substate_exited)
+				substate.enter()
 			BuyButton.Type.ROAD:
-				var message: Hotspot.Message = Hotspot.Message.new(
-					Player.LOCAL_PLAYER,
-					Hotspot.Type.ROAD,
-					null
-				)
-				Events.BOARD_END.make_hotspot_available.emit(message)
+				substate = ui_Build.new()
+				substate.hotspot_type = Hotspot.Type.ROAD
+				substate.substate_exited.connect(_substate_exited)
+				substate.enter()
 			BuyButton.Type.CARD:
 				pass
 			BuyButton.Type.BANK_TRADE:
@@ -159,22 +142,40 @@ class ui_Standard extends UIState:
 	
 	func _buy_button_toggled_off() -> void:
 		Events.BOARD_END.make_hotspot_unavailable.emit()
+		if substate:
+			substate.exit()
+			substate = null
+	
+	
+	func _substate_exited(_hotspot_type: Hotspot.Type) -> void:
+		Events.HUD_END.toggle_buy_button_off.emit()
+		if substate:
+			substate.exit()
+			substate = null
 
 
 class ui_Build extends UIState:
+	
+	var hotspot_type: Hotspot.Type
+	
 	func enter() -> void:
 		Events.CHARACTER_START.hotspot_hovered.connect(_hotspot_hovered)
 		Events.CHARACTER_START.hotspot_clicked.connect(_hotspot_clicked)
 		Events.BOARD_START.building_added.connect(_building_added)
-		
 		Events.CHARACTER_END.activate_camera.emit()
+		var local_player: Player = Player.LOCAL_PLAYER
+		var message: Hotspot.Message = Hotspot.Message.new(
+				local_player,
+				hotspot_type,
+				null,
+				MatchLogic.CURRENT_ROUND)
+		Events.BOARD_END.make_hotspot_available.emit(message)
 	
 	
 	func exit() -> void:
 		Events.CHARACTER_START.hotspot_hovered.disconnect(_hotspot_hovered)
 		Events.CHARACTER_START.hotspot_clicked.disconnect(_hotspot_clicked)
 		Events.BOARD_START.building_added.disconnect(_building_added)
-		
 		Events.CHARACTER_END.deactivate_camera.emit()
 	
 	
@@ -187,8 +188,9 @@ class ui_Build extends UIState:
 	
 	func _hotspot_clicked(player: Player, hotspot: Hotspot) -> void:
 		var message: Hotspot.Message = Hotspot.Message.new(
-				player, 
-				Hotspot.Type.EMPTY, hotspot, 
+				player,
+				hotspot.hotspot_type,
+				hotspot, 
 				MatchLogic.CURRENT_ROUND
 				)
 		Events.BOARD_END.click_hotspot.emit(message)
@@ -196,4 +198,4 @@ class ui_Build extends UIState:
 	
 	func _building_added(_hotspot: Hotspot) -> void:
 		Events.BOARD_END.make_hotspot_unavailable.emit()
-		substate_exited.emit()
+		substate_exited.emit(hotspot_type)

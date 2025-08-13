@@ -9,7 +9,7 @@ var player_name: String = "New Player"
 var player_index: int = 0
 var publisher: Publisher = Publisher.new()
 
-var resources: Array[int] = [0, 0, 0, 0, 0]
+var resources: Array[int] = [5, 5, 5, 5, 5]
 var trade_remove: Array[int] = [0, 0, 0, 0, 0]
 var trade_add: Array[int] = [0, 0, 0, 0, 0]
 var trade_ratios: Array[int] = [4, 4, 4, 4, 4]

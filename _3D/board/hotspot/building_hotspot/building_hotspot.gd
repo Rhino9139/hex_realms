@@ -23,6 +23,15 @@ func get_resources() -> void:
 			player_owner.change_resource(int(hex.terrain_type), 1)
 
 
+func has_availability(message: Message) -> bool:
+	if message.round_index <= 2:
+		return true
+	for road in adjacent_roads:
+		if road.player_owner == player_owner:
+			return true
+	return false
+
+
 func build_settlement(player_id: int) -> void:
 	hotspot_type = Hotspot.Type.SETTLEMENT
 	player_owner = PlayerManager.GET_PLAYER_BY_ID(player_id)
