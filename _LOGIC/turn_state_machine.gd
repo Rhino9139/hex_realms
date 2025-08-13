@@ -85,6 +85,10 @@ class ui_Setup extends UIState:
 	
 	
 	func exit() -> void:
+		Events.CHARACTER_START.hotspot_hovered.disconnect(_hotspot_hovered)
+		Events.CHARACTER_START.hotspot_clicked.disconnect(_hotspot_clicked)
+		Events.BOARD_START.building_added.disconnect(_building_added)
+		
 		Events.CHARACTER_END.deactivate_camera.emit()
 	
 	
@@ -107,7 +111,15 @@ class ui_Setup extends UIState:
 			var message: Hotspot.Message = Hotspot.Message.new(null, Hotspot.Type.ROAD, null)
 			Events.BOARD_END.make_hotspot_available.emit(message)
 		else:
-			pass
+			state_changed.emit(States.INACTIVE)
+			Events.LOGIC_UP.player_turn_finished.emit()
+
 
 class ui_Standard extends UIState:
-	pass
+	
+	func enter() -> void:
+		pass
+	
+	
+	func exit() -> void:
+		pass

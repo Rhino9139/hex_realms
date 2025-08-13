@@ -25,7 +25,7 @@ func _ready() -> void:
 	name_label.text = player.player_name
 	name_label.modulate = player.player_color
 	roll_array = []
-	for i in 15:
+	for i in 2:
 		roll_array.append(randi_range(0, 100))
 	if player.player_id == multiplayer.get_unique_id():
 		button_pivot.visible = true

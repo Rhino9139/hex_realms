@@ -3,9 +3,6 @@ extends Hotspot
 
 static var LONGEST: int = 0
 
-@export var road_model: MeshInstance3D
-@export var indicator_model: MeshInstance3D
-@export var TEST_MAT: StandardMaterial3D
 @export var adjacent_roads: Array[RoadHotspot]
 @export var adjacent_buildings: Array[BuildingHotspot]
 
@@ -25,8 +22,6 @@ var road_tails: Array[int] = []
 
 func inner_ready() -> void:
 	hotspot_type = Hotspot.Type.ROAD
-	Events.add_road_entered.connect(_on_add_road_entered)
-	Events.add_road_exited.connect(_on_add_road_exited)
 
 
 func get_availability() -> bool:
@@ -83,43 +78,19 @@ func reset_ally_neighbors() -> void:
 			ally_neighbors.append(i)
 
 
-func _on_selectable_hovered(hovered_object: Hotspot) -> void:
-	if player_owner != null:
-		return
-	if hovered_object == self:
-		road_model.visible = true
-	else:
-		road_model.visible = false
-
-
-func _on_add_road_entered() -> void:
-	if player_owner != null:
-		return
-	if get_availability():
-		collision_layer = 1
-		indicator_model.visible = true
-
-
-func _on_add_road_exited() -> void:
-	
-	collision_layer = 0
-	indicator_model.visible = false
-
-
-func hotspot_clicked(player_id: int) -> void:
-	build.rpc(player_id)
+func activate_hotspot(message: Message) -> void:
+	build.rpc(message.player.player_id)
+	Events.BOARD_START.building_added.emit(self)
 
 
 @rpc("any_peer", "call_local")
 func build(player_id: int) -> void:
 	player_owner = PlayerManager.GET_PLAYER_BY_ID(player_id)
 	player_owner.add_road()
-	road_model.visible = true
-	road_model.set_surface_override_material(0, player_owner.player_mat)
+	main_model.set_surface_override_material(0, player_owner.player_mat)
+	main_model.visible = true
 	if player_owner == player_owner.LOCAL_PLAYER:
 		add_to_group("MyRoads")
 		get_tree().call_group("MyRoads", "reset_longest")
 		get_tree().call_group("MyRoads", "reset_ally_neighbors")
 		begin_length_search()
-	
-	Events.add_road_exited.emit()

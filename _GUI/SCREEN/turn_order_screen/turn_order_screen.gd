@@ -37,7 +37,7 @@ func _on_roll_finished() -> void:
 	rows.sort_custom(sort_decending)
 	num_done += 1
 	if num_done == num_players:
-		await get_tree().create_timer(0.50).timeout
+		await get_tree().create_timer(0.250).timeout
 		reorder_rows()
-		await get_tree().create_timer(1.0).timeout
+		await get_tree().create_timer(0.50).timeout
 		Events.SCREEN_START.turn_order_created.emit()

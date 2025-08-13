@@ -36,11 +36,12 @@ visible = false
 mesh = SubResource("TorusMesh_v2e2f")
 
 [node name="MainModel" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.542507, 0)
 visible = false
 mesh = ExtResource("3_jrjif")
 
 [node name="HoverModel" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.542507, 0)
 visible = false
 mesh = ExtResource("3_jrjif")
 surface_material_override/0 = ExtResource("7_jrjif")

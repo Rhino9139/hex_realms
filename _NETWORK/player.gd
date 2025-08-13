@@ -56,6 +56,8 @@ func _ready() -> void:
 	player_color = player_mat.albedo_color
 	publisher.player_name = player_name
 	publisher.player_color = player_color
+	
+	Events.BOARD_START.building_added.connect(_building_added)
 
 
 func trade_resources() -> void:
@@ -143,6 +145,12 @@ func calculate_points() -> void:
 	if has_largest_army:
 		total_points += 2
 	publisher.points_changed.emit(total_points)
+
+
+func _building_added(hotspot: Hotspot) -> void:
+	if hotspot.player_owner == self:
+		if hotspot.hotspot_type == Hotspot.Type.SETTLEMENT:
+			add_settlement()
 
 
 @rpc("any_peer", "call_remote")

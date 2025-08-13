@@ -38,6 +38,8 @@ func _make_hotspot_available(message: Message) -> void:
 
 
 func _make_hotspot_unavailable() -> void:
+	if hover_model:
+		hover_model.visible = false
 	available_indicator.visible = false
 	collision_layer = 0
 

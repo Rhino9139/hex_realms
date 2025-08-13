@@ -26,7 +26,6 @@ func get_starting_resources() -> void:
 func build_settlement(player_id: int) -> void:
 	hotspot_type = Hotspot.Type.SETTLEMENT
 	player_owner = PlayerManager.GET_PLAYER_BY_ID(player_id)
-	player_owner.add_settlement()
 	
 	main_model.set_surface_override_material(1, player_owner.player_mat)
 	main_model.visible = true
