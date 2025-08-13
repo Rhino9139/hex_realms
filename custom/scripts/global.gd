@@ -1,6 +1,5 @@
 class_name Global
 
-enum BuyOption{SETTLEMENT, CASTLE, ROAD, CARD}
 enum ActionCardType{KNIGHT, VICTORY_POINT, YEAR_OF_PLENTY, MONOPOLY, FREE_ROADS}
 enum Resources{BRICK, ORE, SHEEP, WHEAT, WOOD, POLY}
 
@@ -18,18 +17,6 @@ const RESOURCE_MATERIALS: Dictionary[Resources, StandardMaterial3D] = {
 	Resources.SHEEP : preload("uid://bjfuru3xc5v3e"),
 	Resources.WHEAT : preload("uid://d1f3chw6ljd1r"),
 	Resources.WOOD : preload("uid://b6tpt437kk0w6"),
-}
-const _BUY_OPTION_NAMES: Dictionary[Global.BuyOption, String] = {
-	BuyOption.SETTLEMENT : "Settlement",
-	BuyOption.CASTLE : "Castle",
-	BuyOption.ROAD : "Road",
-	BuyOption.CARD : "Card",
-}
-const _BUY_COST: Dictionary[Global.BuyOption, Array] = {
-	BuyOption.SETTLEMENT : [1, 0, 1, 1, 1],
-	BuyOption.CASTLE : [0, 3, 0, 2, 0],
-	BuyOption.ROAD : [1, 0, 0, 0, 1],
-	BuyOption.CARD : [0, 1, 1, 1, 0],
 }
 const ROLL_SPRITES: Dictionary[int, String] = {
 	2 : "uid://inbnixypi3tk",

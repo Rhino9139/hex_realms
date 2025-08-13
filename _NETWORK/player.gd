@@ -79,11 +79,9 @@ func _on_name_changed(new_name: String) -> void:
 	share_name.rpc(new_name)
 
 
-func _on_item_bought(new_player_id: int, item_type: Global.BuyOption) -> void:
-	if new_player_id != player_id:
-		return
-	var cost: Array[int] = Global._BUY_COST[item_type] as Array[int]
-	change_resources(cost)
+#func _on_item_bought(new_player_id: int, item_type: Global.BuyOption) -> void:
+	#
+	#change_resources(cost)
 
 
 func add_settlement() -> void:

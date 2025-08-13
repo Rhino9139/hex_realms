@@ -17,7 +17,7 @@ func inner_ready() -> void:
 	hotspot_type = Hotspot.Type.EMPTY
 
 
-func get_starting_resources() -> void:
+func get_resources() -> void:
 	for hex in adjacent_hexes:
 		if hex.terrain_type != Terrain.Type.DESERT:
 			player_owner.change_resource(int(hex.terrain_type), 1)
@@ -66,6 +66,8 @@ func make_reachable() -> void:
 
 func activate_hotspot(message: Message) -> void:
 	build.rpc(message.player.player_id)
+	if message.round_index == 2:
+		get_resources()
 
 
 @rpc("any_peer", "call_local")

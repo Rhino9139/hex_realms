@@ -18,6 +18,7 @@ func _turn_order_created() -> void:
 	local_turn_index = Player.LOCAL_PLAYER.turn_index
 	Events.HUD_END.add_hud.emit(HUD.Header.STANDARD)
 	Events.HUD_END.add_player_cards.emit(PlayerManager.GET_PLAYERS())
+	Events.HUD_END.disable_buy_button.emit()
 	Events.LOGIC_DOWN.start_next_turn.emit(CURRENT_TURN, CURRENT_ROUND, local_turn_index)
 
 

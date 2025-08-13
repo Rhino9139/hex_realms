@@ -6,9 +6,7 @@ signal robber_created
 signal robber_moved
 signal robber_steal_activated
 signal robber_resource_stolen(target_player: Player)
-#UI HUD
-signal player_ui_enabled
-signal player_ui_disabled
+
 signal type_chosen(type_index: int)
 signal setup_entered
 signal roll_enabled
@@ -27,7 +25,6 @@ signal screen_task_completed
 signal selectable_hovered(hovered_object: Hotspot)
 signal settlement_built
 signal road_built
-signal item_bought(player_id: int, item: Global.BuyOption)
 
 signal points_changed
 signal info_changed

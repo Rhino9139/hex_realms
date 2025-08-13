@@ -57,8 +57,10 @@ class Message:
 	var player: Player
 	var hotspot_type: Hotspot.Type
 	var hovered_object: Hotspot
+	var round_index: int
 	
-	func _init(_player: Player, _h_type: Hotspot.Type, _h_object: Hotspot) -> void:
+	func _init(_player: Player, _h_type: Hotspot.Type, _h_object: Hotspot, _round_index: int = 0) -> void:
 		player = _player
 		hotspot_type = _h_type
 		hovered_object = _h_object
+		round_index = _round_index
