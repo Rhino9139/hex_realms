@@ -11,6 +11,7 @@ extends Hotspot
 var player_owner: Player
 var holo_mesh: MeshInstance3D
 var upgrade_spot: Callable = build_settlement
+var gather_mult: int = 0
 
 
 func inner_ready() -> void:
@@ -24,7 +25,7 @@ func _gather_resources(_roll: int = 0) -> void:
 	for hex in adjacent_hexes:
 		if hex.terrain_type != Terrain.Type.DESERT:
 			if hex.roll == _roll or _roll == 0:
-				player_owner.change_resource(int(hex.terrain_type), 1)
+				player_owner.change_resource(int(hex.terrain_type), gather_mult)
 
 
 func has_availability(message: Message) -> bool:
@@ -39,6 +40,7 @@ func has_availability(message: Message) -> bool:
 func build_settlement(player_id: int) -> void:
 	hotspot_type = Hotspot.Type.SETTLEMENT
 	player_owner = PlayerManager.GET_PLAYER_BY_ID(player_id)
+	gather_mult = 1
 	
 	main_model.set_surface_override_material(1, player_owner.player_mat)
 	main_model.visible = true
@@ -48,32 +50,15 @@ func build_settlement(player_id: int) -> void:
 		if is_instance_valid(building):
 			building.queue_free()
 	
-	#TODO roads
+	hover_model.mesh = castle_mesh
+	
 	#TODO ports
 
 
 func build_castle(_player_id: int) -> void:
 	hotspot_type = Hotspot.Type.CASTLE
-	player_owner.add_castle()
-	#settlement_model.visible = false
-	
-	#castle_model.visible = true
-	#castle_model.set_surface_override_material(0, castle_base_mat)
-	#castle_model.set_surface_override_material(1, player_owner.player_mat)
-
-
-func resource_rolled(type_index: int) -> void:
-	if player_owner == null:
-		return
-	if hotspot_type == Hotspot.Type.SETTLEMENT:
-		player_owner.change_resource(type_index, 1)
-	elif hotspot_type == Hotspot.Type.CASTLE:
-		player_owner.change_resource(type_index, 2)
-
-
-func make_reachable() -> void:
-	if player_owner == null:
-		add_to_group("Empty")
+	gather_mult = 2
+	main_model.mesh = castle_mesh
 
 
 func activate_hotspot(message: Message) -> void:

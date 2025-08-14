@@ -111,7 +111,7 @@ class ui_Standard extends UIState:
 		Events.HUD_START.buy_button_toggled_on.connect(_buy_button_toggled_on)
 		Events.HUD_START.buy_button_toggled_off.connect(_buy_button_toggled_off)
 		Events.LOGIC_DOWN.go_to_inactive.connect(_go_to_inactive)
-		
+		Events.PLAYER_START.resources_changed.connect(_resources_changed)
 		Events.HUD_END.enable_buy_button.emit()
 		Events.HUD_END.enable_end_turn.emit()
 		Events.CHARACTER_END.activate_camera.emit()
@@ -121,6 +121,7 @@ class ui_Standard extends UIState:
 		Events.HUD_START.buy_button_toggled_on.disconnect(_buy_button_toggled_on)
 		Events.HUD_START.buy_button_toggled_off.disconnect(_buy_button_toggled_off)
 		Events.LOGIC_DOWN.go_to_inactive.disconnect(_go_to_inactive)
+		Events.PLAYER_START.resources_changed.disconnect(_resources_changed)
 		Events.HUD_END.toggle_buy_button_off.emit()
 		Events.HUD_END.disable_buy_button.emit()
 		Events.BOARD_END.make_hotspot_unavailable.emit()
@@ -169,6 +170,10 @@ class ui_Standard extends UIState:
 	
 	func _go_to_inactive() -> void:
 		state_changed.emit(States.INACTIVE)
+	
+	
+	func _resources_changed(_new_resources: Dictionary[Global.Resources, int], _player_id: int) -> void:
+		Events.HUD_END.enable_buy_button.emit()
 
 
 class ui_Build extends UIState:

@@ -117,6 +117,7 @@ func use_card(card_type: Global.ActionCardType) -> void:
 
 func change_resource(index: Global.Resources, amount: int) -> void:
 	resources[index] += amount
+	resources[index] = clamp(resources[index], 0 ,1_000_000)
 	num_cards = 0
 	for value in resources:
 		num_cards += value

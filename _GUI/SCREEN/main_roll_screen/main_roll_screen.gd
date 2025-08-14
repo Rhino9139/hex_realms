@@ -13,10 +13,9 @@ var roll_wait: float = 0.10
 
 
 func _ready() -> void:
-	_roll_dice.rpc(message.die_1, message.die_2)
+	_roll_dice(message.die_1, message.die_2)
 
 
-@rpc("any_peer", "call_local")
 func _roll_dice(new_die_1: int, new_die_2: int) -> void:
 	screen_size = get_viewport_rect().size
 	dice_row.scale = Vector2(1.0, 1.0)

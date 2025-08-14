@@ -34,7 +34,7 @@ func _destroy_board() -> void:
 
 func _add_board() -> void:
 	current_board = load(_PATHS[Type.STANDARD]).instantiate()
-	add_child(current_board)
+	add_child(current_board, true)
 	Events.BOARD_START.board_added.emit()
 
 

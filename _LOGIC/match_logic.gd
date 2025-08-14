@@ -10,6 +10,7 @@ var num_players: int = 0
 var die_1: int = 0
 var die_2: int = 0
 
+
 func _ready() -> void:
 	Events.SCREEN_START.turn_order_created.connect(_turn_order_created)
 	Events.SCREEN_START.dice_rolled.connect(_dice_rolled)
