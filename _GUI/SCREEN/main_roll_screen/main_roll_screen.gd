@@ -12,7 +12,12 @@ var screen_size: Vector2
 var roll_wait: float = 0.10
 
 
-func roll_dice(new_die_1: int, new_die_2: int) -> void:
+func _ready() -> void:
+	_roll_dice.rpc(message.die_1, message.die_2)
+
+
+@rpc("any_peer", "call_local")
+func _roll_dice(new_die_1: int, new_die_2: int) -> void:
 	screen_size = get_viewport_rect().size
 	dice_row.scale = Vector2(1.0, 1.0)
 	dice_row.position = screen_size / 2.0
@@ -36,6 +41,5 @@ func roll_dice(new_die_1: int, new_die_2: int) -> void:
 	tween.tween_property(roll_flash, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.50)
 	tween.tween_property(roll_flash, "modulate", Color(1.0, 1.0, 1.0, 0.0), 0.50)
 	await tween.finished
-	Events.dice_roll_completed.emit(total)
-	Events.screen_task_completed.emit()
-	
+	Events.SCREEN_START.dice_rolled.emit(total)
+	queue_free()

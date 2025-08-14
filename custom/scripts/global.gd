@@ -31,6 +31,54 @@ const ROLL_SPRITES: Dictionary[int, String] = {
 	11 : "uid://kgyvvllfe603",
 	12 : "uid://qpsusqjkfbux",
 }
+const _SETTLEMENT_COST: Dictionary[Global.Resources, int] = {
+	Global.Resources.BRICK : 1,
+	Global.Resources.ORE : 0,
+	Global.Resources.SHEEP : 1,
+	Global.Resources.WHEAT : 1,
+	Global.Resources.WOOD : 1,
+}
+const _CASTLE_COST: Dictionary[Global.Resources, int] = {
+	Global.Resources.BRICK : 0,
+	Global.Resources.ORE : 3,
+	Global.Resources.SHEEP : 0,
+	Global.Resources.WHEAT : 2,
+	Global.Resources.WOOD : 0,
+}
+const _ROAD_COST: Dictionary[Global.Resources, int] = {
+	Global.Resources.BRICK : 1,
+	Global.Resources.ORE : 0,
+	Global.Resources.SHEEP : 0,
+	Global.Resources.WHEAT : 0,
+	Global.Resources.WOOD : 1,
+}
+const _CARD_COST: Dictionary[Global.Resources, int] = {
+	Global.Resources.BRICK : 0,
+	Global.Resources.ORE : 1,
+	Global.Resources.SHEEP : 1,
+	Global.Resources.WHEAT : 1,
+	Global.Resources.WOOD : 0,
+}
+const _TRADE_COST: Dictionary[Global.Resources, int] = {
+	Global.Resources.BRICK : 0,
+	Global.Resources.ORE : 0,
+	Global.Resources.SHEEP : 0,
+	Global.Resources.WHEAT : 0,
+	Global.Resources.WOOD : 0,
+}
+const _COST_BY_HOTSPOT: Dictionary[Hotspot.Type, Dictionary] = {
+	Hotspot.Type.EMPTY : _SETTLEMENT_COST,
+	Hotspot.Type.SETTLEMENT : _CASTLE_COST,
+	Hotspot.Type.ROAD : _ROAD_COST,
+}
+const _COST_BY_BUTTON: Dictionary[BuyButton.Type, Dictionary] = {
+	BuyButton.Type.SETTLEMENT : _SETTLEMENT_COST,
+	BuyButton.Type.CASTLE : _CASTLE_COST,
+	BuyButton.Type.ROAD : _ROAD_COST,
+	BuyButton.Type.CARD : _CARD_COST,
+	BuyButton.Type.BANK_TRADE : _TRADE_COST,
+	BuyButton.Type.PLAYER_TRADE : _TRADE_COST,
+}
 
 static var HOLO_MAT: ShaderMaterial = load("uid://cpvde0u8isi5h")
 static var PLAYER_MATS: Dictionary[int, StandardMaterial3D] = {
@@ -40,7 +88,7 @@ static var PLAYER_MATS: Dictionary[int, StandardMaterial3D] = {
 	4 : load("uid://dd6lp3tkgw0lc"),
 }
 static var HEX_ROLLS: Array[int] = [
-	2, 3, 3, 4, 4, 5, 5, 6, 6, 8, 8, 9, 9, 10, 10, 11, 11, 12, 7
+	2, 3, 3, 4, 4, 5, 5, 6, 6, 8, 8, 9, 9, 10, 10, 11, 11, 12,
 ]
 
 static var ACTION_CARDS: Array[int] = [

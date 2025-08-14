@@ -1,6 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://h4xt3va73w1r"]
+[gd_scene load_steps=9 format=3 uid="uid://h4xt3va73w1r"]
 
 [ext_resource type="Texture2D" uid="uid://begn511dpycyv" path="res://common/icons/ui_buttons/hourglass.png" id="1_1tl85"]
+[ext_resource type="Script" uid="uid://b36e1p8cgkggk" path="res://_GUI/HUD/components/primary_buttons/primary_buttons.gd" id="1_mjuql"]
+[ext_resource type="PackedScene" uid="uid://cug7reenm11sr" path="res://_GUI/HUD/hud_layout.tscn" id="2_tuugj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tuugj"]
+bg_color = Color(0.494118, 0, 0, 1)
 
 [sub_resource type="Gradient" id="Gradient_y8wuv"]
 colors = PackedColorArray(0.44098, 0.440979, 0.440979, 0.784314, 0.44098, 0.440979, 0.440979, 0.784314)
@@ -16,13 +21,20 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
 gradient = SubResource("Gradient_56vj1")
 fill_from = Vector2(1, 1)
 
-[node name="PrimaryButtons" type="Control"]
+[node name="PrimaryButtons" type="Control" node_paths=PackedStringArray("roll_dice_button", "end_turn_button", "last_roll_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_mjuql")
+roll_dice_button = NodePath("RollButton")
+end_turn_button = NodePath("EndTurnButton")
+last_roll_label = NodePath("LastRollSection/LastRoll")
+
+[node name="hud_layout" parent="." instance=ExtResource("2_tuugj")]
+layout_mode = 1
 
 [node name="RollButton" type="Button" parent="."]
 layout_mode = 1
@@ -39,7 +51,7 @@ grow_horizontal = 2
 grow_vertical = 0
 focus_mode = 0
 theme_override_font_sizes/font_size = 30
-disabled = true
+theme_override_styles/disabled = SubResource("StyleBoxFlat_tuugj")
 text = "ROLL"
 
 [node name="EndTurnButton" type="Button" parent="."]
@@ -49,10 +61,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -87.0
-offset_top = -83.0
+offset_left = -96.0
+offset_top = -88.0
 offset_right = -15.0
-offset_bottom = -11.0
+offset_bottom = -8.0
 grow_horizontal = 0
 grow_vertical = 0
 icon = ExtResource("1_1tl85")
@@ -75,3 +87,29 @@ nine_patch_stretch = true
 texture_under = SubResource("GradientTexture2D_hfobc")
 texture_progress = SubResource("GradientTexture2D_o4t6f")
 tint_under = Color(1, 1, 1, 0.427451)
+
+[node name="LastRollSection" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -154.0
+offset_top = -63.0
+offset_right = -85.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Title" type="Label" parent="LastRollSection"]
+layout_mode = 2
+text = "Last Roll:"
+
+[node name="LastRoll" type="Label" parent="LastRollSection"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="RollButton" to="." method="_on_roll_button_pressed"]
+[connection signal="pressed" from="EndTurnButton" to="." method="_on_end_turn_button_pressed"]

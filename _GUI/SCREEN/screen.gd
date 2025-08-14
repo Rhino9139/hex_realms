@@ -12,6 +12,7 @@ const _PATHS: Dictionary[int, String] = {
 }
 
 var current_screen: Screen
+var message: Message
 
 
 func _ready() -> void:
@@ -19,13 +20,19 @@ func _ready() -> void:
 	Events.SCREEN_END.clear_screen.connect(_clear_screen)
 
 
-func _add_screen(header: Screen.Header) -> void:
+func _add_screen(header: Screen.Header, _message: Message = null) -> void:
 	_clear_screen()
 	
 	current_screen = load(_PATHS[header]).instantiate()
+	current_screen.message = _message
 	add_child(current_screen)
 
 
 func _clear_screen() -> void:
 	if current_screen:
 		current_screen.queue_free()
+
+
+class Message:
+	var die_1: int = 0
+	var die_2: int = 0

@@ -1,13 +1,13 @@
 class_name UIStateMachine
 extends Node
-
-enum States{INACTIVE, WAIT_SCREEN, SETUP, STANDARD, BUILD}
+@warning_ignore_start("unused_signal")
+enum States{INACTIVE, WAIT_ROLL, SETUP, STANDARD, BUILD}
 
 var _state: UIState
 
 var states: Dictionary[States, UIState] = {
 	States.INACTIVE : ui_Inactive.new(),
-	States.WAIT_SCREEN : ui_WaitScreen.new(),
+	States.WAIT_ROLL : ui_WaitRoll.new(),
 	States.SETUP : ui_Setup.new(),
 	States.STANDARD : ui_Standard.new()
 }
@@ -33,7 +33,6 @@ func _on_state_changed(next_state: States) -> void:
 class UIState:
 	
 	signal state_changed(next_state: States)
-	@warning_ignore("unused_signal")
 	signal substate_exited(hotspot_type: Hotspot.Type)
 	
 	var substate: UIState
@@ -64,17 +63,22 @@ class ui_Inactive extends UIState:
 		if current_round <= 2:
 			state_changed.emit(States.SETUP)
 		else:
-			state_changed.emit(States.STANDARD)
+			state_changed.emit(States.WAIT_ROLL)
 
 
-class ui_WaitScreen extends UIState:
+class ui_WaitRoll extends UIState:
 	
 	func enter() -> void:
-		pass
+		Events.HUD_END.enable_dice_roll.emit()
+		Events.LOGIC_DOWN.go_to_standard.connect(_go_to_standard)
 	
 	
 	func exit() -> void:
-		pass
+		Events.LOGIC_DOWN.go_to_standard.disconnect(_go_to_standard)
+	
+	
+	func _go_to_standard() -> void:
+		state_changed.emit(States.STANDARD)
 
 
 class ui_Setup extends UIState:
@@ -82,6 +86,7 @@ class ui_Setup extends UIState:
 	func enter() -> void:
 		substate = ui_Build.new()
 		substate.hotspot_type = Hotspot.Type.EMPTY
+		substate.has_cost = false
 		substate.substate_exited.connect(_substate_exited)
 		substate.enter()
 	
@@ -92,6 +97,7 @@ class ui_Setup extends UIState:
 		if hotspot_type == Hotspot.Type.EMPTY:
 			substate = ui_Build.new()
 			substate.hotspot_type = Hotspot.Type.ROAD
+			substate.has_cost = false
 			substate.substate_exited.connect(_substate_exited)
 			substate.enter()
 		else:
@@ -104,14 +110,20 @@ class ui_Standard extends UIState:
 	func enter() -> void:
 		Events.HUD_START.buy_button_toggled_on.connect(_buy_button_toggled_on)
 		Events.HUD_START.buy_button_toggled_off.connect(_buy_button_toggled_off)
+		Events.LOGIC_DOWN.go_to_inactive.connect(_go_to_inactive)
 		
 		Events.HUD_END.enable_buy_button.emit()
+		Events.HUD_END.enable_end_turn.emit()
 		Events.CHARACTER_END.activate_camera.emit()
 	
 	
 	func exit() -> void:
 		Events.HUD_START.buy_button_toggled_on.disconnect(_buy_button_toggled_on)
-		
+		Events.HUD_START.buy_button_toggled_off.disconnect(_buy_button_toggled_off)
+		Events.LOGIC_DOWN.go_to_inactive.disconnect(_go_to_inactive)
+		Events.HUD_END.toggle_buy_button_off.emit()
+		Events.HUD_END.disable_buy_button.emit()
+		Events.BOARD_END.make_hotspot_unavailable.emit()
 		Events.CHARACTER_END.deactivate_camera.emit()
 	
 	
@@ -149,14 +161,20 @@ class ui_Standard extends UIState:
 	
 	func _substate_exited(_hotspot_type: Hotspot.Type) -> void:
 		Events.HUD_END.toggle_buy_button_off.emit()
+		Events.HUD_END.enable_buy_button.emit()
 		if substate:
 			substate.exit()
 			substate = null
+	
+	
+	func _go_to_inactive() -> void:
+		state_changed.emit(States.INACTIVE)
 
 
 class ui_Build extends UIState:
 	
 	var hotspot_type: Hotspot.Type
+	var has_cost: bool = true
 	
 	func enter() -> void:
 		Events.CHARACTER_START.hotspot_hovered.connect(_hotspot_hovered)
@@ -198,4 +216,6 @@ class ui_Build extends UIState:
 	
 	func _building_added(_hotspot: Hotspot) -> void:
 		Events.BOARD_END.make_hotspot_unavailable.emit()
+		if has_cost:
+			Events.PLAYER_END.buy_hotspot.emit(hotspot_type)
 		substate_exited.emit(hotspot_type)

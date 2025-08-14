@@ -55,9 +55,7 @@ func share_match_started() -> void:
 
 
 func _generate_board_requested() -> void:
-	Events.BOARD_END.destroy_board.emit()
 	Events.BOARD_END.generate_board.emit()
-	Events.CHARACTER_END.add_camera.emit()
 
 
 func _destroy_board_requested() -> void:
@@ -66,6 +64,8 @@ func _destroy_board_requested() -> void:
 
 
 func _board_layout_generated() -> void:
+	Events.BOARD_END.destroy_board.emit()
+	Events.CHARACTER_END.add_camera.emit()
 	Events.BOARD_END.add_board.emit()
 
 

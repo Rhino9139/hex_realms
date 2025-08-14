@@ -41,3 +41,13 @@ offset_bottom = 648.0
 mouse_filter = 2
 border_color = Color(1, 0, 0, 0.392157)
 border_width = 4.0
+
+[node name="ReferenceRect5" type="ReferenceRect" parent="."]
+layout_mode = 0
+offset_left = 656.0
+offset_top = 576.0
+offset_right = 1048.0
+offset_bottom = 648.0
+mouse_filter = 2
+border_color = Color(1, 0, 0, 0.392157)
+border_width = 4.0

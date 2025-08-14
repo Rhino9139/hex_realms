@@ -9,7 +9,13 @@ var player_name: String = "New Player"
 var player_index: int = 0
 var publisher: Publisher = Publisher.new()
 
-var resources: Array[int] = [5, 5, 5, 5, 5]
+var resources: Dictionary[Global.Resources, int] = {
+	Global.Resources.BRICK : 0,
+	Global.Resources.ORE : 0,
+	Global.Resources.SHEEP : 0,
+	Global.Resources.WHEAT : 0,
+	Global.Resources.WOOD : 0,
+}
 var trade_remove: Array[int] = [0, 0, 0, 0, 0]
 var trade_add: Array[int] = [0, 0, 0, 0, 0]
 var trade_ratios: Array[int] = [4, 4, 4, 4, 4]
@@ -58,6 +64,7 @@ func _ready() -> void:
 	publisher.player_color = player_color
 	
 	Events.BOARD_START.building_added.connect(_building_added)
+	Events.PLAYER_END.buy_hotspot.connect(_buy_hotspot)
 
 
 func trade_resources() -> void:
@@ -77,11 +84,6 @@ func manual_trade(add: Array[int], remove: Array[int]) -> void:
 func _on_name_changed(new_name: String) -> void:
 	player_name = new_name
 	share_name.rpc(new_name)
-
-
-#func _on_item_bought(new_player_id: int, item_type: Global.BuyOption) -> void:
-	#
-	#change_resources(cost)
 
 
 func add_settlement() -> void:
@@ -118,12 +120,14 @@ func change_resource(index: Global.Resources, amount: int) -> void:
 	num_cards = 0
 	for value in resources:
 		num_cards += value
-	Events.resources_changed.emit(player_id, resources)
+	
+	Events.PLAYER_START.resources_changed.emit(resources, player_id)
+	
 	if multiplayer.get_unique_id() == player_id:
-		share_cards.rpc(resources)
+		share_cards.rpc(num_cards)
 
 
-func change_resources(amount: Array[int], is_added: bool = true) -> void:
+func change_resources(amount: Dictionary[Global.Resources, int], is_added: bool = true) -> void:
 	if is_added:
 		for i in 5:
 			change_resource(i, amount[i])
@@ -151,6 +155,10 @@ func _building_added(hotspot: Hotspot) -> void:
 			add_settlement()
 
 
+func _buy_hotspot(hotspot_type: Hotspot.Type) -> void:
+	change_resources(Global._COST_BY_HOTSPOT[hotspot_type], false)
+
+
 @rpc("any_peer", "call_remote")
 func share_name(new_name: String) -> void:
 	player_name = new_name
@@ -163,11 +171,8 @@ func request_name() -> void:
 
 
 @rpc("any_peer", "call_remote")
-func share_cards(resource_cards: Array[int]) -> void:
-	resources = resource_cards
-	num_cards = 0
-	for i in resources:
-		num_cards += i
+func share_cards(card_count: int) -> void:
+	num_cards = card_count
 	publisher.resource_cards_changed.emit(num_cards)
 
 

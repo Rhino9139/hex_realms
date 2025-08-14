@@ -46,7 +46,7 @@ func begin_length_search() -> void:
 		if i.ally_neighbors.size() <= 2:
 			i.chain_length(0, null)
 		get_tree().call_group("MyRoads", "reset_longest")
-	#print("Current Longest: ", LONGEST)
+	print("Current Longest: ", LONGEST)
 
 
 func chain_length(current_length: int, upstream_segment: RoadHotspot) -> void:
@@ -62,7 +62,6 @@ func chain_length(current_length: int, upstream_segment: RoadHotspot) -> void:
 			i.chain_length(tail_size, self)
 	if tail_size > LONGEST:
 		LONGEST = tail_size
-	#print(tail_size)
 
 
 func reset_longest() -> void:
@@ -73,9 +72,9 @@ func reset_longest() -> void:
 
 func reset_ally_neighbors() -> void:
 	ally_neighbors = []
-	for i in neighbors_clean:
-		if i.is_in_group("MyRoads"):
-			ally_neighbors.append(i)
+	for road in adjacent_roads:
+		if road.is_in_group("MyRoads"):
+			ally_neighbors.append(road)
 
 
 func activate_hotspot(message: Message) -> void:

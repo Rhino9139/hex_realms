@@ -34,6 +34,8 @@ signal card_used(card_type: Global.ActionCardType)
 
 var GAME_START: GameStart = GameStart.new()
 var GAME_END: GameEnd = GameEnd.new()
+var PLAYER_START: PlayerStart = PlayerStart.new()
+var PLAYER_END: PlayerEnd = PlayerEnd.new()
 var BOARD_START: BoardStart = BoardStart.new()
 var BOARD_END: BoardEnd = BoardEnd.new()
 var CHARACTER_START: CharacterStart = CharacterStart.new()
@@ -56,6 +58,14 @@ class GameStart:
 
 class GameEnd:
 	signal change_local_name(new_name: String)
+
+
+class PlayerStart:
+	signal resources_changed(new_resources: Dictionary[Global.Resources, int], player_id: int)
+
+
+class PlayerEnd:
+	signal buy_hotspot(hotspot_type: Hotspot.Type)
 
 
 class CharacterStart:
@@ -85,6 +95,7 @@ class BoardEnd:
 	signal make_hotspot_available(message: Hotspot.Message)
 	signal make_hotspot_unavailable
 	signal click_hotspot(message: Hotspot.Message)
+	signal gather_resources(roll: int)
 
 
 class NetworkStart:
@@ -121,6 +132,8 @@ class MenuEnd:
 class HUDStart:
 	signal buy_button_toggled_on(button_type: BuyButton.Type)
 	signal buy_button_toggled_off
+	signal roll_dice_requested
+	signal end_turn_pressed
 
 
 class HUDEnd:
@@ -130,14 +143,18 @@ class HUDEnd:
 	signal disable_buy_button(button_type: BuyButton.Type)
 	signal enable_buy_button
 	signal add_player_cards(players: Array[Player])
+	signal enable_dice_roll
+	signal enable_end_turn
+	signal update_last_roll(total: int)
 
 
 class ScreenStart:
 	signal turn_order_created
+	signal dice_rolled(total: int)
 
 
 class ScreenEnd:
-	signal add_screen(new_header: Screen.Header)
+	signal add_screen(new_header: Screen.Header, message: Screen.Message)
 	signal clear_screen
 
 
@@ -147,3 +164,5 @@ class LogicUp:
 
 class LogicDown:
 	signal start_next_turn(current_turn: int, current_round: int, LP_turn_index: int)
+	signal go_to_standard
+	signal go_to_inactive
