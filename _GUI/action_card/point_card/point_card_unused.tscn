@@ -17,7 +17,7 @@ font_names = PackedStringArray("Corbel")
 subpixel_positioning = 0
 multichannel_signed_distance_field = true
 
-[node name="PointCardUnused" type="Area2D" node_paths=PackedStringArray("amount_label") groups=["ActionCard"]]
+[node name="PointCardUnused" type="Area2D" node_paths=PackedStringArray("amount_label")]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_dthtp")

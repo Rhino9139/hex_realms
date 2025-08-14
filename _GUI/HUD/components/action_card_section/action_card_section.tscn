@@ -1,0 +1,88 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfysx2poactud"]
+
+[ext_resource type="PackedScene" uid="uid://b0nur1ie7735w" path="res://_GUI/HUD/components/action_card_section/action_card.tscn" id="1_hckpp"]
+[ext_resource type="PackedScene" uid="uid://cug7reenm11sr" path="res://_GUI/HUD/hud_layout.tscn" id="8_5onfp"]
+
+[node name="ActionCardSection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="hud_layout" parent="." instance=ExtResource("8_5onfp")]
+layout_mode = 1
+
+[node name="CardsInHand" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -496.0
+offset_top = -72.0
+offset_right = -248.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Knight" parent="CardsInHand" instance=ExtResource("1_hckpp")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VictoryPoint" parent="CardsInHand" instance=ExtResource("1_hckpp")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+card_type = 1
+
+[node name="YearOfPlenty" parent="CardsInHand" instance=ExtResource("1_hckpp")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+card_type = 2
+
+[node name="Monopoly" parent="CardsInHand" instance=ExtResource("1_hckpp")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+card_type = 3
+
+[node name="FreeRoads" parent="CardsInHand" instance=ExtResource("1_hckpp")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+card_type = 4
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -216.0
+offset_top = -72.0
+offset_right = -112.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="UsedCards" type="HBoxContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/separation = -6
+alignment = 1
+
+[node name="Knight" parent="Panel/UsedCards" instance=ExtResource("1_hckpp")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+in_hand = false
+
+[node name="VictoryPoint" parent="Panel/UsedCards" instance=ExtResource("1_hckpp")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+in_hand = false
+card_type = 1

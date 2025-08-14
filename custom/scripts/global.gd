@@ -79,6 +79,13 @@ const _COST_BY_BUTTON: Dictionary[BuyButton.Type, Dictionary] = {
 	BuyButton.Type.BANK_TRADE : _TRADE_COST,
 	BuyButton.Type.PLAYER_TRADE : _TRADE_COST,
 }
+const _ACTION_CARD_COLORS: Dictionary[ActionCardType, Color] = {
+	ActionCardType.KNIGHT : Color.DIM_GRAY,
+	ActionCardType.VICTORY_POINT : Color.SEA_GREEN,
+	ActionCardType.YEAR_OF_PLENTY : Color.YELLOW,
+	ActionCardType.MONOPOLY : Color.ROYAL_BLUE,
+	ActionCardType.FREE_ROADS : Color.ORANGE_RED,
+}
 
 static var HOLO_MAT: ShaderMaterial = load("uid://cpvde0u8isi5h")
 static var PLAYER_MATS: Dictionary[int, StandardMaterial3D] = {

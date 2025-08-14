@@ -62,6 +62,7 @@ class GameEnd:
 
 class PlayerStart:
 	signal resources_changed(new_resources: Dictionary[Global.Resources, int], player_id: int)
+	signal action_cards_changed(cards_in_hand: Array[Global.ActionCardType], cards_used: Array[Global.ActionCardType])
 
 
 class PlayerEnd:

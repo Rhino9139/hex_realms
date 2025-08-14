@@ -113,6 +113,7 @@ func use_card(card_type: Global.ActionCardType) -> void:
 		if card == Global.ActionCardType.KNIGHT:
 			knight_count += 1
 	share_knight_count.rpc(knight_count)
+	Events.PLAYER_START.action_cards_changed.emit(cards_in_hand, cards_used)
 
 
 func change_resource(index: Global.Resources, amount: int) -> void:

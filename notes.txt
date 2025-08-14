@@ -3,7 +3,6 @@ horizontal spacing between centers is sqrt(3) * size
 vertical spacing between centers is (3/2) * size
 
 CURRENT
-Working on the setup state in the state machine
-Hotspots dont have the correct signals yet
-Working with Command System
-where put commands?
+State machine working, do not have action card logic yet tho
+working on connecting signals to new action cards
+then do state machine logic

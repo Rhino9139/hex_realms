@@ -1,0 +1,64 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0nur1ie7735w"]
+
+[ext_resource type="Script" uid="uid://uj2rqr3470pl" path="res://_GUI/HUD/components/action_card_section/action_card.gd" id="1_fs4i8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8eke8"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.138637, 0.138638, 0.138637, 1)
+border_blend = true
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 16
+anti_aliasing_size = 0.3
+
+[sub_resource type="LabelSettings" id="LabelSettings_8eke8"]
+resource_local_to_scene = true
+font_size = 8
+font_color = Color(0, 0, 0, 1)
+
+[node name="ActionCard" type="Panel" node_paths=PackedStringArray("title_label", "amount_label")]
+custom_minimum_size = Vector2(45, 65)
+theme_override_styles/panel = SubResource("StyleBoxFlat_8eke8")
+script = ExtResource("1_fs4i8")
+title_label = NodePath("MarginContainer/VBoxContainer/Title")
+amount_label = NodePath("MarginContainer/VBoxContainer/Amount")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "Monopoly"
+label_settings = SubResource("LabelSettings_8eke8")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Amount" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
