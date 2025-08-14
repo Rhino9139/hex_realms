@@ -97,9 +97,17 @@ static var PLAYER_MATS: Dictionary[int, StandardMaterial3D] = {
 static var HEX_ROLLS: Array[int] = [
 	2, 3, 3, 4, 4, 5, 5, 6, 6, 8, 8, 9, 9, 10, 10, 11, 11, 12,
 ]
-
-static var ACTION_CARDS: Array[int] = [
-	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 3, 3, 4, 4
+static var ACTION_CARDS: Array[ActionCardType] = [
+	ActionCardType.KNIGHT, ActionCardType.KNIGHT, ActionCardType.KNIGHT,
+	ActionCardType.KNIGHT, ActionCardType.KNIGHT, ActionCardType.KNIGHT,
+	ActionCardType.KNIGHT, ActionCardType.KNIGHT, ActionCardType.KNIGHT,
+	ActionCardType.KNIGHT, ActionCardType.KNIGHT, ActionCardType.KNIGHT,
+	ActionCardType.KNIGHT, ActionCardType.KNIGHT, 
+	ActionCardType.VICTORY_POINT, ActionCardType.VICTORY_POINT, ActionCardType.VICTORY_POINT,
+	ActionCardType.VICTORY_POINT, ActionCardType.VICTORY_POINT,
+	ActionCardType.YEAR_OF_PLENTY, ActionCardType.YEAR_OF_PLENTY,
+	ActionCardType.MONOPOLY, ActionCardType.MONOPOLY,
+	ActionCardType.FREE_ROADS, ActionCardType.FREE_ROADS,
 	]
 static var SETTLEMENT_COST: Array[int] = [1, 0, 1, 1, 1]
 static var CASTLE_COST: Array[int] = [0, 3, 0, 2, 0]

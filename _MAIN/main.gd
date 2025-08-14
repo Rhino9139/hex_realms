@@ -21,13 +21,14 @@ func DEBUG_setup_multiple_windows() -> void:
 		var new_pos: Vector2 = Vector2(100, 100)
 		PLAYER_NAME = new_name
 		debug_name = new_name
+		
 		match new_name:
-			"Arpos":
-				new_pos = Vector2(4000, 200)
 			"Valmar":
-				new_pos = Vector2(200, 200)
+				new_pos = Vector2(750, 200)
 			"Gurdwynn":
 				new_pos = Vector2(2400, 200)
+			"Arpos":
+				new_pos = Vector2(3900, 200)
 		
 		DisplayServer.window_set_position(new_pos)
 

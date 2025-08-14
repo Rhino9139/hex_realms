@@ -47,6 +47,7 @@ func begin_length_search() -> void:
 			i.chain_length(0, null)
 		get_tree().call_group("MyRoads", "reset_longest")
 	print("Current Longest: ", LONGEST)
+	player_owner.publisher.road_length_updated.emit(LONGEST)
 
 
 func chain_length(current_length: int, upstream_segment: RoadHotspot) -> void:

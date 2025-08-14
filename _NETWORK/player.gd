@@ -3,6 +3,7 @@ extends Node
 
 static var LOCAL_PLAYER: Player
 static var LARGEST_ARMY: int = 2
+static var LONGEST_ROAD: int = 4
 
 var player_id: int = 0
 var player_name: String = "New Player"
@@ -63,8 +64,13 @@ func _ready() -> void:
 	publisher.player_name = player_name
 	publisher.player_color = player_color
 	
-	Events.BOARD_START.building_added.connect(_building_added)
-	Events.PLAYER_END.buy_hotspot.connect(_buy_hotspot)
+	if LOCAL_PLAYER == self:
+		Events.BOARD_START.building_added.connect(_building_added)
+		Events.PLAYER_END.buy_hotspot.connect(_buy_hotspot)
+		Events.PLAYER_END.buy_action_card.connect(_buy_action_card)
+		Events.PLAYER_END.use_action_card.connect(_use_action_card)
+	
+	publisher.road_length_updated.connect(_road_length_updated)
 
 
 func trade_resources() -> void:
@@ -98,14 +104,17 @@ func add_castle() -> void:
 
 
 func add_road() -> void:
-	road_count += 1
-
-
-func add_card() -> void:
 	pass
 
 
-func use_card(card_type: Global.ActionCardType) -> void:
+func add_card(new_card: Global.ActionCardType) -> void:
+	change_resources(Global._CARD_COST, false)
+	cards_in_hand.append(new_card)
+	if Player.LOCAL_PLAYER == self:
+		Events.PLAYER_START.action_cards_changed.emit(cards_in_hand, cards_used)
+
+
+func _use_action_card(card_type: Global.ActionCardType) -> void:
 	cards_in_hand.erase(card_type)
 	cards_used.append(card_type)
 	knight_count = 0
@@ -113,7 +122,8 @@ func use_card(card_type: Global.ActionCardType) -> void:
 		if card == Global.ActionCardType.KNIGHT:
 			knight_count += 1
 	share_knight_count.rpc(knight_count)
-	Events.PLAYER_START.action_cards_changed.emit(cards_in_hand, cards_used)
+	if Player.LOCAL_PLAYER == self:
+		Events.PLAYER_START.action_cards_changed.emit(cards_in_hand, cards_used)
 
 
 func change_resource(index: Global.Resources, amount: int) -> void:
@@ -126,7 +136,7 @@ func change_resource(index: Global.Resources, amount: int) -> void:
 	Events.PLAYER_START.resources_changed.emit(resources, player_id)
 	
 	if multiplayer.get_unique_id() == player_id:
-		share_cards.rpc(num_cards)
+		share_cards.rpc(resources)
 
 
 func change_resources(amount: Dictionary[Global.Resources, int], is_added: bool = true) -> void:
@@ -161,6 +171,15 @@ func _buy_hotspot(hotspot_type: Hotspot.Type) -> void:
 	change_resources(Global._COST_BY_HOTSPOT[hotspot_type], false)
 
 
+func _buy_action_card() -> void:
+	if multiplayer.is_server():
+		pass
+
+
+func _road_length_updated(new_length: int) -> void:
+	pass
+
+
 @rpc("any_peer", "call_remote")
 func share_name(new_name: String) -> void:
 	player_name = new_name
@@ -173,8 +192,16 @@ func request_name() -> void:
 
 
 @rpc("any_peer", "call_remote")
-func share_cards(card_count: int) -> void:
-	num_cards = card_count
+func share_cards(new_resources: Dictionary[Global.Resources, int]) -> void:
+	resources = {
+		Global.Resources.BRICK : 0,
+		Global.Resources.ORE : 0,
+		Global.Resources.SHEEP : 0,
+		Global.Resources.WHEAT : 0,
+		Global.Resources.WOOD : 0,
+		}
+	change_resources(new_resources)
+	
 	publisher.resource_cards_changed.emit(num_cards)
 
 
@@ -185,9 +212,21 @@ func share_knight_count(new_count: int) -> void:
 		LARGEST_ARMY = knight_count
 		has_largest_army = true
 	for player in PlayerManager.GET_PLAYERS():
-		if player.knight_used < LARGEST_ARMY:
+		if player.knight_count < LARGEST_ARMY:
 			player.has_largest_army = false
 	publisher.knights_changed.emit(knight_count)
+
+
+@rpc("any_peer", "call_local")
+func share_longest_road_length(new_length: int) -> void:
+	road_count = new_length
+	if road_count > LONGEST_ROAD:
+		LONGEST_ROAD = road_count
+		has_longest_road = true
+	for player in PlayerManager.GET_PLAYERS():
+		if player.road_count < LONGEST_ROAD:
+			player.has_longest_road = false
+	
 
 
 class Publisher:
@@ -196,6 +235,7 @@ class Publisher:
 	signal resource_cards_changed(new_count: int)
 	signal longest_road_updated(has_longest: bool)
 	signal largest_army_updated(has_largest: bool)
+	signal road_length_updated(length: int)
 	
 	var player_name: String
 	var player_color: Color

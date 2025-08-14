@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://k2a8pem4oock"]
+[gd_scene load_steps=10 format=3 uid="uid://k2a8pem4oock"]
 
+[ext_resource type="Script" uid="uid://c33dobdxburhn" path="res://_GUI/HUD/components/buy_button_section/buy_button_section.gd" id="1_blbcd"]
 [ext_resource type="ButtonGroup" uid="uid://dge70xeowhnu" path="res://_GUI/HUD/components/buy_button_section/ui_buttons.tres" id="1_vsmx2"]
 [ext_resource type="Texture2D" uid="uid://may10jqwt0e1" path="res://common/icons/ui_buttons/structure_house.png" id="2_blbcd"]
 [ext_resource type="Script" uid="uid://bvsalc57dvu50" path="res://_GUI/HUD/components/buy_button_section/ui_button.gd" id="3_lnvme"]
@@ -9,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cfgp3vuehr7tn" path="res://common/icons/ui_buttons/pouch_remove.svg" id="7_jsoux"]
 [ext_resource type="Texture2D" uid="uid://bxgah4kd476pu" path="res://common/icons/ui_buttons/pawn_reverse.svg" id="8_gn4bo"]
 
-[node name="BuyButtonSection" type="Control"]
+[node name="BuyButtonSection" type="Control" node_paths=PackedStringArray("confirm_buy_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,6 +18,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("1_blbcd")
+confirm_buy_button = NodePath("ConfirmBuy")
 
 [node name="Row" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -132,3 +135,18 @@ expand_icon = true
 script = ExtResource("3_lnvme")
 button_type = 5
 metadata/_custom_type_script = "uid://bvsalc57dvu50"
+
+[node name="ConfirmBuy" type="Button" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 188.0
+offset_top = -128.0
+offset_right = 258.0
+offset_bottom = -76.0
+grow_vertical = 0
+text = "Confirm"
+
+[connection signal="pressed" from="ConfirmBuy" to="." method="_on_confirm_buy_pressed"]

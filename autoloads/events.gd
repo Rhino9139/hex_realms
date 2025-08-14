@@ -67,6 +67,8 @@ class PlayerStart:
 
 class PlayerEnd:
 	signal buy_hotspot(hotspot_type: Hotspot.Type)
+	signal buy_action_card
+	signal use_action_card(card_type: Global.ActionCardType)
 
 
 class CharacterStart:
@@ -86,6 +88,7 @@ class BoardStart:
 	signal board_destroyed
 	signal board_added
 	signal building_added(hotspot: Hotspot)
+	signal longest_road_updated(new_longest: int)
 
 
 class BoardEnd:
@@ -135,6 +138,8 @@ class HUDStart:
 	signal buy_button_toggled_off
 	signal roll_dice_requested
 	signal end_turn_pressed
+	signal card_buy_confirmed
+	signal action_card_clicked(card_type: Global.ActionCardType)
 
 
 class HUDEnd:
@@ -147,6 +152,8 @@ class HUDEnd:
 	signal enable_dice_roll
 	signal enable_end_turn
 	signal update_last_roll(total: int)
+	signal enable_confirm_buy
+	signal disable_confirm_buy
 
 
 class ScreenStart:
@@ -161,6 +168,7 @@ class ScreenEnd:
 
 class LogicUp:
 	signal player_turn_finished
+	signal action_card_bought
 
 
 class LogicDown:

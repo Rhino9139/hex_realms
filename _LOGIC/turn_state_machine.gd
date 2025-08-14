@@ -1,7 +1,8 @@
 class_name UIStateMachine
 extends Node
 @warning_ignore_start("unused_signal")
-enum States{INACTIVE, WAIT_ROLL, SETUP, STANDARD, BUILD}
+enum States{INACTIVE, WAIT_ROLL, SETUP, STANDARD}
+enum Substates{BUILD, CONFIRM_BUY}
 
 var _state: UIState
 
@@ -110,20 +111,25 @@ class ui_Standard extends UIState:
 	func enter() -> void:
 		Events.HUD_START.buy_button_toggled_on.connect(_buy_button_toggled_on)
 		Events.HUD_START.buy_button_toggled_off.connect(_buy_button_toggled_off)
+		Events.HUD_START.action_card_clicked.connect(_action_card_clicked)
 		Events.LOGIC_DOWN.go_to_inactive.connect(_go_to_inactive)
 		Events.PLAYER_START.resources_changed.connect(_resources_changed)
 		Events.HUD_END.enable_buy_button.emit()
 		Events.HUD_END.enable_end_turn.emit()
 		Events.CHARACTER_END.activate_camera.emit()
+		
+		
 	
 	
 	func exit() -> void:
 		Events.HUD_START.buy_button_toggled_on.disconnect(_buy_button_toggled_on)
 		Events.HUD_START.buy_button_toggled_off.disconnect(_buy_button_toggled_off)
+		Events.HUD_START.action_card_clicked.disconnect(_action_card_clicked)
 		Events.LOGIC_DOWN.go_to_inactive.disconnect(_go_to_inactive)
 		Events.PLAYER_START.resources_changed.disconnect(_resources_changed)
 		Events.HUD_END.toggle_buy_button_off.emit()
 		Events.HUD_END.disable_buy_button.emit()
+		Events.HUD_END.disable_confirm_buy.emit()
 		Events.BOARD_END.make_hotspot_unavailable.emit()
 		Events.CHARACTER_END.deactivate_camera.emit()
 	
@@ -146,7 +152,9 @@ class ui_Standard extends UIState:
 				substate.substate_exited.connect(_substate_exited)
 				substate.enter()
 			BuyButton.Type.CARD:
-				pass
+				substate = ui_ConfirmBuy.new()
+				substate.substate_exited.connect(_substate_exited)
+				substate.enter()
 			BuyButton.Type.BANK_TRADE:
 				pass
 			BuyButton.Type.PLAYER_TRADE:
@@ -155,6 +163,7 @@ class ui_Standard extends UIState:
 	
 	func _buy_button_toggled_off() -> void:
 		Events.BOARD_END.make_hotspot_unavailable.emit()
+		Events.HUD_END.disable_confirm_buy.emit()
 		if substate:
 			substate.exit()
 			substate = null
@@ -174,6 +183,24 @@ class ui_Standard extends UIState:
 	
 	func _resources_changed(_new_resources: Dictionary[Global.Resources, int], _player_id: int) -> void:
 		Events.HUD_END.enable_buy_button.emit()
+	
+	
+	func _action_card_clicked(card_type: Global.ActionCardType) -> void:
+		print("action card clicked")
+		_substate_exited(Hotspot.Type.EMPTY)
+		match card_type:
+			Global.ActionCardType.KNIGHT:
+				#TODO go to robber state
+				pass
+			Global.ActionCardType.VICTORY_POINT:
+				pass
+			Global.ActionCardType.YEAR_OF_PLENTY:
+				pass
+			Global.ActionCardType.MONOPOLY:
+				pass
+			Global.ActionCardType.FREE_ROADS:
+				pass
+		Events.PLAYER_END.use_action_card.emit(card_type)
 
 
 class ui_Build extends UIState:
@@ -224,3 +251,22 @@ class ui_Build extends UIState:
 		if has_cost:
 			Events.PLAYER_END.buy_hotspot.emit(hotspot_type)
 		substate_exited.emit(hotspot_type)
+
+
+class ui_ConfirmBuy extends UIState:
+	
+	func enter() -> void:
+		Events.HUD_START.card_buy_confirmed.connect(_card_buy_confirmed)
+		
+		Events.HUD_END.enable_confirm_buy.emit()
+	
+	
+	func exit() -> void:
+		Events.HUD_START.card_buy_confirmed.disconnect(_card_buy_confirmed)
+		
+		Events.HUD_END.disable_confirm_buy.emit()
+	
+	
+	func _card_buy_confirmed() -> void:
+		Events.LOGIC_UP.action_card_bought.emit()
+		substate_exited.emit(Hotspot.Type.EMPTY)

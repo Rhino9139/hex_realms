@@ -10,6 +10,7 @@ var num_players: int = 0
 var die_1: int = 0
 var die_2: int = 0
 
+var action_cards: Array[Global.ActionCardType]
 
 func _ready() -> void:
 	Events.SCREEN_START.turn_order_created.connect(_turn_order_created)
@@ -17,11 +18,13 @@ func _ready() -> void:
 	Events.HUD_START.roll_dice_requested.connect(_roll_dice_requested)
 	Events.HUD_START.end_turn_pressed.connect(_end_turn_pressed)
 	Events.LOGIC_UP.player_turn_finished.connect(_player_turn_finished)
+	Events.LOGIC_UP.action_card_bought.connect(_action_card_bought)
 
 
 func _turn_order_created() -> void:
 	num_players = PlayerManager.GET_NUM_PLAYERS()
 	local_turn_index = Player.LOCAL_PLAYER.turn_index
+	action_cards = Global.ACTION_CARDS.duplicate()
 	Events.HUD_END.add_hud.emit(HUD.Header.STANDARD)
 	Events.HUD_END.add_player_cards.emit(PlayerManager.GET_PLAYERS())
 	Events.HUD_END.disable_buy_button.emit()
@@ -88,3 +91,16 @@ func advance_round_standard() -> void:
 	if CURRENT_TURN > num_players:
 		CURRENT_TURN = 1
 		CURRENT_ROUND += 1
+
+
+func _action_card_bought() -> void:
+	var player_id: int = Player.LOCAL_PLAYER.player_id
+	share_action_card_bought.rpc(player_id)
+
+
+@rpc("any_peer", "call_local")
+func share_action_card_bought(buyer_id: int) -> void:
+	var card_picked: Global.ActionCardType = action_cards.pop_front()
+	var player: Player = PlayerManager.GET_PLAYER_BY_ID(buyer_id)
+	player.add_card(card_picked)
+	
