@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://ds5xamo25scxy"]
 
-[ext_resource type="Script" uid="uid://dmpcf3uafwwqb" path="res://_GUI/HUD/components/player_card_banner/player_card.gd" id="1_phpnn"]
+[ext_resource type="Script" uid="uid://dmpcf3uafwwqb" path="res://_GUI/HUD/game_objects/player_card_banner/player_card.gd" id="1_phpnn"]
 [ext_resource type="Texture2D" uid="uid://c5n8j1msbyyfw" path="res://common/icons/ui_buttons/award.png" id="3_srsvd"]
 [ext_resource type="Texture2D" uid="uid://7c07j3mka7gt" path="res://common/icons/ui_buttons/cards_stack_high.svg" id="5_qsapx"]
 [ext_resource type="Texture2D" uid="uid://cn5n770sekdva" path="res://common/icons/ui_buttons/chess_knight.svg" id="6_vchbw"]

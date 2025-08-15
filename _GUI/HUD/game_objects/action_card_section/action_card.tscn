@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b0nur1ie7735w"]
 
-[ext_resource type="Script" uid="uid://uj2rqr3470pl" path="res://_GUI/HUD/components/action_card_section/action_card.gd" id="1_fs4i8"]
+[ext_resource type="Script" uid="uid://uj2rqr3470pl" path="res://_GUI/HUD/game_objects/action_card_section/action_card.gd" id="1_fs4i8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8eke8"]
 bg_color = Color(1, 1, 1, 1)

@@ -5,6 +5,3 @@ vertical spacing between centers is (3/2) * size
 CURRENT
 State machine working, do not have action card logic yet tho
 action cards work, dont have the states set up
-
-going to change off Publisher format for Player nodes
-will just have player cards connect to player and have player emit their own signals

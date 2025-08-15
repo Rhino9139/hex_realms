@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://h4xt3va73w1r"]
 
 [ext_resource type="Texture2D" uid="uid://begn511dpycyv" path="res://common/icons/ui_buttons/hourglass.png" id="1_1tl85"]
-[ext_resource type="Script" uid="uid://b36e1p8cgkggk" path="res://_GUI/HUD/components/primary_buttons/primary_buttons.gd" id="1_mjuql"]
+[ext_resource type="Script" uid="uid://b36e1p8cgkggk" path="res://_GUI/HUD/game_objects/primary_buttons/primary_buttons.gd" id="1_mjuql"]
 [ext_resource type="PackedScene" uid="uid://cug7reenm11sr" path="res://_GUI/HUD/hud_layout.tscn" id="2_tuugj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tuugj"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://mss40dxrydbv"]
 
-[ext_resource type="Script" uid="uid://b1q4nwd7y15d5" path="res://_GUI/HUD/components/player_resources/player_resources.gd" id="1_18gle"]
-[ext_resource type="PackedScene" uid="uid://d4d1p4l68ffyr" path="res://_GUI/HUD/components/player_resources/resource_cards/resource_card.tscn" id="3_dlxj0"]
+[ext_resource type="Script" uid="uid://b1q4nwd7y15d5" path="res://_GUI/HUD/game_objects/player_resources/player_resources.gd" id="1_18gle"]
+[ext_resource type="PackedScene" uid="uid://d4d1p4l68ffyr" path="res://_GUI/HUD/game_objects/player_resources/resource_cards/resource_card.tscn" id="3_dlxj0"]
 [ext_resource type="PackedScene" uid="uid://cug7reenm11sr" path="res://_GUI/HUD/hud_layout.tscn" id="4_7q825"]
 [ext_resource type="Texture2D" uid="uid://bnpkbketmom4c" path="res://common/icons/ui_buttons/arrow_reserve.svg" id="7_3qplb"]
 

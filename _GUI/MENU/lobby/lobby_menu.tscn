@@ -3,11 +3,11 @@
 [ext_resource type="Script" uid="uid://cb1rvcb0tyd7e" path="res://_GUI/MENU/lobby/lobby_menu.gd" id="1_6laa8"]
 [ext_resource type="Script" uid="uid://dcdbsbvg5vqoi" path="res://_GUI/MENU/lobby/components/player_list.gd" id="2_nflxy"]
 
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_sno02"]
-thickness = 4
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nflxy"]
 bg_color = Color(1.04925e-05, 0.907887, 0.202547, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_sno02"]
+thickness = 4
 
 [node name="LobbyMenu" type="Control" node_paths=PackedStringArray("start_game_button", "generate_board_button", "destroy_board_button")]
 layout_mode = 3
@@ -18,71 +18,75 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_6laa8")
-start_game_button = NodePath("StartGame")
-generate_board_button = NodePath("GenerateBoard")
-destroy_board_button = NodePath("DestroyBoard")
+start_game_button = NodePath("MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/StartGame")
+generate_board_button = NodePath("MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/GenerateBoard")
+destroy_board_button = NodePath("MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/DestroyBoard")
 
-[node name="PlayerList" type="VBoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -290.0
-grow_horizontal = 0
+grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="StartGame" type="Button" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_nflxy")
+text = "Start Game"
+
+[node name="GenerateBoard" type="Button" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+text = "Generate Board"
+
+[node name="DestroyBoard" type="Button" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+text = "Destroy Board"
+
+[node name="MainMenu" type="Button" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+text = "Main Menu"
+
+[node name="PlayerList" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
 script = ExtResource("2_nflxy")
 
-[node name="RefreshTimer" type="Timer" parent="PlayerList"]
+[node name="RefreshTimer" type="Timer" parent="MarginContainer/HBoxContainer/PlayerList"]
 wait_time = 0.25
 autostart = true
 
-[node name="Title" type="Label" parent="PlayerList"]
+[node name="Title" type="Label" parent="MarginContainer/HBoxContainer/PlayerList"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Players"
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="PlayerList"]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/PlayerList"]
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxLine_sno02")
 
-[node name="StartGame" type="Button" parent="."]
-layout_mode = 0
-offset_left = 102.0
-offset_top = 60.0
-offset_right = 207.0
-offset_bottom = 105.0
-theme_override_styles/normal = SubResource("StyleBoxFlat_nflxy")
-text = "Start Game"
-
-[node name="GenerateBoard" type="Button" parent="."]
-layout_mode = 0
-offset_left = 258.0
-offset_top = 60.0
-offset_right = 385.0
-offset_bottom = 105.0
-text = "Generate Board"
-
-[node name="DestroyBoard" type="Button" parent="."]
-layout_mode = 0
-offset_left = 442.0
-offset_top = 59.0
-offset_right = 577.0
-offset_bottom = 101.0
-text = "Destroy Board"
-
-[node name="MainMenu" type="Button" parent="."]
-layout_mode = 0
-offset_left = 24.0
-offset_top = 600.0
-offset_right = 116.0
-offset_bottom = 628.0
-text = "Main Menu"
-
-[connection signal="timeout" from="PlayerList/RefreshTimer" to="PlayerList" method="_on_refresh_timer_timeout"]
-[connection signal="pressed" from="StartGame" to="." method="_on_start_game_pressed"]
-[connection signal="pressed" from="GenerateBoard" to="." method="_on_generate_board_pressed"]
-[connection signal="pressed" from="DestroyBoard" to="." method="_on_destroy_board_pressed"]
-[connection signal="pressed" from="MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/StartGame" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/GenerateBoard" to="." method="_on_generate_board_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/DestroyBoard" to="." method="_on_destroy_board_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="timeout" from="MarginContainer/HBoxContainer/PlayerList/RefreshTimer" to="MarginContainer/HBoxContainer/PlayerList" method="_on_refresh_timer_timeout"]

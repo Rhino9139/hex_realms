@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://dlysvvr1aprdc"]
 
 [ext_resource type="PackedScene" uid="uid://cug7reenm11sr" path="res://_GUI/HUD/hud_layout.tscn" id="2_vvqu1"]
-[ext_resource type="PackedScene" uid="uid://dydwmvrhg4ae8" path="res://_GUI/HUD/components/player_card_banner/player_card_banner.tscn" id="3_5iesp"]
-[ext_resource type="PackedScene" uid="uid://k2a8pem4oock" path="res://_GUI/HUD/components/buy_button_section/buy_button_section.tscn" id="4_ywcjx"]
-[ext_resource type="PackedScene" uid="uid://dfysx2poactud" path="res://_GUI/HUD/components/action_card_section/action_card_section.tscn" id="5_wx5tk"]
-[ext_resource type="PackedScene" uid="uid://mss40dxrydbv" path="res://_GUI/HUD/components/player_resources/player_resources.tscn" id="6_5kjyx"]
-[ext_resource type="PackedScene" uid="uid://h4xt3va73w1r" path="res://_GUI/HUD/components/primary_buttons/primary_buttons.tscn" id="6_5xxpv"]
+[ext_resource type="PackedScene" uid="uid://dydwmvrhg4ae8" path="res://_GUI/HUD/game_objects/player_card_banner/player_card_banner.tscn" id="3_5iesp"]
+[ext_resource type="PackedScene" uid="uid://k2a8pem4oock" path="res://_GUI/HUD/game_objects/buy_button_section/buy_button_section.tscn" id="4_ywcjx"]
+[ext_resource type="PackedScene" uid="uid://dfysx2poactud" path="res://_GUI/HUD/game_objects/action_card_section/action_card_section.tscn" id="5_wx5tk"]
+[ext_resource type="PackedScene" uid="uid://mss40dxrydbv" path="res://_GUI/HUD/game_objects/player_resources/player_resources.tscn" id="6_5kjyx"]
+[ext_resource type="PackedScene" uid="uid://h4xt3va73w1r" path="res://_GUI/HUD/game_objects/primary_buttons/primary_buttons.tscn" id="6_5xxpv"]
 
 [node name="GameHUD" type="Control"]
 layout_mode = 3

@@ -109,15 +109,3 @@ static var ACTION_CARDS: Array[ActionCardType] = [
 	ActionCardType.MONOPOLY, ActionCardType.MONOPOLY,
 	ActionCardType.FREE_ROADS, ActionCardType.FREE_ROADS,
 	]
-static var SETTLEMENT_COST: Array[int] = [1, 0, 1, 1, 1]
-static var CASTLE_COST: Array[int] = [0, 3, 0, 2, 0]
-static var ROAD_COST: Array[int] = [1, 0, 0, 0, 1]
-static var CARD_COST: Array[int] = [0, 1, 1, 1, 0]
-
-
-static func MAKE_ROAD_FREE() -> void:
-	ROAD_COST = [0, 0, 0, 0, 0]
-
-
-static func MAKE_ROAD_COST() -> void:
-	ROAD_COST = [1, 0, 0, 0, 1]

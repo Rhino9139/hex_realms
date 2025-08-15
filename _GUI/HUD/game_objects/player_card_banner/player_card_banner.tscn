@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dydwmvrhg4ae8"]
 
-[ext_resource type="Script" uid="uid://duc717pcmmus3" path="res://_GUI/HUD/components/player_card_banner/player_card_banner.gd" id="1_mhv2y"]
+[ext_resource type="Script" uid="uid://duc717pcmmus3" path="res://_GUI/HUD/game_objects/player_card_banner/player_card_banner.gd" id="1_mhv2y"]
 
 [node name="PlayerCardBanner" type="Control" node_paths=PackedStringArray("row_parent")]
 layout_mode = 3

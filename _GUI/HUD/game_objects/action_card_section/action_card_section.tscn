@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dfysx2poactud"]
 
-[ext_resource type="PackedScene" uid="uid://b0nur1ie7735w" path="res://_GUI/HUD/components/action_card_section/action_card.tscn" id="1_hckpp"]
+[ext_resource type="PackedScene" uid="uid://b0nur1ie7735w" path="res://_GUI/HUD/game_objects/action_card_section/action_card.tscn" id="1_hckpp"]
 [ext_resource type="PackedScene" uid="uid://cug7reenm11sr" path="res://_GUI/HUD/hud_layout.tscn" id="8_5onfp"]
 
 [node name="ActionCardSection" type="Control"]
