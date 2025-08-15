@@ -86,9 +86,16 @@ The game uses an autoload "Events" to hold all of the global signals. The autolo
 
 This structure was chosen to centralize the decision making logic of the game. In any game, you have to choose when to convert the triggering event logic into reacting event logic. The primary goal is to make each game object never able to act on outside information. While the concepts of Loose Coupling and Dependancy Injection are core principles to follow already, this project is an attempt to take this to the most extreme. For example, a "Quit Game" menu button will not exit the game itself, even if that is its only possible logic. The button will instead inform a Logic Node it was pressed, and the Logic Node will exit the game. IMPORTANT NOTE: This is the end goal of the project but until finished, not all of these principles are followed as described.
 
+### Message Objects
+Some game objects require more complex information in an incoming siganl to complete a task. In this case, a game object class will have a "Message" inner class defined. These are simple objects that the logic nodes can make when they signal down to make passing complex information more clear.
+
+### Multiplayer
+Hex Realms uses RPC calls to pass information between peers. The expanded out Events structure of the project has proven antagonistic to being a multiplayer game. This is due to RPC calls being used in different layers of the game, creating a common problem of running the same logic multiple times. It is a goal to find out a good stucture of using all RPC calls in the same layer in a clear and understandable way.
+
 ### Pros
 - Centralized Logic: All of the locations where a triggering event has to propigate out into reaction events occurs in one of the few Logic Nodes. This results in control of the entire game as a very high level pseudo-API
 - Clear Path: All game logic follows a predictable and easy to follow path throughtout the scene tree. This makes debugging and scaling the game much easier.
+- The organizational inner class objects of the Events autoload add a layer of visual debugging since all game objects will exclusively connect to "HEADER*_END" signals and emit "HEADER*_START" signals. Likewise logic nodes with only connect to "HEADER*_START" signals and emit "HEADER*_END" signals.
 
 ### Cons
 - Extra Functions: Since all game objects can connect to the event bus, events do not have to flow through the Logic Nodes. Triggering events that only have one reaction events would simply be "NodeA.signal.emit() -> NodeB.signal.connect(callable) -> NodeB.callabe" for the entire logic flow. Instead, to be consistent, these signals still go up through the Logic Nodes making a much longer single-line function chain between the game objects.
@@ -97,3 +104,12 @@ This structure was chosen to centralize the decision making logic of the game. I
 
 ### Notes
 The extra logic is an 'accepted disadvantage' because it results in code that is easier to debug. The size of logic scripts is also less of a disadvantage than normal in this case because of the nature of the code in the script. This is due to the fact that these logic scripts mostly just connect and emit signals with intuitive names, have minimal nested funcitions, and no extra complex logic. This is not the case for some of the game objects like the road hotspot object. The road hotspot contains code that not only controls its visual for hover and building, but also the max length algorithm that, while not the most complex, is argueably much harder to follow. This results in a shorter script that is harder to debug and refactor than any logic script. The multiple logic nodes is currently a pain point that needs more work to figure out a better structure.
+
+## ⛓️‍💥 Variations From Standards
+- Signals
+	- Signals are generally named with past tense verbs as they are emitted on triggers and other objects respond. Since this flow is split, only the HEADER*_START signals are past tense. The HEADER*_END signals are present tense as they are commands from the logic nodes.
+ 	- Signals are also usually used to signal up to an ancestor node. I've also used signals to "Signal Down" to maintain the loose coupling and avoid passing node references to the logic nodes.
+    - Signal connected callables: A function connected to a signal commonly follows the pattern "_on_*signal_name*". This game uses the pattern "_*signal_name*" for the "*HEADER*_END" connected signals for more differentiation.
+    - Imported assets like blender files generally go into the "/addons" folder but I keep a separate "/imports" for easier navigation as navigating to plugins is vary rarely needed.
+    - Underscores as a prefix for variables is often used to denote a private variable. Due to the use of signals, calling properties on other nodes is very rare. Instead, underscores are used for constants, and uppercase is used for static variables and constants.
+    - 
