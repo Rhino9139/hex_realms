@@ -85,3 +85,15 @@ The game uses an autoload "Events" to hold all of the global signals. The autolo
 	Example: Roll button is pressed -> Roll button emits signal -> Logic State Machine recieves signal -> Logic State Machine emits signal to Screen Header to add the roll screen
 
 This structure was chosen to centralize the decision making logic of the game. In any game, you have to choose when to convert the triggering event logic into reacting event logic. The primary goal is to make each game object never able to act on outside information. While the concepts of Loose Coupling and Dependancy Injection are core principles to follow already, this project is an attempt to take this to the most extreme. For example, a "Quit Game" menu button will not exit the game itself, even if that is its only possible logic. The button will instead inform a Logic Node it was pressed, and the Logic Node will exit the game. IMPORTANT NOTE: This is the end goal of the project but until finished, not all of these principles are followed as described.
+
+### Pros
+- Centralized Logic: All of the locations where a triggering event has to propigate out into reaction events occurs in one of the few Logic Nodes. This results in control of the entire game as a very high level pseudo-API
+- Clear Path: All game logic follows a predictable and easy to follow path throughtout the scene tree. This makes debugging and scaling the game much easier.
+
+### Cons
+- Extra Functions: Since all game objects can connect to the event bus, events do not have to flow through the Logic Nodes. Triggering events that only have one reaction events would simply be "NodeA.signal.emit() -> NodeB.signal.connect(callable) -> NodeB.callabe" for the entire logic flow. Instead, to be consistent, these signals still go up through the Logic Nodes making a much longer single-line function chain between the game objects.
+- Complex Logic Nodes: The scripts on the Logic Nodes can quickly become too large as there are only a few and they handle all of the logic in the game.
+- The amount of logic has also result in multiple nodes controlling logic at once
+
+### Notes
+The extra logic is an 'accepted disadvantage' because it results in code that is easier to debug. The size of logic scripts is also less of a disadvantage than normal in this case because of the nature of the code in the script. This is due to the fact that these logic scripts mostly just connect and emit signals with intuitive names, have minimal nested funcitions, and no extra complex logic. This is not the case for some of the game objects like the road hotspot object. The road hotspot contains code that not only controls its visual for hover and building, but also the max length algorithm that, while not the most complex, is argueably much harder to follow. This results in a shorter script that is harder to debug and refactor than any logic script. The multiple logic nodes is currently a pain point that needs more work to figure out a better structure.
