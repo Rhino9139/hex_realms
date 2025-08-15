@@ -8,7 +8,7 @@ The primary goal of this structure is organization, and a consistent layering st
 This results in some extra code and steps in game logic in an effort to keep the architecture more homogenous but ultimately becomeing easier to read/refactor/debug etc.
 Naming conventions and keywords will also be noted when apporopriate.
 
-[Settlers of Catan Rules](https://www.catan.com/understand-catan/game-rules)
+[Settlers of Catan Rules](https://www.catan.com/understand-catan/game-rules) The game follows the rules for the base game with 4 players.
 
 #### This project is ongoing and while this readme describes the current structure, some files may have other patterns in the event they have not been updated.
 
@@ -74,5 +74,7 @@ These are the smallest instantiated level of orgainization. Game Objects that sh
 This structure has been adapted to these requirements and I am uncertain how other genres and game types would fit into this style.
 
 ### Notes
-The goal of this structure is to make the added 'bloat' of additional scripts and layers be a benefit. This expanding of logic and responsibility was intended to be compatible with any possible flow of logic between game objects.
+The goal of this structure is to make the added 'bloat' of additional scripts and layers be a benefit. This expanding of logic and responsibility was intended to be compatible with any possible flow of logic between game objects. 
+If done correctly, you should be able to immediately know the answer to questions like "How does this object spawn?" and "How does this object react to this game event?" with absolute certainty.
 
+## ⚙️ Game Logic
