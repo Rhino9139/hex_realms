@@ -105,6 +105,12 @@ Hex Realms uses RPC calls to pass information between peers. The expanded out Ev
 ### Notes
 The extra logic is an 'accepted disadvantage' because it results in code that is easier to debug. The size of logic scripts is also less of a disadvantage than normal in this case because of the nature of the code in the script. This is due to the fact that these logic scripts mostly just connect and emit signals with intuitive names, have minimal nested funcitions, and no extra complex logic. This is not the case for some of the game objects like the road hotspot object. The road hotspot contains code that not only controls its visual for hover and building, but also the max length algorithm that, while not the most complex, is argueably much harder to follow. This results in a shorter script that is harder to debug and refactor than any logic script. The multiple logic nodes is currently a pain point that needs more work to figure out a better structure.
 
+## ⚔️ Multiplayer
+Mid Level API: ENetMultiplayerPeer
+Client-Server: One player hosts the game while other players connect
+LAN: Currently Only LAN and same-computer implemented
+Player Nodes: When players connect to the host, Player nodes are created by the PlayerManager in the Network Domain. These nodes contain all the information about a player for the match to proceed. All clients have all player nodes. Multiplayer Authority per player node is not yet implemented but is planned.
+
 ## ⛓️‍💥 Variations From Standards
 - Signals
 	- Signals are generally named with past tense verbs as they are emitted on triggers and other objects respond. Since this flow is split, only the HEADER*_START signals are past tense. The HEADER*_END signals are present tense as they are commands from the logic nodes.
