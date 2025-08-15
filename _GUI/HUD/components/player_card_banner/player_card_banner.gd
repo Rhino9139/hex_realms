@@ -12,8 +12,7 @@ func _ready() -> void:
 func _add_player_cards(players: Array[Player]) -> void:
 	for player in players:
 		var new_card: PlayerCard = load(CARD_PATH).instantiate()
-		new_card.publisher = player.publisher
-		new_card.player_name = player.player_name
+		new_card.player = player
 		row_parent.add_child(new_card)
 	for card in row_parent.get_children():
-		row_parent.move_child(card, card.publisher.turn_index)
+		row_parent.move_child(card, card.player.turn_index)

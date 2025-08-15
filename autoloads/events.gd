@@ -89,6 +89,8 @@ class BoardStart:
 	signal board_added
 	signal building_added(hotspot: Hotspot)
 	signal longest_road_updated(new_longest: int)
+	signal desert_spawned(desert_hex: HexHotspot)
+	signal robber_hex_chosen(new_hex: HexHotspot)
 
 
 class BoardEnd:
@@ -100,6 +102,8 @@ class BoardEnd:
 	signal make_hotspot_unavailable
 	signal click_hotspot(message: Hotspot.Message)
 	signal gather_resources(roll: int)
+	signal clear_robber
+	signal move_robber(new_hex: HexHotspot)
 
 
 class NetworkStart:
@@ -175,3 +179,4 @@ class LogicDown:
 	signal start_next_turn(current_turn: int, current_round: int, LP_turn_index: int)
 	signal go_to_standard
 	signal go_to_inactive
+	signal go_to_robber

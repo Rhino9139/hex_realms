@@ -12,9 +12,8 @@ static func CREATE() -> Robber:
 
 
 func _ready() -> void:
-	Events.move_robber_requested.connect(_on_move_robber_requested)
+	Events.BOARD_END.move_robber.connect(_move_robber)
 
 
-func _on_move_robber_requested(new_pos: Vector3) -> void:
-	global_position = new_pos
-	Events.robber_moved.emit()
+func _move_robber(new_hotspot: HexHotspot) -> void:
+	global_position = new_hotspot.global_position

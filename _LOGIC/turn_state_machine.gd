@@ -70,15 +70,28 @@ class ui_Inactive extends UIState:
 class ui_WaitRoll extends UIState:
 	
 	func enter() -> void:
-		Events.HUD_END.enable_dice_roll.emit()
 		Events.LOGIC_DOWN.go_to_standard.connect(_go_to_standard)
+		Events.LOGIC_DOWN.go_to_robber.connect(_go_to_robber)
+		Events.HUD_END.enable_dice_roll.emit()
 	
 	
 	func exit() -> void:
 		Events.LOGIC_DOWN.go_to_standard.disconnect(_go_to_standard)
+		Events.LOGIC_DOWN.go_to_robber.disconnect(_go_to_robber)
 	
 	
 	func _go_to_standard() -> void:
+		state_changed.emit(States.STANDARD)
+	
+	
+	func _go_to_robber() -> void:
+		substate = ui_Build.new()
+		substate.hotspot_type = Hotspot.Type.HEX
+		substate.substate_exited.connect(_substate_exited)
+		substate.enter()
+	
+	
+	func _substate_exited(_hotspot_type: Hotspot.Type) -> void:
 		state_changed.emit(States.STANDARD)
 
 
@@ -117,8 +130,6 @@ class ui_Standard extends UIState:
 		Events.HUD_END.enable_buy_button.emit()
 		Events.HUD_END.enable_end_turn.emit()
 		Events.CHARACTER_END.activate_camera.emit()
-		
-		
 	
 	
 	func exit() -> void:
@@ -186,12 +197,13 @@ class ui_Standard extends UIState:
 	
 	
 	func _action_card_clicked(card_type: Global.ActionCardType) -> void:
-		print("action card clicked")
 		_substate_exited(Hotspot.Type.EMPTY)
 		match card_type:
 			Global.ActionCardType.KNIGHT:
-				#TODO go to robber state
-				pass
+				substate = ui_Build.new()
+				substate.hotspot_type = Hotspot.Type.HEX
+				substate.substate_exited.connect(_substate_exited)
+				substate.enter()
 			Global.ActionCardType.VICTORY_POINT:
 				pass
 			Global.ActionCardType.YEAR_OF_PLENTY:
@@ -199,8 +211,20 @@ class ui_Standard extends UIState:
 			Global.ActionCardType.MONOPOLY:
 				pass
 			Global.ActionCardType.FREE_ROADS:
-				pass
+				substate = ui_Build.new()
+				substate.hotspot_type = Hotspot.Type.ROAD
+				substate.has_cost = false
+				substate.substate_exited.connect(_free_road_built)
+				substate.enter()
 		Events.PLAYER_END.use_action_card.emit(card_type)
+	
+	
+	func _free_road_built(_hotspot_type: Hotspot.Type) -> void:
+		substate = ui_Build.new()
+		substate.hotspot_type = Hotspot.Type.ROAD
+		substate.has_cost = false
+		substate.substate_exited.connect(_substate_exited)
+		substate.enter()
 
 
 class ui_Build extends UIState:
@@ -212,6 +236,7 @@ class ui_Build extends UIState:
 		Events.CHARACTER_START.hotspot_hovered.connect(_hotspot_hovered)
 		Events.CHARACTER_START.hotspot_clicked.connect(_hotspot_clicked)
 		Events.BOARD_START.building_added.connect(_building_added)
+		Events.BOARD_START.robber_hex_chosen.connect(_robber_hex_chosen)
 		Events.CHARACTER_END.activate_camera.emit()
 		var local_player: Player = Player.LOCAL_PLAYER
 		var message: Hotspot.Message = Hotspot.Message.new(
@@ -250,6 +275,12 @@ class ui_Build extends UIState:
 		Events.BOARD_END.make_hotspot_unavailable.emit()
 		if has_cost:
 			Events.PLAYER_END.buy_hotspot.emit(hotspot_type)
+		substate_exited.emit(hotspot_type)
+	
+	
+	func _robber_hex_chosen(new_hex: HexHotspot) -> void:
+		Events.BOARD_END.make_hotspot_unavailable.emit()
+		Events.BOARD_END.move_robber.emit(new_hex)
 		substate_exited.emit(hotspot_type)
 
 

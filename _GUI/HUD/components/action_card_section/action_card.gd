@@ -52,9 +52,8 @@ func _action_cards_changed(cards_in_hand: Array[Global.ActionCardType], cards_us
 
 
 func _on_gui_input(event: InputEvent) -> void:
-	if num_cards == 0:
+	if num_cards == 0 or in_hand == false:
 		return
 	if event is InputEventMouseButton:
 		if event.pressed and event.button_index == 1:
-			print("Clicked")
 			Events.HUD_START.action_card_clicked.emit(card_type)

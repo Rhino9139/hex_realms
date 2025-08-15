@@ -1,6 +1,13 @@
 class_name Player
 extends Node
 
+signal points_changed
+signal knights_changed
+signal resource_cards_changed
+signal longest_road_updated
+signal largest_army_updated
+signal road_length_updated(new_length: int)
+
 static var LOCAL_PLAYER: Player
 static var LARGEST_ARMY: int = 2
 static var LONGEST_ROAD: int = 4
@@ -8,7 +15,6 @@ static var LONGEST_ROAD: int = 4
 var player_id: int = 0
 var player_name: String = "New Player"
 var player_index: int = 0
-var publisher: Publisher = Publisher.new()
 
 var resources: Dictionary[Global.Resources, int] = {
 	Global.Resources.BRICK : 0,
@@ -35,18 +41,15 @@ var has_longest_road: bool = false:
 	set(new_value):
 		has_longest_road = new_value
 		calculate_points()
-		publisher.longest_road_updated.emit(has_longest_road)
+		longest_road_updated.emit()
 
 var has_largest_army: bool = false:
 	set(new_value):
 		has_largest_army = new_value
 		calculate_points()
-		publisher.largest_army_updated.emit(has_largest_army)
+		largest_army_updated.emit()
 
-var turn_index: int = 1:
-	set(new_value):
-		turn_index = new_value
-		publisher.turn_index = turn_index
+var turn_index: int = 1
 
 
 func _ready() -> void:
@@ -61,8 +64,6 @@ func _ready() -> void:
 	player_index = get_index() + 1
 	player_mat = Global.PLAYER_MATS[player_index]
 	player_color = player_mat.albedo_color
-	publisher.player_name = player_name
-	publisher.player_color = player_color
 	
 	if LOCAL_PLAYER == self:
 		Events.BOARD_START.building_added.connect(_building_added)
@@ -70,7 +71,7 @@ func _ready() -> void:
 		Events.PLAYER_END.buy_action_card.connect(_buy_action_card)
 		Events.PLAYER_END.use_action_card.connect(_use_action_card)
 	
-	publisher.road_length_updated.connect(_road_length_updated)
+	road_length_updated.connect(_road_length_updated)
 
 
 func trade_resources() -> void:
@@ -158,7 +159,7 @@ func calculate_points() -> void:
 		total_points += 2
 	if has_largest_army:
 		total_points += 2
-	publisher.points_changed.emit(total_points)
+	points_changed.emit()
 
 
 func _building_added(hotspot: Hotspot) -> void:
@@ -177,7 +178,8 @@ func _buy_action_card() -> void:
 
 
 func _road_length_updated(new_length: int) -> void:
-	pass
+	road_count = new_length
+	share_longest_road_length.rpc(road_count)
 
 
 @rpc("any_peer", "call_remote")
@@ -202,7 +204,7 @@ func share_cards(new_resources: Dictionary[Global.Resources, int]) -> void:
 		}
 	change_resources(new_resources)
 	
-	publisher.resource_cards_changed.emit(num_cards)
+	resource_cards_changed.emit()
 
 
 @rpc("any_peer", "call_local")
@@ -214,7 +216,7 @@ func share_knight_count(new_count: int) -> void:
 	for player in PlayerManager.GET_PLAYERS():
 		if player.knight_count < LARGEST_ARMY:
 			player.has_largest_army = false
-	publisher.knights_changed.emit(knight_count)
+	knights_changed.emit()
 
 
 @rpc("any_peer", "call_local")
@@ -226,17 +228,3 @@ func share_longest_road_length(new_length: int) -> void:
 	for player in PlayerManager.GET_PLAYERS():
 		if player.road_count < LONGEST_ROAD:
 			player.has_longest_road = false
-	
-
-
-class Publisher:
-	signal points_changed(new_points: int)
-	signal knights_changed(new_knights: int)
-	signal resource_cards_changed(new_count: int)
-	signal longest_road_updated(has_longest: bool)
-	signal largest_army_updated(has_largest: bool)
-	signal road_length_updated(length: int)
-	
-	var player_name: String
-	var player_color: Color
-	var turn_index: int

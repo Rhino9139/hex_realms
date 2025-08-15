@@ -31,11 +31,14 @@ func _turn_order_created() -> void:
 	Events.LOGIC_DOWN.start_next_turn.emit(CURRENT_TURN, CURRENT_ROUND, local_turn_index)
 
 
-func _dice_rolled(_total: int) -> void:
-	Events.HUD_END.update_last_roll.emit(_total)
-	Events.BOARD_END.gather_resources.emit(_total)
+func _dice_rolled(total: int) -> void:
+	Events.HUD_END.update_last_roll.emit(total)
+	Events.BOARD_END.gather_resources.emit(total)
 	if local_turn_index == CURRENT_TURN:
-		Events.LOGIC_DOWN.go_to_standard.emit()
+		if total == 7:
+			Events.LOGIC_DOWN.go_to_robber.emit()
+		else:
+			Events.LOGIC_DOWN.go_to_standard.emit()
 
 
 func _roll_dice_requested() -> void:

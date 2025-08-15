@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://coa2enk271cgj"]
+[gd_scene load_steps=8 format=3 uid="uid://coa2enk271cgj"]
 
 [ext_resource type="Script" uid="uid://b108anyn817ik" path="res://_3D/board/hotspot/hex_hotspot/hex_hotspot.gd" id="1_x2km7"]
 [ext_resource type="ArrayMesh" uid="uid://dsgb7xo0ja4db" path="res://imports/blend_files/hexes/holo_hex_outer.res" id="2_ccdea"]
@@ -10,13 +10,19 @@
 height = 1.63477
 radius = 7.02832
 
-[node name="HexHotspot" type="Area3D" node_paths=PackedStringArray("roll_sprite", "hover_indicator", "available_indicator")]
+[sub_resource type="TorusMesh" id="TorusMesh_mfcgu"]
+material = ExtResource("7_aaw0a")
+inner_radius = 5.5
+outer_radius = 6.0
+
+[node name="HexHotspot" type="Area3D" node_paths=PackedStringArray("roll_sprite", "hover_indicator", "available_indicator", "hover_model") groups=["Hex"]]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_x2km7")
 roll_sprite = NodePath("RollSprite")
-hover_indicator = NodePath("HoverIndicator")
-available_indicator = NodePath("HoverIndicator")
+hover_indicator = NodePath("HoverModel")
+available_indicator = NodePath("AvailableIndicator")
+hover_model = NodePath("HoverModel")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.446712, 0)
@@ -32,8 +38,13 @@ surface_material_override/0 = ExtResource("5_awe0n")
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 2.50291, 0)
 axis = 1
 
-[node name="HoverIndicator" type="MeshInstance3D" parent="."]
+[node name="HoverModel" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 3.16224, 0)
 visible = false
 mesh = ExtResource("6_qexo0")
 surface_material_override/0 = ExtResource("7_aaw0a")
+
+[node name="AvailableIndicator" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.90517, 0)
+visible = false
+mesh = SubResource("TorusMesh_mfcgu")

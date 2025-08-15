@@ -22,6 +22,8 @@ func inner_ready() -> void:
 		add_child(terrain)
 		terrain.global_position = global_position
 		roll = 7
+		has_robber = true
+		Events.BOARD_START.desert_spawned.emit(self)
 	else:
 		terrain_type = Terrain.TYPE_ARRAY[idx]
 		var terrain: Node3D = Terrain._SCENES[terrain_type].instantiate()
@@ -29,33 +31,20 @@ func inner_ready() -> void:
 		terrain.global_position = global_position
 		roll = Global.HEX_ROLLS[idx]
 		roll_sprite.texture = load(Global.ROLL_SPRITES[roll])
+	Events.BOARD_END.clear_robber.connect(_clear_robber)
 
 
-func number_rolled(rolled_total: int) -> void:
-	if terrain_type == Terrain.Type.DESERT:
-		return
-	if roll == rolled_total:
-		pass
+func has_availability(_message: Message) -> bool:
+	if has_robber:
+		return false
+	return true
 
 
-func make_available() -> void:
-	if has_robber == false:
-		set_collision_layer_value(3, true)
-
-
-func make_unavailable() -> void:
-	collision_layer = 0
-	hover_indicator.visible = false
-
-
-func _on_selectable_hovered(hovered_object: Node3D) -> void:
-	if hovered_object == self:
-		hover_indicator.visible = true
-	else:
-		hover_indicator.visible = false
-
-
-@rpc("any_peer", "call_local")
-func move_robber() -> void:
+func activate_hotspot(_message: Message) -> void:
+	get_tree().call_group("Hex", "_clear_robber")
+	Events.BOARD_START.robber_hex_chosen.emit(self)
 	has_robber = true
-	Events.robber_moved.emit(global_position)
+
+
+func _clear_robber() -> void:
+	has_robber = false

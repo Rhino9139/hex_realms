@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c2ksqumo8ouyv"]
+[gd_scene load_steps=9 format=3 uid="uid://c2ksqumo8ouyv"]
 
 [ext_resource type="PackedScene" uid="uid://coa2enk271cgj" path="res://_3D/board/hotspot/hex_hotspot/hex_hotspot.tscn" id="1_2gxo7"]
 [ext_resource type="Script" uid="uid://dxasd5gkgv3c0" path="res://_3D/board/standard_board/standard_board.gd" id="1_g3712"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://c301cybdi62i" path="res://_3D/board/terrain/terrain.gd" id="3_w6rhv"]
 [ext_resource type="PackedScene" uid="uid://c7c6bp287ee3d" path="res://_3D/board/port/port_piece.tscn" id="4_tpb0m"]
 [ext_resource type="PackedScene" uid="uid://ojj448xhq20k" path="res://_3D/board/hotspot/road_hotspot/road_hotspot.tscn" id="6_gqk4j"]
+[ext_resource type="PackedScene" uid="uid://bn28v17yjc7he" path="res://_3D/board/robber/robber.tscn" id="8_vipot"]
 
 [node name="StandardBoard" type="Node3D"]
 script = ExtResource("1_g3712")
@@ -812,6 +813,4 @@ transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, -22.1351
 [node name="8" parent="Port" instance=ExtResource("4_tpb0m")]
 transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 5.04149, -0.249992, -38.6339)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.951669, 0.299731, 0.0669813, -0.307124, 0.928761, 0.207552, 0, -0.218092, 0.975928, -0.308539, 11.3596, -7.62939e-06)
-visible = false
+[node name="Robber" parent="." instance=ExtResource("8_vipot")]

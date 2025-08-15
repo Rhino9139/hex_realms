@@ -23,7 +23,7 @@ func _gather_resources(_roll: int = 0) -> void:
 	if player_owner == null:
 		return
 	for hex in adjacent_hexes:
-		if hex.terrain_type != Terrain.Type.DESERT:
+		if hex.has_robber == false:
 			if hex.roll == _roll or _roll == 0:
 				player_owner.change_resource(int(hex.terrain_type), gather_mult)
 
