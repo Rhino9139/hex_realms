@@ -77,6 +77,29 @@ This structure has been adapted to these requirements and I am uncertain how oth
 The goal of this structure is to make the added 'bloat' of additional scripts and layers be a benefit. This expanding of logic and responsibility was intended to be compatible with any possible flow of logic between game objects. 
 If done correctly, you should be able to immediately know the answer to questions like "How does this object spawn?" and "How does this object react to this game event?" with absolute certainty.
 
+## 🌐 Scene Tree Structure
+
+- **Main**
+	- **Master3D**
+   		- **World**
+    	- **Board**
+    	- **Character**
+	- **MasterGUI**
+   		- **Menu**
+    	- **HUD**
+    	- **Screen**
+	- **MasterNetwork**
+   		- **ServerHost**
+       	- **Client**
+    	- **PlayerManager**
+       	- **MultiplayerSpawner**
+	- **MasterLogic**
+   		- **MenuLogic**
+       	- **MatchLogic**
+      		- **TurnStateMachine**
+
+The main scene show above is the root at all times. Currently, this main scene does not change with only children of the show nodes being added/removed. The "Master" nodes are for each domain and are purely organizational. Each Header has its own class of the same name. The game proceeds by the logic nodes telling the headers to add/remove objects and then telling the game objects what to do.
+
 ## ⚙️ Game Logic
 
 ### Event Bus
