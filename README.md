@@ -1,7 +1,6 @@
+# Hex Realms - A experiment in game architecture.
 
-Hex Realms - A case study in game architecture.
-
-# 🎯 Overview
+## 🎯 Overview
 This project is a direct clone of the board game "Settlers of Catan". I created this game to play with friends and learn more about game architecture.
 All of the code follows the [GDScript Style Guide](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_styleguide.html) unless noted otherwise. 
 The primary goal of this structure is organization, and a consistent layering structure for both game files and the flow of game logic.
@@ -10,19 +9,24 @@ Naming conventions and keywords will also be noted when apporopriate.
 
 [Settlers of Catan Rules](https://www.catan.com/understand-catan/game-rules) The game follows the rules for the base game with 4 players.
 
-#### This project is ongoing and while this readme describes the current structure, some files may have other patterns in the event they have not been updated.
+#### This project is ongoing and far from complete. This document outlines the current structural design but many files/objects may still follow older design principles.
+
+### Incomplete Game Sections
+- Player Trading
+- Bank Trading
+- Year of Plenty action card
+- Monopoly action card
+- Victory Screen
+- Misc. bugs
+
 
 ## 📂 File Structure
 
 - **godot**
 	- **_3D**
-   		- **board**
-    	- **character**
-    	- **environment**
+   		- **all 3D objects**
 	- **_GUI**
-   		- **hud**
-    	- **menu**
-    	- **screen**
+   		- **all Control/UI objects**
 	- **_LOGIC**
    		- **logic scripts**
 	- **_MAIN**
@@ -36,12 +40,36 @@ Naming conventions and keywords will also be noted when apporopriate.
 	- **imports**
    		- **blender files, vox files**
 
+## 🌐 Scene Tree Structure
+
+- **Main**
+	- **Master3D**
+   		- **World**
+    	- **Board**
+    	- **Character**
+	- **MasterGUI**
+   		- **Menu**
+    	- **HUD**
+    	- **Screen**
+	- **MasterNetwork**
+   		- **ServerHost**
+       	- **Client**
+    	- **PlayerManager**
+       	- **MultiplayerSpawner**
+	- **MasterLogic**
+   		- **MenuLogic**
+       	- **MatchLogic**
+      		- **TurnStateMachine**
+
+The main scene show above is the root at all times. Currently, this main scene does not change with only children of the show nodes being added/removed. The "Master" nodes are for each domain and are purely organizational. Each Header has its own class of the same name. The game proceeds by the logic nodes telling the headers to add/remove objects and then telling the game objects what to do.
+
 ### Structure Breakdown
-- **godot**
+- **Main**
 	- *Domain* (eg. _3D)
    		- *Header* (eg. board)
        		- *Sets* (eg. StandardBoard.tscn)
-        	- *Game Objects* (eg. terrain hexes, robber piece)
+        		- *Game Objects* (eg. terrain hexes, robber piece)
+            - *Game Objects* (eg. player camera, main menu)
 
 #### Domians (3D, GUI, Logic, Main, Network)
 The project is organized in the file system and scene tree by function with the top layer of organization called "Domains". 
@@ -77,29 +105,6 @@ This structure has been adapted to these requirements and I am uncertain how oth
 The goal of this structure is to make the added 'bloat' of additional scripts and layers be a benefit. This expanding of logic and responsibility was intended to be compatible with any possible flow of logic between game objects. 
 If done correctly, you should be able to immediately know the answer to questions like "How does this object spawn?" and "How does this object react to this game event?" with absolute certainty.
 
-## 🌐 Scene Tree Structure
-
-- **Main**
-	- **Master3D**
-   		- **World**
-    	- **Board**
-    	- **Character**
-	- **MasterGUI**
-   		- **Menu**
-    	- **HUD**
-    	- **Screen**
-	- **MasterNetwork**
-   		- **ServerHost**
-       	- **Client**
-    	- **PlayerManager**
-       	- **MultiplayerSpawner**
-	- **MasterLogic**
-   		- **MenuLogic**
-       	- **MatchLogic**
-      		- **TurnStateMachine**
-
-The main scene show above is the root at all times. Currently, this main scene does not change with only children of the show nodes being added/removed. The "Master" nodes are for each domain and are purely organizational. Each Header has its own class of the same name. The game proceeds by the logic nodes telling the headers to add/remove objects and then telling the game objects what to do.
-
 ## ⚙️ Game Logic
 
 ### Event Bus
@@ -129,16 +134,15 @@ Hex Realms uses RPC calls to pass information between peers. The expanded out Ev
 The extra logic is an 'accepted disadvantage' because it results in code that is easier to debug. The size of logic scripts is also less of a disadvantage than normal in this case because of the nature of the code in the script. This is due to the fact that these logic scripts mostly just connect and emit signals with intuitive names, have minimal nested funcitions, and no extra complex logic. This is not the case for some of the game objects like the road hotspot object. The road hotspot contains code that not only controls its visual for hover and building, but also the max length algorithm that, while not the most complex, is argueably much harder to follow. This results in a shorter script that is harder to debug and refactor than any logic script. The multiple logic nodes is currently a pain point that needs more work to figure out a better structure.
 
 ## ⚔️ Multiplayer
-Mid Level API: ENetMultiplayerPeer
-Client-Server: One player hosts the game while other players connect
-LAN: Currently Only LAN and same-computer implemented
-Player Nodes: When players connect to the host, Player nodes are created by the PlayerManager in the Network Domain. These nodes contain all the information about a player for the match to proceed. All clients have all player nodes. Multiplayer Authority per player node is not yet implemented but is planned.
+- Mid Level API: ENetMultiplayerPeer
+- Client-Server: One player hosts the game while other players connect
+- LAN: Currently Only LAN and same-computer implemented
+- Player Nodes: When players connect to the host, Player nodes are created by the PlayerManager in the Network Domain. These nodes contain all the information about a player for the match to proceed. All clients have all player nodes. Multiplayer Authority per player node is not yet implemented but is planned.
 
 ## ⛓️‍💥 Variations From Standards
 - Signals
 	- Signals are generally named with past tense verbs as they are emitted on triggers and other objects respond. Since this flow is split, only the HEADER*_START signals are past tense. The HEADER*_END signals are present tense as they are commands from the logic nodes.
  	- Signals are also usually used to signal up to an ancestor node. I've also used signals to "Signal Down" to maintain the loose coupling and avoid passing node references to the logic nodes.
     - Signal connected callables: A function connected to a signal commonly follows the pattern "_on_*signal_name*". This game uses the pattern "_*signal_name*" for the "*HEADER*_END" connected signals for more differentiation.
-    - Imported assets like blender files generally go into the "/addons" folder but I keep a separate "/imports" for easier navigation as navigating to plugins is vary rarely needed.
-    - Underscores as a prefix for variables is often used to denote a private variable. Due to the use of signals, calling properties on other nodes is very rare. Instead, underscores are used for constants, and uppercase is used for static variables and constants.
-    - 
+- Imported assets like blender files generally go into the "/addons" folder but I keep a separate "/imports" for easier navigation as navigating to plugins is vary rarely needed.
+- Underscores as a prefix for variables is often used to denote a private variable. Due to the use of signals, calling properties on other nodes is very rare. Instead, underscores are used for constants, and uppercase is used for static variables and constants.
